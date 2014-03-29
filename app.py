@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask import render_template
 
 # initialization
 app = Flask(__name__)
@@ -10,7 +11,7 @@ app.config.update(
 # controllers
 @app.route("/")
 def hello():
-    return "Dick was here."
+    return render_template('index.html')
 
 # launch
 if __name__ == "__main__":

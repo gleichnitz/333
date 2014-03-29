@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %} - Home{% endblock %}
-{% block content %} Here is some content {% endblock %}
+{% block content %}
 {% if not session.logged_in %}
      <p>Vinay is always on time.</p>
+     <img src="tiger.jpg">
 {% else %}
      <p>Who gets kicked out.</p>
 {% endif %}

@@ -10,7 +10,7 @@ app.config.update(
 # controllers
 @app.route("/")
 def hello():
-    return "James was here."
+    return "Dick was here."
 
 # launch
 if __name__ == "__main__":

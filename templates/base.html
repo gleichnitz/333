@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     {% block head %}
-    <title>SuperApp{% block title %}{% endblock %}</title>
+    <title>CodePost{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -27,7 +27,7 @@
           {% block navbar_right %}
           <ul class="nav navbar-nav pull-right">
             {% if not session.logged_in %}
-              <li><a href="#">Login or Signup</a></li>
+             <li><a href="#">Login</a></li>
             {% else %}
               <li><a href="#">Logout</a></li>
             {% endif %}

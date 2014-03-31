@@ -43,7 +43,6 @@ def submitted():
 def validate():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
     data = response.read()
-
     return data
 
     # return request.args.get('ticket')

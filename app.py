@@ -37,7 +37,7 @@ def team():
 
 @app.route('/validate.html')
 def validate():
-    response = urllib2.open('https://fed.princeton.edu/cas/serviceValidate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/serviceValidate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
     return request.args.get('ticket')
 
 @app.route("/grader.html")

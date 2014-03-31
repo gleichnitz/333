@@ -1,0 +1,81 @@
+/* line 4, ../sass/cp.scss */
+.fwd .hero-unit {
+  background: #464646;
+  color: #fff;
+}
+/* line 7, ../sass/cp.scss */
+.fwd .hero-unit h1 {
+  text-shadow: black 1px 5px 10px;
+}
+/* line 9, ../sass/cp.scss */
+.fwd .hero-unit h1 span {
+  color: #F5821F;
+}
+/* line 13, ../sass/cp.scss */
+.fwd .hero-unit .btn-info {
+  padding: 15px;
+  font-size: 1.2em;
+}
+/* line 19, ../sass/cp.scss */
+.fwd .thumbnail .caption {
+  position: relative;
+  color: #ccc9c9;
+}
+/* line 22, ../sass/cp.scss */
+.fwd .thumbnail .caption h5 {
+  font-size: 2em;
+  color: #464646;
+}
+/* line 28, ../sass/cp.scss */
+.fwd footer {
+  padding: 20px;
+  margin-top: 30px;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -ms-border-radius: 10px 10px 0 0;
+  -o-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
+  color: #fff;
+  background: url(http://cdn1.1stwebdesigner.com/wp-content/themes/1stwd/img/bg_header.jpg) repeat left top;
+}
+
+/* line 37, ../sass/cp.scss */
+.fwd2 .hero-unit {
+  background: #222930;
+  color: #fff;
+}
+/* line 40, ../sass/cp.scss */
+.fwd2 .hero-unit h1 {
+  text-shadow: black 1px 5px 10px;
+}
+/* line 42, ../sass/cp.scss */
+.fwd2 .hero-unit h1 span {
+  color: #F5821F;
+}
+/* line 46, ../sass/cp.scss */
+.fwd2 .hero-unit .btn-info {
+  padding: 15px;
+  font-size: 1.2em;
+}
+/* line 52, ../sass/cp.scss */
+.fwd2 .thumbnail .caption {
+  position: relative;
+  color: #ccc9c9;
+}
+/* line 55, ../sass/cp.scss */
+.fwd2 .thumbnail .caption h5 {
+  font-size: 2em;
+  color: #464646;
+}
+/* line 61, ../sass/cp.scss */
+.fwd2 footer {
+  padding: 20px;
+  margin-top: 30px;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -ms-border-radius: 10px 10px 0 0;
+  -o-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
+  color: #fff;
+  background: url(http://cdn1.1stwebdesigner.com/wp-content/themes/1stwd/img/bg_header.jpg) repeat left top;
+}

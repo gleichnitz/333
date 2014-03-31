@@ -1,0 +1,68 @@
+@import "compass/css3";
+
+.fwd{
+  .hero-unit{
+    background:#464646;
+    color:#fff;
+    h1{
+      @include text-shadow(#000 1px 5px  10px);
+      span{
+        color:#F5821F;
+      }
+    }
+    .btn-info{
+      padding:15px;
+      font-size:1.2em;
+    }
+  }
+  .thumbnail{
+    .caption{
+      position:relative;
+      color:#ccc9c9;
+      h5{
+        font-size:2em;
+        color:#464646;
+      }
+    }
+  }
+  footer{
+    padding:20px;
+    margin-top:30px;
+    @include border-radius(10px 10px 0 0);
+    color:#fff;
+    background:url(http://cdn1.1stwebdesigner.com/wp-content/themes/1stwd/img/bg_header.jpg) repeat left top;
+  }
+}
+.fwd2{
+  .hero-unit{
+    background:#222930;
+    color:#fff;
+    h1{
+      @include text-shadow(#000 1px 5px  10px);
+      span{
+        color:#F5821F;
+      }
+    }
+    .btn-info{
+      padding:15px;
+      font-size:1.2em;
+    }
+  }
+  .thumbnail{
+    .caption{
+      position:relative;
+      color:#ccc9c9;
+      h5{
+        font-size:2em;
+        color:#464646;
+      }
+    }
+  }
+  footer{
+    padding:20px;
+    margin-top:30px;
+    @include border-radius(10px 10px 0 0);
+    color:#fff;
+    background:url(http://cdn1.1stwebdesigner.com/wp-content/themes/1stwd/img/bg_header.jpg) repeat left top;
+  }
+}

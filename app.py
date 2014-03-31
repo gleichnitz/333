@@ -23,15 +23,15 @@ def page_not_found(e):
 def index():
     return render_template('index.html')
 
-@app.route("/index.html")
+@app.route("/index")
 def index2():
     return render_template('index.html')
 
-@app.route("/about.html")
+@app.route("/about")
 def about():
     return render_template('about.html')
 
-@app.route("/team.html")
+@app.route("/team")
 def team():
     return render_template('team.html')
 

@@ -38,11 +38,11 @@ def grader():
     return rendeer_template('grader.html')
 
 @app.route("/student.html")
-def grader():
+def student():
     return rendeer_template('student.html')
 
 @app.route("/admin.html")
-def grader():
+def admin():
     return rendeer_template('admin.html')
 
 # launch

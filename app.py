@@ -46,9 +46,8 @@ def validate():
     rdata = []
     rdata.append(data)
     tree = ElementTree.fromstring(''.join(rdata))
-    root = tree.getroot()
 
-    return root.findall(".")
+    return tree.find("cas:authenticationSuccess")
 
     # return request.args.get('ticket')
 

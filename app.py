@@ -41,13 +41,10 @@ def submitted():
 
 @app.route('/validate.html')
 def validate():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/serviceValidate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
     data = response.read()
-    rdata = []
-    rdata.append(data)
-    tree = ElementTree.fromstring(''.join(rdata))
 
-    return tree.find("authenticationSuccess")
+    return data
 
     # return request.args.get('ticket')
 

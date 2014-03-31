@@ -29,6 +29,22 @@ def index2():
 def about():
     return render_template('about.html')
 
+@app.route("/team.html")
+def team():
+    return render_template('team.html')
+
+@app.route("/grader.html")
+def grader():
+    return rendeer_template('grader.html')
+
+@app.route("/student.html")
+def grader():
+    return rendeer_template('student.html')
+
+@app.route("/admin.html")
+def grader():
+    return rendeer_template('admin.html')
+
 # launch
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

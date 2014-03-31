@@ -1,8 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory
 from flask import render_template
-import CASClient
-import urllib2
 
 # initialization
 app = Flask(__name__)
@@ -38,17 +36,6 @@ def team():
 @app.route("/grader.html")
 def grader():
     return render_template('grader.html')
-
-# @app.route("/validate.html?ticket=<ticket>")
-# def validate():
-    # req = urllib2.Request('https://fed.princeton.edu/cas/serviceValidate?ticket=' + ticket + '?service=http://saltytyga.herokuapp.com/validate.html')
-    # response = urllib2.urlopen(req)
-    # data = response.read()
-    # tree = ET.parse(data)
-    # if tree.attrib.contains_key('cas:authenticationSuccess'):  
-  #  return 'Success'
-    # else:
-      #  return 'Failure'
 
 @app.route("/student.html")
 def student():

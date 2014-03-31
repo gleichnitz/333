@@ -35,15 +35,15 @@ def team():
 
 @app.route("/grader.html")
 def grader():
-    return rendeer_template('grader.html')
+    return render_template('grader.html')
 
 @app.route("/student.html")
 def student():
-    return rendeer_template('student.html')
+    return render_template('student.html')
 
 @app.route("/admin.html")
 def admin():
-    return rendeer_template('admin.html')
+    return render_template('admin.html')
 
 # launch
 if __name__ == "__main__":

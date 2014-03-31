@@ -1,6 +1,5 @@
 import os
 from flask import Flask, render_template, send_from_directory
-from flask import render_template
 
 # initialization
 app = Flask(__name__)
@@ -32,6 +31,10 @@ def about():
 @app.route("/team.html")
 def team():
     return render_template('team.html')
+
+@app.route("/submittedwork")
+def submitted():
+    return render_template('student_submittedwork.html')
 
 @app.route("/grader.html")
 def grader():

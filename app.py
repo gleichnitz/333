@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, send_from_directory
 from flask import render_template
 from flask import request
+import urllib2
 
 # initialization
 app = Flask(__name__)
@@ -36,6 +37,7 @@ def team():
 
 @app.route('/validate.html')
 def validate():
+    response = urllib2.open('https://fed.princeton.edu/cas/serviceValidate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
     return request.args.get('ticket')
 
 @app.route("/grader.html")

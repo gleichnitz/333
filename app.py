@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory
-from flask import request
+from flask import request, redirect
 import urllib2
 from xml.etree import ElementTree
 
@@ -41,13 +41,13 @@ def submitted():
 
 @app.route('/validate')
 def validate():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/serviceValidate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()
-    rdata = []
-    rdata.append(data)
-    tree = ElementTree.fromstring(''.join(rdata))
-
-    return tree.find("cas:authenticationSuccess")
+    if "yes" in data:
+        name = data.split()
+        return redirect("/student")
+    else:
+        return "NO"
 
     # return request.args.get('ticket')
 

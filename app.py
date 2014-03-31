@@ -17,9 +17,12 @@ def favicon():
 def page_not_found(e):
     return render_template('404.html'), 404
 
-@app.route("/templates")
+@app.route("/")
 def index():
     return render_template('index.html')
+
+def about():
+    return render_template('about.html')
 
 # launch
 if __name__ == "__main__":

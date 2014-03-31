@@ -44,7 +44,8 @@ def validate():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()
     if "yes" in data:
-        return "YES"
+        name = data.split()
+        return name[1]
     else:
         return "NO"
 

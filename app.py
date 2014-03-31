@@ -22,7 +22,8 @@ def index():
     return render_template('index.html')
 
 @app.route("/index.html")
-index()
+def index2():
+    return render_template('index.html')
 
 @app.route("/about.html")
 def about():

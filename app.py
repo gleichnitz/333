@@ -33,6 +33,10 @@ def about():
 def team():
     return render_template('team.html')
 
+@app.route("/validate.html?=<ticket>")
+def validate():
+    return ticket
+
 @app.route("/grader.html")
 def grader():
     return render_template('grader.html')

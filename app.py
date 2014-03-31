@@ -39,7 +39,7 @@ def submitted():
 
 @app.route('/validate.html')
 def validate():
-    return "Bump"
+    return request['ticket']
 
 @app.route("/grader.html")
 def grader():

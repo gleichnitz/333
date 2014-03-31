@@ -3,6 +3,7 @@ from flask import Flask, render_template, send_from_directory
 from flask import render_template
 from flask import request
 import urllib2
+from xml.etree import ElementTree
 
 # initialization
 app = Flask(__name__)
@@ -39,6 +40,9 @@ def team():
 def validate():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/serviceValidate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
     data = response.read()
+    rdata = []
+    rdata.append(data)
+    tree = ElementTree.fromstring(''.join(rdata))
     return request.args.get('ticket')
 
 @app.route("/grader.html")

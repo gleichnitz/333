@@ -1,5 +1,7 @@
 import os
 from flask import Flask, render_template, send_from_directory
+from flask import request
+import urllib2
 
 # initialization
 app = Flask(__name__)
@@ -38,7 +40,9 @@ def submitted():
 
 @app.route('/validate.html')
 def validate():
-    return request['ticket']
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/serviceValidate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
+    data = response.read()
+    return request.args.get('ticket')
 
 @app.route("/grader.html")
 def grader():

@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory
-from flask import request
+from flask import request, redirect
 import urllib2
 from xml.etree import ElementTree
 
@@ -35,27 +35,31 @@ def about():
 def team():
     return render_template('team.html')
 
-@app.route("/submittedwork")
+@app.route("/submittedcode")
 def submitted():
-    return render_template('student_submittedwork.html')
+    return render_template('student_submittedcode.html')
 
-@app.route('/validate.html')
+@app.route('/validate')
 def validate():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()
-    return data
+    if "yes" in data:
+        name = data.split()
+        return redirect("/student")
+    else:
+        return "NO"
 
     # return request.args.get('ticket')
 
-@app.route("/grader.html")
+@app.route("/grader")
 def grader():
     return render_template('grader.html')
 
-@app.route("/student.html")
+@app.route("/student")
 def student():
     return render_template('student.html')
 
-@app.route("/admin.html")
+@app.route("/admin")
 def admin():
     return render_template('admin.html')
 

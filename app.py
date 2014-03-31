@@ -39,7 +39,7 @@ def team():
 def submitted():
     return render_template('student_submittedwork.html')
 
-@app.route('/validate.html')
+@app.route('/validate')
 def validate():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate.html')
     data = response.read()
@@ -47,15 +47,15 @@ def validate():
 
     # return request.args.get('ticket')
 
-@app.route("/grader.html")
+@app.route("/grader")
 def grader():
     return render_template('grader.html')
 
-@app.route("/student.html")
+@app.route("/student")
 def student():
     return render_template('student.html')
 
-@app.route("/admin.html")
+@app.route("/admin")
 def admin():
     return render_template('admin.html')
 

@@ -36,7 +36,7 @@ def team():
 
 @app.route('/validate.html')
 def validate():
-    return request.arg.get('ticket')
+    return request.args.get('ticket')
 
 @app.route("/grader.html")
 def grader():

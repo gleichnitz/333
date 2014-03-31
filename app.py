@@ -46,7 +46,11 @@ def validate():
     rdata = []
     rdata.append(data)
     tree = ElementTree.fromstring(''.join(rdata))
-    return request.args.get('ticket')
+    root = tree.getroot()
+
+    return root.findall(".")
+
+    # return request.args.get('ticket')
 
 @app.route("/grader.html")
 def grader():

@@ -21,6 +21,9 @@ def page_not_found(e):
 def index():
     return render_template('index.html')
 
+@app.route("/index.html")
+index()
+
 @app.route("/about.html")
 def about():
     return render_template('about.html')

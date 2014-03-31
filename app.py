@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory
-from flask import request
+from flask import request, redirect
 import urllib2
 from xml.etree import ElementTree
 

@@ -44,7 +44,7 @@ def graded():
     return render_template('grader_NBody.html')
 
 @app.route("/grader_vayyala")
-def graded():
+def gradedwork():
     return render_template('grader_NBody_vayyala.html')
 
 @app.route('/validate')

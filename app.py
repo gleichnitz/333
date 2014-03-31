@@ -3,7 +3,6 @@ from flask import Flask, render_template, send_from_directory
 from flask import render_template
 import CASClient
 import urllib2
-import xml.etree.ElementTree as ET
 
 # initialization
 app = Flask(__name__)

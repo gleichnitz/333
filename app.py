@@ -48,10 +48,10 @@ def validate():
     tree = ET.parse(data)
     if tree.attrib.contains_key('cas:authenticationSuccess'):
         return 'Success'
-    else
+    else:
         return 'Failure'
 
-@app.route('/student.html')
+@app.route("/student.html")
 def student():
     return render_template('student.html')
 

@@ -45,7 +45,7 @@ def validate():
     data = response.read()
     if "yes" in data:
         name = data.split()
-        return redirect("/student")
+        return name[1]
     else:
         return "NO"
 

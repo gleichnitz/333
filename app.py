@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, send_from_directory
 from flask import render_template
+from flask import request
 
 # initialization
 app = Flask(__name__)
@@ -35,7 +36,7 @@ def team():
 
 @app.route('/validate.html')
 def validate():
-    return "Bump"
+    return request['ticket']
 
 @app.route("/grader.html")
 def grader():

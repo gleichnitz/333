@@ -35,7 +35,7 @@ def about():
 def team():
     return render_template('team.html')
 
-@app.route("/submittedcode")
+@app.route("/student/submittedcode")
 def submitted():
     return render_template('student_submittedcode.html')
 

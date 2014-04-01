@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory
-from flask import request, redirect
+from flask import request, redirect, session
 import urllib2
 from xml.etree import ElementTree
 
@@ -35,16 +35,28 @@ def about():
 def team():
     return render_template('team.html')
 
-@app.route("/submittedwork")
+@app.route("/student/submittedcode")
 def submitted():
-    return render_template('student_submittedwork.html')
+    return render_template('student_submittedcode.html')
+
+@app.route("/grader_NBody")
+def graded():
+    return render_template('grader_NBody.html')
+
+@app.route("/grader_vayyala")
+def gradedwork():
+    return render_template('grader_NBody_vayyala.html')
 
 @app.route('/validate')
 def validate():
+    # if 'return' in request.args:    
+    #     return_page = request.args.get('return')
+
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()
     if "yes" in data:
-        name = data.split()
+        name = data.split()[1]
+        session['name'] = name
         return redirect("/student")
     else:
         return "NO"
@@ -57,7 +69,10 @@ def grader():
 
 @app.route("/student")
 def student():
-    return render_template('student.html')
+    if 'name' in session:
+        return render_template('student.html')
+    else:
+        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate")
 
 @app.route("/admin")
 def admin():
@@ -65,5 +80,6 @@ def admin():
 
 # launch
 if __name__ == "__main__":
+    app.secret_key = 'qeqg;abuerjabyekeusxjblelauwbajbhvyhenssj'
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)

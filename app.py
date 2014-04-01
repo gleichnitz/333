@@ -1,7 +1,7 @@
 import os
-import urllib2
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
+import urllib2
 from xml.etree import ElementTree
 
 # initialization
@@ -72,7 +72,11 @@ def student():
     if 'name' in session:
         return render_template('student.html')
     else:
+<<<<<<< HEAD
         return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate")
+=======
+        "https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate"
+>>>>>>> trying to create session
 
 @app.route("/admin")
 def admin():

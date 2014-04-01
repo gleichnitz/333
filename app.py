@@ -72,7 +72,7 @@ def student():
     if 'name' in session:
         return render_template('student.html')
     else:
-        "https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate"
+        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate")
 
 @app.route("/admin")
 def admin():

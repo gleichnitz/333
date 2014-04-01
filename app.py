@@ -72,11 +72,7 @@ def student():
     if 'name' in session:
         return render_template('student.html')
     else:
-<<<<<<< HEAD
         return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate")
-=======
-        "https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate"
->>>>>>> trying to create session
 
 @app.route("/admin")
 def admin():

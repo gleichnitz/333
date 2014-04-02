@@ -1,7 +1,7 @@
 import os
-import urllib2
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
+import urllib2
 from xml.etree import ElementTree
 
 # initialization
@@ -35,7 +35,7 @@ def about():
 def team():
     return render_template('team.html')
 
-@app.route("/submittedcode")
+@app.route("/student/submittedcode")
 def submitted():
     return render_template('student_submittedcode.html')
 

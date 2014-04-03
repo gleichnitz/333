@@ -12,7 +12,7 @@ app.config.update(
     DEBUG = True,
 )
 db.create_all()
-
+cos_333 = Course('cos333')
 # controllers
 @app.route('/favicon.ico')
 def favicon():

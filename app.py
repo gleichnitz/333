@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
-from database import db, Student, Course, Assignment
+from database import db, Student, Course
 import urllib2
 from xml.etree import ElementTree
 
@@ -63,6 +63,7 @@ def validate():
         if netid is None:
             new_student = Student('dummy', 'name', name, cos_333)
             db.session.add()
+            db.session.commit()
         return redirect("/student")
     else:
         return "NO"

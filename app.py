@@ -1,6 +1,8 @@
 import os
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
+from flask.ext.sqlalchemy import SQLAlchemy
+from database import db, Student, Course
 import urllib2
 from xml.etree import ElementTree
 
@@ -9,7 +11,8 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
-
+db.create_all()
+cos_333 = Course('cos333')
 # controllers
 @app.route('/favicon.ico')
 def favicon():
@@ -57,6 +60,11 @@ def validate():
     if "yes" in data:
         name = data.split()[1]
         session['name'] = name
+        netid = Student.query.filter_by(netid=name).first()
+        if netid is None:
+            new_student = Student('dummy', 'name', name, cos_333)
+            db.session.add(new_student)
+            db.session.commit()
         return redirect("/student")
     else:
         return "NO"

@@ -11,8 +11,9 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
+db.drop_all()
 db.create_all()
-cos_333 = Course('cos333')
+
 # controllers
 @app.route('/favicon.ico')
 def favicon():
@@ -54,7 +55,6 @@ def gradedwork():
 def validate():
     # if 'return' in request.args:    
     #     return_page = request.args.get('return')
-
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()
     if "yes" in data:
@@ -62,6 +62,10 @@ def validate():
         session['name'] = name
         netid = Student.query.filter_by(netid=name).first()
         if netid is None:
+            cos_333 = Course.query.filter_by(name= 'cos333').first()
+            if cos_333 is None:
+                cos_333 = Course('cos333')
+                db.session.add(cos_333)
             new_student = Student('dummy', 'name', name, cos_333)
             db.session.add(new_student)
             db.session.commit()

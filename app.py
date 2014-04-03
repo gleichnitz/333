@@ -12,8 +12,6 @@ app.config.update(
     DEBUG = True,
 )
 
-db.create_all()
-
 # controllers
 @app.route('/favicon.ico')
 def favicon():
@@ -55,6 +53,7 @@ def gradedwork():
 def validate():
     # if 'return' in request.args:    
     #     return_page = request.args.get('return')
+    db.create_all()
 
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()

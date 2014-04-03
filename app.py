@@ -63,7 +63,6 @@ def validate():
         if netid is None:
             new_student = Student('dummy', 'name', name, cos_333)
             db.session.add()
-            print "added"
         return redirect("/student")
     else:
         return "NO"

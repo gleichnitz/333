@@ -52,11 +52,11 @@ def graded():
 def gradedwork():
     return render_template('grader_NBody_vayyala.html')
 
-@app.route('/validate')
+@app.route('/validatestudent')
 def validate():
     # if 'return' in request.args:    
     #     return_page = request.args.get('return')
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validatestudent')
     data = response.read()
     if "yes" in data:
         name = data.split()[1]
@@ -75,6 +75,50 @@ def validate():
         return "NO"
 
     # return request.args.get('ticket')
+
+@app.route('/validategrader')
+def validate():
+    # if 'return' in request.args:    
+    #     return_page = request.args.get('return')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validategrader')
+    data = response.read()
+    if "yes" in data:
+        name = data.split()[1]
+        session['name'] = name
+        netid = Student.query.filter_by(netid=name).first()
+        if netid is None:
+            cos_333 = Course.query.filter_by(name= 'cos333').first()
+            if cos_333 is None:
+                cos_333 = Course('cos333')
+                db.session.add(cos_333)
+            new_student = Student('dummy', 'name', name, cos_333)
+            db.session.add(new_student)
+            db.session.commit()
+        return redirect("/grader")
+    else:
+        return "NO"
+
+@app.route('/validateadmin')
+def validate():
+    # if 'return' in request.args:    
+    #     return_page = request.args.get('return')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validateadmin')
+    data = response.read()
+    if "yes" in data:
+        name = data.split()[1]
+        session['name'] = name
+        netid = Student.query.filter_by(netid=name).first()
+        if netid is None:
+            cos_333 = Course.query.filter_by(name= 'cos333').first()
+            if cos_333 is None:
+                cos_333 = Course('cos333')
+                db.session.add(cos_333)
+            new_student = Student('dummy', 'name', name, cos_333)
+            db.session.add(new_student)
+            db.session.commit()
+        return redirect("/admin")
+    else:
+        return "NO"
 
 @app.route("/grader")
 def grader():

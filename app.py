@@ -72,7 +72,7 @@ def validate():
             db.session.commit()
         return redirect("/student")
     else:
-        return "NO"
+        return redirect("/")
 
     # return request.args.get('ticket')
 

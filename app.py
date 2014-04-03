@@ -122,18 +122,26 @@ def validateadmin():
 
 @app.route("/grader")
 def grader():
-    return render_template('grader.html')
+    if 'name' in session:
+        return render_template('grader.html', netid=session['name'])
+    else:
+        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validategrader")
+
 
 @app.route("/student")
 def student():
     if 'name' in session:
         return render_template('student.html', netid=session['name'])
     else:
-        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate")
+        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validatestudent")
 
 @app.route("/admin")
 def admin():
-    return render_template('admin.html')
+    if 'name' in session:
+        return render_template('admin.html', netid=session['name'])
+    else:
+        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validateadmin")
+
 
 # launch
 if __name__ == "__main__":

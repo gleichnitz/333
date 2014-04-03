@@ -1,10 +1,12 @@
 import os
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
+from database import db, Student, Course, Assignment
 import urllib2
 from xml.etree import ElementTree
 
 # initialization
+db.create_all()
 app = Flask(__name__)
 app.config.update(
     DEBUG = True,
@@ -57,6 +59,11 @@ def validate():
     if "yes" in data:
         name = data.split()[1]
         session['name'] = name
+        netid = Student.query.filter_by(netid=name).first()
+        if netid is None:
+            new_student = Student('dummy', 'name', name, cos_333)
+            db.session.add()
+            print "added"
         return redirect("/student")
     else:
         return "NO"

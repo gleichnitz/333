@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
-#from database import db, Student, Course
+from database import db, Student, Course
 import urllib2
 from xml.etree import ElementTree
 
@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
+db.create_all()
 
 # controllers
 @app.route('/favicon.ico')
@@ -53,18 +54,17 @@ def gradedwork():
 def validate():
     # if 'return' in request.args:    
     #     return_page = request.args.get('return')
-    #db.create_all()
 
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()
     if "yes" in data:
         name = data.split()[1]
         session['name'] = name
-        # netid = Student.query.filter_by(netid=name).first()
-        # if netid is None:
-        #     new_student = Student('dummy', 'name', name, cos_333)
-        #     db.session.add()
-        #     db.session.commit()
+        netid = Student.query.filter_by(netid=name).first()
+        if netid is None:
+            new_student = Student('dummy', 'name', name, cos_333)
+            db.session.add()
+            db.session.commit()
         return redirect("/student")
     else:
         return "NO"

@@ -63,7 +63,7 @@ def validate():
         netid = Student.query.filter_by(netid=name).first()
         if netid is None:
             new_student = Student('dummy', 'name', name, cos_333)
-            db.session.add()
+            db.session.add(new_student)
             db.session.commit()
         return redirect("/student")
     else:

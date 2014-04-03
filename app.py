@@ -83,7 +83,7 @@ def grader():
 @app.route("/student")
 def student():
     if 'name' in session:
-        return render_template('student.html')
+        return render_template('student.html', netid=session['name'])
     else:
         return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate")
 

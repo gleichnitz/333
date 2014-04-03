@@ -77,7 +77,7 @@ def validate():
     # return request.args.get('ticket')
 
 @app.route('/validategrader')
-def validate():
+def validategrader():
     # if 'return' in request.args:    
     #     return_page = request.args.get('return')
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validategrader')
@@ -99,7 +99,7 @@ def validate():
         return "NO"
 
 @app.route('/validateadmin')
-def validate():
+def validateadmin():
     # if 'return' in request.args:    
     #     return_page = request.args.get('return')
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validateadmin')

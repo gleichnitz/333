@@ -4,11 +4,6 @@
 {% block head %}
   <title>CodePost: Home</title>
   {{ super() }}
-
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
 {% endblock %}
 {% block header %}
   {{ super() }}
@@ -30,6 +25,7 @@
     <p><a class="btn btn-primary btn-large">Learn more</a></p>
  </div>
 </div>
+<div id="login"> {% block login %}
 <div class="row">
   <div class="span4">
     <div class="thumbnail">
@@ -61,8 +57,9 @@
  </div>
 </div>
   </div></div>
-  </div> <!-- /container -->
-{% endblock %}
+  </div> 
+  {% endblock login %} </div>
+{% endblock content %}
 
 {% block loader %}
   {{ super() }}

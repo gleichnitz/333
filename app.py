@@ -1,16 +1,18 @@
 import os
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
+from flask.ext.sqlalchemy import SQLAlchemy
 from database import db, Student, Course
 import urllib2
 from xml.etree import ElementTree
 
 # initialization
-db.create_all()
 app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
+
+db.create_all()
 
 # controllers
 @app.route('/favicon.ico')

@@ -11,8 +11,9 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
-db.drop_all()
 db.create_all()
+# print Student.query.all()
+# print Course.query.all()
 
 # controllers
 @app.route('/favicon.ico')

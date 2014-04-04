@@ -16,9 +16,7 @@ db.create_all()
 # print Course.query.all()
 
 def validate(ticket):
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket='\
- + ticket + '&service=http://saltytyga.herokuapp.com/valida\
-te')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/validate')
     data = response.read()
     return data
     if "yes" in data:

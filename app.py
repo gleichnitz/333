@@ -129,7 +129,7 @@ def grader():
 def student():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
     data = response.read()
-    return validate(data)
+    result = validate(data)
     if result != "NO":
         return render_template('student.html', netid=result)
     else:

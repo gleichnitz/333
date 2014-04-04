@@ -32,7 +32,7 @@ te')
             new_student = Student('dummy', 'name', name, cos_333)
             db.session.add(new_student)
             db.session.commit()
-        return netid
+        return name
     else:
         return False
 
@@ -132,7 +132,7 @@ def grader():
 @app.route("/student")
 def student():
     result = validate()
-    if validate != False:
+    if validate is not False:
         return render_template('student.html', netid=result)
     else:
         return redirect("/")

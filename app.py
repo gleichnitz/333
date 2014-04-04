@@ -135,11 +135,7 @@ def student():
     if validate != False:
         return render_template('student.html', netid=result)
     else:
-<<<<<<< HEAD
         return redirect("/")
-=======
-        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validatestudent")
->>>>>>> ec93bbcaa03b319d403c84e708da232682702ab3
 
 @app.route("/admin")
 def admin():

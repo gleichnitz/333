@@ -15,9 +15,9 @@ db.create_all()
 # print Student.query.all()
 # print Course.query.all()
 
-def validate():
+def validate(ticket):
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket='\
- + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/valida\
+ + ticket + '&service=http://saltytyga.herokuapp.com/valida\
 te')
     data = response.read()
     if "yes" in data:
@@ -131,7 +131,7 @@ def grader():
 
 @app.route("/student")
 def student():
-    return validate()
+    return validate(request.args.get("ticket"))
     if result != "NO":
         return render_template('student.html', netid=result)
     else:

@@ -133,7 +133,7 @@ def student():
     if result != "NO":
         return render_template('student.html', netid=result)
     else:
-        return "NO"
+        return redirect('/')
 
 @app.route("/admin")
 def admin():

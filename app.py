@@ -132,7 +132,7 @@ def grader():
 @app.route("/student")
 def student():
     result = validate()
-    if validate is not False:
+    if result != False:
         return render_template('student.html', netid=result)
     else:
         return redirect("/")

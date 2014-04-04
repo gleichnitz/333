@@ -20,7 +20,7 @@ def validate(ticket):
  + ticket + '&service=http://saltytyga.herokuapp.com/valida\
 te')
     data = response.read()
-    return ticket
+    return data
     if "yes" in data:
         name = data.split()[1]
         session['name'] = name

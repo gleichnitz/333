@@ -127,7 +127,7 @@ def grader():
 
 @app.route("/student")
 def student():
-    if type(request.args.get('ticket')) is NoneType:
+    if 'ticket' not in request.args:
 	return redirect('/')
 
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')

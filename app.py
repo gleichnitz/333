@@ -34,7 +34,7 @@ te')
             db.session.commit()
         return name
     else:
-        return 0
+        return "NO"
 
 # controllers
 @app.route('/favicon.ico')
@@ -132,7 +132,7 @@ def grader():
 @app.route("/student")
 def student():
     result = validate()
-    if result != 0:
+    if result != "NO":
         return render_template('student.html', netid=result)
     else:
         return redirect("/")

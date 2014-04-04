@@ -15,6 +15,23 @@ db.create_all()
 # print Student.query.all()
 # print Course.query.all()
 
+def validate(data):
+    if "yes" in data:
+        name = data.split()[1]
+        session['name'] = name
+        netid = Student.query.filter_by(netid=name).first()
+        if netid is None:
+            cos_333 = Course.query.filter_by(name= 'cos333').first()
+            if cos_333 is None:
+                cos_333 = Course('cos333')
+                db.session.add(cos_333)
+            new_student = Student('dummy', 'name', name, cos_333)
+            db.session.add(new_student)
+            db.session.commit()
+        return name
+    else:
+        return "NO"
+
 # controllers
 @app.route('/favicon.ico')
 def favicon():
@@ -26,6 +43,8 @@ def page_not_found(e):
 
 @app.route("/")
 def index():
+    # if users can switch between modes (student, grader, admin), then we could redirect to logged-in page
+    # if user is logged into CAS. 
     return render_template('index.html')
 
 @app.route("/index")
@@ -52,95 +71,43 @@ def graded():
 def gradedwork():
     return render_template('grader_NBody_vayyala.html')
 
-@app.route('/validatestudent')
-def validate():
-    # if 'return' in request.args:    
-    #     return_page = request.args.get('return')
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validatestudent')
-    data = response.read()
-    if "yes" in data:
-        name = data.split()[1]
-        session['name'] = name
-        netid = Student.query.filter_by(netid=name).first()
-        if netid is None:
-            cos_333 = Course.query.filter_by(name= 'cos333').first()
-            if cos_333 is None:
-                cos_333 = Course('cos333')
-                db.session.add(cos_333)
-            new_student = Student('dummy', 'name', name, cos_333)
-            db.session.add(new_student)
-            db.session.commit()
-        return redirect("/student")
-    else:
-        return redirect("/")
-
-    # return request.args.get('ticket')
-
-@app.route('/validategrader')
-def validategrader():
-    # if 'return' in request.args:    
-    #     return_page = request.args.get('return')
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validategrader')
-    data = response.read()
-    if "yes" in data:
-        name = data.split()[1]
-        session['name'] = name
-        netid = Student.query.filter_by(netid=name).first()
-        if netid is None:
-            cos_333 = Course.query.filter_by(name= 'cos333').first()
-            if cos_333 is None:
-                cos_333 = Course('cos333')
-                db.session.add(cos_333)
-            new_student = Student('dummy', 'name', name, cos_333)
-            db.session.add(new_student)
-            db.session.commit()
-        return redirect("/grader")
-    else:
-        return "NO"
-
-@app.route('/validateadmin')
-def validateadmin():
-    # if 'return' in request.args:    
-    #     return_page = request.args.get('return')
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validateadmin')
-    data = response.read()
-    if "yes" in data:
-        name = data.split()[1]
-        session['name'] = name
-        netid = Student.query.filter_by(netid=name).first()
-        if netid is None:
-            cos_333 = Course.query.filter_by(name= 'cos333').first()
-            if cos_333 is None:
-                cos_333 = Course('cos333')
-                db.session.add(cos_333)
-            new_student = Student('dummy', 'name', name, cos_333)
-            db.session.add(new_student)
-            db.session.commit()
-        return redirect("/admin")
-    else:
-        return "NO"
-
 @app.route("/grader")
 def grader():
-    if 'name' in session:
-        return render_template('grader.html', netid=session['name'])
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/grader')
+    data = response.read()
+    result = validate(data)
+
+    if result != "NO":
+        return render_template('grader.html', netid=result)
     else:
-        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validategrader")
+        return redirect('/')
+
+    # return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validategrader")
 
 
 @app.route("/student")
 def student():
-    if 'name' in session:
-        return render_template('student.html', netid=session['name'])
+    # if 'ticket' not in request.args:
+	# return redirect('/')
+
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
+    data = response.read()
+    result = validate(data)
+    if result != "NO":
+        return render_template('student.html', netid=result)
     else:
-        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validatestudent")
+        return redirect('/')
 
 @app.route("/admin")
 def admin():
-    if 'name' in session:
-        return render_template('admin.html', netid=session['name'])
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/admin')
+    data = response.read()
+    result = validate(data)
+
+    if result != "NO":
+        return render_template('admin.html', netid=result)
     else:
-        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validateadmin")
+        return redirect('/')
 
 
 # launch

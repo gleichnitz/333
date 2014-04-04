@@ -127,11 +127,10 @@ def grader():
 
 @app.route("/student")
 def student():
-    if 'ticket' in request.args:
-    	response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
-    else:
-        redirect('/')
+    if 'ticket' not in request.args:
+	redirect('/')
 
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
     data = response.read()
     result = validate(data)
     if result != "NO":

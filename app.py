@@ -20,6 +20,7 @@ def validate(ticket):
  + ticket + '&service=http://saltytyga.herokuapp.com/valida\
 te')
     data = response.read()
+    return data
     if "yes" in data:
         name = data.split()[1]
         session['name'] = name
@@ -131,7 +132,7 @@ def grader():
 
 @app.route("/student")
 def student():
-    return validate(request.args.get("ticket"))
+    return validate(request.args.get('ticket'))
     if result != "NO":
         return render_template('student.html', netid=result)
     else:

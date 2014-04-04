@@ -73,7 +73,7 @@ def gradedwork():
 
 @app.route("/grader")
 def grader():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/grader')
     data = response.read()
     result = validate(data)
 
@@ -100,7 +100,7 @@ def student():
 
 @app.route("/admin")
 def admin():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/admin')
     data = response.read()
     result = validate(data)
 

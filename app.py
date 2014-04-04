@@ -77,6 +77,8 @@ def grader():
     data = response.read()
     result = validate(data)
 
+    # check if netid corresponds to grader
+
     if result != "NO":
         return render_template('grader.html', netid=result)
     else:
@@ -87,12 +89,12 @@ def grader():
 
 @app.route("/student")
 def student():
-    # if 'ticket' not in request.args:
-	# return redirect('/')
-
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
     data = response.read()
     result = validate(data)
+
+    # check if netid corresponds to student
+
     if result != "NO":
         return render_template('student.html', netid=result)
     else:
@@ -103,6 +105,8 @@ def admin():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/admin')
     data = response.read()
     result = validate(data)
+
+    #check if netid corresponds to admin
 
     if result != "NO":
         return render_template('admin.html', netid=result)

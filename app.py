@@ -15,6 +15,27 @@ db.create_all()
 # print Student.query.all()
 # print Course.query.all()
 
+def validate():
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket='\
+ + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/valida\
+te')
+    data = response.read()
+    if "yes" in data:
+        name = data.split()[1]
+        session['name'] = name
+        netid = Student.query.filter_by(netid=name).first()
+        if netid is None:
+            cos_333 = Course.query.filter_by(name= 'cos333').first()
+            if cos_333 is None:
+                cos_333 = Course('cos333')
+                db.session.add(cos_333)
+            new_student = Student('dummy', 'name', name, cos_333)
+            db.session.add(new_student)
+            db.session.commit()
+        return netid
+    else:
+        return False
+
 # controllers
 @app.route('/favicon.ico')
 def favicon():
@@ -53,28 +74,8 @@ def gradedwork():
     return render_template('grader_NBody_vayyala.html')
 
 @app.route('/validate')
-def validate():
-    # if 'return' in request.args:    
-    #     return_page = request.args.get('return')
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/validate')
-    data = response.read()
-    if "yes" in data:
-        name = data.split()[1]
-        session['name'] = name
-        netid = Student.query.filter_by(netid=name).first()
-        if netid is None:
-            cos_333 = Course.query.filter_by(name= 'cos333').first()
-            if cos_333 is None:
-                cos_333 = Course('cos333')
-                db.session.add(cos_333)
-            new_student = Student('dummy', 'name', name, cos_333)
-            db.session.add(new_student)
-            db.session.commit()
-        return redirect("/student")
-    else:
-        return redirect("/")
-
-    # return request.args.get('ticket')
+def validatepage():
+    validate()
 
 @app.route("/grader")
 def grader():
@@ -82,10 +83,11 @@ def grader():
 
 @app.route("/student")
 def student():
-    if 'name' in session:
-        return render_template('student.html', netid=session['name'])
+    result = validate()
+    if validate != False:
+        return render_template('student.html', netid=result)
     else:
-        return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validate")
+        return redirect("/")
 
 @app.route("/admin")
 def admin():

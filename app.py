@@ -84,9 +84,6 @@ def grader():
     else:
         return redirect('/')
 
-    # return redirect("https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/validategrader")
-
-
 @app.route("/student")
 def student():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')

@@ -66,3 +66,8 @@
     background:url(http://cdn1.1stwebdesigner.com/wp-content/themes/1stwd/img/bg_header.jpg) repeat left top;
   }
 }
+#studenttable {
+  min-width: 300px;
+  max-width: 1200px;
+  width:expression(document.body.clientWidth < 600? "600px" : document.body.clientWidth > 1200? "1200px" : "auto");
+}

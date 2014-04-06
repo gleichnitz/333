@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
-#db.create_all()
+db.create_all()
 # print Student.query.all()
 # print Course.query.all()
 
@@ -64,9 +64,8 @@ def datatest():
     # for i in _students:
     #     student_string = student_string + str(i) + ","
 
-    # string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(student_string, _graders, _admins)
-    return str(_students)
-
+    string = "Students: {} \n Graders: {} \n Admins: {}".format(str(_students), str(_graders), str(_admins))
+    return string
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'ico/favicon.ico')

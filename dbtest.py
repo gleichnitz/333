@@ -2,7 +2,6 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from database import db, Student, Course
 
-db.drop_all()
 db.create_all()
 cos_333 = Course('cos333')
 cos_126 = Course('cos126')

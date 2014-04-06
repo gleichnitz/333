@@ -50,7 +50,6 @@ def validate(data):
             new_student = Student('dummy', 'name', name, cos_333)
             db.session.add(new_student)
             db.session.commit()
-            db.session.close()
         return name
     else:
         return "NO "

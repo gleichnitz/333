@@ -27,8 +27,8 @@ class Grader(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     netid = db.Column(db.String(80), unique = True)
     courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
-    course = db.relationship('Course', backref = db.backref('students', lazy = 'dynamic'))
-    graded_assignments = db.relationship('Assignment', backref = 'grader', lazy = 'dynamic')
+    course = db.relationship('Course', backref = db.backref('graders', lazy = 'dynamic'))
+    graded_assignments = db.relationship('Assignment', backref = 'graders', lazy = 'dynamic')
     def __init__(self, netid, course):
       self.netid = netid
       self.course = course
@@ -40,7 +40,7 @@ class Admin(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     netid = db.Column(db.String(80), unique = True)
     courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
-    course = db.relationship('Course', backref = db.backref('students', lazy = 'dynamic'))
+    course = db.relationship('Course', backref = db.backref('admins', lazy = 'dynamic'))
 
     def __init__(self, netid, course):
       self.netid = netid

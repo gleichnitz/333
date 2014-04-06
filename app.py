@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
-from database import db, Student, Course
+from database import db, Student, Course, Grader, Admin
 import urllib2
 from xml.etree import ElementTree
 
@@ -14,6 +14,27 @@ app.config.update(
 db.create_all()
 # print Student.query.all()
 # print Course.query.all()
+
+def isStudent(net_id):
+    netid = Student.query.filter_by(netid=net_id).first()
+    if netid is None:
+        return False
+    else:
+        return True
+
+def isGrader(net_id):
+    netid = Grader.query.filter_by(netid=net_id).first()
+    if netid is None:
+        return False
+    else:
+        return True
+
+def isAdmin(net_id):
+    netid = Admin.query.filter_by(netid=net_id).first()
+    if netid is None:
+        return False
+    else:
+        return True
 
 def validate(data):
     if "yes" in data:
@@ -33,6 +54,14 @@ def validate(data):
         return "NO"
 
 # controllers
+@app.route('/datatest')
+def datatest:
+    _admins = Admin.query.all()
+    _students = Student.query.all()
+    _graders = Grader.querry.all()
+
+    string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(_students, _graders, _admins)
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'ico/favicon.ico')

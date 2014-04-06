@@ -23,6 +23,32 @@ class Student(db.Model):
     def __repr__(self):
       return '<Student {0} {1} {2} {3}>'.format(self.firstname, self.lastname, self.netid, self.course.name)
 
+class Grader(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    netid = db.Column(db.String(80), unique = True)
+    courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
+    course = db.relationship('Course', backref = db.backref('students', lazy = 'dynamic'))
+    graded_assignments = db.relationship('Assignment', backref = 'grader', lazy = 'dynamic')
+    def __init__(self, netid, course):
+      self.netid = netid
+      self.course = course
+
+    def __repr__(self):
+      return '<Grader {0} {1}>'.format(self.netid, self.course.name)
+
+class Admin(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    netid = db.Column(db.String(80), unique = True)
+    courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
+    course = db.relationship('Course', backref = db.backref('students', lazy = 'dynamic'))
+
+    def __init__(self, netid, course):
+      self.netid = netid
+      self.course = course
+
+    def __repr__(self):
+      return '<Admin {0} {1}>'.format(self.netid, self.course.name)
+
 class Course(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String(80), unique = True)
@@ -38,6 +64,7 @@ class Assignment(db.Model):
   courseid = db.Column(db.Integer, db.ForeignKey('course.id'))  
   course = db.relationship('Course', backref = db.backref('assignments', lazy = 'dynamic'))
   student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
+  grader_id = db.Column(db.Integer, db.ForeignKey('grader.id'))
 
 
 

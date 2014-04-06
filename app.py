@@ -55,12 +55,13 @@ def validate(data):
 
 # controllers
 @app.route('/datatest')
-def datatest:
+def datatest():
     _admins = Admin.query.all()
     _students = Student.query.all()
     _graders = Grader.querry.all()
 
     string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(_students, _graders, _admins)
+    return string
 
 @app.route('/favicon.ico')
 def favicon():

@@ -103,7 +103,7 @@ def submitted():
         "<": "&lt;",
     }
     f = open('BaseballElimination.java', 'r')
-    code = f.read()
+    return code = f.read()
     # code = "".join(html_escape_table.get(c,c) for c in code)
     # code = code.replace("\n","<br>")
     # code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")

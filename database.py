@@ -36,6 +36,9 @@ class Grader(db.Model):
     def __repr__(self):
       return '<Grader {0} {1}>'.format(self.netid, self.course.name)
 
+    def __str__(self):
+      return '<Grader {0} {1}>'.format(self.netid, self.course.name)
+
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     netid = db.Column(db.String(80), unique = True)

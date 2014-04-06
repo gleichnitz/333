@@ -53,7 +53,7 @@ def validate(data):
             db.session.close()
         return name
     else:
-        return "NO"
+        return "NO "
 
 # controllers
 @app.route('/datatest')

@@ -97,6 +97,7 @@ def team():
 def submitted():
     f = open('BaseballElimination.java', 'r')
     code = f.read()
+    code = code.replace("\n", "<br />\n")
     return render_template('student_submittedcode.html', studentwork = code)
 
 @app.route("/grader_NBody")

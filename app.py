@@ -59,12 +59,12 @@ def datatest():
     _students = Student.query.all()
     _graders = Grader.query.all()
 
-    student_string = ""
-    for i in _students:
-        student_string = student_string + str(i) + ","
+    # student_string = ""
+    # for i in _students:
+    #     student_string = student_string + str(i) + ","
 
-    string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(student_string, _graders, _admins)
-    return string
+    # string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(student_string, _graders, _admins)
+    return _students
 
 @app.route('/favicon.ico')
 def favicon():

@@ -58,7 +58,7 @@ def validate(data):
 def datatest():
     _admins = Admin.query.all()
     _students = Student.query.all()
-    _graders = Grader.querry.all()
+    _graders = Grader.query.all()
 
     string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(_students, _graders, _admins)
     return string

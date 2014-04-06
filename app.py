@@ -95,7 +95,9 @@ def team():
 
 @app.route("/submittedcode")
 def submitted():
-    return render_template('student_submittedcode.html')
+    f = open('BaseballElimination.java', 'r')
+    code = f.read()
+    return render_template('student_submittedcode.html', studentwork = code)
 
 @app.route("/grader_NBody")
 def graded():

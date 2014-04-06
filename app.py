@@ -61,7 +61,7 @@ def datatest():
 
     student_string = ""
     for i in _students:
-        student_string = student_string + i + ","
+        student_string = student_string + str(i) + ","
 
     string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(student_string, _graders, _admins)
     return string

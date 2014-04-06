@@ -45,6 +45,7 @@ def validate(data):
             if cos_333 is None:
                 cos_333 = Course('cos333')
                 db.session.add(cos_333)
+                db.session.commit()
             new_student = Student('dummy', 'name', name, cos_333)
             db.session.add(new_student)
             db.session.commit()

@@ -23,8 +23,8 @@ class Student(db.Model):
     def __repr__(self):
       return '<Student '+ self.firstname + ' '+self.lastname + ' '+self.netid + ' ' + self.course.name + '>'
 
-    # def __str__(self):
-    #   return '<Student {0} {1} {2} {3}>'.format(self.firstname, self.lastname, self.netid, self.course.name)
+    def __str__(self):
+      return '<Student '+ self.firstname + ' '+self.lastname + ' '+self.netid + ' ' + self.course.name + '>'
 
 class Grader(db.Model):
     id = db.Column(db.Integer, primary_key = True)

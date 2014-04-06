@@ -21,8 +21,8 @@ class Student(db.Model):
       self.course = course
 
     def __repr__(self):
-      return format('<Student {0} {1} {2} {3}>', self.firstname, self.lastname, self.netid,self.course.name)
-
+#      return format('<Student {0} {1} {2} {3}>', self.firstname, self.lastname, self.netid,self.course.name)
+      return self.netid
     def __str__(self):
       return format('<Student {0} {1} {2} {3}>', self.firstname, self.lastname, self.netid,self.course.name)
 

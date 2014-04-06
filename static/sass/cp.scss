@@ -67,7 +67,7 @@
   }
 }
 #studenttable {
-  min-width: 300px;
-  max-width: 1200px;
-  width:expression(document.body.clientWidth < 600? "600px" : document.body.clientWidth > 1200? "1200px" : "auto");
+  min-width: 400px;
+  width: auto !important
+  width: 600px;
 }

@@ -39,7 +39,6 @@ def isAdmin(net_id):
 def validate(data):
     if "yes" in data:
         name = data.split()[1]
-        session['name'] = name
         netid = Student.query.filter_by(netid=name).first()
         if netid is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
@@ -60,7 +59,11 @@ def datatest():
     _students = Student.query.all()
     _graders = Grader.query.all()
 
-    string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(_students, _graders, _admins)
+    student_string = ""
+    for i in _students:
+        student_string = student_string + i + ","
+
+    string = "Students: {0} \n Graders: {1} \n Admins: {2}".format(student_string, _graders, _admins)
     return string
 
 @app.route('/favicon.ico')

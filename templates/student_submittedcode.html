@@ -9,6 +9,13 @@
   <script type="text/javascript">SyntaxHighlighter.all();</script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   {{ super() }}
+  <script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
+  <script>
+      jQuery(function ($) {
+          $('#code').annotator();
+      });     
+  </script>  
 {% endblock %}
 
 {% block header %}
@@ -63,7 +70,7 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-	  <pre class="brush: java;">{{ studentwork }}</pre>
+	  <pre id="code" class="brush: java;">{{ studentwork }}</pre>
           <div class="hero-unit">
           </div>
 

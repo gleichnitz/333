@@ -95,18 +95,17 @@ def team():
 
 @app.route("/submittedcode")
 def submitted():
-    html_escape_table = {
-        "&" : "&amp;",
-        '"': "&quot;",
-        "'": "&apos;",
-        ">": "&gt;",
-        "<": "&lt;",
-    }
+#    html_escape_table = {
+#        "&" : "&amp;",
+#        '"': "&quot;",
+#        "'": "&apos;",
+#        ">": "&gt;",
+#        "<": "&lt;",
+#    }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    code = code.replace("\n","<br />\n")
-    s = "".join(html_escape_table.get(c,c) for c in code)
-    return render_template('student_submittedcode.html', studentwork = s)
+    code = code.replace("\r\n","<br />")
+    return render_template('student_submittedcode.html', studentwork = code)
 
 @app.route("/grader_NBody")
 def graded():

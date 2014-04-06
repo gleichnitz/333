@@ -5,6 +5,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from database import db, Student, Course, Grader, Admin
 import urllib2
 from xml.etree import ElementTree
+import cgi
 
 # initialization
 app = Flask(__name__)
@@ -94,10 +95,18 @@ def team():
 
 @app.route("/submittedcode")
 def submitted():
+    html_escape_table = {
+        "&" : "&amp;",
+        '"': "&quot;",
+        "'": "&apos;",
+        ">": "&gt;",
+        "<": "&lt;",
+    }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    code = code.replace("\n", "<br />\n")
-    return render_template('student_submittedcode.html', studentwork = code)
+    code = code.replace("\n","<br />\n")
+    s = "".join(html_escape_table.get(c,c) for c in code)
+    return render_template('student_submittedcode.html', studentwork = s)
 
 @app.route("/grader_NBody")
 def graded():

@@ -27,11 +27,13 @@
 {% endblock %}
 
 {% block portal %}
-<div class="pull-right"> <a class="brand" href="student">Student Portal: Hi, jaevans</a></div>
+<div class="pull-right"> <a class="brand" href="student">Student Portal: Hi, {{ netid }}</a></div>
 {% endblock %}
 
 {% block content %}
-<img alt="" src="../static/img/logo" width="300" height="75">
+<div class="thumbnail">
+    <img alt="" src="../static/img/logo" width="300" height="75">
+</div>
 <h1>
     <FONT FACE="TW Cen MT">code<font color="red">P</font>ost: document editor</FONT>
 </h1>

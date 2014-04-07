@@ -1,0 +1,150 @@
+Skip to content
+ 
+This repository
+Explore
+Gist
+Blog
+Help
+iceekub iceekub
+ 
+5  Unwatch
+Star 0 Fork 1PRIVATE gleichnitz / 333
+ branch: master  333 / templates / index.html 
+Gabriela Leichnitz gleichnitz a day ago still trying pics
+3 contributors  Gabriela Leichnitz  jamesaevans  Richard Freling
+ file  68 lines (64 sloc)  1.966 kb  Open EditRawBlameHistory Delete
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block head %}
+  <title>CodePost: Home</title>
+  {{ super() }}
+{% endblock %}
+{% block header %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<!-- <body class="fwd"> -->
+  <div class="container">
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit clearfix">
+ <div class="pull-left span5">
+  <h1>&lt;/ codepost &gt;</h1>
+  <p></p>
+  <p>The Princeton Computer Science Department's best friend.</p>
+
+ </div>
+ <div class="pull-right">
+    <p></p>
+    <p><a class="btn btn-primary btn-large">Learn more</a></p>
+ </div>
+</div>
+<div id="login"> {% block login %}
+<div class="row">
+  <div class="span4">
+    <div class="thumbnail">
+     <img alt="" src="http://placehold.it/370x180">
+     <div class="caption">
+       <h5>Students</h5>
+       <p>Students may login to submit code, review comments, and manage archives.</p>
+       <p><a class="btn" href="https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student">Sign In</a></p>
+     </div>
+    </div>
+  </div>
+  <div class="span4">
+<div class="thumbnail">
+ <img alt="" src="http://placehold.it/370x180">
+ <div class="caption">
+   <h5>Graders</h5>
+   <p>Graders may login to check tasks, comment code, and post announcements.</p>
+   <p><a class="btn" href="https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/grader">Sign In</a></p>
+ </div>
+</div>
+  </div>
+  <div class="span4">
+<div class="thumbnail">
+  <img alt="" src="james">
+ <div class="caption">
+   <h5>Administrators</h5>
+   <p>Administrators may login to organize classes, assign grading tasks, and override posts.</p>
+   <p><a class="btn" href="https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin">Sign In</a></p>
+ </div>
+</div>
+  </div></div>
+  </div> 
+  {% endblock login %} </div>
+{% endblock content %}
+
+{% block loader %}
+  {{ super() }}
+{% endblock %}
+</html>
+Status API Training Shop Blog About Å© 2014 GitHub, Inc. Terms Privacy Security Contact 

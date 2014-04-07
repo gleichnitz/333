@@ -15,16 +15,19 @@
 {% endblock %}
 
 {% block portal %}
-<div class="pull-right"> <a class="brand" href="student">Student Portal: Hi, <div class="btn-group">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{ netid }} <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Account</a></li>
-        <li><a href="#">Help</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-    </ul>
-</div></a></div>
+<div class="pull-right"> <a class="brand" href="student">Student Portal: Hi,
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ netid }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Help</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+</a>
+</div>
 {% endblock %}
 
 {% block content %}

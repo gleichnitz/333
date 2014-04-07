@@ -21,25 +21,27 @@
     </button>
     <ul class="dropdown-menu pull-right" role="menu">
         <li><a href="#">Account</a></li>
+        <li><a href="#">Settings</a></li>
         <li><a href="#">Help</a></li>
         <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
+        <li><a href="#">Logout</a></li>
     </ul>
 </div>
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="btn-group">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{ netid }} <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Account</a></li>
-        <li><a href="#">Help</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-    </ul>
-</div>
+<h1>
+    <FONT FACE="TW Cen MT">code<font color="red">P</font>ost: student home</FONT>
+</h1>
+
+{{ super() }}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="#">Messages</a></li>
+</ul>
 
     <div class="container-fluid">
       <div class="row-fluid">

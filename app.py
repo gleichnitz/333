@@ -79,7 +79,7 @@ def page_not_found(e):
 def index():
     # if users can switch between modes (student, grader, admin), then we could redirect to logged-in page
     # if user is logged into CAS. 
-    return render_template('index.html')
+    return render_template('index3.html')
 
 @app.route("/index")
 def index2():
@@ -111,7 +111,7 @@ def submitted():
     # code = "".join(html_escape_table.get(c,c) for c in code)
     # code = code.replace("\n","<br>")
     # code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-    return render_template('student_submittedcode.html', studentwork = code)
+    return render_template('student_submittedcode.html', studentwork = code, netid = "jaevans")
 
 @app.route("/grader_NBody")
 def graded():

@@ -184,7 +184,7 @@ body {
 	}
 	
 	.nav li[data-slide="2"] {
-		background-color: #f9f1dc;
+		background-color: #b80802;
 	}
     
     .nav li[data-slide="3"] {
@@ -192,11 +192,11 @@ body {
 	}
 	
 	.nav li[data-slide="4"] {
-		background-color: #b80802;
+		background-color: #000000;
 	}
 	
 	.nav li[data-slide="5"] {
-		background-color: #000000;
+		background-color: #f9f1dc;
 	}
 	
 	.navbar-brand {

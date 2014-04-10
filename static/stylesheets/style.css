@@ -22,6 +22,14 @@
 	font-weight: 300;
 }
 
+.btn-danger {
+    background-color: black;
+}
+
+.btn-danger:hover {
+    background-color: black;
+}
+
 * {
 	position: relative;
 }

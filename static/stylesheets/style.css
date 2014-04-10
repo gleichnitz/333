@@ -30,6 +30,13 @@
     background-color: black;
 }
 
+.copyright {
+    padding-top: 50px;
+    font-family: "Titillium Web", sans-serif;
+	font-weight: 300;
+    color: #f9f1dc;
+}
+
 * {
 	position: relative;
 }

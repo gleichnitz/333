@@ -1,303 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+	<title>codePost: Home</title>
+	<meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />	    
+	<meta name="keywords" content="themes, bootstrap, free, templates, bootstrap 3, freebie,">
+	<meta property="og:title" content="">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-<title>codePost: Home</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../static/stylesheets/bootstrap.css" rel="stylesheet">
-
-    <!-- custom CSS -->
-    <link href="../static/stylesheets/stylish-portfolio.css" rel="stylesheet">
-    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" href="../static/fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../static/stylesheets/font-awesome.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' ' rel='stylesheet' type='text/css'>
+        
 </head>
 
 <body>
+	<div class="navbar navbar-fixed-top" data-activeslide="1">
+		<div class="container">
+		
+			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			
+			<div class="nav-collapse collapse navbar-responsive-collapse">
+				<ul class="nav row">
+					<li data-slide="1" class="col-7 col-sm-3"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-home"></span> <span class="text">HOME</span></a></li>
+					<li data-slide="2" class="col-7 col-sm-3"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="icon icon-user"></span> <span class="text">ABOUT US</span></a></li>
+					<li data-slide="4" class="col-12 col-sm-3"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="icon icon-briefcase"></span> <span class="text">FEATURES</span></a></li>
+					<li data-slide="5" class="col-12 col-sm-3"><a id="menu-link-5" href="#slide-5" title="Next Section"><span class="icon icon-heart"></span> <span class="text">SIGN UP</span></a></li>
+				</ul>
+				<div class="row">
+					<div class="col-sm-2 active-menu"></div>
+				</div>
+			</div><!-- /.nav-collapse -->
+		</div><!-- /.container -->
+	</div><!-- /.navbar -->
+	
+	
+	<!-- === Arrows === -->
+	<div id="arrows">
+		<div id="arrow-up" class="disabled"></div>
+		<div id="arrow-down"></div>
+	</div><!-- /.arrows -->
+	
+	
+	<!-- === MAIN Background === -->
+	<div class="slide story" id="slide-1" data-slide="1">
+		<div class="container">
+			<div id="home-row-1" class="row clearfix">
+				<div class="col-12">
+					<h1 class="font-semibold">code<font color="red">P</font><span class="font-thin">ost</span></h1>
+					<h4 class="font-thin">Because grading should be easy.</h4>
+					<br>
+					<br>
+				</div><!-- /col-12 -->
+			</div><!-- /row -->
+			<div id="home-row-2" class="row clearfix">
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="../static/img/s.png" width=70 height=70></div><span><font color="red">S</font>TUDENTS</span></div>
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="../static/img/g.png" width=70 height=70></div><span><font color="red">G</font>RADERS</span></div>
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="../static/img/a.png" width=70 height=70></div><span><font color="red">A</font>DMINISTRATORS</span></div>
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- /slide1 -->
+	
+	<!-- === Slide 2 - About Us === -->
+	<div class="slide story" id="slide-2" data-slide="2">
+		<div class="container">
+			<div class="row title-row">
+				<div class="col-12 font-semibold">About <font color="red">U</font>s</div>
+			</div><!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+            <div class="row subtitle-row">
+				<div class="col-12 col-sm-12 font-light">code<font color="red">P</font>ost is a dynamic grading service that allows graders to highlight, annotate, and run grading scripts directly on students' uploaded code, and for students to then view their graded and commented assignments. Along with the added convenience, code<font color="red">P</font>ost will help save your university countless resources and time.
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /slide2 -->
 
-    <!-- Side Menu -->
-    <a id="menu-toggle" href="#" class="btn btn-primary btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand"><a href="http://startbootstrap.com">Start Bootstrap</a>
-            </li>
-            <li><a href="#top">Home</a>
-            </li>
-            <li><a href="#about">Login</a>
-            </li>
-            <li><a href="#services">The Team</a>
-            </li>
-            <li><a href="#portfolio">Our Features</a>
-            </li>
-            <li><a href="#callout">About Us</a>
-            </li>
-        </ul>
-    </div>
-    <!-- /Side Menu -->
 
-    <!-- Full Page Image Header Area -->
-    <div id="top" class="header">
-        <div class="vert-text">
-            <div class="box">
-            <h1>
-                <FONT FACE="TW Cen MT"><font color="black">code<font color="red">P</font>ost</FONT>
-            </h1>
-            <h2>
-                <FONT FACE="TW Cen MT"><font color="blue"><em>Any</em> computer science department's best friend.</font></FONT>
-            </h2>
-            <a href="#about" class="btn btn-default btn-lg"><FONT FACE="TW Cen MT"><b>Find Out More</b></FONT></a>
-            </div>
-        </div>
-    </div>
-    <!-- /Full Page Image Header Area -->
-
-    <!-- Intro -->
-    <div id="about" class="intro">
-        <div class="container">
-            <div class="row">
-                <!-- <body class="fwd"> -->
-                    <!-- Main hero unit for a primary marketing message or call to action -->
-                    <div class="col-md-4 text-center">
-                        <img alt="" src="../static/img/students.jpg" width="250" height="160">
-                        <div class="service-item">
-                                <h2><font color="red">S</font>tudents</h2>
-                                <h4>Students may login to submit code, review comments, and manage archives.
-                                </h4>
-                                </div>
-                        <a href="https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student" class="btn btn-default btn-lg"><FONT FACE="TW Cen MT">Sign In</FONT></a>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <img alt="" src="../static/img/grader.jpg" width="250" height="160">
-                        <div class="service-item">
-                                <h2><font color="red">G</font>raders</h2>
-                                <h4>Graders may login to check tasks, grade code, and post announcements.</h4>
-                                </div>
-                        <a href="https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/grader" class="btn btn-default btn-lg"><FONT FACE="TW Cen MT">Sign In</FONT></a>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <img alt="" src="../static/img/admin.jpg" width="250" height="160">
-                        <div class="service-item">
-                                <h2><font color="red">A</font>dministrators</h2>
-                                <h4>Administrators may login to organize classes, assign grading tasks, and override posts.</h4>
-                                </div>
-                        <a href="https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin" class="btn btn-default btn-lg"><FONT FACE="TW Cen MT">Sign In</FONT></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </div>
-    <!-- /Intro -->
-
-    <!-- Team -->
-    <div id="services" class="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4 text-center">
-                    <h2>The <font color="red">T</font>eam</h2>
-                    <hr>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 col-md-offset-1 text-center">
-                    <div class="service-item">
-                        <img alt="" src="../static/img/a.png" width="140" height="140">
-                        <h3>Vinay <font color="red">A</font>yyala</h3>
-                        <p>Princeton '16</p>
-                        <p>B.S.E, ORFE</p>
-                    </div>
-                </div>
-                <div class="col-md-2 text-center">
-                    <div class="service-item">
-                        <img alt="" src="../static/img/e.png" width="140" height="140">
-                        <h3>James <font color="red">E</font>vans</h3>
-                        <p>Princeton '16</p>
-                        <p>A.B, ECON</p>
-                    </div>
-                </div>
-                <div class="col-md-2 text-center">
-                    <div class="service-item">
-                        <img alt="" src="../static/img/f.png" width="140" height="140">
-                        <h3>Richard <font color="red">F</font>reling</h3>
-                        <p>Princeton '16</p>
-                        <p>B.S.E, COS</p>
-                    </div>
-                </div>
-                <div class="col-md-2 text-center">
-                    <div class="service-item">
-                        <img alt="" src="../static/img/k.png" width="140" height="140">
-                        <h3>Alex <font color="red">K</font>ubiak</h3>
-                        <p>Princeton '15</p>
-                        <p>B.S.E, COS</p>
-                    </div>
-                </div>
-                <div class="col-md-2 text-center">
-                    <div class="service-item">
-                        <img alt="" src="../static/img/l.png" width="140" height="140">
-                        <h3>Gabriela <font color="red">L</font>z</h3>
-                        <p>Princeton '16</p>
-                        <p>B.S.E, COS</p>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    <!-- /Services -->
-
-    <!-- Portfolio -->
-    <div id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4 text-center">
-                    <h2><font color="white"> Our <font color="red">F</font>eatures</h2>
-                    <hr>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-2 text-center">
-                    <div class="portfolio-item">
-                        <a href="#">
-                            <img class="img-portfolio img-responsive" src="../static/img/portfolio-1.jpg">
-                        </a>
-                        <div class="portbox"<
-                            <h1>Easy Annotation and Highlighting</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="portfolio-item">
-                        <a href="#">
-                            <img class="img-portfolio img-responsive" src="../static/img/portfolio-2.jpg">
-                        </a>
-                        <div class="portbox"<
-                            <h3>Directly Upload Grading Scripts</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-2 text-center">
-                    <div class="portfolio-item">
-                        <a href="#">
-                            <img class="img-portfolio img-responsive" src="../static/img/portfolio-3.jpg">
-                        </a>
-                        <div class="portbox"<
-                            <h3>View All Classes</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="portfolio-item">
-                        <a href="#">
-                            <img class="img-portfolio img-responsive" src="../static/img/portfolio-4.jpg">
-                        </a>
-                        <div class="portbox"<
-                            <h3>Clean, Minimalist Layout</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Portfolio -->
+    <!-- === Slide 4 - Features === -->
+	<div class="slide story" id="slide-4" data-slide="4">
+		<div class="container">
+			<div class="row title-row">
+				<div class="col-12 font-semibold">Features</span></div>
+			</div><!-- /row -->
+			<div class="row line-row2">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+			<div class="row content-row">
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-bolt"></i></p>
+					<h2 class="font-thin">Annotation Support</span></h2>
+				</div><!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-cog"></i></p>
+					<h2 class="font-thin">Grading Scripts</span></h2>
+				</div><!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-cloud"></i></p>
+					<h2 class="font-thin">Get Feedback</span></h2>
+				</div><!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-map-marker"></i></p>
+					<h2 class="font-thin">Save Resources</span></h2>
+				</div><!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-gift"></i></p>
+					<h2 class="font-thin">Clean and Simple</span></h2>
+				</div><!-- /col12 -->
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- /slide4 -->
+	
     
-    <!-- Callout -->
-    <div class="callout">
-        <div class="vert-text">
-            <h1><font color="black">About <FONT FACE="TW Cen MT">code<font color="red">P</font>ost</FONT></h1>
-            <div class="col-md-8 col-sm-offset-2 text-center">
-                <h2><font color="black"> code<font color="red">P</font>ost is a dynamic grading service client that will allow for students to store and review coding assignments that have been commented and critiqued by graders. Along with the added convenience, code<font color="red">P</font>ost will help save <em>your</em> university thousands of pieces of paper every year.<h2>
-                    <p></p>
-                    <a href="#about" class="btn btn-default btn-lg"><FONT FACE="TW Cen MT"><b>Sign Up Your School</b></FONT></a>
-                    </div>
-        </div>
-    </div>
-    <!-- /Callout -->
+</body>
 
-    <!-- Call to Action -->
-    <div class="call-to-action">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <h2>More <font color="red">B</font>uttons</h2>
-                    <a href="#" class="btn btn-lg btn-default">Button 1</a>
-                    <a href="#" class="btn btn-lg btn-primary">Button 2</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Call to Action -->
+<!-- SCRIPTS -->
+<script src="js/html5shiv.js"></script>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
+<script src="js/script.js"></script>
 
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <font color="red">
-                    <ul class="list-inline">
-                        <li><i class="fa fa-facebook fa-3x"></i>
-                        </li>
-                        <li><i class="fa fa-twitter fa-3x"></i>
-                        </li>
-                        <li><i class="fa fa-dribbble fa-3x"></i>
-                        </li>
-                    </ul>
-                    </font>
-                    <div class="top-scroll">
-                        <a href="#top"><i class="fa fa-circle-arrow-up scroll fa-4x"></i></a>
-                    </div>
-                    <hr>
-                    <p>Copyright &copy; code<font color="red">P</font>ost 2014</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- /Footer -->
-
-    <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-
-    <!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
-    <script>
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    </script>
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    </script>
-    <script>
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
+<!-- fancybox init -->
+<script>
+	$(document).ready(function(e) {
+        var lis = $('.nav > li');
+        menu_focus( lis[0], 1 );
+    
+        $(".fancybox").fancybox({
+            padding: 10,
+            helpers: {
+                overlay: {
+                    locked: false
                 }
             }
-        });
-    });
-    </script>
-
-</body>
+     });
+                      
+                      });
+	</script>
 
 </html>

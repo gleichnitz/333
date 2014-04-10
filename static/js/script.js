@@ -1,9 +1,20 @@
-
 $(document).ready(function(e) {
 	$('.with-hover-text, .regular-link').click(function(e){
 		e.stopPropagation();
 	});
+
+	$("#studentlogin").click(function () {
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student');
+	});
+
+	$("#graderlogin").click(function () {
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/grader');
+	});
 	
+	$("#adminlogin").click(function () {
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin');
+	});
+
 	/***************
 	* = Hover text *
 	* Hover text for the last slide

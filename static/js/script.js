@@ -4,15 +4,15 @@ $(document).ready(function(e) {
 	});
 
 	$("#studentlogin").click(function () {
-    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student');
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student',"_self");
 	});
 
 	$("#graderlogin").click(function () {
-    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/grader');
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/grader',"_self");
 	});
 	
 	$("#adminlogin").click(function () {
-    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin');
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin', "_self");
 	});
 
 	/***************

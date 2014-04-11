@@ -323,9 +323,9 @@ $(window).scroll(function(e) {
 
 	var lis = $('.nav > li');
 
-	if (top > borders[2]-1)
+	if (top > borders[2]-100)
 		menu_focus(lis[2],4);
-	else if (top > borders[1]-1)
+	else if (top > borders[1]-100)
 		menu_focus(lis[1],2);
 	else
 		menu_focus(lis[0],1)

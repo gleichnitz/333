@@ -10,10 +10,13 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   {{ super() }}
   <script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
+  <script type="text/javascript" src="../static/js/annotator.touch.js"></script>
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
+   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.touch.css"/>
   <script>
       jQuery(function ($) {
-          $('#code').annotator();
+          $('#code').annotator().annotator("addPlugin", "Touch", {
+          useHighlighter: true
       });     
   </script>  
 {% endblock %}

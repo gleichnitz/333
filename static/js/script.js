@@ -60,44 +60,6 @@ $(document).ready(function(e) {
 	* = Controls active menu *
 	* Hover text for the last slide
 	*************************/
-	$('#slide-3 img').each(function(index, element) {
-		var time = new Date().getTime();
-		var oldHref = $(this).attr('src');
-		var myImg = $('<img />').attr('src', oldHref + '?' + time );
-		
-		myImg.load(function(e) {
-			img_loaded += 1;;
-			if ( img_loaded == $('#slide-3 img').length ) {
-				$(function() {
-					var pause = 10;
-					$(document).scroll(function(e) {
-						delay(function() {
-							
-							var tops = [];
-							
-							$('.story').each(function(index, element) {
-								tops.push( $(element).offset().top - 200 );
-							});
-				
-							var scroll_top = $(this).scrollTop();
-							
-							var lis = $('.nav > li');
-							
-							for ( var i=tops.length-1; i>=0; i-- ) {
-								if ( scroll_top >= tops[i] ) {
-									menu_focus( lis[i], i+1 );
-									break;
-								}
-							}
-						},
-						pause);
-					});
-					$(document).scroll();
-				});
-			}
-		});
-	});
-	
 });
 
 /******************
@@ -146,7 +108,7 @@ var delay = (function(){
 
 function menu_focus( element, i ) {
 	if ( $(element).hasClass('active') ) {
-		if ( i == 1 ) {
+		if ( i == 4 ) {
 			if ( $('.navbar').hasClass('inv') == false )
 				return;
 		} else {
@@ -155,7 +117,7 @@ function menu_focus( element, i ) {
 	}
 	
 	enable_arrows( i );		
-	if ( i != 2 )
+	if ( i == 1 || i == 4 )
 		$('.navbar').removeClass('inv');
 	else
 		$('.navbar').addClass('inv');
@@ -218,7 +180,6 @@ jQuery(document).ready(function ($) {
 		e.preventDefault();
 		dataslide = $(this).attr('data-slide');
 		goToByScroll(dataslide);
-		menu_focus(2,2)
 		$(".nav-collapse").collapse('hide');
 	});
 	
@@ -349,7 +310,9 @@ jQuery(document).ready(function ($) {
 		}
 	});
 });
-
+/***********
+Control Menu Highlight (jaevans)
+************/
 $(window).scroll(function(e) {
 	var top = $("body").scrollTop();
 	console.log(top);

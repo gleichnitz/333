@@ -4,15 +4,15 @@ $(document).ready(function(e) {
 	});
 
 	$("#studentlogin").click(function () {
-    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student');
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student',"_self");
 	});
 
 	$("#graderlogin").click(function () {
-    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/grader');
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/grader',"_self");
 	});
 	
 	$("#adminlogin").click(function () {
-    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin');
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin', "_self");
 	});
 
 	/***************
@@ -60,44 +60,6 @@ $(document).ready(function(e) {
 	* = Controls active menu *
 	* Hover text for the last slide
 	*************************/
-	$('#slide-3 img').each(function(index, element) {
-		var time = new Date().getTime();
-		var oldHref = $(this).attr('src');
-		var myImg = $('<img />').attr('src', oldHref + '?' + time );
-		
-		myImg.load(function(e) {
-			img_loaded += 1;;
-			if ( img_loaded == $('#slide-3 img').length ) {
-				$(function() {
-					var pause = 10;
-					$(document).scroll(function(e) {
-						delay(function() {
-							
-							var tops = [];
-							
-							$('.story').each(function(index, element) {
-								tops.push( $(element).offset().top - 200 );
-							});
-				
-							var scroll_top = $(this).scrollTop();
-							
-							var lis = $('.nav > li');
-							
-							for ( var i=tops.length-1; i>=0; i-- ) {
-								if ( scroll_top >= tops[i] ) {
-									menu_focus( lis[i], i+1 );
-									break;
-								}
-							}
-						},
-						pause);
-					});
-					$(document).scroll();
-				});
-			}
-		});
-	});
-	
 });
 
 /******************
@@ -146,7 +108,7 @@ var delay = (function(){
 
 function menu_focus( element, i ) {
 	if ( $(element).hasClass('active') ) {
-		if ( i == 5 ) {
+		if ( i == 4 ) {
 			if ( $('.navbar').hasClass('inv') == false )
 				return;
 		} else {
@@ -154,9 +116,8 @@ function menu_focus( element, i ) {
 		}
 	}
 	
-	enable_arrows( i );
-		
-	if ( i == 1 || i == 5 )
+	enable_arrows( i );		
+	if ( i == 1 || i == 4 )
 		$('.navbar').removeClass('inv');
 	else
 		$('.navbar').addClass('inv');
@@ -184,8 +145,12 @@ function enable_arrows( dataslide ) {
 	if ( dataslide != 1 ) {
 		$('#arrow-up').removeClass('disabled');
 	}
-	if ( dataslide != 5 ) {
+	if ( dataslide != 6 ) {
 		$('#arrow-down').removeClass('disabled');
+	}
+	if ( dataslide == 3 ) {
+		$('#arrow-left').removeClass('disabled');
+		$('#arrow-right').removeClass('disabled');
 	}
 }
 
@@ -344,4 +309,24 @@ jQuery(document).ready(function ($) {
 			}
 		}
 	});
+});
+/***********
+Control Menu Highlight (jaevans)
+************/
+$(window).scroll(function(e) {
+	var top = $("body").scrollTop();
+	console.log(top);
+	var borders = [];
+	borders[0] = $("#slide-1").offset().top;
+	borders[1] = $("#slide-2").offset().top;
+	borders[2] = $("#slide-4").offset().top;
+
+	var lis = $('.nav > li');
+
+	if (top > borders[2]-1)
+		menu_focus(lis[2],4);
+	else if (top > borders[1]-1)
+		menu_focus(lis[1],2);
+	else
+		menu_focus(lis[0],1)
 });

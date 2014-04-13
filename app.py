@@ -111,7 +111,7 @@ def submitted():
     # code = "".join(html_escape_table.get(c,c) for c in code)
     # code = code.replace("\n","<br>")
     # code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-    return render_template('student_submittedcode.html', studentwork = code, netid = "jaevans")
+    return render_template('viewer.html', studentwork = code, netid = "jaevans")
 
 @app.route("/grader_NBody")
 def graded():

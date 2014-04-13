@@ -8,13 +8,66 @@
 {% block body %}
   <div style="margin: 8em 10%;"> 
     <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
-      <tr><th>Class</th><th>#</th><th>Assignment</th><th>Date submitted</th><th>Grade</th></tr>
-      <tr><td><a href="/viewer">COS 226</a></td><td>0</td><td>Deques and Randomized Queues</td><td>04/04/14</td><td>40/40</td></tr>
-      <tr><td>COS 226</td><td>1</td><td>Autocomplete</td><td>04/04/14</td><td>40/40</td></tr>
-      <tr><td>COS 226</td><td>2</td><td>8 Puzzle</td><td>04/04/14</td><td>40/40</td></tr>
-      <tr><td>COS 226</td><td>3</td><td>Kd-Trees</td><td>04/04/14</td><td>40/40</td></tr>
-      <tr><td>COS 226</td><td>4</td><td>WordNet</td><td>04/04/14</td><td>40/40</td></tr>
-      <tr><td>COS 226</td><td>5</td><td>Seam Carving</td><td>04/04/14</td><td>40/40</td></tr>
+      <tr>
+          <th>
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: black; clear: both"> Class <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">COS 126</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">COS 217</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">COS 226</a></li>
+                  </ul>
+              </div>
+          </th>
+          <th>#</th>
+          <th>Assignment</th>
+          <th>Date submitted</th>
+          <th>Grade</th>
+      </tr>
+      <tr>
+          <td><a href="/viewer">COS 226</a></td>
+          <td>0</td>
+          <td>Deques and Randomized Queues</td>
+          <td>04/04/14</td>
+          <td>40/40</td>
+      </tr>
+      <tr>
+          <td>COS 226</td>
+          <td>1</td>
+          <td>Autocomplete</td>
+          <td>04/04/14</td>
+          <td>40/40</td>
+      </tr>
+      <tr>
+          <td>COS 226</td>
+          <td>2</td>
+          <td>8 Puzzle</td>
+          <td>04/04/14</td>
+          <td>40/40</td>
+      </tr>
+      <tr>
+          <td>COS 226</td>
+          <td>3</td>
+          <td>Kd-Trees</td>
+          <td>04/04/14</td>
+          <td>40/40</td>
+      </tr>
+      <tr>
+          <td>COS 226</td>
+          <td>4</td>
+          <td>WordNet</td>
+          <td>04/04/14</td>
+          <td>40/40</td>
+      </tr>
+      <tr>
+          <td>COS 226</td>
+          <td>5</td>
+          <td>Seam Carving</td>
+          <td>04/04/14</td>
+          <td>40/40</td>
+      </tr>
     </table>
   </div>
 {% endblock %}

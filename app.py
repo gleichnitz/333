@@ -99,6 +99,12 @@ def team():
 
 @app.route("/viewer")
 def submitted():
+    return request.args.get('ticket')
+
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
+    data = response.read()
+    result = validate(data)
+
     html_escape_table = {
         "&" : "&amp;",
         '"': "&quot;",
@@ -108,9 +114,6 @@ def submitted():
     }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    # code = "".join(html_escape_table.get(c,c) for c in code)
-    # code = code.replace("\n","<br>")
-    # code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
     return render_template('viewer.html', studentwork = code, netid = "jaevans")
 
 @app.route("/grader_NBody")

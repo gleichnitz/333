@@ -68,7 +68,7 @@ def validate(data):
 @app.route('/login')
 def login():
     session['ticket'] = request.args.get('ticket')
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + session['ticket'] + '&service=http://saltytyga.herokuapp.com/student')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + session['ticket'] + '&service=http://saltytyga.herokuapp.com/login')
     data = response.read()
     return data
     # return redirect('/' + request.args.get('dest'))

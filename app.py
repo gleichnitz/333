@@ -71,7 +71,7 @@ def validate(data):
 def login():
     session['ticket'] = request.args.get('ticket')
     return session['ticket']
-    return redirect('/' + request.args.get('dest'))
+    return redirect('/' + request.args.get('type'))
 
 # controllers
 @app.route('/datatest')

@@ -155,10 +155,6 @@ def admin():
     else:
         return redirect('/')
 
-class Assignment(base):
-    files = []
-    grades = {}
-
 
 # launch
 if __name__ == "__main__":

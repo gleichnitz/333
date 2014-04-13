@@ -16,8 +16,6 @@ db.create_all()
 # print Student.query.all()
 # print Course.query.all()
 
-app.secret_key = 'tNMhcrwLbOM5D8uBL2xdu0GikNGBjjbxa9MX6OFG02M'
-
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -43,11 +41,11 @@ def isLoggedIn(page):
     if 'ticket' in session:
         response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + session['ticket'] + '&service=http://saltytyga.herokuapp.com/' + page)
     else:
-        redirect('/')
+        return redirect('/')
     data = response.read()
     result = validate(data)
     if result is "NO":
-        redirect('/')
+        return redirect('/')
     else:
         return result
 
@@ -71,7 +69,7 @@ def validate(data):
 @app.route('/login')
 def login():
     session['ticket'] = request.args.get('ticket')
-    redirect('/' + request.args.get('dest'))
+    return redirect('/' + request.args.get('dest'))
 
 # controllers
 @app.route('/datatest')

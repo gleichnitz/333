@@ -108,7 +108,7 @@ def submitted():
     }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    return render_template('viewer.html', studentwork = code, netid = netid)
+    return render_template('viewer.html', studentwork = code, netid = "jaevans")
 
 @app.route("/grader_NBody")
 def graded():

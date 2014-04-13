@@ -68,6 +68,7 @@ def validate(data):
 @app.route('/login')
 def login():
     session['ticket'] = request.args.get('ticket')
+    return session['ticket']
     return redirect('/' + request.args.get('dest'))
 
 # controllers
@@ -136,8 +137,8 @@ def grader():
 @app.route("/student")
 def student():
     result = isLoggedIn("student")
-    if result is "NO":
-        return redirect("/")
+    if result == "NO":
+        return "bump"
     else:
         return render_template('student.html', netid=result)
 

@@ -70,8 +70,7 @@ def login():
     session['ticket'] = request.args.get('ticket')
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + session['ticket'] + '&service=http://saltytyga.herokuapp.com/student')
     data = response.read()
-    result = validate(data)
-    return result
+    return data
     # return redirect('/' + request.args.get('dest'))
 
 # controllers

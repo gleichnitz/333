@@ -119,7 +119,6 @@ def team():
 
 @app.route("/viewer")
 def submitted():
-    netid = isLoggedIn('viewer')
     html_escape_table = {
         "&" : "&amp;",
         '"': "&quot;",
@@ -129,20 +128,15 @@ def submitted():
     }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    return render_template('viewer.html', studentwork = code, netid = netid)
+    return render_template('viewer.html', studentwork = code, netid = "jaevans")
 
 @app.route("/grader")
 def grader():
-    netid = isLoggedIn("grader")             
-    return render_template('grader.html', netid=netid)
+    return render_template('grader.html', netid="jaevans")
 
 @app.route("/student")
 def student():
-    result = isLoggedIn("student")
-    if result == "NO":
-        return "bump"
-    else:
-        return render_template('student.html', netid=result)
+    return render_template('student.html', netid="jeans")
 
 @app.route("/admin")
 def admin():

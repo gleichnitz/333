@@ -1,11 +1,10 @@
 <!doctype html>
 <html>
 <head lang="en">
+	{% block head %}
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	
-	<title>codePost: Home</title>
-	<meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />	    
+		<meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />	    
 	<meta name="keywords" content="themes, bootstrap, free, templates, bootstrap 3, freebie,">
 	<meta property="og:title" content="">
 
@@ -15,11 +14,15 @@
 	
 	<link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
 	
-	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' 'rel='stylesheet' type='text/css'>
-        
+<<<<<<< HEAD        
+=======
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+     {% endblock %}
+>>>>>>> 24d93165c8629d0f5b1ccd03c8ccb8d2fa69bae3
 </head>
 
 <body>
+	{% block bar %}
 	<div style="background-color: black;" class="navbar navbar-fixed-top" data-activeslide="1">
                 <a style="text-decoration: none;" href='http://saltytyga.herokuapp.com '>
                     <h1 style="margin-top:5px;margin-bottom:1px;color:white; float: left; margin-left: 5%;" class="font-semibold">code<font color="red">P</font><span class="font-thin">ost</span></h1></a>
@@ -56,8 +59,10 @@
 			</div><!-- /.nav-collapse -->	
 		</div><!-- /.container -->
 	</div><!-- /.navbar -->
+	{% endblock %}
 </body>
 
+{% block scripts %}
 <!-- SCRIPTS -->
 <script src="../static/js/html5shiv.js"></script>
 <script src="../static/js/jquery-1.10.2.min.js"></script>
@@ -84,5 +89,5 @@
                       
                       });
 	</script>
-
+	{% endblock %}
 </html>

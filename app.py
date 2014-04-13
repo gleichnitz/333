@@ -147,7 +147,7 @@ def admin():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/admin')
     data = response.read()
     result = validate(data)
-
+    netid = isLoggedIn("admin")
     #check if netid corresponds to admin
 
     if result != "NO":
@@ -158,8 +158,7 @@ def admin():
 class Assignment(base):
     files = []
     grades = {}
-    netid = isLoggedIn("admin")
-    render_template('admin.html', netid=netid)
+
 
 # launch
 if __name__ == "__main__":

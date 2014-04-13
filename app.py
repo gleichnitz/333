@@ -135,11 +135,11 @@ def grader():
 
 @app.route("/student")
 def student():
-    netid = isLoggedIn("student")
-    if netid is "NO":
+    result = isLoggedIn("student")
+    if result is "NO":
         return redirect("/")
     else:
-        return render_template('student.html', netid=netid)
+        return render_template('student.html', netid=result)
 
 @app.route("/admin")
 def admin():

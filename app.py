@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.declarative import declarative_base
 from database import db, Student, Course, Grader, Admin
 import urllib2
 from xml.etree import ElementTree
@@ -15,6 +16,7 @@ app.config.update(
 db.create_all()
 # print Student.query.all()
 # print Course.query.all()
+Base = declarative_base()
 
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
@@ -160,6 +162,9 @@ def admin():
     else:
         return redirect('/')
 
+class Assignment(base):
+    files = []
+    grades = {}
 
 # launch
 if __name__ == "__main__":

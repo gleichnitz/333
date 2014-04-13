@@ -70,8 +70,7 @@ def validate(data):
 @app.route('/login')
 def login():
     session['ticket'] = request.args.get('ticket')
-    return session['ticket']
-    return redirect('/' + request.args.get('type'))
+    return redirect('/' + request.args.get('dest'))
 
 # controllers
 @app.route('/datatest')

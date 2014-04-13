@@ -85,10 +85,6 @@ def index():
 def index2():
     return render_template('index.html')
 
-@app.route("/viewer")
-def viewer():
-    return render_template('viewer.html')
-
 @app.route("/index3")
 def index3():
     return render_template('index3.html')
@@ -101,7 +97,7 @@ def about():
 def team():
     return render_template('team.html')
 
-@app.route("/submittedcode")
+@app.route("/viewer")
 def submitted():
     html_escape_table = {
         "&" : "&amp;",
@@ -115,7 +111,7 @@ def submitted():
     # code = "".join(html_escape_table.get(c,c) for c in code)
     # code = code.replace("\n","<br>")
     # code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-    return render_template('student_submittedcode.html', studentwork = code, netid = "jaevans")
+    return render_template('viewer.html', studentwork = code, netid = "jaevans")
 
 @app.route("/grader_NBody")
 def graded():

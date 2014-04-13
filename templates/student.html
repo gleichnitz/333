@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" style="min-width: 600px">
 {% extends "base3.html" %}
+
 {% block head %}
   <title>CodePost: Student</title>
   {{ super() }}
 {% endblock %}
-<body>
-  {% block body %}
-    <div>this is a test!</div>
-    {{ super() }}
-  {% endblock %}
-  {% block scripts %}
-    {{ super() }}
-  {% endblock %}
-</body>
-</html>
+
+{% block body %}
+  <h1>this is a test!</h1>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}
+

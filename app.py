@@ -16,6 +16,8 @@ db.create_all()
 # print Student.query.all()
 # print Course.query.all()
 
+app.secret_key = 'tNMhcrwLbOM5D8uBL2xdu0GikNGBjjbxa9MX6OFG02M'
+
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -37,6 +39,18 @@ def isAdmin(net_id):
     else:
         return True
 
+def isLoggedIn(page):
+    if 'ticket' in session:
+        response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + session['ticket'] + '&service=http://saltytyga.herokuapp.com/' + page)
+    else:
+        redirect('/')
+    data = response.read()
+    result = validate(data)
+    if result is "NO":
+        redirect('/')
+    else:
+        return result
+
 def validate(data):
     if "yes" in data:
         name = data.split()[1]
@@ -52,7 +66,12 @@ def validate(data):
             db.session.commit()
         return name
     else:
-        return "NO "
+        return "NO"
+
+@app.route('/login')
+def login():
+    session['ticket'] = request.args.get('ticket')
+    redirect('/' + request.args.get('dest')
 
 # controllers
 @app.route('/datatest')
@@ -67,6 +86,7 @@ def datatest():
 
     string = "Students: {} \n Graders: {} \n Admins: {}".format(str(_students), str(_graders), str(_admins))
     return string
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'ico/favicon.ico')
@@ -99,6 +119,7 @@ def team():
 
 @app.route("/viewer")
 def submitted():
+    netid = isLoggedIn('viewer')
     html_escape_table = {
         "&" : "&amp;",
         '"': "&quot;",
@@ -108,55 +129,22 @@ def submitted():
     }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    return render_template('viewer.html', studentwork = code, netid = "jaevans")
-
-@app.route("/grader_NBody")
-def graded():
-    return render_template('grader_NBody.html')
-
-@app.route("/grader_vayyala")
-def gradedwork():
-    return render_template('grader_NBody_vayyala.html')
+    return render_template('viewer.html', studentwork = code, netid = netid)
 
 @app.route("/grader")
 def grader():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/grader')
-    data = response.read()
-    result = validate(data)
-
-    # check if netid corresponds to grader
-
-    if result != "NO":
-        return render_template('grader.html', netid=result)
-    else:
-        return redirect('/')
+    netid = isLoggedIn("grader")             
+    return render_template('grader.html', netid=netid)
 
 @app.route("/student")
 def student():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/student')
-    data = response.read()
-    result = validate(data)
-
-    # check if netid corresponds to student
-
-    if result != "NO":
-        return render_template('student.html', netid=result)
-    else:
-        return redirect('/')
+    netid = isLoggedIn("student")
+    return render_template('student.html', netid=netid)
 
 @app.route("/admin")
 def admin():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/admin')
-    data = response.read()
-    result = validate(data)
-
-    #check if netid corresponds to admin
-
-    if result != "NO":
-        return render_template('admin.html', netid=result)
-    else:
-        return redirect('/')
-
+    netid = isLoggedIn("admin")
+    render_template('admin.html', netid=netid)
 
 # launch
 if __name__ == "__main__":

@@ -85,6 +85,10 @@ def index():
 def index2():
     return render_template('index.html')
 
+@app.route("/viewer")
+def viewer():
+    return render_template('viewer.html')
+
 @app.route("/index3")
 def index3():
     return render_template('index3.html')

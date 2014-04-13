@@ -53,6 +53,10 @@ html, body {
 	width: 100%;
 }
 
+logo {
+    clear: both;
+}
+
 body {
 	background-color: #2f2f2f;
 	font-family: "Titillium Web", sans-serif;

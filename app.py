@@ -99,12 +99,6 @@ def team():
 
 @app.route("/viewer")
 def submitted():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/viewer')
-    data = response.read()
-    netid = validate(data)
-    if (netid == "NO"):
-        redirect("/")
-
     html_escape_table = {
         "&" : "&amp;",
         '"': "&quot;",

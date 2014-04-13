@@ -43,14 +43,10 @@ def isLoggedIn(page):
     if 'ticket' in session:
         response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + session['ticket'] + '&service=http://saltytyga.herokuapp.com/student')
     else:
-        return redirect('/')
+        return "NO"
     data = response.read()
     result = validate(data)
-
-    if result == "NO":
-        return redirect('/')
-    else:
-        return result
+    return result
 
 def validate(data):
     if "yes" in data:
@@ -140,7 +136,10 @@ def grader():
 @app.route("/student")
 def student():
     netid = isLoggedIn("student")
-    return render_template('student.html', netid=netid)
+    if netid is "NO":
+        return redirect("/")
+    else:
+        return render_template('student.html', netid=netid)
 
 @app.route("/admin")
 def admin():

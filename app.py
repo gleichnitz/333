@@ -47,7 +47,7 @@ def isLoggedIn(page):
     data = response.read()
     result = validate(data)
 
-    if result is "NO":
+    if result is "no":
         return redirect('/')
     else:
         return result

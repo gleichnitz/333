@@ -5,11 +5,13 @@
   <title>CodePost: Student</title>
   {{ super() }}
 {% endblock %}
-{% block body %}
-  <div>this is a test!</div>
-  {{ super() }}
-{% endblock %}
-{% block scripts %}
-  {{ super() }}
-{% endblock %}
+<body>
+  {% block body %}
+    <div>this is a test!</div>
+    {{ super() }}
+  {% endblock %}
+  {% block scripts %}
+    {{ super() }}
+  {% endblock %}
+</body>
 </html>

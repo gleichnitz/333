@@ -6,14 +6,8 @@
   {{ super() }}
 {% endblock %}
 
-{% block header %}
-  {{ super() }}
-{% endblock %}
 
-{% block padding %}
-  {{ super() }}
-{% endblock %}
-
+<<<<<<< HEAD
 {% block portal %}
 <div class="pull-right"> <a class="brand" href="student"> {{type}} Portal: Welcome</a></div>
 <div class="pull-right">
@@ -31,89 +25,4 @@
 </div>
 {% endblock %}
 
-{% block content %}
-<h1>
-    <FONT FACE="TW Cen MT">code<font color="red">P</font>ost: student home</FONT>
-</h1>
-
-{{ super() }}
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="submittedcode">Viewer</a></li>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        Current Class <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li><a href="#">All</a></li>
-            <li><a href="#">COS 126</a></li>
-            <li><a href="#">COS 226</a></li>
-        </ul>
-    </li>
-</ul>
-
-<div class="tab-content">
-    <div class="tab-pane fade in active" id="home">...</div>
-    <div class="tab-pane fade" id="viewer">...</div>
-    <div class="tab-pane fade" id="currentclass">...</div>
-</div>
-l
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span6">
-          <div id="studenttable">
-          <div class="well sidebar-nav">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>
-		    
-		  </th>
-                  <th>Assignment</th>
-                  <th>Status</th>
-		  <th>Grade</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>COS 126</td>
-                  <td><a href="submittedcode">NBody</a></td>
-                  <td>Graded</td>
-		  <td>40/40</td>
-                </tr>
-                <tr>
-                  <td>COS 126</td>
-                  <td><a href="submittedcode">Atomic</a></td>
-                  <td>Graded</td>
-		  <td>40/40</td>
-                </tr>
-                <tr>
-                  <td>COS 226</td>
-                  <td><a href="submittedcode">8 Puzzle</a></td>
-                  <td>Graded</td>
-		  <td>40/40</td>
-                </tr>
-                <tr>
-                  <td>COS 226</td>
-                  <td><a href="submittedcode">Kd Tree</a></td>
-                  <td>Submitted</td>
-		  <td>40/40</td>
-                </tr>
-              </tbody>
-            </table>
-          </div><!--/.well --><!--/studenttable -->
-
-          </div><!--/studenttable -->
-        </div><!--/span-->
-        <!-- <div class="span9">
-          <div class="hero-unit">
-            <h1>Welcome, {{netid}}!</h1>
-            <br>
-            <p>This is your personal student portal that will allow you to upload code and have access to all of your past commented assignments. Clicking the "Submit Code" button will take you to the autograding script page where you will submit code as usual.</p>
-          </div>
-        </div><!--/span--> 
-      <!--/row-->
-    </div>
-{% endblock %}
 </html>

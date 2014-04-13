@@ -15,14 +15,28 @@
 	
 	<link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
 	
-	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' ' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         
 </head>
 
 <body>
-	<div class="navbar navbar-fixed-top" data-activeslide="1">
-                <a href='http://saltytyga.herokuapp.com '>
-                    <img src='../static/img/logo.png' width="200" height="50">
+	<div style="background-color: black;" class="navbar navbar-fixed-top" data-activeslide="1">
+                <a style="text-decoration: none;" href='http://saltytyga.herokuapp.com '>
+                    <h1 style="margin-top:5px;margin-bottom:1px;color:white; float: left; margin-left: 5%;" class="font-semibold">code<font color="red">P</font><span class="font-thin">ost</span></h1></a>
+                <div class="dropdown" style="float: right; margin-right: 5%; margin-top: 10px;">
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    {{ netid }}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Account</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Switch to student</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Switch to admin</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Switch to grader</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+  </ul>
+</div>
         </div>
         </div>
 			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
@@ -39,7 +53,7 @@
 				<div class="row">
 					<div class="col-sm-2 active-menu"></div>
 				</div>
-			</div><!-- /.nav-collapse -->
+			</div><!-- /.nav-collapse -->	
 		</div><!-- /.container -->
 	</div><!-- /.navbar -->
 </body>

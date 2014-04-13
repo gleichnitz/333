@@ -1,61 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-
 {% extends "base3.html" %}
+
 {% block head %}
-  <title>CodePost: Grader</title>
-  {{ super() }}
+    <title>CodePost: Grader</title>
+    {{ super() }}
 {% endblock %}
 
-{% block header %}
-  {{ super() }}
+{% block body %}
+<div style="margin: 8em 10%;">
+    <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
+        <tr><th>Class</th><th>#</th><th>Assignment</th><th>netID</th><th>Status</th></tr>
+        <tr><td><a href="/viewer">COS 226</a></td><td>0</td><td>Deques and Randomized Queues</td><td>04/04/14</td><td>40/40</td></tr>
+        <tr><td>COS 226</td><td>1</td><td>Autocomplete</td><td>04/04/14</td><td>40/40</td></tr>
+        <tr><td>COS 226</td><td>2</td><td>8 Puzzle</td><td>04/04/14</td><td>40/40</td></tr>
+        <tr><td>COS 226</td><td>3</td><td>Kd-Trees</td><td>04/04/14</td><td>40/40</td></tr>
+        <tr><td>COS 226</td><td>4</td><td>WordNet</td><td>04/04/14</td><td>40/40</td></tr>
+        <tr><td>COS 226</td><td>5</td><td>Seam Carving</td><td>04/04/14</td><td>40/40</td></tr>
+    </table>
+</div>
 {% endblock %}
-
-{% block padding %}
-  {{ super() }}
-{% endblock %}
-
-{% block portal %}
-  <div class="pull-right"> <a class="brand" href="grader">Grader Portal: Hi, {{netid}}</a></div>
-{% endblock %}
-
-{% block content %}
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>COS 126</th>
-                  <th>COS 226</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><a href="grader_NBody">NBody</a></td>
-                  <td><a href="grader_vayyala">8 Puzzle</a></td>
-                </tr>
-                <tr>
-                  <td><a href="#">Atomic</a></td>
-                  <td><a href="#">Kd Tree</a></td>
-                </tr>
-              </tbody>
-            </table>
-
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>Welcome, {{netid}}!</h1>
-            <br>
-            <p>As a grader, you are already assigned to certain classes. To the left, you can see a table with the classes you are authorized to grade for. Please choose the class assignment would like to grade right now.</p>
-          </div>
-
-        </div><!--/span-->
-      </div><!--/row-->
-
-    </div><!--/.fluid-container-->
-{% endblock %}
-
-</html>

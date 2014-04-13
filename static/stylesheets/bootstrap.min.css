@@ -1272,6 +1272,11 @@ th {
   background-color: #f5f5f5;
 }
 
+.table-hover > tbody > tr:hover:first-child > th,
+.table-hover > tbody > tr:hover:first-child > td {
+    background-color: white;
+}
+
 table col[class^="col-"] {
   display: table-column;
   float: none;

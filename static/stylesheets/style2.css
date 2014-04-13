@@ -1,0 +1,91 @@
+.font-thin {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 200;
+}
+
+.font-semibold {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 600;
+}
+
+.font-light {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 300;
+}
+
+.btn-danger {
+    background-color: black;
+}
+
+.btn-danger:hover {
+    background-color: black;
+}
+
+.copyright {
+    padding-top: 50px;
+    font-family: "Titillium Web", sans-serif;
+	font-weight: 300;
+    color: #f9f1dc;
+}
+
+.navbar {
+	background-color: #e4e6e5;
+	background-color: rgba( 228, 230, 229, .85 );
+	border-bottom: 0 none;
+	font-size: 12px;
+	transition: .25s all linear;
+}
+
+.navbar.inv {
+	background-color: rgba( 0, 0, 0, .5 );
+	border-bottom: 1px solid #bfbfbf;
+}
+
+.navbar .nav a {
+	color: #b80802;
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 600;
+	transition: all .5 linear;
+}
+
+.navbar.inv a {
+	color: #e4e6e5;
+}
+
+
+.navbar-responsive-collapse {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.nav li {
+	text-align: center;
+	white-space: nowrap;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+	background-color: inherit;
+	outline: none;
+}
+
+.navbar-brand {
+	padding: 8px;
+}
+
+.active-menu {
+	background-color: #4e4e4e;
+	content: '.';
+	display: block;
+	height: 5px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transition: all .5 linear;
+	width: 1%;
+	z-index: 9;
+}
+
+.inv .active-menu {
+	background-color: #e4e6e5;
+}

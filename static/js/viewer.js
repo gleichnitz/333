@@ -1,8 +1,9 @@
 
 $(document).ready(function(e) {
-	$(document).dblclick(function(e) {
-		
-	});
+	
+	$('.myClickDisabledElm').bind('click',function(e){
+    	e.preventDefault();
+	})
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

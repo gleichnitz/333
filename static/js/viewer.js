@@ -1,4 +1,5 @@
 $(document).ready(function(e) {
+	var i = 0;
 
 	console.log("bump");
 

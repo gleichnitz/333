@@ -13,7 +13,6 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
-
 # print Student.query.all()
 # print Course.query.all()
 Base = declarative_base()

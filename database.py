@@ -78,6 +78,8 @@ class Assignment(db.Model):
   courseid = db.Column(db.Integer, db.ForeignKey('course.id'))  
   course = db.relationship('Course', backref = db.backref('assignments', lazy = 'dynamic'))
 
+  date = db.Column(db.String(80))
+
   student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
   student = db.relationship('Student', backref = db.backref('assignments', lazy = 'dynamic'))
 

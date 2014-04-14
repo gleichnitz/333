@@ -241,6 +241,11 @@ th {
   .table th {
     background-color: #fff !important;
   }
+ 
+  .table a {
+    text-decoration: none;
+  }
+  
   .btn > .caret,
   .dropup > .btn > .caret {
     border-top-color: #000 !important;

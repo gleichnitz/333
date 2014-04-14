@@ -242,7 +242,7 @@ th {
     background-color: #fff !important;
   }
  
-  .table a {
+  .table a:hover {
     text-decoration: none;
   }
   

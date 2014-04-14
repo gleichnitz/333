@@ -67,7 +67,7 @@ def validate(data):
 
 @app.route('/login')
 def login():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login?dest= +' request.args.get('dest'))
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login?dest=' + request.args.get('dest'))
     data = response.read()
     netid = validate(data)
     if netid is "NO":

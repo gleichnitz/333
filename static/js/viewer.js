@@ -1,8 +1,8 @@
 
 $(document).ready(function(e) {
 	
-	$('.myClickDisabledElm').bind('click',function(e){
-    	$(".table").trigger( "click" );
+	$('.myClickDisabledElm').dblclick(function(e){
+    	$("#clicker").trigger( "click" );
     	console.log("double click");
 	})
 

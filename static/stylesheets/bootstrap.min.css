@@ -3117,11 +3117,11 @@ button.close {
 }
 
 .btn .caret {
-  border-top-color: white;
+  border-top-color: black;
 }
 
 .dropup .btn .caret {
-  border-bottom-color: white;
+  border-bottom-color: black;
 }
 
 .btn-group,

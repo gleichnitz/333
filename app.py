@@ -132,7 +132,7 @@ def submitted():
         ">": "&gt;",
         "<": "&lt;",
     }
-    f = open('BaseballElimination.java', 'r')
+    f = open('test.java', 'r')
     code = f.read()
     return render_template('viewer.html', studentwork = code, netid = session['username'])
 

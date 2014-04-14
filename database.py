@@ -84,14 +84,14 @@ class Assignment(db.Model):
   grader = db.relationship('Grader', backref = db.backref('assignments', lazy = 'dynamic'))
   grader_id = db.Column(db.Integer, db.ForeignKey('grader.id'))
 
-  assignment_name = db.Column(db.String(80))
+  name = db.Column(db.String(80))
   files = db.Column(db.PickleType)
 
   def __init__(self, course_name, student_netid, name, files):
     self.course = Course.query.filter_by(name = course_name).first()
     self.student = Student.query.filter_by(netid = student_netid).first()
     self.files = files
-    self.assignment_name = name
+    self.name = name
 
   def addGrader(self, grader_netid):
     self.grader = Grader.query.filter_by(netid = grader_netid)

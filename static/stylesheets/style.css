@@ -31,11 +31,13 @@
 }
 
 btn-default {
-    background-color: transparent;
+    background-color: white;
+    color: black;
 }
 
 btn-default:hover {
-    background-color: transparent;
+    background-color: white;
+    color: black
 }
 
 .copyright {

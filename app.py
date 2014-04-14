@@ -132,7 +132,7 @@ def submitted():
         ">": "&gt;",
         "<": "&lt;",
     }
-    f = open('test.java', 'r')
+    f = open('test1.java', 'r')
     code = f.read()
     return render_template('viewer.html', studentwork = code, netid = session['username'])
 

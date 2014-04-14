@@ -82,6 +82,9 @@ def login():
 # controllers
 @app.route('/datatest')
 def datatest():
+    if isAdmin(session['username']) is False:
+        return redirect('/')
+    
     _admins = Admin.query.all()
     _students = Student.query.all()
     _graders = Grader.query.all()

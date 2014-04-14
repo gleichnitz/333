@@ -1,10 +1,7 @@
 
 $(document).ready(function(e) {
 	
-	$('.myClickDisabledElm').dblclick(function(e){
-    	$("#clicker").trigger( "click" );
-    	console.log("double click");
-	})
+	$('#.myClickDisabledElm').unbind('dblclick');
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

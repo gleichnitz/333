@@ -1,11 +1,16 @@
 import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+import pickle
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
+def addAssignment(course_name, student_netid, name, files):
+    new_assignment = Assignment(course_name, student_netid, name, files)
+    db.add(new_assignment)
+    db.commit()
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -15,7 +20,7 @@ class Student(db.Model):
     courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
     course = db.relationship('Course', backref = db.backref('students', lazy = 'dynamic'))
 
-    assignments = db.relationship('Assignment', backref = 'student', lazy = 'dynamic')
+    # assignments = db.relationship('Assignment', backref = 'student', lazy = 'dynamic')
     def __init__(self, firstname, lastname, netid, course):
       self.firstname = firstname
       self.lastname = lastname
@@ -34,7 +39,7 @@ class Grader(db.Model):
     netid = db.Column(db.String(80), unique = True)
     courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
     course = db.relationship('Course', backref = db.backref('graders', lazy = 'dynamic'))
-    graded_assignments = db.relationship('Assignment', backref = 'graders', lazy = 'dynamic')
+    # graded_assignments = db.relationship('Assignment', backref = 'graders', lazy = 'dynamic')
     def __init__(self, netid, course):
       self.netid = netid
       self.course = course
@@ -72,8 +77,25 @@ class Assignment(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   courseid = db.Column(db.Integer, db.ForeignKey('course.id'))  
   course = db.relationship('Course', backref = db.backref('assignments', lazy = 'dynamic'))
+
   student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
+  student = db.relationship('Student', backref = db.backref('assignments', lazy = 'dynamic'))
+
+  grader = db.relationship('Grader', backref = db.backref('assignments', lazy = 'dynamic'))
   grader_id = db.Column(db.Integer, db.ForeignKey('grader.id'))
 
+  assignment_name = db.Column(db.String(80))
+  files = db.Column(db.PickleType)
 
+  def __init__(self, course_name, student_netid, name, files):
+    self.course = Course.query.filter_by(name = course_name)
+    self.student = Student.query.filter_by(netid = student_netid)
+    self.files = files
+    self.assignment_name = name
+
+  def addGrader(self, grader_netid):
+    self.grader = Grader.query.filter_by(netid = grader_netid)
+
+  def __repr__(self):
+    return 'Assignment {} {} {}'.format(self.course.name, self.student.netid, self.grader.netid)
 

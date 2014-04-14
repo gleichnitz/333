@@ -3,10 +3,11 @@ from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
-from database import db, Student, Course, Grader, Admin
+from database import *
 import urllib2
 from xml.etree import ElementTree
 import cgi
+import pickle
 
 # initialization
 app = Flask(__name__)

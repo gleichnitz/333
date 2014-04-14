@@ -8,12 +8,12 @@ $(document).ready(function(e) {
 		 output = href.substring(1, href.length);
 		 $('#codeTitle').text(output);
 
-		 if (output == "test.java") {
-		 	$('#test2.java').css("display", "none");
-			$('#test.java').css("display", "initial");
+		 if (output == "test") {
+		 	$('#test2').css("display", "none");
+			$('#test').css("display", "initial");
 		 } else {
-		 	$('#test.java').css("display", "none");
-			$('#test2.java').css("display", "initial");
+		 	$('#test').css("display", "none");
+			$('#test2').css("display", "initial");
 		 }
 		 
 	});

@@ -6,9 +6,7 @@ $(document).ready(function(e) {
 		 var href = $(this).find("a").attr("href");
 		 output = href.substring(1, href.length);
 		 $('#codeTitle').text(output);
-		 $('#codeLocus').ajax({
-            url : "test2.java",
-            dataType: "java",
-         });
+		 $('#code1').css("display", "none");
+		 $('#code1').css("display", "initial");
 	});
 });

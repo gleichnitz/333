@@ -124,6 +124,7 @@ def team():
 def submitted():
     if 'username' not in session:
         return redirect('/')
+
     html_escape_table = {
         "&" : "&amp;",
         '"': "&quot;",
@@ -133,7 +134,7 @@ def submitted():
     }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    return render_template('viewer.html', studentwork = code, netid = username['session'])
+    return render_template('viewer.html', studentwork = code, netid = session['username'])
 
 @app.route("/grader")
 def grader():

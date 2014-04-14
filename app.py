@@ -71,10 +71,10 @@ def login():
     data = response.read()
     netid = validate(data)
     if netid is "NO":
-    	return redirect('/')
+        return redirect('/')
     else:
-	   session['username'] = netid
-       return redirect('/' + request.args.get('dest'))
+        session['username'] = netid
+        return redirect('/' + request.args.get('dest'))
 
 # controllers
 @app.route('/datatest')

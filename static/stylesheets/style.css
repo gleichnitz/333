@@ -30,12 +30,12 @@
     background-color: black;
 }
 
-btn-default {
+btn-hello {
     background-color: white;
     color: black;
 }
 
-btn-default:hover {
+btn-hello:hover {
     background-color: white;
     color: black
 }

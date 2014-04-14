@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 import pickle
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
@@ -9,6 +10,7 @@ db = SQLAlchemy(app)
 
 def addAssignment(course_name, student_netid, name, files):
     new_assignment = Assignment(course_name, student_netid, name, files)
+    new_assignment.date = datetime.today()
     db.session.add(new_assignment)
     db.session.commit()
 
@@ -99,5 +101,5 @@ class Assignment(db.Model):
     self.grader = Grader.query.filter_by(netid = grader_netid)
 
   def __repr__(self):
-    return 'Assignment {} {} {}'.format(self.course.name, self.student.netid, self.grader.netid)
+    return 'Assignment {} {} {} {}'.format(self.course.name, self.student.netid, self.name, self.date)
 

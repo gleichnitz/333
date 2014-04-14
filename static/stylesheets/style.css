@@ -31,12 +31,12 @@
 }
 
 btn-hello {
-    background-color: white;
+    background-color: #FFFFFF;
     color: black;
 }
 
 btn-hello:hover {
-    background-color: white;
+    background-color: #FFFFFF;
     color: black
 }
 

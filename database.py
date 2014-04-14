@@ -7,6 +7,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
+def addAssignment(course_name, student_netid, name, files):
+    new_assignment = Assignment(course_name, student_netid, name, files)
+    db.add(new_assignment)
+    db.commit()
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key = True)

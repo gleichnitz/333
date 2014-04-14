@@ -30,12 +30,12 @@
     background-color: black;
 }
 
-btn-primary {
+.btn-primary {
     background-color: #FFFFFF;
     color: black;
 }
 
-btn-primary:hover {
+.btn-primary:hover {
     background-color: #FFFFFF;
     color: black
 }

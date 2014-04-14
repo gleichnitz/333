@@ -4,7 +4,8 @@ $(document).ready(function(e) {
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");
+		 output = 
 		 $('#codeTitle').text(href);
-		 console.log($(this).find("a"));
+
 	});
 });

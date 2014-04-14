@@ -67,14 +67,14 @@ def validate(data):
 
 @app.route('/login')
 def login():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login?dest=' + request.args.get('dest'))
     data = response.read()
     netid = validate(data)
     if netid is "NO":
-    	return redirect('/student')
+        return redirect('/')
     else:
-	session['username'] = netid
-    return redirect('/' + request.args.get('dest'))
+        session['username'] = netid
+        return redirect('/' + request.args.get('dest'))
 
 # controllers
 @app.route('/datatest')
@@ -122,6 +122,9 @@ def team():
 
 @app.route("/viewer")
 def submitted():
+    if 'username' not in session:
+        return redirect('/')
+
     html_escape_table = {
         "&" : "&amp;",
         '"': "&quot;",
@@ -131,29 +134,32 @@ def submitted():
     }
     f = open('BaseballElimination.java', 'r')
     code = f.read()
-    return render_template('viewer.html', studentwork = code, netid = "jaevans")
+    return render_template('viewer.html', studentwork = code, netid = session['username'])
 
 @app.route("/grader")
 def grader():
-    return render_template('grader.html', netid="jaevans")
+    if 'username' not in session:
+        return redirect('/')
+
+    return render_template('grader.html', netid=session['username'])
 
 @app.route("/student")
 def student():
-    return render_template('student.html', netid="jeans")
+    if 'username' not in session:
+        return redirect('/')
+    return render_template('student.html', netid=session['username'])
 
 @app.route("/admin")
 def admin():
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/admin')
-    data = response.read()
-    result = validate(data)
-    netid = isLoggedIn("admin")
-    #check if netid corresponds to admin
-
-    if result != "NO":
-        return render_template('admin.html', netid=result)
-    else:
+    if 'username' not in session:
         return redirect('/')
 
+    return render_template('admin.html', netid=session['username'])
+
+@app.route("/logout")
+def logout():
+    session.pop('username', None)
+    return redirect('/')
 
 # launch
 if __name__ == "__main__":

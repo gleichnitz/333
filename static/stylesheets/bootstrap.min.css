@@ -712,9 +712,11 @@ pre code {
 
 #footer {
   text-align: center;
-  position:relative;
+  position:absolute;
   bottom:0px;
   background: #999999;
+  height:60px;
+  width:100%;
 }
 
 .pre-scrollable {

@@ -143,14 +143,7 @@ was used to determine the above values.
 /**********************************************************************
  *  Describe any serious problems you encountered.                    
  **********************************************************************/
- Recursion generally takes me a while to wrap my around in the best
- of circumstances, so I initially had some difficulties with the
- private, recursive methods needed to implement the specified API. 
- At first, I found myself running into infinite loops where base 
- cases were unspecified, but after cracking the first such method
- (insertion), the pattern of searching downwards and then recursively
- passing objects back up the tree became more intuitive and easier
- to implement.    
+ N/A   
 
 
 /**********************************************************************
@@ -165,17 +158,7 @@ was used to determine the above values.
  *  on how much you learned from doing the assignment, and whether    
  *  you enjoyed doing it.                                             
  **********************************************************************/
- I felt that KdTree was a very useful assignment, given the
- subtlety needed to implement the recursive methods for this
- rather intricate data structure. However, being able to think
- recursively is a pivotal skill in any programming environment, and
- this assignment certainly increased my comfort level with this style
- of programming. Moreover, it was quite a satisfying experience to
- observe the performance improvements realized through effective
- heuristic and pruning rule implementation. The combination of 
- clever algorithms with practical improvements is a powerful one, 
- and the design of a KdTree made that message all the more
- memorable. 
+ N/A
 
 
 

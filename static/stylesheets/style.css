@@ -30,16 +30,6 @@
     background-color: black;
 }
 
-.btn-primary {
-    background-color: #FFFFFF;
-    color: black;
-}
-
-.btn-primary:hover {
-    background-color: #FFFFFF;
-    color: black
-}
-
 .copyright {
     padding-top: 50px;
     font-family: "Titillium Web", sans-serif;

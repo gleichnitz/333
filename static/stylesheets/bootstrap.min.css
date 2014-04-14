@@ -2607,7 +2607,7 @@ button.close {
 .nav.open > a .caret,
 .nav.open > a:hover .caret,
 .nav.open > a:focus .caret {
-  border-top-color: #ffffff;
+  border-top-color: #000000;
   border-bottom-color: #ffffff;
 }
 
@@ -3117,11 +3117,13 @@ button.close {
 }
 
 .btn .caret {
-  border-top-color: #ffffff;
+  border-top-color: #000000;
+  background-color: black;
+  color: black;
 }
 
 .dropup .btn .caret {
-  border-bottom-color: #ffffff;
+  border-bottom-color: black;
 }
 
 .btn-group,

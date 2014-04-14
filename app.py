@@ -82,8 +82,8 @@ def login():
 # controllers
 @app.route('/datatest')
 def datatest():
-    if isAdmin(session['username']) is False:
-        return redirect('/')
+    # if isAdmin(session['username']) is False:
+    #     return redirect('/')
     
     _admins = Admin.query.all()
     _students = Student.query.all()
@@ -148,21 +148,21 @@ def submitted():
 
 @app.route("/grader")
 def grader():
-    if isGrader(session['username']) is False:
-        return redirect('/')
+    # if isGrader(session['username']) is False:
+    #     return redirect('/')
 
     return render_template('grader.html', netid=session['username'])
 
 @app.route("/student")
 def student():
-    if isStudent(session['username']) is False:
-        return redirect('/')
+    # if isStudent(session['username']) is False:
+    #     return redirect('/')
     return render_template('student.html', netid=session['username'])
 
 @app.route("/admin")
 def admin():
-    if isAdmin(session['username']) is False:
-        return redirect('/')
+    # if isAdmin(session['username']) is False:
+    #     return redirect('/')
 
     return render_template('admin.html', netid=session['username'])
 

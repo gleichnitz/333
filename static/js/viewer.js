@@ -10,10 +10,16 @@ $(document).ready(function(e) {
 
 		 if (output == "test") {
 		 	$('#test2').css("display", "none");
+		 	$('#test3').css("display", "none");
 			$('#test').css("display", "initial");
+		 } else if (output == test2) {
+		 	$('#test').css("display", "none");
+		 	$('#test3').css("display", "none");
+			$('#test2').css("display", "initial");
 		 } else {
 		 	$('#test').css("display", "none");
-			$('#test2').css("display", "initial");
+		 	$('#test2').css("display", "none");
+			$('#test3').css("display", "initial");
 		 }
 		 
 	});

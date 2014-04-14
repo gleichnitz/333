@@ -8,7 +8,7 @@ $(document).ready(function(e) {
 		 $('#codeTitle').text(output);
 		 $('#codeLocus').ajax({
             url : "test2.java",
-            dataType: "text",
+            dataType: "java",
          });
 	});
 });

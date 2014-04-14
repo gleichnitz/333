@@ -4,6 +4,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
+db.create_all()
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key = True)

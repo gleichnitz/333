@@ -7,5 +7,5 @@ from database import *
 name = 'Nbody'
 files = []
 nbody_= open('Nbody.java', 'w')
-files.append(nbody)
+files.append(nbody_)
 addAssignment('cos333', 'vayyala', name, files)

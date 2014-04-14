@@ -1,5 +1,7 @@
 <!doctype html>
 <html>
+
+<div id="wrap">
 <head lang="en">
 	{% block head %}
 	<meta charset="utf-8">
@@ -16,6 +18,8 @@
      {% endblock %}
 
 </head>
+
+<div id="main">
 
 <body style="background-color: white;">
 	<div style="background-color: black;" class="navbar navbar-fixed-top" data-activeslide="1">
@@ -55,22 +59,17 @@
 		</div><!-- /.container -->
 	</div><!-- /.navbar -->
 
-	{% block body %}{% endblock %}
-
-<<<<<<< HEAD
-	<div id="footer">{% block footer %} <!--
-        <div class="copyright2">
-=======
-	<!-- <div id="footer"> --> {% block footer %} <!--
-        <div class="copyright">
->>>>>>> 8a386f62e394a4a69a13c6600393a3a873abdb99
-            <h5> © code<font color="red">P</font>ost, 2014</h5>
-        </div>
-    	</div>
-    -->
-  	{% endblock %}</div>
+	{% block body %}{% endblock %}    
 
 </body>
+</div>
+</div>
+
+<div id="footer"> --> {% block footer %}
+        <div class="copyright2">
+            <h5> © code<font color="red">P</font>ost, 2014</h5>
+        </div>
+ {% endblock %} </div>
 
 <!-- SCRIPTS -->
 <script src="../static/js/html5shiv.js"></script>

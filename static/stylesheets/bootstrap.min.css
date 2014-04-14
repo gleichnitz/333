@@ -714,7 +714,7 @@ pre code {
   text-align: center;
   position:relative;
   bottom:0px;
-  background: black;
+  background: #999999;
 }
 
 .pre-scrollable {

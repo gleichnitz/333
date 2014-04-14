@@ -2205,6 +2205,7 @@ input[type="button"].btn-block {
 .dropdown-menu.pull-right {
   right: 0;
   left: auto;
+  background: black;
 }
 
 .dropdown-menu .divider {

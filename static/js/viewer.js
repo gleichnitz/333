@@ -7,6 +7,6 @@ $(document).ready(function(e) {
 		 output = href.substring(1, href.length);
 		 $('#codeTitle').text(output);
 		 $('#code1').css("display", "none");
-		 $('#code1').css("display", "initial");
+		 $('#code2').css("display", "initial");
 	});
 });

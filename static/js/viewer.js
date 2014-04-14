@@ -1,7 +1,12 @@
+
 $(document).ready(function(e) {
 	var i = 0;
 
 	console.log("bump");
+
+	$(document).dblclick(function(e) {
+		console.log("double click!");
+	});
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

@@ -12,7 +12,7 @@ $(document).ready(function(e) {
 		 	$('#test2').css("display", "none");
 		 	$('#test3').css("display", "none");
 			$('#test').css("display", "initial");
-		 } else if (output == test2) {
+		 } else if (output == "test2") {
 		 	$('#test').css("display", "none");
 		 	$('#test3').css("display", "none");
 			$('#test2').css("display", "initial");

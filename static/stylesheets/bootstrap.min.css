@@ -720,7 +720,7 @@ pre code {
 }
 
 #footer {
-  position: relative;
+  position: fixed;
   margin-top: -60px; /* negative value of footer height */
   height: 60px;
   clear:both;

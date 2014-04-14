@@ -1,7 +1,7 @@
 
 $(document).ready(function(e) {
 	
-	$('#.myClickDisabledElm').unbind('dblclick');
+	$('.syntaxhighlighter').unbind('dblclick');
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

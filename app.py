@@ -3,7 +3,7 @@ from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
-from database import *
+from database import db, Student, Course, Admin, Grader, Assignment
 import urllib2
 from xml.etree import ElementTree
 import cgi
@@ -14,8 +14,6 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
 )
-
-
 
 # print Student.query.all()
 # print Course.query.all()
@@ -84,7 +82,7 @@ def login():
 def datatest():
     # if isAdmin(session['username']) is False:
     #     return redirect('/')
-    
+
     _admins = Admin.query.all()
     _students = Student.query.all()
     _graders = Grader.query.all()

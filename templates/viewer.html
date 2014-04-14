@@ -14,7 +14,9 @@
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
   <script>
       jQuery(function ($) {
-          $('#code').annotator();
+          $('#test').annotator();
+          $('#test2').annotator();
+          $('#test3').annotator();
       });
   </script> 
   {{ super() }}
@@ -24,18 +26,26 @@
   <div style="float: left; margin-top: 3.2em; margin-left: 6%;"> 
     <table class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 19%;">
     <tr><th>File</th><th>Grade</th></tr>
-    <tr><a href="test!!"><td><div style="width: 100%; height: 100%;">test.java</div></td></a><td>10/10</td></tr>
-    <tr><td>test2.java</td><td>20/20</td></tr>
-    <tr><td>readme</td><td>10/10</td></tr>
-    <tr><td>Autograder Output</td><td></td></tr>
+    <tr><td><a href="#test">test.java</a></td></a><td>10/10</td></tr>
+    <tr><td><a href="#test2">test2.java</a></td><td>20/20</td></tr>
+    <tr><td><a href="#test3">readme</a></td><td>10/10</td></tr>
+    <tr><td><a href="#Autograder Output">Autograder Output</a></td><td></td></tr>
     </table>
   </div>
 
   <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: right;">
     <h4 id="codeTitle">test.java</h4>
     <div style="height: 1px; background-color: gray;"></div>
-    <div id="code" class="span9">
+    <div id="test" class="span9">
           <pre class="brush: java;">{{ studentwork }}</pre>
+          <div class="hero-unit"></div>
+    </div>
+    <div id="test2" class="span9" style="display: none;">
+          <pre class="brush: java;">{{ studentwork2 }}</pre>
+          <div class="hero-unit"></div>
+    </div>
+    <div id="test3" class="span9" style="display: none;">
+          <pre class="brush: java;">{{ readme }}</pre>
           <div class="hero-unit"></div>
     </div>
   </div>

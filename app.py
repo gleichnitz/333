@@ -134,9 +134,7 @@ def submitted():
     }
     f = open('test1.java', 'r')
     code = f.read()
-    f = open('test2.java', 'r')
-    code2 = f.read()
-    return render_template('viewer.html', studentwork = code, netid = session['username'], studentwork2 = code2)
+    return render_template('viewer.html', studentwork = code, netid = session['username'])
 
 @app.route("/grader")
 def grader():

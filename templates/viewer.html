@@ -39,22 +39,4 @@
           <div class="hero-unit"></div>
     </div>
   </div>
-
-  <script>
-$(document).ready(function(e) {
-
-  console.log("bump");
-
-  $('table tr').click(function() {
-
-     var alt = "{{ studentwork2 }}";
-     var href = $(this).find("a").attr("href");
-     var output = href.substring(1, href.length);
-     $('#codeTitle').text(output);
-     $('#codeLocus').text(alt);
-  });
-
-
-});
-  </script>
 {% endblock %}

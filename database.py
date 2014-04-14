@@ -88,8 +88,8 @@ class Assignment(db.Model):
   files = db.Column(db.PickleType)
 
   def __init__(self, course_name, student_netid, name, files):
-    self.course = Course.query.filter_by(name = course_name)
-    self.student = Student.query.filter_by(netid = student_netid)
+    self.course = Course.query.filter_by(name = course_name).first()
+    self.student = Student.query.filter_by(netid = student_netid).first()
     self.files = files
     self.assignment_name = name
 

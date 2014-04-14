@@ -144,20 +144,20 @@ def submitted():
 
 @app.route("/grader")
 def grader():
-    if 'username' not in session:
+    if isGrader(session['username']) is False:
         return redirect('/')
 
     return render_template('grader.html', netid=session['username'])
 
 @app.route("/student")
 def student():
-    if 'username' not in session:
+    if isStudent(session['username']) is False:
         return redirect('/')
     return render_template('student.html', netid=session['username'])
 
 @app.route("/admin")
 def admin():
-    if 'username' not in session:
+    if isAdmin(session['username']) is False:
         return redirect('/')
 
     return render_template('admin.html', netid=session['username'])

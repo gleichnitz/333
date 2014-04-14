@@ -40,10 +40,10 @@ class Grader(db.Model):
       self.course = course
 
     def __repr__(self):
-      return '<Grader {0} {1}>'.format(self.netid, self.course.name)
+      return 'Grader {} {}'.format(self.netid, self.course.name)
 
     def __str__(self):
-      return '<Grader {0} {1}>'.format(self.netid, self.course.name)
+      return '<Grader {} {}>'.format(self.netid, self.course.name)
 
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -56,7 +56,7 @@ class Admin(db.Model):
       self.course = course
 
     def __repr__(self):
-      return '<Admin {0} {1}>'.format(self.netid, self.course.name)
+      return 'Admin {} {}'.format(self.netid, self.course.name)
 
 class Course(db.Model):
   id = db.Column(db.Integer, primary_key = True)

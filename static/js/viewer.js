@@ -2,7 +2,8 @@
 $(document).ready(function(e) {
 	
 	$('.myClickDisabledElm').bind('click',function(e){
-    	e.preventDefault();
+    	$(".table").trigger( "click" );
+    	console.log("double click");
 	})
 
 	$('table tr').click(function() {

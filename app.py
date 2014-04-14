@@ -7,6 +7,7 @@ from database import db, Student, Course, Grader, Admin
 import urllib2
 from xml.etree import ElementTree
 import cgi
+import pickle
 
 # initialization
 app = Flask(__name__)
@@ -19,6 +20,9 @@ app.config.update(
 # print Student.query.all()
 # print Course.query.all()
 Base = declarative_base()
+
+# def addAssignment(course_name, student_netid, name, files):
+
 
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()

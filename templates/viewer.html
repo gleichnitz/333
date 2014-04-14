@@ -10,6 +10,7 @@
   SyntaxHighlighter.all();</script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   <script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
+  <script type="text/javascript" src="../static/js/viewer.js"></script>
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
   <script>
       jQuery(function ($) {
@@ -23,15 +24,15 @@
   <div style="float: left; margin-top: 3.2em; margin-left: 6%;"> 
     <table class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 19%;">
     <tr><th>File</th><th>Grade</th></tr>
-    <tr><td>test.java</td><td>10/10</td></tr>
-    <tr><td>test2.java</td><td>20/20</td></tr>
+    <tr><td id="test.java">test.java</td><td>10/10</td></tr>
+    <tr><td id="test2.java">test2.java</td><td>20/20</td></tr>
     <tr><td>readme</td><td>10/10</td></tr>
     <tr><td>Autograder Output</td><td></td></tr>
     </table>
   </div>
 
   <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: right;">
-    <h4>test.java</h4>
+    <h4 id="codeTitle">test.java</h4>
     <div style="height: 1px; background-color: gray;"></div>
     <div id="code" class="span9">
           <pre class="brush: java;">{{ studentwork }}</pre>

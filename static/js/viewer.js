@@ -1,5 +1,6 @@
 $(document).ready(function(e) {
-	$('#test2.java').click(function() {
-		 $('#codeTitle').text("test!");
+	$('#test.java').click(function() {
+		 //$('#codeTitle').text("test!");
+		 console.log("click!");
 	});
 });

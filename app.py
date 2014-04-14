@@ -67,11 +67,14 @@ def validate(data):
 
 @app.route('/login')
 def login():
-    session['ticket'] = request.args.get('ticket')
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login')
     data = response.read()
     netid = validate(data)
-    return redirect('/student')
+    if netid is "NO":
+    	return redirect('/student')
+    else:
+	session['username'] = netid
+    return redirect('/' + request.args.get('dest'))
 
 # controllers
 @app.route('/datatest')

@@ -8,7 +8,6 @@
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/shCoreDefault.css"/>
   <script type="text/javascript">
     SyntaxHighlighter.defaults.toolbar = false; 
-    SyntaxHighlighter.defaults.quick-code = false;
     SyntaxHighlighter.all();
   </script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -41,15 +40,15 @@
     <h4 id="codeTitle">test.java</h4>
     <div style="height: 1px; background-color: gray;"></div>
     <div id="test" class="span9">
-          <pre class="brush: java;">{{ studentwork }}</pre>
+          <pre class="brush: java; quick-code: false;">{{ studentwork }}</pre>
           <div class="hero-unit"></div>
     </div>
     <div id="test2" class="span9" style="display: none;">
-          <pre class="brush: java;">{{ studentwork2 }}</pre>
+          <pre class="brush: java; quick-code: false;">{{ studentwork2 }}</pre>
           <div class="hero-unit"></div>
     </div>
     <div id="test3" class="span9" style="display: none;">
-          <pre class="brush: java;">{{ readme }}</pre>
+          <pre class="brush: java; quick-code: false;">{{ readme }}</pre>
           <div class="hero-unit"></div>
     </div>
   </div>

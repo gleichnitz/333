@@ -9,8 +9,8 @@ db = SQLAlchemy(app)
 
 def addAssignment(course_name, student_netid, name, files):
     new_assignment = Assignment(course_name, student_netid, name, files)
-    db.add(new_assignment)
-    db.commit()
+    db.session.add(new_assignment)
+    db.session.commit()
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key = True)

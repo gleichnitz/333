@@ -162,10 +162,10 @@ def grader():
 
     if ticket is None:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
-    if 'ticket' in session and ticket == session['ticket']:
+    if 'ticket_grader' in session and ticket == session['ticket_grader']:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
 
-    session['ticket'] = ticket
+    session['ticket_grader'] = ticket
     netid = isLoggedIn(ticket, "grader")
     if netid is "0":
         return redirect('/')
@@ -195,10 +195,10 @@ def student():
 
     if ticket is None:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
-    if 'ticket' in session and ticket == session['ticket']:
+    if 'ticket_student' in session and ticket == session['ticket_student']:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
 
-    session['ticket'] = ticket
+    session['ticket_student'] = ticket
     netid = isLoggedIn(ticket, "student")
     if netid is "0":
         return redirect('/')
@@ -234,10 +234,10 @@ def admin():
 
     if ticket is None:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin")
-    if 'ticket' in session and ticket == session['ticket']:
+    if 'ticket_admin' in session and ticket == session['ticket_admin']:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin")
 
-    session['ticket'] = ticket
+    session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")
     if netid is "0":
         return redirect('/')

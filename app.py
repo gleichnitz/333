@@ -142,6 +142,16 @@ def submitted():
     code2 = f.read()
     f = open('readme.txt', 'r')
     code3 = f.read()
+
+    ##################################
+    # need to pass: item containing assignment files to be loaded
+    #               fields:
+    #               - name (e.g. "percolaton.java")
+    #               - grade ("10/10")
+    #               - code (in a big string)
+    ##################################
+
+    # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', studentwork = code, netid = session['username'], studentwork2 = code2, readme = code3)
 
 @app.route("/grader")
@@ -149,12 +159,37 @@ def grader():
     # if isGrader(session['username']) is False:
     #     return redirect('/')
 
+    ##################################
+    # need to pass: class grader is assigned to
+    # need to pass: item containing all assignments under that class
+    #               fields:
+    #               - id
+    #               - class (e.g. COS 126)
+    #               - name ("Percolation")
+    #               - graded by (netid) 
+    #               - grade
+    ##################################
+
     return render_template('grader.html', netid=session['username'])
 
 @app.route("/student")
 def student():
     # if isStudent(session['username']) is False:
     #     return redirect('/')
+
+    ##################################
+    # need to pass: item containing all classes student is in
+    # need to pass: item containing all assignments
+    #               fields:
+    #               - id
+    #               - class (e.g. COS 126)
+    #               - name ("Percolation")
+    #               - date
+    #               - grade
+    ##################################
+
+    # return render_template('student.html', netid=session['username'], classes=, assignments=)
+
     return render_template('student.html', netid=session['username'])
 
 @app.route("/admin")

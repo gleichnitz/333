@@ -1,7 +1,6 @@
-
 $(document).ready(function(e) {
 	
-	$('.syntaxhighlighter').unbind('dblclick');
+	$('#someID').click(
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

@@ -155,6 +155,21 @@ def submitted():
 
 @app.route("/grader")
 def grader():
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
+
+    if ticket is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
+    if 'ticket' in session and ticket == session['ticket']:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
+
+    session['ticket'] = ticket
+    netid = isLoggedIn(ticket, "grader")
+    if netid is "0":
+        return redirect('/')
+
     # if isGrader(session['username']) is False:
     #     return redirect('/')
 
@@ -169,7 +184,7 @@ def grader():
     #               - grade
     ##################################
 
-    return render_template('grader.html', netid=session['username'])
+    return render_template('grader.html', netid=netid)
 
 @app.route("/student")
 def student():
@@ -212,6 +227,21 @@ def student():
 
 @app.route("/admin")
 def admin():
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin")
+
+    if ticket is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin")
+    if 'ticket' in session and ticket == session['ticket']:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin")
+
+    session['ticket'] = ticket
+    netid = isLoggedIn(ticket, "admin")
+    if netid is "0":
+        return redirect('/')
+
     # if isAdmin(session['username']) is False:
     #     return redirect('/')
 

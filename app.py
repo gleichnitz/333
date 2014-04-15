@@ -208,7 +208,7 @@ def student():
     classes.append("COS 126")
     classes.append("COS 226")
 
-    return render_template('student.html', netid=session['username'], classes = classes)
+    return render_template('student.html', netid=netid, classes = classes)
 
 @app.route("/admin")
 def admin():

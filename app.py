@@ -41,7 +41,7 @@ def isAdmin(net_id):
         return True
 
 def isLoggedIn(ticket, page):
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/student')
     data = response.read()
     if "yes" in data:
         return data.split()[1]

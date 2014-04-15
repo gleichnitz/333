@@ -68,11 +68,11 @@ def validate(data):
 def makeRoles(netid):
     roles = []
     if isStudent(netid):
-        roles.add("student")
+        roles.append("student")
     if isGrader(netid):
-        roles.add("grader")
+        roles.append("grader")
     if isAdmin(netid):
-        roles.add("admin")
+        roles.append("admin")
     return roles
 
 @app.route('/login')
@@ -194,7 +194,11 @@ def grader():
     #               - grade
     ##################################
 
-    return render_template('grader.html', netid=netid)
+    roles = makeRoles(netid)
+    if (roles.count("grader") != 0):
+        roles.remove("grader")
+
+    return render_template('grader.html', netid=netid, roles = roles)
 
 @app.route("/student")
 def student():
@@ -259,7 +263,11 @@ def admin():
     # if isAdmin(session['username']) is False:
     #     return redirect('/')
 
-    return render_template('admin.html', netid=session['username'])
+    roles = makeRoles(netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
+
+    return render_template('admin.html', netid=session['username'], roles = roles)
 
 @app.route("/logout")
 def logout():

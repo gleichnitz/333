@@ -180,7 +180,7 @@ def student():
 
     if ticket is None:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
-    else if ticket is session['ticket']
+    elif ticket is session['ticket']
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
 
     session['ticket'] = ticket

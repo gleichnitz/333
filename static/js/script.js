@@ -4,7 +4,7 @@ $(document).ready(function(e) {
 	});
 
 	$("#studentlogin").click(function () {
-    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/login?dest=student',"_self");
+    		window.open('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student',"_self");
 	});
 
 	$("#graderlogin").click(function () {

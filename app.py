@@ -40,14 +40,13 @@ def isAdmin(net_id):
     else:
         return True
 
-def isLoggedIn(page):
-    if 'ticket' in session:
-        response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + session['ticket'] + '&service=http://saltytyga.herokuapp.com/login')
-    else:
-        return "NO"
+def isLoggedIn(ticket, page):
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
     data = response.read()
-    result = validate(data)
-    return result
+    if "yes" in data:
+        return data.split()[1]
+    else:
+        return "0"
 
 def validate(data):
     if "yes" in data:
@@ -174,6 +173,15 @@ def grader():
 
 @app.route("/student")
 def student():
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
+
+    netid = isLoggedIn(ticket, "student?ticket=" + ticket)
+    if netid is "0":
+        return redirect('/')
+
     # if isStudent(session['username']) is False:
     #     return redirect('/')
 

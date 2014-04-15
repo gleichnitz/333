@@ -178,7 +178,7 @@ def student():
     except:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
 
-    if type(ticket) is NoneType:
+    if type(ticket) is 'NoneType':
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
 
     netid = isLoggedIn(ticket, "student?ticket=" + ticket)

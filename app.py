@@ -41,7 +41,7 @@ def isAdmin(net_id):
         return True
 
 def isLoggedIn(ticket, page):
-    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/student')
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
     data = response.read()
     if "yes" in data:
         return data.split()[1]
@@ -180,8 +180,11 @@ def student():
 
     if ticket is None:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
+    else if ticket is session['ticket']
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
 
-    netid = isLoggedIn(ticket, "student?ticket=" + ticket)
+    session['ticket'] = ticket
+    netid = isLoggedIn(ticket, "student")
     if netid is "0":
         return redirect('/')
 

@@ -65,6 +65,16 @@ def validate(data):
     else:
         return "NO"
 
+def makeRoles(netid):
+    roles = []
+    if isStudent(netid):
+        roles.add("student")
+    if isGrader(netid):
+        roles.add("grader")
+    if isAdmin(netid):
+        roles.add("admin")
+    return roles
+
 @app.route('/login')
 def login():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login?dest=' + request.args.get('dest'))
@@ -223,7 +233,11 @@ def student():
     classes.append("COS 126")
     classes.append("COS 226")
 
-    return render_template('student.html', netid=netid, classes = classes)
+    roles = makeRoles(netid)
+    if (roles.count("student") != 0):
+        roles.remove("student")
+
+    return render_template('student.html', netid=netid, classes = classes, roles = roles)
 
 @app.route("/admin")
 def admin():

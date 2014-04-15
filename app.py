@@ -191,8 +191,8 @@ def student():
     # return render_template('student.html', netid=session['username'], classes=, assignments=)
 
     classes = []
-    classes[1] = "COS 126"
-    classes[2] = "COS 226"
+    classes[0] = "COS 126"
+    classes[1] = "COS 226"
 
     return render_template('student.html', netid=session['username'], classes = classes)
 

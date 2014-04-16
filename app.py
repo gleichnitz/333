@@ -242,7 +242,7 @@ def student():
 
     # return render_template('student.html', netid=session['username'], classes=, assignments=)
 
-    student = Student.query.filter_by(netid = netid)
+    student = Student.query.filter_by(netid = netid).first()
     assignments = student.assignments.all()
 
     assignments_form = []

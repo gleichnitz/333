@@ -5,6 +5,13 @@ $(document).ready(function(e) {
 	//var output = firstRef.substring(1, firstRef.length);
 	$('#codeTitle').text(firstFile.attr('id'));
 
+	$('table tr').click(function() {
+		var href = $(this).attr("id");
+		var idName = href.substring(1, href.length);
+		$('codearea > div').css("display", "none");
+		$('#' + idName).css("display", "initial");
+	});
+
 	/* $('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");
 		 output = href.substring(1, href.length);

@@ -1,8 +1,8 @@
 $(document).ready(function(e) {
 	
 	$(document).click(function () {
-		var firstRef = $('table tr').first().find("a"); //.find("a").attr("href");
-		console.log(firstRef.attr("href"));
+		var firstRef = $('table tr').get(0).id; //.find("a").attr("href");
+		console.log(firstRef);
 		//$(firstRef).css("display", "initial");
 		var output = firstRef.substring(1, firstRef.length);
 		$('#codeTitle').text(output);

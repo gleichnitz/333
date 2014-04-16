@@ -33,7 +33,18 @@
                   </ul>
               </div>
           </th>
-          <th>Date submitted</th>
+          <th>
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Date Submitted <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                      {% for item in assignments %}
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item.date }}</a></li>
+                      {% endfor %}
+                  </ul>
+              </div>
+          </th>
           <th>Grade</th>
       </tr>
 

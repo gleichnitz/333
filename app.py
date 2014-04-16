@@ -19,6 +19,15 @@ app.config.update(
 # print Course.query.all()
 Base = declarative_base()
 
+class Assignment:
+    def __init__(self, id, course, name, date, files, grade):
+        self.id = id
+        self.course = course
+        self.name = name
+        self.date = date
+        self.files = files
+        self.grade = grade
+
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -233,6 +242,13 @@ def student():
 
     # return render_template('student.html', netid=session['username'], classes=, assignments=)
 
+    student = Student.query.filter_by(netid = netid)
+    assignments = student.assignments.all()
+
+    assignments_form = []
+    for item in assignments:
+        assignments.append(Assignment(item.id, item.course, item.name, item.date, item.files, "40/40"))
+
     classes = []
     classes.append("COS 126")
     classes.append("COS 226")
@@ -241,7 +257,7 @@ def student():
     if (roles.count("student") != 0):
         roles.remove("student")
 
-    return render_template('student.html', netid=netid, classes = classes, roles = roles)
+    return render_template('student.html', netid=netid, classes = classes, roles = roles, assignments = assignments_form)
 
 @app.route("/admin")
 def admin():

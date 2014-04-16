@@ -27,7 +27,7 @@
       </tr>
       <tr>
           {% for item in assignments %}
-              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.class }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
               <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
               <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
               <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td>

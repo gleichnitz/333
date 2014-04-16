@@ -179,7 +179,7 @@ def submitted():
         assignments = student.assignments.all()    
     elif accountType == "g":
         grader = Grader.query.filter_by(netid = netid).first()
-        assignmets = grader.assignments.all()
+        assignments = grader.assignments.all()
 
     for item in assignments:
         assignment_active = 0

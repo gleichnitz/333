@@ -29,7 +29,7 @@ class Assignment:
         self.grade = grade
 
 class File:
-    def __init__(self, name, code, grade)
+    def __init__(self, name, code, grade):
         self.name = name.split('.')[0]
         self.code = code
         self.grade = grade

@@ -1,6 +1,6 @@
 /*
- * Name: rfreling
- * Login: refreling
+ * Name: jaevans
+ * Login: jaevans
  * Precept: P02C
  * 
  * Outputs the statement "Hello, World"

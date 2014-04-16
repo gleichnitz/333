@@ -1,6 +1,6 @@
 /*
- * Name: rfreling
- * Login: rfreling
+ * Name: jaevans
+ * Login: jaevans
  * Precept: P02C
  * 
  * Inputs four names as command-line arguments.

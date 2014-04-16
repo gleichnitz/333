@@ -1,4 +1,4 @@
-// netid: rfreling 
+// netid: jaevans
 public class NBody {
 
 }

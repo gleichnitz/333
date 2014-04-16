@@ -241,8 +241,10 @@ def grader():
 
     assignments_form = []
     for item in assignments:
-        #if item.grader is netid or item.grader is None:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+        if item.grader is netid:
+            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+        if item.grader is None:
+            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "None", item.student.netid))
 
     classes = []
     for item in assignments_form: 

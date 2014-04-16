@@ -3,7 +3,7 @@ from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
-from database import db, Student, Course, Admin, Grader, Assignment
+from database import *
 import urllib2
 from xml.etree import ElementTree
 import cgi
@@ -242,12 +242,12 @@ def student():
 
     # return render_template('student.html', netid=session['username'], classes=, assignments=)
 
-    student = Student.query.filter_by(netid = netid).first()
+    student = Student.query.filter_by(netid = "vayyala").first()
     assignments = student.assignments.all()
 
     assignments_form = []
     for item in assignments:
-        assignments.append(Assignment(item.id, item.course, item.name, item.date, item.files, "40/40"))
+        assignments_form.append(Assignment(item.id, item.course, item.name, item.date, item.files, "40/40"))
 
     classes = []
     classes.append("COS 126")

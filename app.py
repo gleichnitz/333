@@ -30,8 +30,11 @@ class Assignment:
 
 class File:
     def __init__(self, name, code, grade):
-        # self.name = name.split('.')[0]
-        self.name = name
+        self.name = name.split('.')[0]
+        if len(name.split('.')) > 1:
+            self.ext = name.split('.')[1]
+        else:
+            self.ext = ""
         self.code = code
         self.grade = grade
 

@@ -32,7 +32,7 @@ $(document).ready(function(e) {
 						opacity: 1
 					},
 					'fast',
-					'linear'
+					'easeInOutQuart'
 				);
 		},
 		function(e) {
@@ -136,7 +136,7 @@ function menu_focus( element, i ) {
 			width: el_width
 		},
 		1500,
-		'linear'
+		'easeInOutQuart'
 	);
 }
 

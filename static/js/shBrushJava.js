@@ -31,8 +31,8 @@
 
 		this.regexList = [
 			{ regex: SyntaxHighlighter.regexLib.singleLineCComments,	css: 'comments' },		// one line comments
-			//{ regex: /\/\*([^\*][\s\S]*)?\*\//gm,						css: 'comments' },	 	// multiline comments
-			{ regex: /\/\*([.\n]*)\*\//gm,					    	    css: 'comments' },	 	// multiline comments
+			{ regex: /\/\*([^\*][\s\S]*)?\*\//gm,						css: 'comments' },	 	// multiline comments
+			//{ regex: /\/\*([.\n]*)\*\//gm,					    	    css: 'comments' },	 	// multiline comments
 			{ regex: /\/\*(?!\*\/)\*[\s\S]*?\*\//gm,					css: 'preprocessor' },	// documentation comments
 			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,		css: 'string' },		// strings
 			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,		css: 'string' },		// strings

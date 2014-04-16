@@ -73,12 +73,9 @@ $(document).ready(function()
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Deques and Randomized Queues</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Autocomplete</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">8 Puzzle</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Kd-Trees</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">WordNet</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Seam Carver</a></li>
+                        {% for item in names %}
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ item.name }}">{{ item.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </th>
@@ -94,86 +91,33 @@ $(document).ready(function()
             </th>
             <th>
                 <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grader <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                        {% for item in graders %}
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ item.name }}">{{ item }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Status <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Needs Grading</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Assigned</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Graded Assignments</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> Graded</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Unassigned</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ungraded</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graded</a></li>
                     </ul>
                 </div>
             </th>
         </tr>
-        <tr>
-            {% for item in assignments %}
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.class }}</div></a></td>
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>akubiak</td>
-            <td>Needs Grading</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>jaevans</td>
-            <td>Needs Grading</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>gtl</td>
-            <td>Assigned</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>vayyala</td>
-            <td>Assigned</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>rfreling</td>
-            <td>Assigned</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>akubiak</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>jaevans</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>gtl</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>vayyala</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>rfreling</td>
-            <td>Graded: 40/40</td>
-        </tr>
+        
+        {% for item in assignments %}
+            <tr><td>{{ item.course }}</td><td>{{ item.name }}</td><td>{{ item.student }}</td><td>{{ item.grader }}</td><td>{{ item.status }}</td></tr>
+        {% endfor %}
 
     </table>
 </div>

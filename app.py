@@ -176,9 +176,13 @@ def submitted():
     assignments = student.assignments.all()       
 
     for item in assignments:
-        request.args.get('assignment') is item.id
-        assignment_active = item
-        break
+        assignment_active = 0
+        if int(request.args.get('assignment')) == item.id:
+            assignment_active = item
+            break
+
+    if assignment_active == 0:
+        return redirect('/student')
 
     title = assignment_active.name
 
@@ -227,13 +231,25 @@ def grader():
     #               - name ("Percolation")
     #               - graded by (netid) 
     #               - grade
-    ##################################
+    ##################################    
+
+    grader = Grader.query.filter_by(netid = netid).first()
+    assignments = grader.assignments.all()
+
+    assignments_form = []
+    for item in assignments:
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40"))
+
+    classes = []
+    for item in assignments_form: 
+        if item.course not in classes:
+            classes.append(item.course)
 
     roles = makeRoles(netid)
     if (roles.count("grader") != 0):
         roles.remove("grader")
 
-    return render_template('grader.html', netid=netid, roles = roles)
+    return render_template('grader.html', netid=netid, roles = roles, classes = classes)
 
 @app.route("/student")
 def student():

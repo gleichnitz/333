@@ -167,7 +167,7 @@ def submitted():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment') + "&type=student")
 
     session['ticket_viewer'] = ticket
-    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment'))
+    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment') + "&type=student"))
     if netid is "0":
         return redirect('/')
 

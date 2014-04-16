@@ -1,6 +1,7 @@
 $(document).ready(function(e) {
 	
-	$()
+	var firstRef = $('table tr').first().find("a").attr("href");
+	$(firstRef).css("display", "initial");
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

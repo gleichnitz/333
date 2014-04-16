@@ -20,7 +20,7 @@ app.config.update(
 Base = declarative_base()
 
 class Assignment:
-    def __init__(self, id, course, name, date, files, grade, grader):
+    def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
         self.course = course
         self.name = name
@@ -28,6 +28,7 @@ class Assignment:
         self.files = files
         self.grade = grade
         self.grader = grader
+        self.student = student
 
 class File:
     def __init__(self, name, code, grade):
@@ -240,7 +241,7 @@ def grader():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader))
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader, item.student.netid))
 
     classes = []
     for item in assignments_form: 
@@ -291,7 +292,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", ""))
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form: 

@@ -239,8 +239,6 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
-    (self, id, course, name, date, files, grade, grader, student):
-
     assignments_form = []
     for item in assignments:
         assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader, item.student.netid))

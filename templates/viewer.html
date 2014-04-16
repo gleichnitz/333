@@ -17,7 +17,7 @@
   <script>
       jQuery(function ($) {
           {% for item in assignment %}
-            $('#' + {{ item.name }}).annotator();
+            $('#{{ item.name }}').annotator();
           {% endfor %}
       });
   </script>

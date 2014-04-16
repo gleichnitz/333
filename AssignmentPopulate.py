@@ -11,5 +11,5 @@ Assignments = Assignment.query.filter_by(student = vinay).all()
 for item in Assignments:
   db.session.delete(item)
   item.addGrader('jaevans')
-  db.sesison.add(item)
-  db.sesssion.commit()
+  db.session.add(item)
+  db.session.commit()

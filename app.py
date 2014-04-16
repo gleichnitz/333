@@ -157,7 +157,7 @@ def submitted():
 
     if ticket is None:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
-    if 'ticket_grader' in session and ticket == session['ticket_grader']:
+    if 'ticket_viewer' in session and ticket == session['ticket_viewer']:
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
 
     session['ticket_viewer'] = ticket

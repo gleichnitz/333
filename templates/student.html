@@ -28,7 +28,7 @@
                   <ul class="dropdown-menu" role="menu">
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                       {% for item in assignments %}
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item }}</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item.name }}</a></li>
                       {% endfor %}
                   </ul>
               </div>
@@ -45,7 +45,18 @@
                   </ul>
               </div>
           </th>
-          <th>Grade</th>
+          <th>
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grade <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                      {% for item in assignments %}
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item.grade }}</a></li>
+                      {% endfor %}
+                  </ul>
+              </div>
+          </th>
       </tr>
 
           {% for item in assignments %}

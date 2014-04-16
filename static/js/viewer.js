@@ -4,7 +4,7 @@ $(document).ready(function(e) {
 	$(firstRef).css("display", "initial");
 	console.log("updated");
 
-	$('table tr').click(function() {
+	/* $('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");
 		 output = href.substring(1, href.length);
 		 $('#codeTitle').text(output);
@@ -23,5 +23,5 @@ $(document).ready(function(e) {
 			$('#test3').css("display", "initial");
 		 }
 		 
-	});
+	}); */
 });

@@ -12,6 +12,7 @@ $(document).ready(function(e) {
 		$('#codearea > div').css("display", "none");
 
 		$('#' + idName).css("display", "initial");
+		$('#codeTitle').text(idName);
 	});
 
 	/* $('table tr').click(function() {

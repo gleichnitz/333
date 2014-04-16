@@ -8,7 +8,11 @@ $(document).ready(function(e) {
 	$('table tr').click(function() {
 		var href = $(this).attr("id");
 		var idName = href.substring(1, href.length);
-		$('codearea > div').css("display", "none");
+		
+		$('codearea > div').each(function() {
+			$(this).css("display", "none");
+		});
+
 		$('#' + idName).css("display", "initial");
 	});
 

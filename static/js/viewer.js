@@ -1,9 +1,10 @@
 $(document).ready(function(e) {
 	
-	var firstFile = $('#codearea div').first();
+	var firstFile = $('#codearea > div').first();
 	firstFile.css("display", "initial");
 	//var output = firstRef.substring(1, firstRef.length);
 	$('#codeTitle').text(firstFile.id);
+	console.log(firstFile.id);
 
 	/* $('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

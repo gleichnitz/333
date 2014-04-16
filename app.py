@@ -176,6 +176,8 @@ def submitted():
         assignment_active = item
         break
 
+    title = assignment_active.name
+
     files = []
 
     for item in assignment_active.files:
@@ -190,7 +192,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', netid = netid, assignment = files)
+    return render_template('viewer.html', netid = netid, assignment = files, title=title)
 
 @app.route("/grader")
 def grader():

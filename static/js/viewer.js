@@ -1,15 +1,9 @@
 $(document).ready(function(e) {
 	
-	$(document).click(function () {
-		var firstRef = $('table tr').get(0).id; //.find("a").attr("href");
-		console.log(firstRef);
-		//$(firstRef).css("display", "initial");
-		var output = firstRef.substring(1, firstRef.length);
-		$('#codeTitle').text(output);
-		console.log("updated");
-	});
-
-
+	var firstFile = $('#codearea div').first();
+	firstFile.css("display", "initial");
+	//var output = firstRef.substring(1, firstRef.length);
+	$('#codeTitle').text(firstFile.id);
 
 	/* $('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

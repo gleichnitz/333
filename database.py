@@ -98,7 +98,7 @@ class Assignment(db.Model):
     self.name = name
 
   def addGrader(self, grader_netid):
-    self.grader = Grader.query.filter_by(netid = grader_netid)
+    self.grader = Grader.query.filter_by(netid = grader_netid).first()
 
   def __repr__(self):
     return 'Assignment {} {} {} {}'.format(self.course.name, self.student.netid, self.name, self.date)

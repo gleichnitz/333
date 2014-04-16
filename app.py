@@ -20,13 +20,14 @@ app.config.update(
 Base = declarative_base()
 
 class Assignment:
-    def __init__(self, id, course, name, date, files, grade):
+    def __init__(self, id, course, name, date, files, grade, grader):
         self.id = id
         self.course = course
         self.name = name
         self.date = date
         self.files = files
         self.grade = grade
+        self.grader = grader
 
 class File:
     def __init__(self, name, code, grade):
@@ -234,11 +235,12 @@ def grader():
     ##################################    
 
     grader = Grader.query.filter_by(netid = netid).first()
-    assignments = grader.assignments.all()
+    course = grader.course
+    assignments = course.assignments.all()
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40"))
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader))
 
     classes = []
     for item in assignments_form: 
@@ -249,7 +251,7 @@ def grader():
     if (roles.count("grader") != 0):
         roles.remove("grader")
 
-    return render_template('grader.html', netid=netid, roles = roles, classes = classes)
+    return render_template('grader.html', netid=netid, roles = roles, classes = classes, assignments=assignments_form)
 
 @app.route("/student")
 def student():
@@ -289,7 +291,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40"))
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", ""))
 
     classes = []
     for item in assignments_form: 

@@ -251,8 +251,8 @@ def student():
 
     classes = []
     for item in assignments_form: 
-        if item.course.name not in classes:
-            classes.append(item.course.name)
+        if item.course not in classes:
+            classes.append(item.course)
 
     roles = makeRoles(netid)
     if (roles.count("student") != 0):

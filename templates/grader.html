@@ -6,6 +6,19 @@
 {% endblock %}
 
 {% block body %}
+<script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
+<script>
+$(document).ready(function()
+    {
+
+    $(function() {
+        $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
+    });
+
+    }
+);
+</script>
 <div style="margin: 8em 10%;">
     <table id="grader-table" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
         <thead>
@@ -164,19 +177,7 @@
 
     </table>
 </div>
-<script type="text/javascript" src="/path/to/jquery-latest.js"></script>
-<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
-<script>
-$(document).ready(function()
-    {
 
-    $(function() {
-        $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
-    });
-
-    }
-);
-</script>
 {% endblock %}
 
 

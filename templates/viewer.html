@@ -16,7 +16,7 @@
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
   <script>
       jQuery(function ($) {
-          $('#nbody.java').annotator();
+          $('#nbody').annotator();
       });
   </script>
   {{ super() }}
@@ -36,7 +36,7 @@
   <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: right;" class="myClickDisabledElm" id="codearea">
     <h4 id="codeTitle"></h4>
     {% for item in assignment %}
-      <div id="{{ item.name }}" class="span9" style="display: none;">
+      <div id="nbody" class="span9" style="display: none;">
           <pre class="brush: java;">{{ item.code }}</pre>
           <div class="hero-unit"></div>
       </div>

@@ -153,15 +153,15 @@ def submitted():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('id'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('assignment'))
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('id'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('assignment'))
     if 'ticket_grader' in session and ticket == session['ticket_grader']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('id'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('assignment'))
 
-    session['ticket_grader'] = ticket
-    netid = isLoggedIn(ticket, "grader")
+    session['ticket_viewer'] = ticket
+    netid = isLoggedIn(ticket, "viewer")
     if netid is "0":
         return redirect('/')
 
@@ -172,7 +172,7 @@ def submitted():
     assignments = student.assignments.all()       
 
     for item in assignments:
-        request.args.get('id') is item.id
+        request.args.get('assignment') is item.id
         assignment_active = item
         break
 

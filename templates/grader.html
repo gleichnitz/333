@@ -7,7 +7,7 @@
 
 {% block body %}
 <div style="margin: 8em 10%;">
-    <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
+    <table id="grader-table" class="tablesorter" style="background-color: transparent; margin-top: 40px;">
         <tr>
             <th>
                 <div class="btn-group">
@@ -15,9 +15,9 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">COS 126</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">COS 217</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">COS 226</a></li>
+                        {% for item in classes %}
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </th>
@@ -59,6 +59,14 @@
                     </ul>
                 </div>
             </th>
+        </tr>
+        <tr>
+            {% for item in assignments %}
+            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.class }}</div></a></td>
+            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
+            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td>
+            {% endfor %}
         </tr>
         <tr>
             <td>COS 226</td>
@@ -124,6 +132,16 @@
     </table>
 </div>
 {% endblock %}
+
+<script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
+<script>
+$(document).ready(function()
+    {
+        $("#grader-table").tablesorter();
+    }
+);
+</script>
 
 {% block footer %}
   {{ super() }}

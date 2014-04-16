@@ -250,8 +250,9 @@ def student():
         assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40"))
 
     classes = []
-    classes.append("COS 126")
-    classes.append("COS 226")
+    for item in assignments_form: 
+        if item.course.name not in classes:
+            classes.append(item.course.name)
 
     roles = makeRoles(netid)
     if (roles.count("student") != 0):

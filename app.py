@@ -159,20 +159,27 @@ def submitted():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + "&type=student")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + "&type=student")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
     if 'ticket_viewer' in session and ticket == session['ticket_viewer']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + "&type=student")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
 
     session['ticket_viewer'] = ticket
     netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment') + "&type=student")
     if netid is "0":
         return redirect('/')
 
-    student = Student.query.filter_by(netid = netid).first()
-    assignments = student.assignments.all()       
+    assignmentID = request.args.get('assignment').split('*')[0]
+    accountType = request.args.get('assignment').split('*')[1] 
+
+    if accountType == "s":
+        student = Student.query.filter_by(netid = netid).first()
+        assignments = student.assignments.all()    
+    elif accountType == "g":
+        grader = Grader.query.filter_by(netid = netid).first()
+        assignmets = grader.assignments.all()
 
     for item in assignments:
         assignment_active = 0
@@ -181,7 +188,10 @@ def submitted():
             break
 
     if assignment_active == 0:
-        return redirect('/student')
+        if accountType == "s":
+            return redirect('/student')
+        else:
+            return redirect('/grader')
 
     title = assignment_active.name
 

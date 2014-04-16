@@ -6,11 +6,9 @@ from database import *
 
 
 def AddtoListAssignment(files, file_name):
-  ass_file = {}
   file_ = open(file_name, 'r')
   file_content = file_.read()
-  ass_file[name] = file_name
-  ass_file[content] = file_content
+  ass_file = {name: file_name, content: file_content}
   files.append(ass_file)
   return files
 

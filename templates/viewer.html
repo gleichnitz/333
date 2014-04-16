@@ -35,10 +35,8 @@
   </div>
   <div id="clicker"></div>
 
-  <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: right;" class="myClickDisabledElm">
+  <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: right;" class="myClickDisabledElm" id="codearea">
     <h4 id="codeTitle"></h4>
-    <div id="codearea" style="height: 1px; background-color: gray;"></div>
-
     {% for item in assignment %}
       <div id="{{ item.name }}" class="span9" style="display: none;">
           <pre class="brush: java;">{{ item.code }}</pre>

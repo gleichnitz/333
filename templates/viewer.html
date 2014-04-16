@@ -30,7 +30,7 @@
     <tr><th>File</th><th>Grade</th></tr>
     {% for item in assignment %}
         <tr><td><a href="#{{ item.name }}">{{ item.name }}</a></td></a><td>{{ item.grade }}</td></tr>
-    {% endblock %}
+    {% endfor %}
     </table>
   </div>
   <div id="clicker"></div>

@@ -179,7 +179,7 @@ def submitted():
     files = []
 
     for item in assignment_active.files:
-        files.append(Class(item['name'], item['content'], "10/10"))
+        files.append(File(item['name'], item['content'], "10/10"))
 
     ##################################
     # need to pass: item containing assignment files to be loaded

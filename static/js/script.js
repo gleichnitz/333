@@ -32,7 +32,7 @@ $(document).ready(function(e) {
 						opacity: 1
 					},
 					'fast',
-					'linear'
+					'easeInOutQuart'
 				);
 		},
 		function(e) {

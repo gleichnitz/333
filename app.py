@@ -176,9 +176,13 @@ def submitted():
     assignments = student.assignments.all()       
 
     for item in assignments:
-        if request.args.get('assignment') is item.id:
+        assignment_active = 0
+        if request.args.get('assignment') == item.id:
             assignment_active = item
             break
+
+    if assignment_active == 0:
+        return redirect('/student')
 
     title = assignment_active.name
 

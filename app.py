@@ -28,6 +28,12 @@ class Assignment:
         self.files = files
         self.grade = grade
 
+class File:
+    def __init__(self, name, code, grade):
+        self.name = name
+        self.code = code
+        self.grade = grade
+
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -144,22 +150,36 @@ def team():
 
 @app.route("/viewer")
 def submitted():
-    if 'username' not in session:
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
+
+    if ticket is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
+    if 'ticket_grader' in session and ticket == session['ticket_grader']:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "grader")
+
+    session['ticket_grader'] = ticket
+    netid = isLoggedIn(ticket, "grader")
+    if netid is "0":
         return redirect('/')
 
-    html_escape_table = {
-        "&" : "&amp;",
-        '"': "&quot;",
-        "'": "&apos;",
-        ">": "&gt;",
-        "<": "&lt;",
-    }
-    f = open('test1.java', 'r')
-    code = f.read()
-    f = open('test2.java', 'r')
-    code2 = f.read()
-    f = open('readme.txt', 'r')
-    code3 = f.read()
+    if id is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
+
+    student = Student.query.filter_by(netid = netid).first()
+    assignments = student.assignments.all()       
+
+    for item in assignments:
+        request.args.get('id') is item.id
+        assignment_active = item
+        break
+
+    files = []
+
+    for item in assignment_active.files:
+        files.append(Class(item['name'], item['content'], "10/10"))
 
     ##################################
     # need to pass: item containing assignment files to be loaded
@@ -170,7 +190,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', studentwork = code, netid = session['username'], studentwork2 = code2, readme = code3)
+    return render_template('viewer.html', netid = netid, assignment = files)
 
 @app.route("/grader")
 def grader():

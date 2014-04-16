@@ -153,15 +153,15 @@ def submitted():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('assignment'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('assignment'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
     if 'ticket_grader' in session and ticket == session['ticket_grader']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?id=" + request.args.get('assignment'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
 
     session['ticket_viewer'] = ticket
-    netid = isLoggedIn(ticket, "viewer")
+    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment'))
     if netid is "0":
         return redirect('/')
 

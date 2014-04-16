@@ -1,6 +1,6 @@
 $(document).ready(function(e) {
 	
-	$('#someID').click(
+	$()
 
 	$('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");

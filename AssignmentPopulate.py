@@ -4,13 +4,16 @@ from flask.ext.sqlalchemy import SQLAlchemy
 import pickle
 from database import *
 
-db.drop_all()
-db.create_all()
+cos333 = Course.query.filter_by(name = 'cos333').first()
+James = Grader('jaevans', cos333)
 
-cos333 = Course("cos333")
-Vinay = Student('vinay', 'ayyala', 'vayyala', cos333)
+db.session.add(James)
+db.session.commit()
 
-db.session.add(cos333)
-db.session.add(Vinay)
+vinay = Student.query.filter_by(netid = 'vayyala').first()
+Assignments = Assignment.query.filter_by(student = vinay).all()
+
+for item in Assignments:
+  item.addGrader('jaevans')
 
 db.session.commit()

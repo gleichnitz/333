@@ -136,7 +136,7 @@ function menu_focus( element, i ) {
 			width: el_width
 		},
 		1500,
-		'linear'
+		'easeInOutQuart'
 	);
 }
 

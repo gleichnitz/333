@@ -1,6 +1,6 @@
 /*
- * Name: Vinay Ayyala
- * Login: vayyala
+ * Name: rfreling
+ * Login: refreling
  * Precept: P02C
  * 
  * Outputs the statement "Hello, World"

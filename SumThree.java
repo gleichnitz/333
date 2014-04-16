@@ -1,6 +1,6 @@
 /*
- * Name: Vinay Ayyala
- * Login: vayyala
+ * Name: rfreling
+ * Login: rfreling
  * Precept: P02C
  * 
  * Inputs three integers as command-line arguments (x,y,z). 

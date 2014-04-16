@@ -107,7 +107,12 @@ $(document).ready(function()
         </tr>
 
        {% for item in assignments %}
-            <tr><td>{{ item.course }}</td><td>{{ item.name }}</td><td>{{ item.student }}</td><td>{{ item.grader }}</td></tr>
+            <tr>
+                <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.grader }}</div></a></td>
+            </tr>
         {% endfor %}
 
     </table>

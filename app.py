@@ -176,9 +176,9 @@ def submitted():
     assignments = student.assignments.all()       
 
     for item in assignments:
-        request.args.get('assignment') is item.id
-        assignment_active = item
-        break
+        if request.args.get('assignment') is item.id:
+            assignment_active = item
+            break
 
     title = assignment_active.name
 

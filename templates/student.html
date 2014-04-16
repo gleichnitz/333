@@ -21,42 +21,9 @@
                   </ul>
               </div>
           </th>
-          <th>
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                      {% for item in assignments %}
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item.name }}</a></li>
-                      {% endfor %}
-                  </ul>
-              </div>
-          </th>
-          <th>
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Date Submitted <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                      {% for item in assignments %}
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item.date }}</a></li>
-                      {% endfor %}
-                  </ul>
-              </div>
-          </th>
-          <th>
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grade <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                      {% for item in assignments %}
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item.grade }}</a></li>
-                      {% endfor %}
-                  </ul>
-              </div>
-          </th>
+          <th>Assignment --JQuery alpha sort</th>
+          <th>Date submitted --JQuery number sort</th>
+          <th>Grade</th>
       </tr>
 
           {% for item in assignments %}

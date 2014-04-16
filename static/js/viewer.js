@@ -1,5 +1,10 @@
 $(document).ready(function(e) {
 	
+	$('#codearea > div').each(function() {
+		id_str = $(this).attr('id');
+		$('#' + id_str).annotator();
+	});
+
 	var firstFile = $('#codearea > div').first();
 	firstFile.css("display", "initial");
 	//var output = firstRef.substring(1, firstRef.length);

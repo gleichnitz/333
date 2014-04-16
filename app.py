@@ -177,7 +177,7 @@ def submitted():
 
     for item in assignments:
         assignment_active = 0
-        if request.args.get('assignment') == item.id:
+        if int(request.args.get('assignment')) == item.id:
             assignment_active = item
             break
 

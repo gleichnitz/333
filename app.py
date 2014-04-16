@@ -247,7 +247,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date, item.files, "40/40"))
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40"))
 
     classes = []
     classes.append("COS 126")

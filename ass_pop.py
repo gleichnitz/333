@@ -14,7 +14,7 @@ from database import *
 name = 'Assignment1'
 files = []
 hello_= open('HelloWorld.java', 'r')
-file_content = nbody_.read()
+file_content = hello_.read()
 files.append(file_content)
 
 hifour = open('HiFour.java', 'r')

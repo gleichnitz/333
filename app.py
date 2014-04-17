@@ -391,7 +391,8 @@ def admin_graders():
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")
     if netid is "0":
-        return redirect('/')   roles = makeRoles(netid)
+        return redirect('/')   
+    roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
     return render_template('admin2.html', netid=session['username'], roles = roles)

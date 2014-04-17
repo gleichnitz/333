@@ -45,6 +45,7 @@
     </table>
 
     <table id="grader-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 5em;">
+        <thead>
         <tr>
             <th class="header">
                 <div class="btn-group">
@@ -70,7 +71,7 @@
                     </ul>
                 </div>
             </th>
-            <th class="header headerSortUp">
+            <th class="header">
                 <!--<div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netID <span class="caret"></span>
                     </button>
@@ -94,6 +95,8 @@
                 </div>
             </th>
         </tr>
+        </thead>
+        <tbody>
 
        {% for item in assignments %}
             <tr>
@@ -103,7 +106,7 @@
                 <td><div style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
             </tr>
         {% endfor %}
-
+        </tbody>
     </table>
 </div>
 {% endblock %}

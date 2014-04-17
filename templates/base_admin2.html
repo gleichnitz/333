@@ -1,0 +1,87 @@
+{% extends "base3.html" %}
+
+{% block head %}
+    <title>CodePost: Admin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin Portal</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/stylesheets/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="../static/stylesheets/simple-sidebar.css" rel="stylesheet">
+    {{ super() }}
+{% endblock %}
+
+{% block body %}
+    <div id="portal">
+        <div class="dropdown" style="float: right; margin-right: 5%; margin-top: 10px;">
+        <button class="btn btn-danger dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        {{ netid }}
+        <span style="border-top-color: white" class="caret"></span>
+        </button>
+        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Account</a></li>
+
+        {% for role in roles %}
+        <li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href="{{role}}">Switch to {{role}}</a></li>
+        {% endfor %}
+
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
+        </ul>
+        </div>
+    </div>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li id="sidebar-item" class="sidebar-brand">Manage Your Classes</a>
+                </li>
+                <li id="sidebar-item"><a href="/admin/students">Students</a>
+                </li>
+                <li id="sidebar-item"><a href="/admin/graders">Graders</a>
+                </li>
+                <li id="sidebar-item"><a href="/admin/admins">Assignments</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Page content -->
+        {% block content %}
+            <div id="page-content-wrapper">
+            <div class="content-header">
+                <h1>
+                    <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                    Admin Portal for COS 333
+                </h1>
+            </div>
+            </div>
+        {% endblock %}
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- Custom JavaScript for the Menu Toggle -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+    </script>
+
+    
+{% endblock %}
+
+{% block footer %}
+  {{ super() }}
+{% endblock %}
+
+</html>

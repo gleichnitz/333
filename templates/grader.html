@@ -27,7 +27,7 @@
                     }
                 });
                 $('#ddlAssignments').change(function () {
-                    $("#this.value").hide();
+                    $("#this.id").hide();
                 });
             }
         );
@@ -80,6 +80,12 @@
                 </div>
             </th>
             <th class="header">
+                <!--<select id="ddlAssignments"class="form-control">
+                    <option>All</option>
+                    {% for item in assignment_names %}
+                        <option>{{ item }}</option>
+                    {% endfor %}
+                </select> -->
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
                     </button>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+<head lang="en">
+	{% block head %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />	    
+	<meta property="og:title" content="">
+
+	<link rel="stylesheet" type="text/css" href="../static/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" href="../static/fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../static/stylesheets/style2.css">
+    <link rel="stylesheet" href="../static/stylesheets/font-awesome.min.css" rel="stylesheet">
+	
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext ' rel='stylesheet' type='text/css'>
+     {% endblock %}
+
+</head>
+
+<div id="main">
+
+<body style="background-color: white;">
+    
+	<div style="background-color: black;" class="navbar navbar-fixed-top" data-activeslide="1">
+                <a style="text-decoration: none;" href='http://saltytyga.herokuapp.com '>
+                    <h1 style="margin-top:5px;margin-bottom:1px;color:white; float: left; margin-left: 5%;" class="font-semibold">code<font color="red">P</font><span class="font-thin">ost</span></h1></a>
+                <div class="dropdown" style="float: right; margin-right: 5%; margin-top: 10px;">
+  <button class="btn btn-danger dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    {{ netid }}
+    <span style="border-top-color: white" class="caret"></span>
+  </button>
+  <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Account</a></li>
+
+   	{% for role in roles %}
+   	<li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href="{{role}}">Switch to {{role}}</a></li>
+   	{% endfor %}
+
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
+  </ul>
+</div>
+        </div>
+        </div>
+			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			
+			<div class="nav-collapse collapse navbar-responsive-collapse">
+				<ul class="nav row">
+				</ul>
+				<div class="row">
+					<div class="col-sm-2 active-menu"></div>
+				</div>
+			</div><!-- /.nav-collapse -->	
+		</div><!-- /.container -->
+	</div><!-- /.navbar -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li id="sidebar-item" class="sidebar-brand">Manage Your Classes</a>
+                </li>
+                <li id="sidebar-item"><a href="/admin/students">Students</a>
+                </li>
+                <li id="sidebar-item"><a href="/admin/graders">Graders</a>
+                </li>
+                <li id="sidebar-item"><a href="/admin/admins">Assignments</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Page content -->
+        {% block content %}
+        <div id="page-content-wrapper">
+            <div class="content-header">
+                <h1>
+                    <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                    Admin Portal for COS 333
+                </h1>
+            </div>
+        </div>
+        {% endblock %}
+        
+    </div>
+	{% block body %}{% endblock %}    
+
+</body>
+</div>
+
+ <!-- <div id="footer"> {% block footer %}
+        <div class="copyright2">
+            <h5> © code<font color="red">P</font>ost, 2014</h5>
+        </div>
+ {% endblock %} </div> -->
+
+<!-- SCRIPTS -->
+<script src="../static/js/html5shiv.js"></script>
+<script src="../static/js/jquery-1.10.2.min.js"></script>
+<script src="../static/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="../static/fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
+</html>

@@ -265,11 +265,16 @@ def grader():
         if item.name not in assignment_names:
             assignment_names.append(item.name)
 
+    graders = []
+    for item in assignments_form:
+        if item.grader not in assignment_names:
+            graders.append(item.grader)
+
     roles = makeRoles(netid)
     if (roles.count("grader") != 0):
         roles.remove("grader")
 
-    return render_template('grader.html', netid=netid, roles = roles, classes = classes, assignments=assignments_form, assignment_names=assignment_names)
+    return render_template('grader.html', netid=netid, roles = roles, classes = classes, assignments=assignments_form, assignment_names=assignment_names, graders=graders)
 
 
 

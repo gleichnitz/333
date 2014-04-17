@@ -8,7 +8,8 @@ $(document).ready(function(e) {
   			context: document.body,
   			data: { netid: "jaevans" }
 	  	}).done(function(data) {
-  			clickButton.text(data);
+  			clickButton.css("display", "none");
+  			clickButton.parent().text(data);
 	  	});
 	});
 

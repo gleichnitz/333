@@ -1,17 +1,16 @@
 $(document).ready(function(e) {
 
-    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-
 	$('td > div > .btn').click(function() {
-	   console.log("clicked");
-      $.getJSON($SCRIPT_ROOT + '/_assign', {
-        id: "test", //$(this).parent().attr('id'),
-        netid: "test" //$('#netid').text()
-      }, function(data) {
-        console.log(data);
-      });
-      return false;
-
+		var clickButton = $(this);
+	    console.log("click");
+      	$.ajax({
+  			url: "/_assign",
+  			context: document.body,
+  			data: { netid: "jaevans" }
+	  	}).done(function(data) {
+  			clickButton.css("display", "none");
+  			clickButton.parent().text(data);
+	  	});
 	});
 
 });

@@ -1,0 +1,31 @@
+{% extends "base_admin.html" %}
+
+{% block content %}
+	<button class="btn-custom" type="button">Add a Grader</button>
+    <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
+      <tr>
+          <th>
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Name <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A-Z</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Z-A</a></li>
+                  </ul>
+              </div>
+          </th>
+          <th>
+          	<div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netid <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A-Z</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Z-A</a></li>
+                  </ul>
+              </div>
+      </tr>
+              <tr><td><a href="#"><div style="height:100%;width:100%">Name</div></a></td>
+              <td><a href="#"><div style="height:100%;width:100%">netid</div></a></td>
+    </table>
+    {{super()}}
+{% endblock %}

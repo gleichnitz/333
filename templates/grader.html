@@ -27,7 +27,7 @@
                     }
                 });
                 $('#ddlAssignments').change(function () {
-                    $("this.value").show();
+                    $("#this.value").show();
                 });
             }
         );
@@ -86,7 +86,7 @@
                     <ul id="ddlAssignments" class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                         {% for item in assignment_names %}
-                            <li id="{{ item }}" role="presentation"><a role="menuitem" tabindex="-1" href="{{ item }}">{{ item }}</a></li>
+                            <li id="{{ item }}" role="presentation"><a role="menuitem" tabindex="-1">{{ item }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

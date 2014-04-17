@@ -135,7 +135,7 @@ def page_not_found(e):
 @app.route("/")
 def index():
     # if users can switch between modes (student, grader, admin), then we could redirect to logged-in page
-    # if user is logged into CAS. 
+    # if user is logged into CAS.
     return render_template('index3.html')
 
 @app.route("/index")
@@ -172,11 +172,11 @@ def submitted():
         return redirect('/')
 
     assignmentID = request.args.get('assignment').split('*')[0]
-    accountType = request.args.get('assignment').split('*')[1] 
+    accountType = request.args.get('assignment').split('*')[1]
 
     if accountType == "s":
         student = Student.query.filter_by(netid = netid).first()
-        assignments = student.assignments.all()    
+        assignments = student.assignments.all()
     elif accountType == "g":
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
@@ -238,9 +238,9 @@ def grader():
     #               - id
     #               - class (e.g. COS 126)
     #               - name ("Percolation")
-    #               - graded by (netid) 
+    #               - graded by (netid)
     #               - grade
-    ##################################    
+    ##################################
 
     grader = Grader.query.filter_by(netid = netid).first()
     course = grader.course
@@ -256,15 +256,20 @@ def grader():
             assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
-    for item in assignments_form: 
+    for item in assignments_form:
         if item.course not in classes:
             classes.append(item.course)
+
+    assignment_names = []
+    for item in assignments_form:
+        if item.name not in assignment_names:
+            assignment_names.append(item.name)
 
     roles = makeRoles(netid)
     if (roles.count("grader") != 0):
         roles.remove("grader")
 
-    return render_template('grader.html', netid=netid, roles = roles, classes = classes, assignments=assignments_form)
+    return render_template('grader.html', netid=netid, roles = roles, classes = classes, assignments=assignments_form, assignment_names=assignment_names)
 
 
 
@@ -309,7 +314,7 @@ def student():
         assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
-    for item in assignments_form: 
+    for item in assignments_form:
         if item.course not in classes:
             classes.append(item.course)
 

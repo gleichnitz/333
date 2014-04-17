@@ -369,8 +369,8 @@ def admin_students():
 
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")
-    if netid is "0":
-        return redirect('/')
+    # if netid is "0":
+    #     return redirect('/')
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

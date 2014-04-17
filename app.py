@@ -353,7 +353,7 @@ def admin():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    return render_template('admin.html', netid=session['username'], roles = roles)
+    return render_template('simple-sidebar.html', netid=session['username'], roles = roles)
 
 @app.route("/logout")
 def logout():

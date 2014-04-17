@@ -34,7 +34,10 @@
                 $('.selectpicker').selectpicker();
 
                 $('#ddlAssignments').change(function () {
-                    $('#this.value').hide();
+                    if (this.value == "NBody") {
+                        $('#NBody').hide();
+                    }
+
                 });
 
             }
@@ -44,33 +47,6 @@
 
 {% block body %}
 <div style="margin: 5em 10%;">
-
-
-    <table id="grader" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
-        <thead>
-            <tr>
-                <th class="header headerSortUp">Class</th>
-                <th class="header">Assignment</th>
-                <th class="header">NetId</th>
-                <th class="header">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td> COS 126 </td>
-                <td> NBody </td>
-                <td> vayyala </td>
-                <td> Graded </td>
-            </tr>
-            <tr>
-                <td> COS 226 </td>
-                <td> Deque </td>
-                <td> rfreling </td>
-                <td> Not Graded </td>
-            </tr>
-
-        </tbody>
-    </table>
 
     <table id="grader-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 5em;">
         <thead>
@@ -88,7 +64,7 @@
                 </div>
             </th>
             <th class="header">
-                <select id="ddlAssignments" class="selectpicker" multiple>
+                <select id="ddlAssignments" class="selectpicker" multiple data-style="btn-default">
                     <option>All</option>
                     <option>Next</option>
                     {% for item in assignment_names %}
@@ -139,37 +115,6 @@
         </tbody>
     </table>
 </div>
-    <script>
-        $(document).ready(function($)
-            {
-                $("#grader-table").tablesorter({
-                    headers: {
-                    // assign the secound column (we start counting zero)
-                    0: {
-                        // disable it by setting the property sorter to false
-                        sorter: false
-                    },
-                    // assign the third column (we start counting zero)
-                    1: {
-                        // disable it by setting the property sorter to false
-                        sorter: false
-                    },
-                    3: {
-                        // disable it by setting the property sorter to false
-                        sorter: false
-                    }
-                    }
-                });
-
-                $('.selectpicker').selectpicker();
-
-                $('#ddlAssignments').change(function () {
-                    $('#NBody').hide();
-                });
-
-            }
-        );
-    </script>
 {% endblock %}
 
 

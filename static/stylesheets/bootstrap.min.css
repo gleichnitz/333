@@ -383,9 +383,15 @@ cite {
   font-style: normal;
 }
 
-.caret.caret-reversed {
-    border-top-width: 0;
-    border-bottom: 4px solid #000000;
+.caretdown {
+    border-bottom: 10px solid #000000;
+    border-left: 6px solid rgba(0, 0, 0, 0);
+    border-right: 6px solid rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    height: 0;
+    vertical-align: top;
+    width: 0;
 }
 
 .text-muted {

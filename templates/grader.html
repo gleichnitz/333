@@ -128,7 +128,7 @@
         <tbody>
 
        {% for item in assignments %}
-            <tr id="{{ item.name }}" style="display: block">
+            <tr id="{{ item.name }}" style="display: table-row">
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>

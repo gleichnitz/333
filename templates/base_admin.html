@@ -19,7 +19,6 @@
 
 {% block body %}
     <div id="wrapper">
-
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -36,6 +35,14 @@
 
         <!-- Page content -->
         {% block content %}
+            <div id="page-content-wrapper">
+            <div class="content-header">
+                <h1>
+                    <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                    Admin Portal for COS 333
+                </h1>
+            </div>
+            </div>
         {% endblock %}
 
     </div>

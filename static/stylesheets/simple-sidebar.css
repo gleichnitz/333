@@ -73,7 +73,7 @@
 }
 
 #add_buttons:hover {
-  color: black; !important
+  color: black !important; 
 }
 
 .content-header {

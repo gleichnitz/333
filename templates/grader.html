@@ -132,7 +132,9 @@
                 $('.selectpicker').selectpicker();
 
                 $('#ddlAssignments').change(function () {
-                    $('#NBody').hide();
+                    if (this.value == "NBody") {
+                        $('#NBody').hide();
+                    }
                 });
 
             }

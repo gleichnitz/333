@@ -368,9 +368,9 @@ def admin_students():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/students")
 
     session['ticket_admin'] = ticket
-    netid = isLoggedIn(ticket, "admin")
-    # if valid_netid is "0":
-    #     return redirect('/')
+    netid = isLoggedIn(ticket, "admin/students")
+    if netid is "0":
+        return redirect('/')
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
@@ -389,9 +389,9 @@ def admin_graders():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/graders")
 
     session['ticket_admin'] = ticket
-    netid = isLoggedIn(ticket, "admin")
-    # if valid_netid is "0":
-    #     return redirect('/')   
+    netid = isLoggedIn(ticket, "admin/graders")
+    if netid is "0":
+        return redirect('/')   
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
@@ -410,9 +410,9 @@ def admin_admins():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
 
     session['ticket_admin'] = ticket
-    netid = isLoggedIn(ticket, "admin")
-    # if valid_netid is "0":
-    #     return redirect('/')
+    netid = isLoggedIn(ticket, "admin/admins")
+    if netid is "0":
+        return redirect('/')
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

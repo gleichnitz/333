@@ -3,6 +3,13 @@
 {% block head %}
     <title>CodePost: Grader</title>
     {{ super() }}
+    <script type="text/javascript" src="../static/js/jquery-latest.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
+    <script>
+        $(function() {
+            $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -96,13 +103,6 @@
 
     </table>
 </div>
-<script type="text/javascript" src="../static/js/jquery-latest.js"></script>
-<script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
-<script>
-    $(function() {
-        $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
-    });
-</script>
 {% endblock %}
 
 

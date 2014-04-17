@@ -26,6 +26,9 @@
                     }
                     }
                 });
+                $('#ddlAssignments').change(function () {
+                    $("#this.value").show();
+                });
             }
         );
     </script>
@@ -76,14 +79,14 @@
                     </ul>
                 </div>
             </th>
-            <th>
+            <th class="header">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul id="ddlAssignments" class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                         {% for item in assignment_names %}
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ item }}">{{ item }}</a></li>
+                            <li id="{{ item }}" role="presentation"><a role="menuitem" tabindex="-1" href="{{ item }}">{{ item }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -12,7 +12,7 @@ $(document).ready(function()
     {
 
     $(function() {
-        $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
+        $("#grader-table").tablesorter();
     });
 
     }
@@ -31,14 +31,6 @@ $(document).ready(function()
             </tr>
         </thead>
         <tbody>
-            <{% for item in assignment %}
-            <tr>
-                <td> {{ item.class }} </td>
-                <td> {{ item.assignment }} </td>
-                <td> {{ item.netid }} </td>
-                <td> {{ item.status }} </td>
-            </tr>
-            {% endfor %}
             <tr>
                 <td> COS 126 </td>
                 <td> NBody </td>

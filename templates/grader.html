@@ -33,7 +33,7 @@
                 $('.selectpicker').selectpicker();
 
                 $('#ddlAssignments').change(function () {
-                    $('#NBody').hide();
+                    $('#this.value').hide();
                 });
 
             }
@@ -128,7 +128,7 @@
         <tbody>
 
        {% for item in assignments %}
-            <tr>
+            <tr id="{{ item.name }}">
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>

@@ -368,7 +368,7 @@ def admin_students():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/students")
 
     session['ticket_admin'] = ticket
-    valid_netid = isLoggedIn(ticket, "admin")
+    netid = isLoggedIn(ticket, "admin")
     # if valid_netid is "0":
     #     return redirect('/')
     roles = makeRoles(netid)
@@ -389,7 +389,7 @@ def admin_graders():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/graders")
 
     session['ticket_admin'] = ticket
-    # valid_netid = isLoggedIn(ticket, "admin")
+    netid = isLoggedIn(ticket, "admin")
     # if valid_netid is "0":
     #     return redirect('/')   
     roles = makeRoles(netid)
@@ -410,7 +410,7 @@ def admin_admins():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
 
     session['ticket_admin'] = ticket
-    valid_netid = isLoggedIn(ticket, "admin")
+    netid = isLoggedIn(ticket, "admin")
     # if valid_netid is "0":
     #     return redirect('/')
     roles = makeRoles(netid)

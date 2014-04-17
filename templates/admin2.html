@@ -1,40 +1,10 @@
-{% extends "base3.html" %}
+{% extends "base_admin.html" %}
 
 {% block head %}
-    <title>CodePost: Admin</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Admin Portal</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../static/stylesheets/bootstrap.css" rel="stylesheet">
-
-    <!-- Add custom CSS here -->
-    <link href="../static/stylesheets/simple-sidebar.css" rel="stylesheet">
-  {{ super() }}
+    {{ super() }}
 {% endblock %}
 
-{% block body %}
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li id="sidebar-item" class="sidebar-brand">Manage Your Classes</a>
-                </li>
-                <li id="sidebar-item"><a href="/admin/students">Students</a>
-                </li>
-                <li id="sidebar-item"><a href="/admin/graders">Graders</a>
-                </li>
-                <li id="sidebar-item"><a href="/admin/admins">Admins</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Page content -->
+{% block head %}
         <div id="page-content-wrapper">
             <div class="content-header">
                 <h1>
@@ -51,27 +21,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-
-    <!-- Custom JavaScript for the Menu Toggle -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
-    </script>
-
-    {% block content %}
-    {% endblock %}
-{% endblock %}
-
-{% block footer %}
-  {{ super() }}
 {% endblock %}
 
 </html>

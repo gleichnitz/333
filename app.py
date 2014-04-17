@@ -357,17 +357,23 @@ def admin():
 
 @app.route("/admin/students")
 def admin_students():
-
+    roles = makeRoles(netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
     return render_template('admin2.html', netid=session['username'], roles = roles)
 
 @app.route("/admin/graders")
 def admin_graders():
-
+    roles = makeRoles(netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
     return render_template('admin2.html', netid=session['username'], roles = roles)
 
 @app.route("/admin/admins")
 def admin_admins():
-
+    roles = makeRoles(netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
     return render_template('admin2.html', netid=session['username'], roles = roles)
 
 @app.route("/logout")

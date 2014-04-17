@@ -1,6 +1,10 @@
 {% extends "base_admin.html" %}
 
-<script type="text/javascript"> $(.btn).hover($(this).color=black) </script>
+<script type="text/javascript">
+        $(document).ready(function($) {
+                $(.btn.btn-large).hover($(this).color=black)
+        });
+</script>
 
 {% block content %}
     {{super()}}

@@ -16,14 +16,14 @@ def AddtoListAssignment(files, file_name):
 files = []
 files = AddtoListAssignment(files, 'nbody.java')
 name = "Nbody"
-addAssignment('cos333', 'jaevans', name, files)
+addAssignment('cos333', 'gtl', name, files)
 
 files = []
 files = AddtoListAssignment(files, 'HelloWorld.java')
 files = AddtoListAssignment(files, 'HiFour.java')
 files = AddtoListAssignment(files, 'SumThree.java')
 name = 'Assignment1'
-addAssignment('cos333', 'jaevans', name, files)
+addAssignment('cos333', 'gtl', name, files)
 
 # ass_file = {}
 # name = 'Nbody'

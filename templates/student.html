@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-  <div style="margin: 5em 10%;"> 
+  <div style="margin: 5em 10%;">
     <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
       <tr>
           <th>
@@ -21,16 +21,16 @@
                   </ul>
               </div>
           </th>
-          <th>Assignment</th>
-          <th>Date submitted</th>
+          <th>Assignment --JQuery alpha sort</th>
+          <th>Date submitted --JQuery number sort</th>
           <th>Grade</th>
       </tr>
-      
+
           {% for item in assignments %}
-              <tr><td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td></tr>
+              <tr><td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td></tr>
           {% endfor %}
     </table>
   </div>

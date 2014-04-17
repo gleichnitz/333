@@ -1,7 +1,7 @@
 {% extends "base3.html" %}
 
 {% block head %}
-  <title>CodePost: {{ assignment }}</title>
+  <title>CodePost: {{ title }}</title>
 
   <script type="text/javascript" src="../static/js/shCore.js"></script>
   <script type="text/javascript" src="../static/js/shBrushJava.js"></script>
@@ -20,7 +20,7 @@
             $('#{{ item.name }}').annotator();
           {% endfor %}
       });
-  </script> 
+  </script>
   {{ super() }}
 {% endblock %}
 
@@ -29,19 +29,17 @@
     <table class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 19%;">
     <tr><th>File</th><th>Grade</th></tr>
     {% for item in assignment %}
-        <tr><td><a href="#{{ item.name }}">{{ item.name }}</a></td></a><td>{{ item.grade }}</td></tr>
+        <tr id="-{{ item.name }}"><td>{{ item.name }}</td><td>{{ item.grade }}</td></tr>
     {% endfor %}
     </table>
   </div>
   <div id="clicker"></div>
 
-  <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: right;" class="myClickDisabledElm">
+  <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: right;" class="myClickDisabledElm" id="codearea">
     <h4 id="codeTitle"></h4>
-    <div style="height: 1px; background-color: gray;"></div>
-
     {% for item in assignment %}
       <div id="{{ item.name }}" class="span9" style="display: none;">
-          <pre class="brush: java;">{{ item.code }}</pre>
+          <pre class="brush: java; quick-code: false;">{{ item.code }}</pre>
           <div class="hero-unit"></div>
       </div>
     {% endfor %}

@@ -3,24 +3,49 @@
 {% block head %}
     <title>CodePost: Grader</title>
     {{ super() }}
+    <script type="text/javascript" src="../static/js/jquery-latest.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-1.10.2.js"></script>
+    <link href="../static/stylesheets/bootstrap-select.css" rel="stylesheet" />
+    <script type="text/javascript" src="../static/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
+    <script>
+        $(document).ready(function($)
+            {
+                $("#grader-table").tablesorter({
+                    headers: {
+                    // assign the secound column (we start counting zero)
+                    0: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    },
+                    // assign the third column (we start counting zero)
+                    1: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    },
+                    3: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    }
+                    }
+                });
+
+                $('.selectpicker').selectpicker();
+
+                $('#ddlAssignments').change(function () {
+                    $('#NBody').style.display="none";
+                });
+
+            }
+        );
+    </script>
 {% endblock %}
 
 {% block body %}
-<script type="text/javascript" src="/path/to/jquery-latest.js"></script>
-<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
-<script>
-$(document).ready(function()
-    {
+<div style="margin: 5em 10%;">
 
-    $(function() {
-        $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
-    });
 
-    }
-);
-</script>
-<div style="margin: 8em 10%;">
-    <table id="grader-table" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
+    <table id="grader" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
         <thead>
             <tr>
                 <th class="header headerSortUp">Class</th>
@@ -30,14 +55,6 @@ $(document).ready(function()
             </tr>
         </thead>
         <tbody>
-            {% for item in assignment %}
-            <tr>
-                <td> {{ item.class }} </td>
-                <td> {{ item.assignment }} </td>
-                <td> {{ item.netid }} </td>
-                <td> {{ item.status }} </td>
-            </tr>
-            {% endfor %}
             <tr>
                 <td> COS 126 </td>
                 <td> NBody </td>
@@ -53,131 +70,74 @@ $(document).ready(function()
 
         </tbody>
     </table>
-    <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
+
+    <table id="grader-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 5em;">
+        <thead>
         <tr>
-            <th>
+            <th class="header">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Class <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                         {% for item in classes %}
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item }}</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ item }}</a></li>-->
                         {% endfor %}
                     </ul>
                 </div>
             </th>
-            <th>
-                <div class="btn-group">
+            <th class="header">
+                <select id="ddlAssignments" class="selectpicker">
+                    <option>All</option>
+                    <option>Next</option>
+                    {% for item in assignment_names %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <!--<div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul id="ddlAssignments" class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Deques and Randomized Queues</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Autocomplete</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">8 Puzzle</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Kd-Trees</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">WordNet</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Seam Carver</a></li>
+                        {% for item in assignment_names %}
+                            <li role="presentation"><a id="{{ item }}" ole="menuitem" tabindex="-1">{{ item }}</a></li>
+                        {% endfor %}
                     </ul>
-                </div>
+                </div>-->
             </th>
-            <th>
+            <th class="header">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netID <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A-Z</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Z-A</a></li>
-                    </ul>
                 </div>
             </th>
-            <th>
+            <th class="header">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Status <span class="caret"></span>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grader <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Needs Grading</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Assigned</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Graded Assignments</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> Graded</a></li>
+                        {% for item in graders %}
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ item.name }}">{{ item }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </th>
         </tr>
-        <tr>
-            {% for item in assignments %}
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.class }}</div></a></td>
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
-            <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>akubiak</td>
-            <td>Needs Grading</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>jaevans</td>
-            <td>Needs Grading</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>gtl</td>
-            <td>Assigned</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>vayyala</td>
-            <td>Assigned</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Deques and Randomized Queues</td>
-            <td>rfreling</td>
-            <td>Assigned</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>akubiak</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>jaevans</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>gtl</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>vayyala</td>
-            <td>Graded: 40/40</td>
-        </tr>
-        <tr>
-            <td>COS 226</td>
-            <td>Kd-Tree</td>
-            <td>rfreling</td>
-            <td>Graded: 40/40</td>
-        </tr>
+        </thead>
+        <tbody>
 
+       {% for item in assignments %}
+            <tr id="{{ item.name }}" style="display: table-row">
+                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
+                <td><div style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
 </div>
-
 {% endblock %}
 
 

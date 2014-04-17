@@ -111,7 +111,8 @@ $(document).ready(function()
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
-                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.grader }}</div></a></td>
+                {%  %}
+                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.grader|safe}}</div></a></td>
             </tr>
         {% endfor %}
 

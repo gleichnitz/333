@@ -33,7 +33,7 @@
     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Account</a></li>
 
    	{% for role in roles %}
-   	<li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href="/"+"{{role}}">Switch to {{role}}</a></li>
+   	<li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href="/{{role}}">Switch to {{role}}</a></li>
    	{% endfor %}
 
     <li role="presentation" class="divider"></li>

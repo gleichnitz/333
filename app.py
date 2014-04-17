@@ -355,6 +355,21 @@ def admin():
 
     return render_template('admin2.html', netid=session['username'], roles = roles)
 
+@app.route("/admin/students")
+def admin_students():
+
+    return render_template('admin2.html', netid=session['username'], roles = roles)
+
+@app.route("/admin/graders")
+def admin_graders():
+
+    return render_template('admin2.html', netid=session['username'], roles = roles)
+
+@app.route("/admin/admins")
+def admin_admins():
+
+    return render_template('admin2.html', netid=session['username'], roles = roles)
+
 @app.route("/logout")
 def logout():
     session.pop('username', None)

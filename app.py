@@ -211,6 +211,15 @@ def submitted():
     # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', netid = netid, assignment = files, title=title)
 
+@app.route('/_assign_')
+def assign_assignment():
+    id = request.args.get('id', 0, type=int)
+    netid = request.args.get('netid')
+    return "test"
+
+    # if assignment is assigned, return false-(netid of grader)
+    # if assignment is not assigned, assign to netid and return true-(netid)
+
 @app.route("/grader")
 def grader():
     try:
@@ -246,7 +255,7 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
-    button_html = "<button type=\"button\" class=\"btn btn-default\" style=\"color: black; background-color: white;\">Claim</button>"
+    button_html = "<button type=\"button\" class=\"\" style=\"color: black; background-color: white;\">Claim</button>"
 
     assignments_form = []
     for item in assignments:

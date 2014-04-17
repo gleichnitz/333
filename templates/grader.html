@@ -6,9 +6,11 @@
     <script type="text/javascript" src="../static/js/jquery-latest.js"></script>
     <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
     <script>
-        $(function() {
-            $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
-        });
+        $(document).ready(function()
+            {
+                $("#grader-table").tablesorter();
+            }
+        );
     </script>
 {% endblock %}
 

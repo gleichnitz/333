@@ -6,7 +6,7 @@ $(document).ready(function(e) {
       	$.ajax({
   			url: "/_assign",
   			context: document.body,
-  			data: { netid: "test" }
+  			data: { netid: "jaevans" }
 	  	}).done(function(data) {
   			clickButton.text(data);
 	  	});

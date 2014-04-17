@@ -8,7 +8,23 @@
     <script>
         $(document).ready(function($)
             {
-                $("#grader-table").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
+                $("#grader-table").tablesorter({
+                    headers: {
+                    // assign the secound column (we start counting zero)
+                    0: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    },
+                    // assign the third column (we start counting zero)
+                    1: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    }
+                    3: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    }
+                });
             }
         );
     </script>

@@ -20,13 +20,15 @@ app.config.update(
 Base = declarative_base()
 
 class Assignment:
-    def __init__(self, id, course, name, date, files, grade):
+    def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
         self.course = course
         self.name = name
         self.date = date
         self.files = files
         self.grade = grade
+        self.grader = grader
+        self.student = student
 
 class File:
     def __init__(self, name, code, grade):
@@ -157,32 +159,39 @@ def submitted():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
     if 'ticket_viewer' in session and ticket == session['ticket_viewer']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "viewer" + "?assignment=" + request.args.get('assignment'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
 
     session['ticket_viewer'] = ticket
-    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment'))
+    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment') + "&type=student")
     if netid is "0":
         return redirect('/')
 
-    if id is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "student")
+    assignmentID = request.args.get('assignment').split('*')[0]
+    accountType = request.args.get('assignment').split('*')[1] 
 
-    student = Student.query.filter_by(netid = netid).first()
-    assignments = student.assignments.all()       
+    if accountType == "s":
+        student = Student.query.filter_by(netid = netid).first()
+        assignments = student.assignments.all()    
+    elif accountType == "g":
+        grader = Grader.query.filter_by(netid = netid).first()
+        assignments = grader.assignments.all()
 
     for item in assignments:
         assignment_active = 0
-        if int(request.args.get('assignment')) == item.id:
+        if int(assignmentID) == item.id:
             assignment_active = item
             break
 
     if assignment_active == 0:
-        return redirect('/student')
+        if accountType == "s":
+            return redirect('/student')
+        else:
+            return redirect('/grader')
 
     title = assignment_active.name
 
@@ -234,11 +243,17 @@ def grader():
     ##################################    
 
     grader = Grader.query.filter_by(netid = netid).first()
-    assignments = grader.assignments.all()
+    course = grader.course
+    assignments = course.assignments.all()
+
+    button_html = "<button type=\"button\" class=\"btn btn-default\" style=\"color: black; background-color: white;\">Claim</button>"
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40"))
+        if item.grader is None:
+            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
+        elif item.grader.netid == netid:
+            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
     for item in assignments_form: 
@@ -249,7 +264,9 @@ def grader():
     if (roles.count("grader") != 0):
         roles.remove("grader")
 
-    return render_template('grader.html', netid=netid, roles = roles, classes = classes)
+    return render_template('grader.html', netid=netid, roles = roles, classes = classes, assignments=assignments_form)
+
+
 
 @app.route("/student")
 def student():
@@ -289,7 +306,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40"))
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form: 

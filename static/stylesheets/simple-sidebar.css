@@ -72,6 +72,10 @@
   background: none;
 }
 
+#add_buttons:hover {
+  color: black !important; 
+}
+
 .content-header {
   height: 65px;
   line-height: 65px;

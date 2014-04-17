@@ -6,8 +6,8 @@ $(document).ready(function(e) {
   			url: "/_assign",
   			context: document.body,
   			data: { netid: "test" }
-	  	}).done(function() {
-  			console.log("success");
+	  	}).done(function(data) {
+  			console.log(data);
 	  	});
 	});
 

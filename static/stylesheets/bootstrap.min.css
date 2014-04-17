@@ -383,6 +383,11 @@ cite {
   font-style: normal;
 }
 
+.caret.caret-reversed {
+    border-top-width: 0;
+    border-bottom: 4px solid #000000;
+}
+
 .text-muted {
   color: #999999;
 }

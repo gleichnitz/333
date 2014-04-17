@@ -1,6 +1,7 @@
 $(document).ready(function(e) {
 
-	$('.assignRow > td > div > .btn btn-default').click(function() {
+	$('td > div > .btn').click(function() {
+	   console.log("clicked");
       $.getJSON('/_assign_', {
         id: $(this).parent().attr('id'),
         netid: $('#netid').text()

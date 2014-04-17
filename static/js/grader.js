@@ -5,7 +5,7 @@ $(document).ready(function(e) {
         id: $(this).parent().attr('id'),
         netid: $('#netid').text()
       }, function(data) {
-        $(this).parent().text(data.result);
+        console.log("success");
       });
       return false;
 

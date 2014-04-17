@@ -406,20 +406,20 @@ def admin_graders():
         roles.remove("admin")
     return render_template('admin_graders.html', netid=session['username'], roles = roles)
 
-@app.route("/admin/admins")
+@app.route("/admin/assignments")
 def admin_admins():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/assignments")
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/assignments")
     if 'ticket_admin' in session and ticket == session['ticket_admin']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/assignments")
 
     session['ticket_admin'] = ticket
-    netid = isLoggedIn(ticket, "admin/admins")
+    netid = isLoggedIn(ticket, "admin/assignments")
     if netid is "0":
         return redirect('/')
     roles = makeRoles(netid)

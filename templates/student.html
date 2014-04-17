@@ -3,14 +3,11 @@
 {% block head %}
   <title>CodePost: Student</title>
   <script type="text/javascript">
-        $(document).ready(function($)
-            {
+        $(document).ready(function($) {
                 $(.table > tr).click(function() {
                     window.document.location = $(this).attr("href");
                 });
-
-            }
-        );
+        });
     </script>
   {{ super() }}
 {% endblock %}

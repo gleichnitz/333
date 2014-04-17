@@ -1,6 +1,7 @@
 {% extends "base_admin.html" %}
 
 {% block content %}
+  {{super()}}
 	<button class="btn-custom" type="button">Add an Assignment</button>
     <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
       <tr>
@@ -17,5 +18,4 @@
           <th> Rubric </th>
       </tr>
     </table>
-    {{super()}}
 {% endblock %}

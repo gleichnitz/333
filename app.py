@@ -215,7 +215,7 @@ def submitted():
 def assign_assignment():
     #id = request.args.get('id')
     #netid = request.args.get('netid')
-    return "success"
+    return request.args.get('netid')
 
     # if assignment is assigned, return false-(netid of grader)
     # if assignment is not assigned, assign to netid and return true-(netid)

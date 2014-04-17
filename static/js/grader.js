@@ -4,7 +4,8 @@ $(document).ready(function(e) {
 	    console.log("click");
       	$.ajax({
   			url: "/_assign",
-  			context: document.body
+  			context: document.body,
+  			data: { netid: "test" }
 	  	}).done(function() {
   			console.log("success");
 	  	});

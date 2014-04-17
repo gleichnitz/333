@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory, jsonify
+from flask import Flask, render_template, send_from_directory
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
@@ -215,7 +215,7 @@ def submitted():
 def assign_assignment():
     #id = request.args.get('id')
     #netid = request.args.get('netid')
-    return jsonify("success")
+    return "success"
 
     # if assignment is assigned, return false-(netid of grader)
     # if assignment is not assigned, assign to netid and return true-(netid)

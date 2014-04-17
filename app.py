@@ -360,12 +360,12 @@ def admin_students():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_students")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/students")
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_students")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/students")
     if 'ticket_admin' in session and ticket == session['ticket_admin']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_students")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/students")
 
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")
@@ -381,12 +381,12 @@ def admin_graders():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_graders")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/graders")
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_graders")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/graders")
     if 'ticket_admin' in session and ticket == session['ticket_admin']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_graders")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/graders")
 
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")
@@ -402,12 +402,12 @@ def admin_admins():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_admins")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_admins")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
     if 'ticket_admin' in session and ticket == session['ticket_admin']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin_admins")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/admins")
 
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")

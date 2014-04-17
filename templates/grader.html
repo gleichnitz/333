@@ -8,6 +8,38 @@
     <link href="../static/stylesheets/bootstrap-select.css" rel="stylesheet" />
     <script type="text/javascript" src="../static/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="../static/js/grader.js"></script>
+    <script>
+        $(document).ready(function($)
+            {
+                $("#grader-table").tablesorter({
+                    headers: {
+                    // assign the secound column (we start counting zero)
+                    0: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    },
+                    // assign the third column (we start counting zero)
+                    1: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    },
+                    3: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    }
+                    }
+                });
+
+                $('.selectpicker').selectpicker();
+
+                $('#ddlAssignments').change(function () {
+                    $('#this.value').hide();
+                });
+
+            }
+        );
+    </script>
 {% endblock %}
 
 {% block body %}

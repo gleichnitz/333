@@ -14,7 +14,6 @@
 
     <!-- Add custom CSS here -->
     <link href="../static/stylesheets/simple-sidebar.css" rel="stylesheet">
-    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   {{ super() }}
 {% endblock %}
 
@@ -26,11 +25,11 @@
             <ul class="sidebar-nav">
                 <li id="sidebar-item" class="sidebar-brand">Manage Your Classes</a>
                 </li>
-                <li id="sidebar-item"><a href="#">Students</a>
+                <li id="sidebar-item"><a href="/admin/students">Students</a>
                 </li>
-                <li id="sidebar-item"><a href="#">Graders</a>
+                <li id="sidebar-item"><a href="/admin/graders">Graders</a>
                 </li>
-                <li id="sidebar-item"><a href="#">Admins</a>
+                <li id="sidebar-item"><a href="/admin/admins">Admins</a>
                 </li>
             </ul>
         </div>

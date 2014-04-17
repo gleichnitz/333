@@ -82,7 +82,7 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
-                        {% for item in names %}
+                        {% for item in assignments %}
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ item.name }}">{{ item.name }}</a></li>
                         {% endfor %}
                     </ul>

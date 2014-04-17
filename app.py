@@ -246,7 +246,7 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
-    button_html = "<button type=\"button\" class=\"btn btn-default\">Default</button>"
+    button_html = "<button type=\"button\" class=\"btn btn-default\" style=\"color: black; background-color: white;\">Default</button>"
 
     assignments_form = []
     for item in assignments:

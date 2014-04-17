@@ -9,11 +9,9 @@
 <script type="text/javascript" src="../static/js/jquery-latest.js"></script>
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
 <script>
-$(document).ready(function()
-    {
-        $("#grader-table").tablesorter();
-    }
-);
+    $(function() {
+        $("#tablesorter-demo").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
+    });
 </script>
 <div style="margin: 5em 10%;">
 

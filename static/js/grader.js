@@ -7,7 +7,7 @@ $(document).ready(function(e) {
   			context: document.body,
   			data: { netid: "test" }
 	  	}).done(function(data) {
-  			console.log(data);
+  			$(this).text(data);
 	  	});
 	});
 

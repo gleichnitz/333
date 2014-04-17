@@ -1776,7 +1776,7 @@ textarea.input-sm {
 
 .btn:hover,
 .btn:focus {
-  color: #ffffff;
+  color: black;
   text-decoration: none;
 }
 

@@ -211,11 +211,11 @@ def submitted():
     # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', netid = netid, assignment = files, title=title)
 
-@app.route('/_assign_')
+@app.route('/_assign')
 def assign_assignment():
-    id = request.args.get('id', 0, type=int)
-    netid = request.args.get('netid')
-    return jsonify(netid)
+    #id = request.args.get('id')
+    #netid = request.args.get('netid')
+    return jsonify("success")
 
     # if assignment is assigned, return false-(netid of grader)
     # if assignment is not assigned, assign to netid and return true-(netid)
@@ -255,7 +255,7 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
-    button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white;\">Claim</button>"
+    button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Claim</button>"
 
     assignments_form = []
     for item in assignments:

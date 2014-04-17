@@ -27,10 +27,10 @@
       </tr>
 
           {% for item in assignments %}
-              <tr><td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td></tr>
+              <tr><td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td></tr>
           {% endfor %}
     </table>
   </div>

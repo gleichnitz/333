@@ -3557,6 +3557,7 @@ button.close {
   padding: 10px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 50px;
 }
 
 .modal-content {

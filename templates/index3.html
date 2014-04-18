@@ -16,7 +16,15 @@
 	<link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
 	
 	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext ' rel='stylesheet' type='text/css'>
-        
+    
+    <script type="text/javascript">
+	$(document).ready(function () {
+    	$('#tryitout').hover(function () {
+        	$(this).css('color','white');
+        	console.log("hi");
+      	});
+    });
+    </script>
 </head>
 
 <body>
@@ -63,7 +71,7 @@
 					<br>
 				</div><!-- /col-12 -->
 			</div><!-- /row -->
-            <div class="btn btn-danger btn-lg">Try It Out ></div>
+            <div id="tryitout" class="btn btn-danger btn-lg">Try It Out ></div>
 			<div id="home-row-2" class="row clearfix">
 				<div id="studentlogin" class="col-12 col-sm-4">
                     <div class="home-hover navigation-slide"> <a href="https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/student"><img src="../static/img/s.png" width=70 height=70></a>

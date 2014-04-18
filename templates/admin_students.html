@@ -2,7 +2,6 @@
 
 {% block head %}
 {{ super() }}
-<script type="text/javascript" src="../static/js/popup.js"></script>
 <script type="text/javascript" src="../static/js/adminstudent.js"></script>
 {% endblock %}
 
@@ -11,7 +10,6 @@
     <div >
       <div id="add_buttons">
 	       <a href="#" class="btn btn-large"><i class="icon-white icon-plus"></i> Add a Student</a>
-	       <a href="#" id="add_mult_students" class="btn btn-large" data-toggle="tooltip" data-placement="right" title="Make sure your file has one netid per line"><i class="icon-white icon-plus"></i> Add Students From File</a> 
       </div>
     <table class="table table-hover" style="background-color: transparent; margin-top: 15px;">
       <tr>
@@ -50,7 +48,7 @@
         <div class="modal-body">
             <form role="form">
               <div class="form-group">
-                <label for="exampleInputEmail1">Netid</label>
+                <label for="exampleInputEmail1">Manual input</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
               </div>
               <br>

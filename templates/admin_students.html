@@ -1,5 +1,6 @@
 {% extends "base_admin.html" %}
 
+{% block head %}
 <script type="text/javascript" src="../static/js/popup.js"></script>
 
 <script type="text/javascript">
@@ -10,7 +11,8 @@
             });
         });
 </script>
-<script> 
+    {{ super() }}
+{% endblock %}
 
 {% block content %}
     {{super()}}

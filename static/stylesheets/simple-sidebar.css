@@ -2,6 +2,14 @@
   color: black;
 }
 
+.btn:active,
+.btn.active {
+  outline: 0 !important;
+  outline-color: initial;
+  outline-style: initial;
+  outline-width: 0px;
+}
+
 #wrapper {
   padding-left: 250px;
   transition: all 0.4s ease 0s;

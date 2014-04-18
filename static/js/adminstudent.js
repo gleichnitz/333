@@ -4,7 +4,7 @@ $(document).ready(function() {
 		show: false
 	});
 
-	$('#modalButton').click(function() {
+	$('#add_buttons').click(function() {
 		$('.modal').modal('toggle');
 	});
     

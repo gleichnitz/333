@@ -1,8 +1,17 @@
 $(document).ready(function() {
 
-    console.log("test");
+	$('.modal').modal({
+		show: false
+	});
+
+	$('#modalButton').click(function() {
+		$('.modal').modal('toggle');
+	});
+    
     $('#add_mult_students').hover(function() {
       $(this).tooltip();
     });
-    
+
+
+
 });

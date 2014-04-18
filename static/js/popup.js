@@ -45,8 +45,8 @@ $(document).ready(function() {
     });         
 
   //id is the ID for the DIV you want to display it as modal window
-  if(e.keyCode == 13) {
-    $('#mask').hide();
-    $('.window').hide();
-  }
+  //if(e.keyCode == 13) {
+    //$('#mask').hide();
+    //$('.window').hide();
+  //}
 });

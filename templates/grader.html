@@ -36,6 +36,13 @@
 
                 //$('.selectpicker').selectpicker();
 
+                $('.dropdown-menu li').click(function(e){
+                    e.preventDefault();
+                    var selected = $(this).text();
+                    console.log(selected);
+                    $('.category').val(selected);
+                });
+
                 $('#ddlAssignments').change(function () {
                     console.log("in function")
                     console.log(this.value)
@@ -70,14 +77,15 @@
                 </div>
             </th>
             <th class="header">
-                <select id="ddlAssignments" class="form-control"> <!--class="selectpicker" multiple data-style="btn-default"-->
+                <!--<select id="ddlAssignments" class="form-control"> class="selectpicker" multiple data-style="btn-default"
                     <option>All</option>
                     <option>Next</option>
                     {% for item in assignment_names %}
                         <option value="{{ item }}">{{ item }}</option>
                     {% endfor %}
-                </select>
-                <!--<div class="btn-group">
+                </select>-->
+                <form class="form-inline" action="#" method="get">
+                <div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
                     </button>
                     <ul id="ddlAssignments" class="dropdown-menu" role="menu">
@@ -86,7 +94,9 @@
                             <li role="presentation"><a id="{{ item }}" ole="menuitem" tabindex="-1">{{ item }}</a></li>
                         {% endfor %}
                     </ul>
-                </div>-->
+                    <input type="hidden" name="category" class="category">
+                </div>
+                </form>
             </th>
             <th class="header">
                 <div class="btn-group">

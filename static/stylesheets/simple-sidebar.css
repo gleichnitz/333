@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+.btn:hover {
+  color: black !important;
+}
+
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
 #wrapper {
   padding-left: 250px;
   transition: all 0.4s ease 0s;
@@ -5,9 +12,16 @@
 
 #sidebar-wrapper {
   margin-left: -250px;
+<<<<<<< HEAD
   left: 250px;
   width: 220px;
   background: #ababab;
+=======
+  margin-top: -10px;
+  left: 250px;
+  width: 220px;
+  background: #474747;
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
   position: fixed;
   height: 100%;
   overflow-y: auto;
@@ -38,7 +52,11 @@
 }
 
 .sidebar-nav li a {
+<<<<<<< HEAD
   color: black;
+=======
+  color: white;
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
   display: block;
   text-decoration: none;
 }
@@ -52,16 +70,29 @@
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
   text-decoration: none;
+<<<<<<< HEAD
+=======
+  background: rgba(255,255,255,0.2);
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
 }
 
 .sidebar-nav > .sidebar-brand {
   height: 65px;
   line-height: 60px;
   font-size: 18px;
+<<<<<<< HEAD
 }
 
 .sidebar-nav > .sidebar-brand a {
   color: #999999;
+=======
+  color: black;
+  font-weight:500;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: white;
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -69,6 +100,13 @@
   background: none;
 }
 
+<<<<<<< HEAD
+=======
+#add_buttons:hover {
+  color: black !important; 
+}
+
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
 .content-header {
   height: 65px;
   line-height: 65px;
@@ -76,7 +114,11 @@
 
 .content-header h1 {
   margin: 0;
+<<<<<<< HEAD
   margin-left: 20px;
+=======
+  margin-left: 0px;
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
   line-height: 65px;
   display: inline-block;
 }
@@ -89,6 +131,38 @@
   padding: 20px;
 }
 
+<<<<<<< HEAD
+=======
+/*begin popup*/
+
+/* Z-index of #mask must lower than #boxes .window */
+#mask {
+  position:absolute;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+  
+#boxes .window {
+  position:fixed;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+
+
+/* Customize your modal window here, you can add background image too */
+#boxes #dialog {
+  width:375px; 
+  height:203px;
+}
+</style>
+
+/* end popup */
+
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
 @media (max-width:767px) {
 
 #wrapper {

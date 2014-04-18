@@ -1,9 +1,29 @@
 {% extends "base_admin.html" %}
 
+<<<<<<< HEAD
 {% block content %}
     {{super()}}
 	<button type="button" class="btn-custom">Add a Student</button>
     <table class="table table-hover" style="background-color: transparent; margin-top: 40px;">
+=======
+<script type="text/javascript" src="../static/js/popup.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function($) {
+                $(#btn.btn-large).hover($(this).color=black)
+        });
+</script>
+<script> 
+
+{% block content %}
+    {{super()}}
+    <div >
+      <div id="add_buttons">
+	       <a href="#" class="btn btn-large"><i class="icon-white icon-plus"></i> Add a Student</a>
+	       <a href="#" class="btn btn-large"><i class="icon-white icon-plus"></i> Add Students From File</a> 
+      </div>
+    <table class="table table-hover" style="background-color: transparent; margin-top: 15px;">
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
       <tr>
           <th>
               <div class="btn-group">
@@ -28,4 +48,22 @@
               <tr><td><a href="#"><div style="height:100%;width:100%">Gabriela Leichnitz</div></a></td>
               <td><a href="#"><div style="height:100%;width:100%">gtl</div></a></td>
     </table>
+<<<<<<< HEAD
+=======
+    <!-- #dialog is the id of a DIV defined in the code below -->
+    <a href="#dialog" name="modal">Simple Modal Window</a>
+
+    <div id="boxes"><!-- #customize your modal window here -->
+
+      <div id="dialog" class="window">
+      <b>Testing of Modal Window</b> | 
+    
+      <!-- close button is defined as close class -->
+      <a href="#" class="close">Close it</a>
+      <!-- Do not remove div#mask, because youll need it to fill the whole screen -->  
+      <div id="mask"></div>
+      </div>
+    </div>
+
+>>>>>>> c9b19238236162079e87a867f921a25137c6bc93
 {% endblock %}

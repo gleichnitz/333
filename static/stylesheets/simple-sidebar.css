@@ -103,38 +103,33 @@
 
 /*begin popup*/
 
-a.selected {
-  background-color:#1F75CC;
-  color:white;
-  z-index:100;
-}
-
-.messagepop {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
-  cursor:default;
-  display:none;
-  margin-top: 15px;
+/* Z-index of #mask must lower than #boxes .window */
+#mask {
   position:absolute;
-  text-align:left;
-  width:394px;
-  z-index:50;
-  padding: 25px 25px 20px;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+  
+#boxes .window {
+  position:fixed;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 3px;
-  padding-left: 15px;
-  text-indent: -15px;
-}
 
-.messagepop p, .messagepop.div {
-  border-bottom: 1px solid #EFEFEF;
-  margin: 8px 0;
-  padding-bottom: 8px;
+/* Customize your modal window here, you can add background image too */
+#boxes #dialog {
+  width:375px; 
+  height:203px;
 }
+</style>
+
 /* end popup */
+
 @media (max-width:767px) {
 
 #wrapper {

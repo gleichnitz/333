@@ -30,6 +30,7 @@
     <table id="admin-student-table" class="table table-hover" style="background-color: transparent; margin-top: 15px;">
     <thead>
       <tr>
+        {% for student in studentnetid %}
           <th class="header">
               <div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Name <span class="caret"></span>
@@ -38,9 +39,10 @@
           </th>
           <th class="header">
           	<div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netid <span class="caret"></span>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> {{student}} <span class="caret"></span>
                   </button>
               </div>
+          {% endfor %}
       </tr>
       </th>
       </thead>

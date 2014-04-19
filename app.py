@@ -36,7 +36,7 @@ def assign_assignment():
                         entry.grader = Grader.query.filter_by(netid = netid).first()
                         db.session.add(entry)
                         db.session.commit()
-                        return Grader.query.filter_by(netid = netid).first().netid
+                        return Grader.query.filter_by(netid = "jaevans").first().netid
                     except:
                         return traceback.format_exc()
                 else:

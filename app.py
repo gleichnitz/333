@@ -226,7 +226,7 @@ def assign_assignment():
 
     assignID = int(request.args.get('id'))
     netid = request.args.get('netid')
-    assign = Assignment.query.filter_by(id=assignID).first()
+    assign = Assignment.query.filter_by(netid = netid).first()
     return assign.id
     # if assign.grader is None:
     #     assign.addGrader(netid)

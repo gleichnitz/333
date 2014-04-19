@@ -31,8 +31,7 @@ def assign_assignment():
         return traceback.format_exc()
 
     try: 
-        for item in test:
-            return item.id
+        return len(test)
     except:
         return traceback.format_exc()
 

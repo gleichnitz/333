@@ -28,12 +28,7 @@ def assign_assignment():
     test = Assignment.query.all()
 
     for item in test:
-        if item.id == assignID:
-            if item.grader is None:
-                returnVal = "success"
-            else:
-                returnVal = "failure"
-            break
+        returnVal = item.id
 
     if test is None:
         return "fail"

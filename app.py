@@ -476,7 +476,7 @@ def admin_admins():
         if course.courseid not in courses:
             courses.append(course.courseid)
 
-    return render_template('admin_admins.html', names=names, courses=courses, assignments=assignments, netid=session['username'], roles = roles)
+    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles)
 
 @app.route("/logout")
 def logout():

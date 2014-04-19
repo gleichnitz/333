@@ -407,8 +407,14 @@ def admin_students():
     for student in students_db:
         if student.netid not in studentnetid:
             studentnetid.append(student.netid)
+    firstnames = []
+    for firstname in students_db:
+        firstnames.append(students_db.firstname)
+    lastnames = []
+    for lastname in students_db:
+        lastnames.append(students_db.lastname)
 
-    return render_template('admin_students.html', studentnetid=studentnetid, netid=session['username'], roles = roles)
+    return render_template('admin_students.html', firstnames=firstnames, lastnames=lastnames, studentnetid=studentnetid, netid=session['username'], roles = roles)
 
 @app.route("/admin/graders")
 def admin_graders():
@@ -482,7 +488,7 @@ def admin_admins():
         if course.courseid not in courses:
             courses.append(course.courseid)
 
-    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles)
+    return render_template('admin_admins.html', firstnames=firstnames, lastnames=lastnames, courses=courses, assignments=assignments, netid=session['username'], roles = roles)
 
 @app.route("/logout")
 def logout():

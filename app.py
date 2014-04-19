@@ -31,9 +31,11 @@ def assign_assignment():
         return "fail"
     else:
         try:
-            return type(str(test))
+            test2 =  len(test)
         except: 
             return traceback.format_exc()
+
+    return "success"
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

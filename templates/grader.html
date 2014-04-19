@@ -42,9 +42,10 @@
                     console.log(selected);
                     $('.category').val(selected);
 
-                    var theTbl = document.getElementById('grader-table');
+                    var theTbl = document.getElementById('grader-table-body');
                     console.log("00000");
                     console.log(theTbl.rows.length);
+                    console.log(theTbl.rows[0].cells.length);
                     for(var i=0;i<theTbl.length;i++)
                     {
                         console.log("111");
@@ -131,7 +132,7 @@
             </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="grader-table-body">
 
        {% for item in assignments %}
             <tr id="{{ item.name }}" class="test" style="display: table-row">

@@ -473,13 +473,12 @@ def admin_admins():
     assignment_db = Assignment.query.all()
 
     assignments = []
+    courses = []
     for assignment in assignment_db:
         if assignment.name not in assignments:
             assignments.append(assignment.name)
-    courses = []
-    for course in assignment_db:
-        if course.courseid not in courses:
-            courses.append(course.courseid)
+        if assignment.courseid not in courses:
+            courses.append(assignment.courseid)
 
     return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles)
 

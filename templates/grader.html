@@ -39,30 +39,17 @@
                 $('.dropdown-menu li').click(function(e){
                     e.preventDefault();
                     var selected = $(this).text();
-                    console.log(selected);
-                    $('.category').val(selected);
 
-                    var theTbl = document.getElementById('grader-table-body');
-                    console.log("00000");
-                    console.log(theTbl.rows.length);
-                    console.log(theTbl.rows[0].cells.length);
-                    console.log("========");
-                    console.log(selected);
+                    var grader_table = document.getElementById('grader-table-body');
                     for(var i=0;i<theTbl.rows.length;i++)
                     {
-                        console.log("111");
-                        for(var j=0;j<theTbl.rows[i].cells.length;j++)
+                        for(var j=0;j<grader_table.rows[i].cells.length;j++)
                         {
-                            console.log("2222");
-                            console.log(theTbl.rows[i].cells[j].innerText);
-                            console.log("++++++++++++");
-                            console.log(selected);
-                            if (theTbl.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected) {
-                                console.log("4444444");
-                                $(theTbl.rows[i]).toggle();
+                            if (selected == "All") {
+                                $(grader_table.rows[i]).show();
                             }
-                            else {
-                                console.log("INEQUALITY");
+                            else if (grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected) {
+                                $(grader_table.rows[i]).toggle();
                             }
                         }
                     }
@@ -102,13 +89,6 @@
                 </div>
             </th>
             <th class="header">
-                <!--<select id="ddlAssignments" class="form-control"> class="selectpicker" multiple data-style="btn-default"
-                    <option>All</option>
-                    <option>Next</option>
-                    {% for item in assignment_names %}
-                        <option value="{{ item }}">{{ item }}</option>
-                    {% endfor %}
-                </select>-->
                 <form class="form-inline" action="#" method="get">
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
@@ -146,7 +126,7 @@
         <tbody id="grader-table-body">
 
        {% for item in assignments %}
-            <tr id="{{ item.name }}" class="test" style="display: none">
+            <tr id="{{ item.name }}" style="display: none">
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>

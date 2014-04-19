@@ -376,8 +376,17 @@ def admin():
     if netid is "0":
         return redirect('/')
 
-    # if isAdmin(session['username']) is False:
-    #     return redirect('/')
+    course = cos333
+    assignments = course.assignments.all()
+
+    assignments_form = []
+    for item in assignments:
+        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+
+    assignment_names = []
+    for item in assignments_form:
+        if item.name not in assignment_names:
+            assignment_names.append(item.name)
 
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
@@ -425,7 +434,14 @@ def admin_graders():
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    return render_template('admin_graders.html', netid=session['username'], roles = roles)
+
+    graders = Grader.query.all()
+
+    gradernetid = []
+    for grader in gradernames:
+        gradernetid.append(grader.netid)
+
+    return render_template('admin_graders.html', gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route("/admin/assignments")
 def admin_admins():

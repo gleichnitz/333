@@ -32,11 +32,11 @@ def assign_assignment():
         for entry in assignments:
             if entry.id == int(assignID):
                 if entry.grader is None:
-                    db.session.delete(assign)
-                    entry.addGrader(netid)
-                    db.session.add(assign)
-                    db.session.commit()
-                    return netid
+                    #db.session.delete(assign)
+                    #entry.addGrader(netid)
+                    #db.session.add(assign)
+                    #db.session.commit()
+                    #return netid
                 else:
                     return entry.grader.netid
 

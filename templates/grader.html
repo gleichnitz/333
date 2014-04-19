@@ -41,9 +41,18 @@
                     var selected = $(this).text();
                     console.log(selected);
                     $('.category').val(selected);
+
+                    var theTbl = document.getElementById('grader-table');
+                    for(var i=0;i<theTbl.length;i++)
+                    {
+                        for(var j=0;j<theTbl.rows[i].cells.length;j++)
+                        {
+                            console.log(theTbl.rows[i].cells[j].text());
+                        }
+                    }
                 });
 
-                $('#ddlAssignments').change(function () {
+               /* $('#ddlAssignments').change(function () {
                     console.log("in function")
                     console.log(this.value)
                     if (this.value == "Nbody") {
@@ -51,7 +60,7 @@
                         $('#Nbody').hide();
                     }
 
-                });
+                });*/
 
             }
         );
@@ -121,7 +130,7 @@
         <tbody>
 
        {% for item in assignments %}
-            <tr id="{{ item.name }}" style="display: table-row">
+            <tr id="{{ item.name }}" class="test" style="display: table-row">
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>

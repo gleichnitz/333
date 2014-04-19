@@ -720,24 +720,6 @@ pre code {
   border: 0;
 }
 
-/*
-
-#wholepage {
-  min-height:100%;
-  position:relative;
-  height:100%;
-}
-
-#wrap {
-  min-height: 100%;
-}
-
-
-#main {
-  padding:10px;
-  padding-bottom:60px;   
-} */
-
 #footer {
    position:absolute;
    bottom:0;

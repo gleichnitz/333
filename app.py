@@ -227,20 +227,14 @@ def assign_assignment():
     assignID = request.args.get('id')
     netid = request.args.get('netid')
     assign = Assignment.query.filter_by(id=assignID).first()
-    if assign.grader.netid is None:
+    if assign.grader is None:
         db.session.delete(assign)
         assign.addGrader(netid)
         db.session.add(assign)
         db.session.commit()
-        returnNetid = netid
+        return netid
     else:
-        returnNetid = assign.grader.netid
-
-    return returnNetid
-    #return request.args.get('id')
-
-    # if assignment is assigned, return false-(netid of grader)
-    # if assignment is not assigned, assign to netid and return true-(netid)
+        return assign.grader.netid
 
 @app.route("/grader")
 def grader():

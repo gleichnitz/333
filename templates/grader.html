@@ -39,7 +39,6 @@
                 $('.dropdown-menu li').click(function(e){
                     e.preventDefault();
                     var selected = $(this).text();
-                    selected = selected.replace(/\s+/g, '');
                     console.log(selected);
                     $('.category').val(selected);
 
@@ -58,7 +57,7 @@
                             console.log(theTbl.rows[i].cells[j].innerText);
                             console.log("++++++++++++");
                             console.log(selected);
-                            if (theTbl.rows[i].cells[j].innerText === selected) {
+                            if (theTbl.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected) {
                                 console.log("4444444");
                                 theTbl.rows[i].hide();
                             }

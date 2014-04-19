@@ -31,7 +31,8 @@ def assign_assignment():
         assignments = item.assignments.all()
         for entry in assignments:
             if entry.id == int(assignID):
-                return "great success"
+                if entry.grade is None:
+                    return "done"
 
     return "success"
     #return assign

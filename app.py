@@ -31,7 +31,7 @@ def assign_assignment():
         return "fail"
     else:
         try:
-            test2 = type(test)
+            test2 = len(test)
         except: 
             return traceback.format_exc()
 

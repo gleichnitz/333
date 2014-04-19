@@ -35,7 +35,7 @@ def assign_assignment():
         except: 
             return traceback.format_exc()
 
-    return test2
+    return str(test2)
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

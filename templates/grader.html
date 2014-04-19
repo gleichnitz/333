@@ -53,9 +53,12 @@
                         {
                             console.log("2222");
                             console.log(theTbl.rows[i].cells[j].innerText);
-                            if (theTbl.rows[i].cells[j].innerText == selected) {
+                            if (theTbl.rows[i].cells[j].innerText === selected) {
                                 console.log("3333");
                                 theTbl.rows[i].hide();
+                            }
+                            else {
+                                console.log("INEQUALITY");
                             }
                         }
                     }

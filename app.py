@@ -24,7 +24,9 @@ def assign_assignment():
 
     assignID = request.args.get('id')
     netid = request.args.get('netid')
-    assign = Assignment.query.all().first()
+    assign = Assignment.query.all()
+
+    return assign
 
     for item in assign:
         if item.id == assignID:

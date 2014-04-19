@@ -400,7 +400,15 @@ def admin_students():
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    return render_template('admin_students.html', netid=session['username'], roles = roles)
+
+    students_db = Student.query.all()
+
+    studentnetid = []
+    for student in students:
+        if student.netid not in studentnetid:
+            students.append(student.netid)
+
+    return render_template('admin_students.html', studentnetid=studentnetid, netid=session['username'], roles = roles)
 
 @app.route("/admin/graders")
 def admin_graders():

@@ -39,7 +39,7 @@ def assign_assignment():
      #   return assign.grader.netid
 
 
-class Assignment2:
+class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
         self.course = course
@@ -279,9 +279,9 @@ def grader():
     assignments_form = []
     for item in assignments:
         if item.grader is None:
-            assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
         elif item.grader.netid == netid:
-            assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -347,7 +347,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form:

@@ -26,7 +26,7 @@ def assign_assignment():
 
     #assignID = request.args.get('id')
     #netid = request.args.get('netid')
-    assign = Assignment.query.filter_by(netid = "jaevans")
+    assign = Assignment.query.all()
     return "test"
     #return assign
     # if assign.grader is None:

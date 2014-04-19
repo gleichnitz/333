@@ -227,11 +227,11 @@ def assign_assignment():
     assignID = request.args.get('id')
     netid = request.args.get('netid')
     assign = Assignment.query.filter_by(id = 4).first()
-    db.session.delete(assign)
+    #db.session.delete(assign)
 
-    assign.addGrader(netid)
-    db.session.add(assign)
-    db.session.commit()
+    #assign.addGrader(netid)
+    #db.session.add(assign)
+    #db.session.commit()
 
     return request.args.get('id')
 

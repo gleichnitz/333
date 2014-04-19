@@ -226,7 +226,7 @@ def assign_assignment():
 
     assignID = int(request.args.get('id'))
     netid = request.args.get('netid')
-    assign = Assignment.query.filter_by(id=assignID).first()
+    assign = Assignment.query.filter_by(netid = netid).first()
     return assign.id
     # if assign.grader is None:
     #     assign.addGrader(netid)
@@ -345,7 +345,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+        assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form:

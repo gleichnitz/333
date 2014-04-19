@@ -24,7 +24,7 @@ Base = declarative_base()
 def assign_assignment():
 
     assignID = request.args.get('id')
-    netid = request.args.get('netid')
+    netid = str(request.args.get('netid'))
     students = Student.query.all()
 
     for item in students:
@@ -33,10 +33,10 @@ def assign_assignment():
             if entry.id == int(assignID):
                 if entry.grader is None:
                     try:
-                        entry.grader = Grader.query.filter_by(netid = "jaevans").first()
+                        entry.grader = Grader.query.filter_by(netid = netid).first()
                         db.session.add(entry)
                         db.session.commit()
-                        return Grader.query.filter_by(netid = "jaevans").first().netid
+                        return Grader.query.filter_by(netid = netid).first().netid
                     except:
                         return traceback.format_exc()
                 else:

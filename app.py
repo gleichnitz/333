@@ -29,6 +29,9 @@ def assign_assignment():
 
     for item in students:
         assignments = item.assignments.all()
+        for entry in assignments:
+            if entry.id == assignID:
+                return "great success"
 
     return "success"
     #return assign

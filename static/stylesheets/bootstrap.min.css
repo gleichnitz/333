@@ -732,22 +732,11 @@ pre code {
   min-height: 100%;
 }
 
-#header {
-  padding:10px;
-<<<<<<< HEAD
-}
 
 #main {
   padding:10px;
   padding-bottom:60px;   
-} 
-=======
-}
-
-#main {
-  padding:10px;
-  padding-bottom:60px;   /* Height of the footer */
-}
+} */
 
 #footer {
    position:absolute;
@@ -756,7 +745,6 @@ pre code {
    height:60px;   /* Height of the footer */
    background:#6cf;
 }
->>>>>>> changed body to main
 
 #footer {
    position:absolute;
@@ -764,7 +752,7 @@ pre code {
    width:100%;
    height:60px;  
    background:#6cf;
-}*/
+}
 
 body:before {
   content:"";

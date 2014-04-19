@@ -25,14 +25,12 @@ def assign_assignment():
 
     assignID = request.args.get('id', 0)
     netid = request.args.get('netid', 0)
-    assign = Student.query.filter_by(netid = "jaevans").first()
-    assignments = assign.assignments.all()
+    students = Student.query.all()
 
-    assignments_form = []
-    for item in assignments:
-        test = item.name
+    for item in students:
+        assignments = item.assignments.all()
 
-    return "" + test
+    return "success"
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

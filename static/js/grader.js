@@ -1,9 +1,9 @@
 $(document).ready(function(e) {
 
 	$('td > div > .btn').each(function() {
-		var graderType = $(this).closest('tr').children('.grader_row').text();
-		$(this).closest('tr').children('.row_grader').css("background-color", "red");
-		if (graderType != "None ") {
+		var graderType = $(this).closest('tr').children('.row_grader').text();
+		$(this).closest('tr').children('.row_grader').css("color", "red");
+		if (graderType != "None") {
 			$(this).text("Release");
 		}
 	});

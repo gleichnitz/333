@@ -27,11 +27,14 @@ def assign_assignment():
     netid = request.args.get('netid', 0)
     test = Assignment.query.all()
 
-    for item in test:
-        try:
-            returnVal = item.id
-        except:
-            traceback.format_exc()
+    try:
+        for item in test:
+            try:
+                returnVal = item.id
+            except:
+                return traceback.format_exc()
+    except:
+        return traceback.format_exc()
 
     if test is None:
         return "fail"

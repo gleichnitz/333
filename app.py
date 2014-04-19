@@ -30,6 +30,7 @@ def assign_assignment():
     try: 
         for item in test:
             test2 = item.id
+        return test2
     except:
         return traceback.format_exc()
 

@@ -63,7 +63,7 @@
 {% endblock %}
 
 {% block body %}
-<div style="margin: 5em 10%;">
+<div style="margin: 7em 10%;">
 
     <table id="grader-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 5em;">
         <thead>
@@ -110,6 +110,15 @@
                     </ul>
                 </div>
             </th>
+            <th class="header">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Action <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                    </ul>
+                </div>
+            </th>
         </tr>
         </thead>
         <tbody id="grader-table-body">
@@ -119,7 +128,8 @@
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
-                <td><div id="{{ item.id }}" style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
+                <td><div class="row_grader" style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
+                <td><div id="{{ item.id }}" style="height:100%;width:100%"><button type="button" class="btn" style="color: black; background-color: white; border: 1px solid black;">Claim</button></div></td>
             </tr>
         {% endfor %}
         </tbody>

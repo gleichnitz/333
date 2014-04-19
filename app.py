@@ -26,7 +26,7 @@ def assign_assignment():
     netid = request.args.get('netid')
     assign = Assignment.query.all()
 
-    return netid
+    return len(assign)
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

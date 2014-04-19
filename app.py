@@ -37,7 +37,7 @@ def assign_assignment():
                         db.session.delete(entry)
                         db.session.add(entry)
                         db.session.commit()
-                        return netid
+                        return entry.grader.netid
                     except:
                         return traceback.format_exc()
                 else:

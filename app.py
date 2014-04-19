@@ -25,7 +25,7 @@ def assign_assignment():
 
     assignID = request.args.get('id', 0)
     netid = request.args.get('netid', 0)
-    assign = Assignment.query.filter_by(netid = "jaevans").first()
+    assign = Student.query.filter_by(netid = "jaevans").first()
     assignments = assign.assignments.all()
 
     assignments_form = []

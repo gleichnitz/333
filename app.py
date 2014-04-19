@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, jsonify
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
@@ -26,7 +26,7 @@ def assign_assignment():
     netid = request.args.get('netid')
     test = Assignment.query.all().first()
 
-    return test
+    return jsonify(test)
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

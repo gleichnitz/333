@@ -1768,12 +1768,6 @@ textarea.input-sm {
           user-select: none;
 }
 
-
-#body_admin {
-  margin-top: 0;
-}
-
-
 .btn:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;

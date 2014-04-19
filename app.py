@@ -406,7 +406,7 @@ def admin():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    return render_template('admin2.html', netid=session['username'], roles = roles)
+    return render_template('admin2.html', netid=netid, roles = roles)
 
 @app.route("/admin/students")
 def admin_students():
@@ -432,11 +432,12 @@ def admin_students():
 
     studentnetid = []
     names = []
+
     for student in students_db:
         studentnetid.append(student.netid)
-        names.append(student.firstname + " " + student.lastname)
+        names.append(--- + " " + ---)
 
-    return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=session['username'], roles = roles)
+    return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=netid, roles = roles)
 
 @app.route("/admin/graders")
 def admin_graders():

@@ -25,17 +25,14 @@ def assign_assignment():
 
     assignID = request.args.get('id', 0)
     netid = request.args.get('netid', 0)
-    test = Assignment.query.all()
+    student = Student.query.filter_by(netid = "jaevans").first()
+    assignments = student.assignments.all()
 
-    if test is None:
-        return "fail"
-    else:
-        try:
-            test2 = len(test)
-        except: 
-            return traceback.format_exc()
+    assignments_form = []
+    for item in assignments:
+        test = item.name
 
-    return "" + test2
+    return "" + test
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

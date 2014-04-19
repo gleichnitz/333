@@ -407,14 +407,11 @@ def admin_students():
     for student in students_db:
         if student.netid not in studentnetid:
             studentnetid.append(student.netid)
-    firstnames = []
-    for firstname in students_db:
-        firstnames.append(students_db.firstname)
-    lastnames = []
-    for lastname in students_db:
-        lastnames.append(students_db.lastname)
+    names = []
+    for name in assignment_db:
+        names.append(assignments_db.firstname + " " + assignment_db.lastname)
 
-    return render_template('admin_students.html', firstnames=firstnames, lastnames=lastnames, studentnetid=studentnetid, netid=session['username'], roles = roles)
+    return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=session['username'], roles = roles)
 
 @app.route("/admin/graders")
 def admin_graders():
@@ -442,14 +439,11 @@ def admin_graders():
     for grader in graders:
         gradernetid.append(grader.netid)
 
-    firstnames = []
-    for firstname in graders:
-        firstnames.append(graders.firstname)
-    lastnames = []
-    for lastname in graders:
-        lastnames.append(graders.lastname)
+    names = []
+    for name in graders:
+        names.append(graders.firstname + " " + graders.lastname)
 
-    return render_template('admin_graders.html', firstnames=firstnames, lastnames=lastnames, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+    return render_template('admin_graders.html', names=names, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route("/admin/assignments")
 def admin_admins():
@@ -477,18 +471,15 @@ def admin_admins():
     for assignment in assignment_db:
         if assignment.name not in assignments:
             assignments.append(assignment.name)
-    firstnames = []
-    for firstname in assignment_db:
-        firstnames.append(assignments_db.firstname)
-    lastnames = []
-    for lastname in assignment_db:
-        lastnames.append(assignment_db.lastname)
+    names = []
+    for name in assignment_db:
+        names.append(assignments_db.firstname + " " + assignment_db.lastname)
     courses = []
     for course in assignment_db:
         if course.courseid not in courses:
             courses.append(course.courseid)
 
-    return render_template('admin_admins.html', firstnames=firstnames, lastnames=lastnames, courses=courses, assignments=assignments, netid=session['username'], roles = roles)
+    return render_template('admin_admins.html', names=names, courses=courses, assignments=assignments, netid=session['username'], roles = roles)
 
 @app.route("/logout")
 def logout():

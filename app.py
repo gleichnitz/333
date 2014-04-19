@@ -142,14 +142,6 @@ def index():
 def index3():
     return render_template('index3.html')
 
-@app.route("/about")
-def about():
-    return render_template('about.html')
-
-@app.route("/team")
-def team():
-    return render_template('team.html')
-
 @app.route("/viewer")
 def submitted():
     try:

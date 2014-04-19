@@ -26,6 +26,10 @@ def assign_assignment():
     netid = request.args.get('netid')
     assign = Assignment.query.all()
 
+    student = Student.query.filter_by(netid = netid).first()
+    assignments = student.assignments.all()
+    return assignments
+
     for item in assign:
         if item.id == assignID:
             if item.grader is None:

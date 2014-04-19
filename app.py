@@ -24,7 +24,7 @@ def assign_assignment():
 
     assignID = request.args.get('id')
     netid = request.args.get('netid')
-    test = Assignment.query.all()
+    test = Assignment.query.all().first()
 
     return test
     #return assign

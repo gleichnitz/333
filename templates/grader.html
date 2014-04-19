@@ -33,9 +33,6 @@
                     }
                     }
                 });
-
-                //$('.selectpicker').selectpicker();
-
                 $('.dropdown-menu li').click(function(e){
                     e.preventDefault();
                     var selected = $(this).text();
@@ -60,17 +57,6 @@
                         }
                     }
                 });
-
-               /* $('#ddlAssignments').change(function () {
-                    console.log("in function")
-                    console.log(this.value)
-                    if (this.value == "Nbody") {
-                        console.log("in value statement")
-                        $('#Nbody').hide();
-                    }
-
-                });*/
-
             }
         );
     </script>
@@ -95,7 +81,6 @@
                 </div>
             </th>
             <th class="header">
-                <form class="form-inline" action="#" method="get">
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
                     </button>
@@ -105,9 +90,7 @@
                             <li role="presentation"><a id="{{ item }}" ole="menuitem" tabindex="-1">{{ item }}</a></li>
                         {% endfor %}
                     </ul>
-                    <input type="hidden" name="category" class="category">
                 </div>
-                </form>
             </th>
             <th class="header">
                 <div class="btn-group">
@@ -132,7 +115,7 @@
         <tbody id="grader-table-body">
 
        {% for item in assignments %}
-            <tr id="{{ item.name }}" style="display: table-row">
+            <tr style="display: table-row">
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>

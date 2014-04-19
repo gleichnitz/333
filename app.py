@@ -25,7 +25,6 @@ def assign_assignment():
 
     assignID = request.args.get('id')
     netid = str(request.args.get('netid')).strip()
-    return netid + "-" + "jaevans"
     students = Student.query.all()
 
     for item in students:

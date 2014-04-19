@@ -224,8 +224,8 @@ def assign_assignment():
     #id = request.args.get('id')
     #netid = request.args.get('netid')
 
-    assignID = request.args.get('id')
-    netid = request.args.get('netid')
+    # assignID = request.args.get('id')
+    # netid = request.args.get('netid')
     assign = Assignment.query.filter_by(id =4).first()
     #db.session.delete(assign)
 
@@ -233,7 +233,8 @@ def assign_assignment():
     #db.session.add(assign)
     #db.session.commit()
 
-    return request.args.get('id')
+    return "test"
+    #return request.args.get('id')
 
     # if assignment is assigned, return false-(netid of grader)
     # if assignment is not assigned, assign to netid and return true-(netid)

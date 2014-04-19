@@ -53,6 +53,9 @@
                         {
                             console.log("2222");
                             console.log(theTbl.rows[i].cells[j].innerText);
+                            if (theTbl.rows[i].cells[j].innerText == selected) {
+                                theTbl.rows[i].hide();
+                            }
                         }
                     }
                 });

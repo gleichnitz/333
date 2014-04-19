@@ -39,10 +39,12 @@
                 $('.dropdown-menu li').click(function(e){
                     e.preventDefault();
                     var selected = $(this).text();
+                    var marked = 0;
 
                     var grader_table = document.getElementById('grader-table-body');
                     for(var i=0;i<grader_table.rows.length;i++)
                     {
+                        marked = 0;
                         for(var j=0;j<grader_table.rows[i].cells.length;j++)
                         {
                             if (selected == "All") {
@@ -50,8 +52,9 @@
                             }
                             else if (grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected) {
                                 $(grader_table.rows[i]).show();
+                                marked = 1;
                             }
-                            else {
+                            else if (marked != 1) {
                                 $(grader_table.rows[i]).hide();
                             }
                         }

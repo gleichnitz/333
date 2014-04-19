@@ -234,8 +234,8 @@ def assign_assignment():
     #     # db.session.add(assign)
     #     db.session.commit()
     #     return assignID + " " + assign.id
-    else:
-        return assign.grader.netid
+    #else:
+     #   return assign.grader.netid
 
 @app.route("/grader")
 def grader():

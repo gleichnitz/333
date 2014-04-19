@@ -13,7 +13,7 @@ $(document).ready(function(e) {
 	  			clickButton.text("Release");
 	  			// Update grader field
 	  		} else {
-	  			clickButton.parent().parent().css('display', 'none')
+	  			clickButton.parent().parent().parent().css('display', 'none')
 	  		}
 	  	});
 	});

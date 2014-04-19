@@ -438,7 +438,7 @@ def admin_students():
     students_form = []
 
     for student in students_db:
-        student_form.append(StudentClass("no name", student.netid))
+        students_form.append(StudentClass("no name", student.netid))
 
     return render_template('admin_students.html', students=students_form, netid=netid, roles = roles)
 

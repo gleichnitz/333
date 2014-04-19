@@ -12,6 +12,13 @@
       });
   });
 </script>
+<script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
+<script>
+        $(document).ready(function($)
+            {
+                $("#admin-student-table").tablesorter();
+              });
+</script>
 {% endblock %}
 
 {% block content %}
@@ -20,30 +27,28 @@
       <div id="add_buttons">
 	       <a href="#" class="btn btn-large"><i class="icon-white icon-plus"></i> Add a Student</a>
       </div>
-    <table class="table table-hover" style="background-color: transparent; margin-top: 15px;">
+    <table id="admin-student-table" class="table table-hover" style="background-color: transparent; margin-top: 15px;">
+    <thead>
       <tr>
-          <th>
+          <th class="header">
               <div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Name <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A-Z</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Z-A</a></li>
-                  </ul>
               </div>
           </th>
-          <th>
+          <th class="header">
           	<div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netid <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A-Z</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Z-A</a></li>
-                  </ul>
               </div>
       </tr>
+      </th>
+      </thead>
+      <tbody>
               <tr><td><a href="#"><div style="height:100%;width:100%">Gabriela Leichnitz</div></a></td>
               <td><a href="#"><div style="height:100%;width:100%">gtl</div></a></td>
+              </tr>
+      </tbody>
     </table>
 
     <!-- #dialog is the id of a DIV defined in the code below -->

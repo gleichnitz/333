@@ -229,8 +229,8 @@ def assign_assignment():
     assign = Assignment.query.filter_by(id=assignID).first()
     if assign.grader is None:
         assign.addGrader(netid)
-        db.session.delete(assign)
-        db.session.add(assign)
+        # db.session.delete(assign)
+        # db.session.add(assign)
         db.session.commit()
         return assignID + " " + assign.id
     else:

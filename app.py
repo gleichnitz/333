@@ -21,12 +21,18 @@ Base = declarative_base()
 
 @app.route('/_assign')
 def assign_assignment():
-    #id = request.args.get('id')
-    #netid = request.args.get('netid')
 
-    #assignID = request.args.get('id')
-    #netid = request.args.get('netid')
+    assignID = request.args.get('id')
+    netid = request.args.get('netid')
     assign = Assignment.query.all()
+
+    for item in assign:
+        if item.id == assignID:
+            if item.grader is None:
+                return "success"
+            else: 
+                return "failure"
+
     return "test"
     #return assign
     # if assign.grader is None:

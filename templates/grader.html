@@ -59,7 +59,7 @@
                             console.log(selected);
                             if (theTbl.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected) {
                                 console.log("4444444");
-                                theTbl.rows[i].hide();
+                                $(theTbl.rows[i]).hide();
                             }
                             else {
                                 console.log("INEQUALITY");

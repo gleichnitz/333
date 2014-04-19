@@ -27,7 +27,8 @@ def assign_assignment():
     #assignID = request.args.get('id')
     #netid = request.args.get('netid')
     assign = Assignment.query.all()
-    return assign
+    return "test"
+    #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)
     #     # db.session.delete(assign)

@@ -84,6 +84,11 @@ class File:
         self.code = code
         self.grade = grade
 
+class StudentClass:
+    def __init__(self, name, netid,):
+    self.name = name
+    self.netid = netid
+
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -430,14 +435,12 @@ def admin_students():
 
     students_db = Student.query.all()
 
-    studentnetid = []
-    names = []
+    students_form = []
 
     for student in students_db:
-        studentnetid.append(student.netid)
-        names.append(--- + " " + ---)
+        student_form.append(StudentClass("no name", student.netid))
 
-    return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=netid, roles = roles)
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles)
 
 @app.route("/admin/graders")
 def admin_graders():

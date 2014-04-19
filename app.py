@@ -437,7 +437,7 @@ def admin_graders():
     assignments = []
     for grader in graders:
         gradernetid.append(grader.netid)
-        assignments.append(Assignment.query.filter_by(grader_id=grader.netid).first())
+        assignments.append(Assignment.query.filter_by(grader_id=12).first())
     assignment_db = Assignment.query.all()
     allassignments = []
     for assignment in assignment_db:

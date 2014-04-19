@@ -409,7 +409,7 @@ def admin_students():
             studentnetid.append(student.netid)
     names = []
     for name in students_db:
-        names.append(students_db.firstname + " " + students_db.lastname)
+        names.append(name.firstname + " " + name.lastname)
 
     return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=session['username'], roles = roles)
 

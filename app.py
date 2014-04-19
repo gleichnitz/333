@@ -23,15 +23,14 @@ Base = declarative_base()
 @app.route('/_assign')
 def assign_assignment():
 
-    assignID = request.args.get('id', 0)
-    netid = request.args.get('netid', 0)
+    assignID = request.args.get('id')
+    netid = request.args.get('netid')
     students = Student.query.all()
 
     for item in students:
         assignments = item.assignments.all()
-        return "almost success"
         for entry in assignments:
-            if entry.id == assignID:
+            if entry.id == int(assignID):
                 return "great success"
 
     return "success"

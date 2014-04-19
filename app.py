@@ -36,11 +36,11 @@ def assign_assignment():
                         entry.grader = Grader.query.filter_by(netid = netid).first()
                         db.session.add(entry)
                         db.session.commit()
-                        return netid
+                        return "success"
                     except:
                         return traceback.format_exc()
                 else:
-                    return entry.grader.netid
+                    return "failure"
 
 
 class AssignmentClass:

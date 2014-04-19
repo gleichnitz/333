@@ -30,7 +30,7 @@ def assign_assignment():
     if test is None:
         return "fail"
     else:
-        return "success"
+        return len(test)
 
     #return assign
     # if assign.grader is None:

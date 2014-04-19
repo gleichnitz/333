@@ -471,9 +471,6 @@ def admin_admins():
     for assignment in assignment_db:
         if assignment.name not in assignments:
             assignments.append(assignment.name)
-    names = []
-    for name in assignment_db:
-        names.append(assignments_db.firstname + " " + assignment_db.lastname)
     courses = []
     for course in assignment_db:
         if course.courseid not in courses:

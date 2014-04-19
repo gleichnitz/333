@@ -227,7 +227,7 @@ def assign_assignment():
     assignID = int(request.args.get('id'))
     netid = request.args.get('netid')
     assign = Assignment.query.filter_by(netid = netid).first()
-    return assign.id
+    return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)
     #     # db.session.delete(assign)

@@ -19,7 +19,7 @@ app.config.update(
 # print Course.query.all()
 Base = declarative_base()
 
-class Assignment:
+class Assignment2:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
         self.course = course
@@ -226,17 +226,15 @@ def assign_assignment():
 
     assignID = request.args.get('id')
     netid = request.args.get('netid')
-    #assign = Assignment.query.filter_by(id = assignID).first()
-    #db.session.delete(assign)
-
-    #assign.addGrader(netid)
-    #db.session.add(assign)
-    #db.session.commit()
-
-    return request.args.get('id')
-
-    # if assignment is assigned, return false-(netid of grader)
-    # if assignment is not assigned, assign to netid and return true-(netid)
+    assign = Assignment.query.filter_by(id=assignID).first()
+    if assign.grader is None:
+        db.session.delete(assign)
+        assign.addGrader(netid)
+        db.session.add(assign)
+        db.session.commit()
+        return netid
+    else:
+        return assign.grader.netid
 
 @app.route("/grader")
 def grader():
@@ -278,9 +276,9 @@ def grader():
     assignments_form = []
     for item in assignments:
         if item.grader is None:
-            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
+            assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
         elif item.grader.netid == netid:
-            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+            assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
     for item in assignments_form:

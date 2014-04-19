@@ -22,11 +22,11 @@ Base = declarative_base()
 @app.route('/_assign')
 def assign_assignment():
 
-    assignID = request.args.get('id')
-    netid = request.args.get('netid')
+    assignID = request.args.get('id', 0)
+    netid = request.args.get('netid', 0)
     test = Assignment.query.all().first()
 
-    return jsonify(returnVal = test)
+    return "ugh"
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

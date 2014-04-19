@@ -406,7 +406,7 @@ def admin_students():
     studentnetid = []
     for student in students_db:
         if student.netid not in studentnetid:
-            students.append(student.netid)
+            studentnetid.append(student.netid)
 
     return render_template('admin_students.html', studentnetid=studentnetid, netid=session['username'], roles = roles)
 

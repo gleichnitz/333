@@ -408,8 +408,8 @@ def admin_students():
         if student.netid not in studentnetid:
             studentnetid.append(student.netid)
     names = []
-    for name in assignment_db:
-        names.append(assignments_db.firstname + " " + assignment_db.lastname)
+    for name in students_db:
+        names.append(students_db.firstname + " " + students_db.lastname)
 
     return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=session['username'], roles = roles)
 

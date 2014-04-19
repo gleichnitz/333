@@ -20,6 +20,7 @@ $(document).ready(function(e) {
 		  	}).done(function(data) {
 		  		if (data == "success") {
 		  			clickButton.text("Release");
+		  			clickButton.closest('tr').children().children('.row_grader').text($('#netid').text());
 		  			// Update grader field
 		  		} else {
 		  			clickButton.parent().parent().parent().css('display', 'none')
@@ -33,9 +34,9 @@ $(document).ready(function(e) {
 		  	}).done(function(data) {
 		  		if (data == "success") {
 		  			clickButton.text("Claim");
-		  			clickButton.closest('.grader_row').text("None");
+		  			clickButton.closest('tr').children().children('.row_grader').text("None");
 		  		} else {
-		  			clickButton.parent().parent().parent().css('display', 'none')
+		  			clickButton.parent().parent().parent().css('display', 'none');
 		  		}
 		  	});			
 		}

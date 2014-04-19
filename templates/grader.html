@@ -46,14 +46,17 @@
                     console.log("00000");
                     console.log(theTbl.rows.length);
                     console.log(theTbl.rows[0].cells.length);
+                    console.log("========");
+                    console.log(selected);
                     for(var i=0;i<theTbl.rows.length;i++)
                     {
                         console.log("111");
                         for(var j=0;j<theTbl.rows[i].cells.length;j++)
                         {
                             console.log("2222");
-                            console.log("="+theTbl.rows[i].cells[j].innerText+"=");
-                            console.log("="+selected+"=");
+                            console.log(theTbl.rows[i].cells[j].innerText);
+                            console.log("++++++++++++");
+                            console.log(selected);
                             if (theTbl.rows[i].cells[j].innerText === selected) {
                                 console.log("4444444");
                                 theTbl.rows[i].hide();

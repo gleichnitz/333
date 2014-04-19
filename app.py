@@ -152,8 +152,7 @@ def create():
     if request.json is not None:
         return request.json
     else:
-        return json.dumps('No JSON payload sent. Annotation not created.',
-                       status=400)
+        return json.dumps('No JSON payload sent. Annotation not created.')
 
 
 @app.route('/login')

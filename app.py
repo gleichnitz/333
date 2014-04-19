@@ -253,6 +253,7 @@ def submitted():
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
 
+    assignment_active = -1
     for item in assignments:
         assignment_active = 0
         if int(assignmentID) == item.id:
@@ -343,7 +344,7 @@ def grader():
         if item.grader not in assignment_names:
             if item.grader == button_html:
                 graders.add("None")
-            else: 
+            else:
                 graders.add(item.grader)
 
     roles = makeRoles(netid)
@@ -472,7 +473,7 @@ def admin_graders():
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin/graders")
     if netid is "0":
-        return redirect('/')   
+        return redirect('/')
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

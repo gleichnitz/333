@@ -35,8 +35,11 @@ def assign_assignment():
     except:
         return traceback.format_exc()
 
-    return len(IDlist)
-    
+    try:
+        return len(IDlist)
+    except:
+        return traceback.format_exc()
+        
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

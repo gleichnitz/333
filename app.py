@@ -436,7 +436,14 @@ def admin_graders():
     for grader in graders:
         gradernetid.append(grader.netid)
 
-    return render_template('admin_graders.html', gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+    firstnames = []
+    for firstname in graders:
+        firstnames.append(graders.firstname)
+    lastnames = []
+    for lastname in graders:
+        lastnames.append(graders.lastname)
+
+    return render_template('admin_graders.html', firstnames=firstnames, lastnames=lastnames, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route("/admin/assignments")
 def admin_admins():
@@ -464,7 +471,12 @@ def admin_admins():
     for assignment in assignment_db:
         if assignment.name not in assignments:
             assignments.append(assignment.name)
-
+    firstnames = []
+    for firstname in assignment_db:
+        firstnames.append(assignments_db.firstname)
+    lastnames = []
+    for lastname in assignment_db:
+        lastnames.append(assignment_db.lastname)
     courses = []
     for course in assignment_db:
         if course.courseid not in courses:

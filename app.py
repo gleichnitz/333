@@ -43,7 +43,7 @@ def assign_assignment():
                     return "failure"
 
 @app.route('/_release')
-def assign_assignment():
+def release_assignment():
 
     assignID = request.args.get('id')
     netid = str(request.args.get('netid')).strip()

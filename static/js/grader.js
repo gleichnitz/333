@@ -2,6 +2,7 @@ $(document).ready(function(e) {
 
 	$('td > div > .btn').click(function() {
 		var clickButton = $(this);
+		var buttonType = clickButton.text()
 
       	$.ajax({
   			url: "/_assign",

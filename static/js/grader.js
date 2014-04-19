@@ -32,8 +32,7 @@ $(document).ready(function(e) {
 		  	}).done(function(data) {
 		  		if (data == "success") {
 		  			clickButton.text("Claim");
-		  			clickButton.closest('tr').children('.grader_row').text("None");
-		  			// Update grader field
+		  			clickButton.closest('.grader_row').text("None");
 		  		} else {
 		  			clickButton.parent().parent().parent().css('display', 'none')
 		  		}

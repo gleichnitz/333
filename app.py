@@ -436,14 +436,21 @@ def admin_graders():
     graders = Grader.query.all()
 
     gradernetid = []
+    assignments = []
     for grader in graders:
         gradernetid.append(grader.netid)
+        assignments.append(Assignment.query.filter_by(grader_id=grader.netid).first())
+    assignment_db = Assignment.query.all()
+    allassignments = []
+    for assignment in assignment_db:
+        if assignment.name not in allassignments:
+            allassignments.append(name)
 
     # names = []
     # for name in graders:
     #     names.append(graders.firstname + " " + graders.lastname)
 
-    return render_template('admin_graders.html', gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+    return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route("/admin/assignments")
 def admin_admins():

@@ -55,7 +55,9 @@
           <th class="header"> </th>
       </tr>
       <tbody>
-      <tr><td><a href="#"><div style="height:100%;width:100%">NBody</div></a></td>
+      <tr>
+        {% for assignment in assignments %}
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment}}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">click here</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">20%</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">April 17</div></a></td>
@@ -64,6 +66,7 @@
                   </button>
               </div></a></td>
           </tr>
+          {% endfor %}
       </tbody>
     </table>
 

@@ -142,6 +142,10 @@ def index():
 def index3():
     return render_template('index3.html')
 
+@app.route("/account")
+def account():
+    return render_template('account.html')
+
 @app.route("/viewer")
 def submitted():
     try:

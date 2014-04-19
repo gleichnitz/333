@@ -232,7 +232,7 @@ def assign_assignment():
         assign.addGrader(netid)
         db.session.add(assign)
         db.session.commit()
-        return "test"
+        return assignID
     else:
         return assign.grader.netid
 

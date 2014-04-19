@@ -27,7 +27,7 @@ def assign_assignment():
     try:
         test = Assignment.query.all().first()
     except:
-        return traceback.format_exc()
+        return "test"
 
     return "success"
     

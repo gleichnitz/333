@@ -224,7 +224,7 @@ def assign_assignment():
     #id = request.args.get('id')
     #netid = request.args.get('netid')
 
-    assignID = request.args.get('id')
+    assignID = int(request.args.get('id'))
     netid = request.args.get('netid')
     assign = Assignment.query.filter_by(id=assignID).first()
     return assign.id

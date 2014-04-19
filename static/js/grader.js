@@ -1,7 +1,7 @@
 $(document).ready(function(e) {
 
 	$('td > div > .btn').each(function() {
-		var graderType = $('this.parent() > .row_grader').text();
+		var graderType = $(this).closest('tr').children('.grader_row').text();
 		if (graderType != "None") {
 			$(this).text("Release");
 		}

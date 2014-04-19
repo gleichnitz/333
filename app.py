@@ -424,7 +424,7 @@ def admin_graders():
     graders = Grader.query.all()
 
     gradernetid = []
-    for grader in gradernames:
+    for grader in gradernetid:
         gradernetid.append(grader.netid)
 
     return render_template('admin_graders.html', gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)

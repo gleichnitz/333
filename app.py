@@ -8,6 +8,7 @@ import urllib2
 from xml.etree import ElementTree
 import cgi
 import pickle
+import traceback
 
 # initialization
 app = Flask(__name__)
@@ -27,7 +28,7 @@ def assign_assignment():
     try:
         test = Assignment.query.all().first()
     except:
-        return "test"
+        return traceback.format_exc()
 
     return "success"
     

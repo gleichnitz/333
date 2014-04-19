@@ -28,7 +28,10 @@ def assign_assignment():
     test = Assignment.query.all()
 
     for item in test:
-        returnVal = item.id
+        try:
+            returnVal = item.id
+        except:
+            traceback.format_exc()
 
     if test is None:
         return "fail"

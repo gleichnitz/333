@@ -24,7 +24,7 @@ Base = declarative_base()
 def assign_assignment():
 
     assignID = request.args.get('id')
-    netid = str(request.args.get('netid'))
+    netid = str(request.args.get('netid'))[:-1]
     return netid + "-" + "jaevans"
     students = Student.query.all()
 

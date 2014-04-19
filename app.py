@@ -33,8 +33,7 @@ def assign_assignment():
             if entry.id == int(assignID):
                 if entry.grader is None:
                     try:
-                        db.session.delete(entry)
-                        entry.grader = Grader.query.filter_by(netid = netid).first()
+                        entry.grader = Grader.query.filter_by(netid = netid)
                         db.session.add(entry)
                         db.session.commit()
                         return entry.grader.netid

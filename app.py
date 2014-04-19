@@ -404,7 +404,7 @@ def admin_students():
     students_db = Student.query.all()
 
     studentnetid = []
-    for student in students:
+    for student in students_db:
         if student.netid not in studentnetid:
             students.append(student.netid)
 

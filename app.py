@@ -36,23 +36,11 @@ def assign_assignment():
                         entry.grader = Grader.query.filter_by(netid = netid).first()
                         db.session.add(entry)
                         db.session.commit()
-                        return Grader.query.filter_by(netid = netid).first().netid
+                        return netid
                     except:
                         return traceback.format_exc()
                 else:
                     return entry.grader.netid
-
-
-    return "success"
-    #return assign
-    # if assign.grader is None:
-    #     assign.addGrader(netid)
-    #     # db.session.delete(assign)
-    #     # db.session.add(assign)
-    #     db.session.commit()
-    #     return assignID + " " + assign.id
-    #else:
-     #   return assign.grader.netid
 
 
 class AssignmentClass:
@@ -291,13 +279,14 @@ def grader():
     assignments = course.assignments.all()
 
     button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Claim</button>"
+    release_html = " <button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Release</button>"
 
     assignments_form = []
     for item in assignments:
         if item.grader is None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
         elif item.grader.netid == netid:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid + release.html, item.student.netid))
 
     classes = []
     for item in assignments_form:

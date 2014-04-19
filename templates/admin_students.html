@@ -46,11 +46,13 @@
       </th>
       </thead>
       <tbody>
+        {% for name in names %}
+              <tr><td><a href="#"><div style="height:100%;width:100%">{{name}}</div></a></td>
+        {% endfor %}
         {% for student in studentnetid %}
-              <tr><td><a href="#"><div style="height:100%;width:100%">------ ------</div></a></td>
               <td><a href="#"><div style="height:100%;width:100%">{{student}}</div></a></td>
               </tr>
-          {% endfor %}
+        {% endfor %}
       </tbody>
     </table>
 

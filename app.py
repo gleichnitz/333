@@ -25,13 +25,10 @@ def assign_assignment():
 
     assignID = request.args.get('id', 0)
     netid = request.args.get('netid', 0)
-    try:
-        test = Assignment.query.all()
-    except:
-        return traceback.format_exc()
+    test = Assignment.query.all()
 
     try: 
-        return len(test)
+        test2 = test.id
     except:
         return traceback.format_exc()
 

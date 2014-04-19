@@ -226,7 +226,7 @@ def assign_assignment():
 
     assignID = request.args.get('id')
     netid = request.args.get('netid')
-    assign = Assignment.query.filter_by(id = assignID).first()
+    #assign = Assignment.query.filter_by(id = assignID).first()
     #db.session.delete(assign)
 
     #assign.addGrader(netid)

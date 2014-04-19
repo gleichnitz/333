@@ -9,6 +9,7 @@
           $(this).css('outline','0');
           $(this).css('-webkit-box-shadow','none');
           $(this).css('box-shadow','none');
+          console.log("hi")
       });
   });
 </script>
@@ -17,7 +18,7 @@
         $(document).ready(function($)
             {
                 $("#admin-student-table").tablesorter();
-              });
+            });
 </script>
 {% endblock %}
 
@@ -45,9 +46,13 @@
       </th>
       </thead>
       <tbody>
-              <tr><td><a href="#"><div style="height:100%;width:100%">Gabriela Leichnitz</div></a></td>
-              <td><a href="#"><div style="height:100%;width:100%">gtl</div></a></td>
+        {% for name in names %}
+              <tr><td><a href="#"><div style="height:100%;width:100%">-------- ---------</div></a></td>
+        {% endfor %}
+        {% for student in studentnetid %}
+              <td><a href="#"><div style="height:100%;width:100%">{{student}}</div></a></td>
               </tr>
+        {% endfor %}
       </tbody>
     </table>
 

@@ -6,7 +6,7 @@ $(document).ready(function(e) {
       	$.ajax({
   			url: "/_assign",
   			context: document.body,
-  			data: { netid: "jaevans" }
+  			data: { netid: $('#netid').text(), id: clickButton.parent().attr('id')}
 	  	}).done(function(data) {
   			clickButton.css("display", "none");
   			clickButton.parent().text(data);

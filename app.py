@@ -19,7 +19,7 @@ app.config.update(
 # print Course.query.all()
 Base = declarative_base()
 
-class Assignment:
+class Assignment2:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
         self.course = course
@@ -156,9 +156,11 @@ def account():
 
     session['ticket_account'] = ticket
     netid = isLoggedIn(ticket, "account")
+    roles = makeRoles(netid)
+
     if netid is "0":
         return redirect('/')
-    return render_template('account.html', netid=netid)
+    return render_template('account.html', roles=roles, netid=netid)
 
 @app.route("/viewer")
 def submitted():
@@ -221,10 +223,19 @@ def submitted():
 def assign_assignment():
     #id = request.args.get('id')
     #netid = request.args.get('netid')
-    return request.args.get('netid')
 
-    # if assignment is assigned, return false-(netid of grader)
-    # if assignment is not assigned, assign to netid and return true-(netid)
+    assignID = int(request.args.get('id'))
+    netid = request.args.get('netid')
+    assign = Assignment.query.filter_by(netid = netid).first()
+    return assign.id
+    # if assign.grader is None:
+    #     assign.addGrader(netid)
+    #     # db.session.delete(assign)
+    #     # db.session.add(assign)
+    #     db.session.commit()
+    #     return assignID + " " + assign.id
+    #else:
+     #   return assign.grader.netid
 
 @app.route("/grader")
 def grader():
@@ -266,9 +277,9 @@ def grader():
     assignments_form = []
     for item in assignments:
         if item.grader is None:
-            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
+            assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
         elif item.grader.netid == netid:
-            assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+            assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -280,10 +291,13 @@ def grader():
         if item.name not in assignment_names:
             assignment_names.append(item.name)
 
-    graders = []
+    graders = set()
     for item in assignments_form:
         if item.grader not in assignment_names:
-            graders.append(item.grader)
+            if item.grader == button_html:
+                graders.add("None")
+            else: 
+                graders.add(item.grader)
 
     roles = makeRoles(netid)
     if (roles.count("grader") != 0):
@@ -331,7 +345,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+        assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -361,9 +375,6 @@ def admin():
     if netid is "0":
         return redirect('/')
 
-    # if isAdmin(session['username']) is False:
-    #     return redirect('/')
-
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
@@ -389,7 +400,16 @@ def admin_students():
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    return render_template('admin_students.html', netid=session['username'], roles = roles)
+
+    students_db = Student.query.all()
+
+    studentnetid = []
+    names = []
+    for student in students_db:
+        studentnetid.append(student.netid)
+        names.append(student.firstname + " " + student.lastname)
+
+    return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=session['username'], roles = roles)
 
 @app.route("/admin/graders")
 def admin_graders():
@@ -410,7 +430,25 @@ def admin_graders():
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    return render_template('admin_graders.html', netid=session['username'], roles = roles)
+
+    graders = Grader.query.all()
+
+    gradernetid = []
+    assignments = []
+    for grader in graders:
+        gradernetid.append(grader.netid)
+        assignments.append(Assignment.query.filter_by(grader_id=grader.netid).first())
+    assignment_db = Assignment.query.all()
+    allassignments = []
+    for assignment in assignment_db:
+        if assignment.name not in allassignments:
+            allassignments.append(name)
+
+    # names = []
+    # for name in graders:
+    #     names.append(graders.firstname + " " + graders.lastname)
+
+    return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route("/admin/assignments")
 def admin_admins():
@@ -431,7 +469,18 @@ def admin_admins():
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    return render_template('admin_admins.html', netid=session['username'], roles = roles)
+
+    assignment_db = Assignment.query.all()
+
+    assignments = []
+    courses = []
+    for assignment in assignment_db:
+        if assignment.name not in assignments:
+            assignments.append(assignment.name)
+        if assignment.courseid not in courses:
+            courses.append(assignment.courseid)
+
+    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles)
 
 @app.route("/logout")
 def logout():

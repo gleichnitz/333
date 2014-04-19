@@ -1,9 +1,6 @@
 <!doctype html>
 <html>
 
-<div id="wholepage">
-
-<div id="header">
 <head lang="en">
 	{% block head %}
 	<meta charset="utf-8">
@@ -33,9 +30,6 @@
     </script>
     {% endblock %}
 </head>
-</div><!-- end header div -->
-
-<div id="main">
 
 <body style="background-color: white;">
 	<div style="background-color: black;" class="navbar navbar-fixed-top" data-activeslide="1">
@@ -56,9 +50,6 @@
     <li role="presentation" class="divider"></li>
     <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
   </ul>
-</div>
-        </div>
-        </div>
 			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 				<span class="icon-bar"></span>
@@ -80,19 +71,6 @@
 	{% block body %}{% endblock %}    
 
 </body>
-</div> <!-- ends main div -->
-
-<div id=footer>
-{% block footer %}
-<footer>
-        <div class="copyright2">
-            <h5> © code<font color="red">P</font>ost, 2014</h5>
-        </div>
-</footer>
-{% endblock %}
-</div> <!-- ends footer div -->
-
-</div>  <!-- ends whole page div -->
 
 <!-- SCRIPTS -->
 </html>

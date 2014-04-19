@@ -720,6 +720,8 @@ pre code {
   border: 0;
 }
 
+/*
+
 #wholepage {
   min-height:100%;
   position:relative;
@@ -730,7 +732,7 @@ pre code {
   min-height: 100%;
 }
 
-/*#header {
+#header {
   padding:10px;
 }
 

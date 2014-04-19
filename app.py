@@ -28,7 +28,8 @@ def assign_assignment():
     test = Assignment.query.all()
 
     try: 
-        test2 = test.id
+        for item in test:
+            test2 = item.id
     except:
         return traceback.format_exc()
 

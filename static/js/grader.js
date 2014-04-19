@@ -11,18 +11,34 @@ $(document).ready(function(e) {
 		var clickButton = $(this);
 		var buttonType = clickButton.text()
 
-      	$.ajax({
-  			url: "/_assign",
-  			context: document.body,
-  			data: { netid: $('#netid').text(), id: clickButton.parent().attr('id')}
-	  	}).done(function(data) {
-	  		if (data == "success") {
-	  			clickButton.text("Release");
-	  			// Update grader field
-	  		} else {
-	  			clickButton.parent().parent().parent().css('display', 'none')
-	  		}
-	  	});
+		if (buttonType == "Claim") {
+	      	$.ajax({
+	  			url: "/_assign",
+	  			context: document.body,
+	  			data: { netid: $('#netid').text(), id: clickButton.parent().attr('id')}
+		  	}).done(function(data) {
+		  		if (data == "success") {
+		  			clickButton.text("Release");
+		  			// Update grader field
+		  		} else {
+		  			clickButton.parent().parent().parent().css('display', 'none')
+		  		}
+		  	});
+		} else {
+	      	$.ajax({
+	  			url: "/_release",
+	  			context: document.body,
+	  			data: { netid: $('#netid').text(), id: clickButton.parent().attr('id')}
+		  	}).done(function(data) {
+		  		if (data == "success") {
+		  			clickButton.text("Claim");
+		  			// Update grader field
+		  		} else {
+		  			clickButton.parent().parent().parent().css('display', 'none')
+		  		}
+		  	});			
+		}
+
 	});
 
 });

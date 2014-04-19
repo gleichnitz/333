@@ -42,6 +42,26 @@ def assign_assignment():
                 else:
                     return "failure"
 
+@app.route('/_assign')
+def assign_assignment():
+
+    assignID = request.args.get('id')
+    netid = str(request.args.get('netid')).strip()
+    students = Student.query.all()
+
+    for item in students:
+        assignments = item.assignments.all()
+        for entry in assignments:
+            if entry.id == int(assignID):
+                entry.grader = None
+                db.session.add(entry)
+                db.session.commit()
+                return "success"
+
+    return "failure"
+
+
+
 
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):

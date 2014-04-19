@@ -24,9 +24,13 @@ def assign_assignment():
 
     assignID = request.args.get('id', 0)
     netid = request.args.get('netid', 0)
-    test = Assignment.query.all()
+    try:
+        test = Assignment.query.all().first()
+    except:
+        return except
 
-    return "ugh"
+    return "success"
+    
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

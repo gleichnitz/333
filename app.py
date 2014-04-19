@@ -30,10 +30,14 @@ def assign_assignment():
     try: 
         for item in test:
             test2 = item.id
+        try:
+            return test2
+        except:
+            traceback.format_exc()
     except:
         return traceback.format_exc()
 
-    return test2
+    return "success"
     
     #return assign
     # if assign.grader is None:

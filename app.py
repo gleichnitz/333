@@ -27,6 +27,14 @@ def assign_assignment():
     netid = request.args.get('netid', 0)
     test = Assignment.query.all()
 
+    for item in test:
+        if item.id == assignID:
+            if item.grader is None:
+                returnVal = "success"
+            else:
+                returnVal = "failure"
+            break
+
     if test is None:
         return "fail"
     else:
@@ -35,7 +43,7 @@ def assign_assignment():
         except: 
             return traceback.format_exc()
 
-    return str(test2)
+    return "" + test2
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

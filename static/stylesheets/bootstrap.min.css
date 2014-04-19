@@ -4840,3 +4840,7 @@ td.visible-print {
     display: none !important;
   }
 }
+
+#deleteassignment:hover {
+  color:red !important;
+}

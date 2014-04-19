@@ -26,7 +26,7 @@ def assign_assignment():
     netid = request.args.get('netid')
     test = Assignment.query.all().first()
 
-    return jsonify(test)
+    return jsonify(returnVal = test)
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

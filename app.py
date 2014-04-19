@@ -282,15 +282,13 @@ def grader():
         if item.name not in assignment_names:
             assignment_names.append(item.name)
 
-    graders = []
+    graders = set()
     for item in assignments_form:
         if item.grader not in assignment_names:
             if item.grader == button_html:
-                graders.append("None")
+                graders.add("None")
             else: 
-                graders.append(item.grader)
-
-    graders.append(len(graders))
+                graders.add(item.grader)
 
     roles = makeRoles(netid)
     if (roles.count("grader") != 0):

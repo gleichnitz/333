@@ -42,7 +42,7 @@ def assign_assignment():
                 else:
                     return "failure"
 
-@app.route('/_assign')
+@app.route('/_release')
 def assign_assignment():
 
     assignID = request.args.get('id')

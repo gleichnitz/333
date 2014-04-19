@@ -730,14 +730,14 @@ pre code {
   min-height: 100%;
 }
 
-#header {
+/*#header {
   padding:10px;
 }
 
 #main {
   padding:10px;
   padding-bottom:60px;   /* Height of the footer */
-}
+} 
 
 #footer {
    position:absolute;
@@ -745,7 +745,7 @@ pre code {
    width:100%;
    height:60px;   /* Height of the footer */
    background:#6cf;
-}
+}*/
 
 body:before {
   content:"";
@@ -757,7 +757,7 @@ body:before {
 
 .copyright2 {
   text-align: center;
-  background: #999999;
+  background: #7E7E7E;
   width:100%;
 }
 

@@ -146,13 +146,13 @@ def makeRoles(netid):
     return roles
 
 
-@app.route('/annotations/create', method = ['POST'])
-def create():
-    if request.json is not None:
-        return request.json
-    else:
-        return json.dumps('No JSON payload sent. Annotation not created.',
-                       status=400)
+# @app.route('/annotations/create', method = ['POST'])
+# def create():
+#     if request.json is not None:
+#         return request.json
+#     else:
+#         return json.dumps('No JSON payload sent. Annotation not created.',
+#                        status=400)
 @app.route('/login')
 def login():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login?dest=' + request.args.get('dest'))

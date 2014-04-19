@@ -4,6 +4,7 @@ from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 from database import *
+from flask import jsonify
 import urllib2
 from xml.etree import ElementTree
 import cgi
@@ -145,6 +146,14 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
+
+@app.route('/annotations/create', method = ['POST']):
+def create():
+    if request.json is not None:
+        return request.json
+    else:
+        return jsonify('No JSON payload sent. Annotation not created.',
+                       status=400)
 @app.route('/login')
 def login():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login?dest=' + request.args.get('dest'))

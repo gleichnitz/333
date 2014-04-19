@@ -374,18 +374,6 @@ def admin():
     if netid is "0":
         return redirect('/')
 
-    course = cos333
-    assignments = course.assignments.all()
-
-    assignments_form = []
-    for item in assignments:
-        assignments_form.append(Assignment(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
-
-    assignment_names = []
-    for item in assignments_form:
-        if item.name not in assignment_names:
-            assignment_names.append(item.name)
-
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

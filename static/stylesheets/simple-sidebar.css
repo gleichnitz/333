@@ -2,8 +2,7 @@
   color: black;
 }
 
-.btn:active,
-.btn.active {
+.btn:active{
   outline: 0 !important;
   outline-color: initial;
   outline-style: initial;

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, jsonify
 from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
@@ -8,6 +8,7 @@ import urllib2
 from xml.etree import ElementTree
 import cgi
 import pickle
+import traceback
 
 # initialization
 app = Flask(__name__)
@@ -19,7 +20,54 @@ app.config.update(
 # print Course.query.all()
 Base = declarative_base()
 
+<<<<<<< HEAD
 class Assignment2:
+=======
+@app.route('/_assign')
+def assign_assignment():
+
+    assignID = request.args.get('id')
+    netid = str(request.args.get('netid')).strip()
+    students = Student.query.all()
+
+    for item in students:
+        assignments = item.assignments.all()
+        for entry in assignments:
+            if entry.id == int(assignID):
+                if entry.grader is None:
+                    try:
+                        entry.grader = Grader.query.filter_by(netid = netid).first()
+                        db.session.add(entry)
+                        db.session.commit()
+                        return "success"
+                    except:
+                        return traceback.format_exc()
+                else:
+                    return "failure"
+
+@app.route('/_release')
+def release_assignment():
+
+    assignID = request.args.get('id')
+    netid = str(request.args.get('netid')).strip()
+    students = Student.query.all()
+
+    for item in students:
+        assignments = item.assignments.all()
+        for entry in assignments:
+            if entry.id == int(assignID):
+                entry.grader = None
+                db.session.add(entry)
+                db.session.commit()
+                return "success"
+
+    return "failure"
+
+
+
+
+class AssignmentClass:
+>>>>>>> 4288fff3be7301f328cab5388e68a17cc4713b0f
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
         self.course = course
@@ -39,6 +87,11 @@ class File:
             self.ext = ""
         self.code = code
         self.grade = grade
+
+class StudentClass:
+    def __init__(self, name, netid):
+        self.name = name
+        self.netid = netid
 
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
@@ -219,6 +272,7 @@ def submitted():
     # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', netid = netid, assignment = files, title=title)
 
+<<<<<<< HEAD
 @app.route('/_assign')
 def assign_assignment():
     #id = request.args.get('id')
@@ -237,6 +291,8 @@ def assign_assignment():
     #else:
      #   return assign.grader.netid
 
+=======
+>>>>>>> 4288fff3be7301f328cab5388e68a17cc4713b0f
 @app.route("/grader")
 def grader():
     try:
@@ -273,13 +329,20 @@ def grader():
     assignments = course.assignments.all()
 
     button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Claim</button>"
+    release_html = "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Release</button>"
 
     assignments_form = []
     for item in assignments:
         if item.grader is None:
+<<<<<<< HEAD
             assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", button_html, item.student.netid))
         elif item.grader.netid == netid:
             assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+=======
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "None", item.student.netid))
+        elif item.grader.netid == netid:
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+>>>>>>> 4288fff3be7301f328cab5388e68a17cc4713b0f
 
     classes = []
     for item in assignments_form:
@@ -345,7 +408,11 @@ def student():
 
     assignments_form = []
     for item in assignments:
+<<<<<<< HEAD
         assignments_form.append(Assignment2(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+=======
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+>>>>>>> 4288fff3be7301f328cab5388e68a17cc4713b0f
 
     classes = []
     for item in assignments_form:
@@ -379,7 +446,7 @@ def admin():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    return render_template('admin2.html', netid=session['username'], roles = roles)
+    return render_template('admin2.html', netid=netid, roles = roles)
 
 @app.route("/admin/students")
 def admin_students():
@@ -403,6 +470,7 @@ def admin_students():
 
     students_db = Student.query.all()
 
+<<<<<<< HEAD
     studentnetid = []
     names = []
     for student in students_db:
@@ -410,6 +478,14 @@ def admin_students():
         names.append(student.firstname + " " + student.lastname)
 
     return render_template('admin_students.html', names=names, studentnetid=studentnetid, netid=session['username'], roles = roles)
+=======
+    students_form = []
+
+    for student in students_db:
+        students_form.append(StudentClass("no name", student.netid))
+
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles)
+>>>>>>> 4288fff3be7301f328cab5388e68a17cc4713b0f
 
 @app.route("/admin/graders")
 def admin_graders():

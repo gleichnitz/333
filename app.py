@@ -26,8 +26,6 @@ def assign_assignment():
     netid = request.args.get('netid')
     assign = Assignment.query.all()
 
-    return assign
-
     for item in assign:
         if item.id == assignID:
             if item.grader is None:

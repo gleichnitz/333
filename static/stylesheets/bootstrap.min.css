@@ -720,6 +720,11 @@ pre code {
   border: 0;
 }
 
+#wholepage {
+  min-height:100%;
+  position:relative;
+}
+
 #wrap {
   min-height: 100%;
 }

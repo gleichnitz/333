@@ -229,9 +229,9 @@ def assign_assignment():
     assign = Assignment.query.filter_by(id = assignID).first()
     db.session.delete(assign)
 
-    assign.addGrader(netid)
-    db.session.add(assign)
-    db.session.commit()
+    #assign.addGrader(netid)
+    #db.session.add(assign)
+    #db.session.commit()
 
     return request.args.get('id')
 

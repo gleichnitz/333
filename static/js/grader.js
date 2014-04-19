@@ -1,8 +1,8 @@
 $(document).ready(function(e) {
 
 	$('td > div > .btn').each(function() {
-		var graderType = $(this).closest('tr').children('.grader_row').text();
-		if (graderType != "None") {
+		var graderType = $(this).closest('tr').children('.grader_row').css("background-color", "red");
+		if (graderType != "None ") {
 			$(this).text("Release");
 		}
 	});

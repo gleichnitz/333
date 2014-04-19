@@ -128,8 +128,8 @@
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
-                <td><div id="{{ item.id }}" style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
-                <td><div style="height:100%;width:100%"><button type="button" class="btn" style="color: black; background-color: white; border: 1px solid black;">Claim</button></div></td>
+                <td><div style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
+                <td><div id="{{ item.id }}" style="height:100%;width:100%"><button type="button" class="btn" style="color: black; background-color: white; border: 1px solid black;">Claim</button></div></td>
             </tr>
         {% endfor %}
         </tbody>

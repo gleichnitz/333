@@ -290,8 +290,6 @@ def grader():
             else: 
                 graders.add(item.grader)
 
-    graders.append(len(graders))
-
     roles = makeRoles(netid)
     if (roles.count("grader") != 0):
         roles.remove("grader")

@@ -223,6 +223,16 @@ def submitted():
 def assign_assignment():
     #id = request.args.get('id')
     #netid = request.args.get('netid')
+
+    assignID = request.args.get('id')
+    netid = request.args.get('netid')
+    assign = Assignment.query.filter_by(id = assignID).first()
+    db.session.delete(assign)
+
+    assign.addGrader(netid)
+    db.session.add(assign)
+    db.session.commit()
+
     return request.args.get('id')
 
     # if assignment is assigned, return false-(netid of grader)

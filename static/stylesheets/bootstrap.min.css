@@ -723,6 +723,7 @@ pre code {
 #wholepage {
   min-height:100%;
   position:relative;
+  height:100%;
 }
 
 #wrap {

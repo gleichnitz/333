@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory, jsonify
-from flask import request, redirect, session
+from flask import Response, request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 from database import *
@@ -151,7 +151,7 @@ def jsonify(obj, *args, **kwargs):
     res = json.dumps(obj, indent=None if request.is_xhr else 2)
     return Response(res, mimetype='application/json', *args, **kwargs)
 
-@app.route('/annotations/create')
+@app.route('/annotations/create', methods = ['POST'])
 def create():
     if request.json is not None:
         return request.json

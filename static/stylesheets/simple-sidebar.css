@@ -2,15 +2,6 @@
   color: black;
 }
 
-.btn:active{
-  outline: 0 !important;
-  outline-color: initial;
-  outline-style: initial;
-  outline-width: 0px;
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-}
-
 #wrapper {
   padding-left: 250px;
   transition: all 0.4s ease 0s;

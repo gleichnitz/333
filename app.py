@@ -27,19 +27,11 @@ def assign_assignment():
     netid = request.args.get('netid', 0)
     test = Assignment.query.all()
 
-    IDlist = []
+    if test is None:
+        return "fail"
+    else:
+        return "success"
 
-    try: 
-        for item in test:
-            IDlist.append(item.id)
-    except:
-        return traceback.format_exc()
-
-    try:
-        return len(IDlist)
-    except:
-        return traceback.format_exc()
-        
     #return assign
     # if assign.grader is None:
     #     assign.addGrader(netid)

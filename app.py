@@ -85,9 +85,9 @@ class File:
         self.grade = grade
 
 class StudentClass:
-    def __init__(self, name, netid,):
-    self.name = name
-    self.netid = netid
+    def __init__(self, name, netid):
+        self.name = name
+        self.netid = netid
 
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()

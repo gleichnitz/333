@@ -144,7 +144,21 @@ def index3():
 
 @app.route("/account")
 def account():
-    return render_template('account.html')
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "account")
+
+    if ticket is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "account")
+    if 'ticket_account' in session and ticket == session['ticket_account']:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "account")
+
+    session['ticket_account'] = ticket
+    netid = isLoggedIn(ticket, "account")
+    if netid is "0":
+        return redirect('/')
+    return render_template('account.html', netid=netid)
 
 @app.route("/viewer")
 def submitted():

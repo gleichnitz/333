@@ -4,7 +4,7 @@ from flask import request, redirect, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 from database import *
-from flask import jsonify
+# from flask import jsonify
 import urllib2
 from xml.etree import ElementTree
 import cgi

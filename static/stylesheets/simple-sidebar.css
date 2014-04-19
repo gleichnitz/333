@@ -4,6 +4,7 @@
 
 #wrapper {
   padding-left: 250px;
+  margin-top: 40px;
   transition: all 0.4s ease 0s;
 }
 
@@ -26,7 +27,6 @@
 
 #page-content-wrapper {
   width: 100%;
-  margin-top: 40px;
 }
 
 .sidebar-nav {

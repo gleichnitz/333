@@ -19,6 +19,25 @@ app.config.update(
 # print Course.query.all()
 Base = declarative_base()
 
+@app.route('/_assign')
+def assign_assignment():
+    #id = request.args.get('id')
+    #netid = request.args.get('netid')
+
+    #assignID = request.args.get('id')
+    #netid = request.args.get('netid')
+    assign = Assignment.query.all()
+    return assign
+    # if assign.grader is None:
+    #     assign.addGrader(netid)
+    #     # db.session.delete(assign)
+    #     # db.session.add(assign)
+    #     db.session.commit()
+    #     return assignID + " " + assign.id
+    #else:
+     #   return assign.grader.netid
+
+
 class Assignment2:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
@@ -218,24 +237,6 @@ def submitted():
 
     # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', netid = netid, assignment = files, title=title)
-
-@app.route('/_assign')
-def assign_assignment():
-    #id = request.args.get('id')
-    #netid = request.args.get('netid')
-
-    assignID = request.args.get('id')
-    netid = request.args.get('netid')
-    assign = Assignment.query.all()
-    return assign
-    # if assign.grader is None:
-    #     assign.addGrader(netid)
-    #     # db.session.delete(assign)
-    #     # db.session.add(assign)
-    #     db.session.commit()
-    #     return assignID + " " + assign.id
-    #else:
-     #   return assign.grader.netid
 
 @app.route("/grader")
 def grader():

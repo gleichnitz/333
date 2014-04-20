@@ -62,8 +62,6 @@ def release_assignment():
     return "failure"
 
 
-
-
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

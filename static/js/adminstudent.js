@@ -8,4 +8,9 @@ $(document).ready(function() {
 		$('.modal').modal('toggle');
 	});
 
+	$('#manual-submit-modal').click(function() {
+		var output = $(this).parent().children('input').val();
+		console.log(output);
+	});
+
 });

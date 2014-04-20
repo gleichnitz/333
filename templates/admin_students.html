@@ -3,7 +3,7 @@
 {% block head %}
 {{ super() }}
 <script type="text/javascript" src="../static/js/adminstudent.js"></script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
   $(document).ready(function () {
       $('.btn-large').active(function () {
           $(this).css('outline','0');
@@ -12,7 +12,7 @@
           console.log("hi")
       });
   });
-</script>
+</script> -->
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
 <script>
         $(document).ready(function($)
@@ -24,11 +24,11 @@
 
 {% block content %}
     {{super()}}
-    <div >
+    <div style="margin-right: 10%;">
       <div id="add_buttons">
 	       <a href="#" class="btn btn-large"><i class="icon-white icon-plus"></i> Add a Student</a>
       </div>
-    <table id="admin-student-table" class="table table-hover" style="background-color: transparent; margin-top: 15px;">
+    <table id="admin-student-table" class="table table-hover" style="background-color: transparent; margin-top: 15px; margin-right: 10%;">
     <thead>
       <tr>
           <th class="header">
@@ -46,17 +46,8 @@
       </th>
       </thead>
       <tbody>
-<<<<<<< HEAD
-        {% for name in names %}
-              <tr><td><a href="#"><div style="height:100%;width:100%">-------- ---------</div></a></td>
-        {% endfor %}
-        {% for student in studentnetid %}
-              <td><a href="#"><div style="height:100%;width:100%">{{student}}</div></a></td>
-              </tr>
-=======
         {% for item in students %}
               <tr><td><a href="#"><div style="height:100%;width:100%">{{ item.name }}</div></a></td><td><a href="#"><div style="height:100%;width:100%">{{ item.netid }}</div></a></td></tr>
->>>>>>> 4288fff3be7301f328cab5388e68a17cc4713b0f
         {% endfor %}
       </tbody>
     </table>
@@ -74,6 +65,8 @@
               <div class="form-group">
                 <label for="exampleInputEmail1">Manual input</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
+                <br>
+                <button type="button" id="manual-submit-modal" class="btn">Submit</button>
               </div>
               <br>
             </form>
@@ -81,6 +74,8 @@
               <div class="form-group">
                 <label for="exampleInputFile">File input</label>
                 <input type="file" id="exampleInputFile">
+                <br>
+                <button type="button" id="file-submit-modal" class="btn">Upload</button>
                 <p class="help-block">Make sure your file is .txt, one netid per line.</p>
             </form>
         </div>

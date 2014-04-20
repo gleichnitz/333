@@ -69,7 +69,7 @@ def add_student():
     netid = str(request.args.get('netid'))
     if netid.isalnum() is False:
         return "false"
-    
+
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
@@ -174,7 +174,7 @@ def create():
         return jsonify('No JSON payload sent. Annotation not created.',
                        status=400)
 
-@app.route('/store')
+@app.route('/store', methods = ['POST'])
 def store():
     return "hellow"
 

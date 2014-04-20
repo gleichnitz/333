@@ -14,8 +14,6 @@ $(document).ready(function() {
 
 	$('#assignment-submit-select').change(function() {
 		console.log($("#assignment-submit-select option:selected").text());
-		$('#code-upload-area').append('<label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">');
 	});
 
 	$('#manual-submit-modal-student').click(function() {

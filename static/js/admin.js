@@ -12,6 +12,10 @@ $(document).ready(function() {
 		$('#modal-upload').modal('toggle');
 	});
 
+	$('#assignment-submit-select').click(function() {
+		console.log($("#assignment-submit-select option:selected").text());
+	});
+
 	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();

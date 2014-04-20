@@ -25,6 +25,31 @@ $(document).ready(function() {
 			thisClone.css("display", "initial");
 			thisClone.children('label').text("Test");
 		}
+	});
+
+	$('#file-submit-modal').click(function() {
+		var files = new Array();
+		var i = 0;
+		$(#code-upload-landing).children('input').each(function() {
+			files[i++] = $(this).files;
+		});
+
+		var data = new FormData();
+		$.each(files, function(key, value) {
+			data.append(key, value);
+		});
+
+		 $.ajax({
+	        url: '/_upload_student_files',
+	        type: 'POST',
+	        data: data,
+	        cache: false,
+	        dataType: 'json',
+	        processData: false, // Don't process the files
+	        contentType: false
+	      }).done(function(input) {
+	      	console.log('upload complete');
+	      });
 
 	});
 

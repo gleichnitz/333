@@ -100,17 +100,33 @@ def add_grader():
 
     return "true"
 
-@app.route('/_add_assignment')
-def add_assignment():
+@app.route('/_delete_student')
+def remove_student():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
 
-    name = str(request.args.get('name'))
+    student = Student.query.filter_by(netid=netid).first();
+    if student is None:
+        return "true"
 
-    assignment = Assignment.query.filter_by(name=name).first();
-    if assignment is None:
-        cos_333 = Course.query.filter_by(name= 'cos333').first()
-        # newAssignment = Assignment(cos_333, "test", name, )
-        # db.session.add(newGrader)
-        # db.session.commit()
+    db.session.delete(student)                
+    db.session.commit()
+
+    return "true"
+
+@app.route('/_delete_grader')
+def remove_grader():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        return "true"
+
+    db.session.delete(grader)                
+    db.session.commit()
 
     return "true"
 

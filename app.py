@@ -166,18 +166,10 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
-
-@app.route('/store/', methods = ['GET', 'POST'])
-def store():
-    array = []
-    if request.method == 'GET':
-        return jsonify(array)
-    else:
-        return None
-
 @app.route('/store', methods = ['POST'])
 def store():
-    return "hellow"
+    array = []
+    return jsonify(array)
 
 
 @app.route('/login')

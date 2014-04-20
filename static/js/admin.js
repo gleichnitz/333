@@ -23,6 +23,7 @@ $(document).ready(function() {
 			var thisClone = $("#code-upload-sample").clone();
 			thisClone.appendTo("#code-upload-landing");
 			thisClone.css("display", "initial");
+			thisClone.children('label').text("Test");
 		}
 
 	});

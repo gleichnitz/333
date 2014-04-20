@@ -253,7 +253,6 @@ def submitted():
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
 
-    assignment_active = Assignment(0,0,0,0)
     for item in assignments:
         assignment_active = 0
         if int(assignmentID) == item.id:

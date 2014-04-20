@@ -95,6 +95,9 @@ $(document).ready(function() {
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
+		  			console.log("true");
+		  		} else {
+		  			console.log("false");
 		  		}
 		});
 	});

@@ -94,6 +94,6 @@ $(document).ready(function() {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
 		  		}
-		});
 	});
+
 });

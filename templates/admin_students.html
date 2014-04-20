@@ -23,6 +23,7 @@
 {% endblock %}
 
 {% block content %}
+  <body id="admin_students">
     {{super()}}
     <div style="margin-right: 10%;">
       <div id="add_buttons">
@@ -77,6 +78,7 @@
                 <br>
                 <button type="button" id="file-submit-modal" class="btn">Upload</button>
                 <p class="help-block">Make sure your file is .txt, one netid per line.</p>
+              </div>
             </form>
         </div>
         <div class="modal-footer">
@@ -85,5 +87,5 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
+  </body>
 {% endblock %}

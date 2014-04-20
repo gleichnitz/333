@@ -48,6 +48,7 @@ $(document).ready(function() {
 		  		}
 		  	});
 	});
+
 	$('#manual-submit-modal-assignment').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
@@ -67,6 +68,32 @@ $(document).ready(function() {
 		  			console.log(data);
 		  		}
 		  	});
+	});
+
+	$('.delete-buttons-student').click(function () {
+		var netid = $(this).closest('tr').children('.netid-row').text();
+		var thisButton = $(this);
+	      	$.ajax({
+	  			url: "/_delete_student",
+	  			context: document.body,
+	  			data: { netid: netid }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+		  			thisButton.closest('tr').css('display','none');
+		  		}
+	});
+
+	$('.delete-buttons-grader').click(function () {
+		var netid = $(this).closest('tr').children('.netid-row').text();
+		var thisButton = $(this);
+	      	$.ajax({
+	  			url: "/_delete_grader",
+	  			context: document.body,
+	  			data: { netid: netid }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+		  			thisButton.closest('tr').css('display','none');
+		  		}
 	});
 
 });

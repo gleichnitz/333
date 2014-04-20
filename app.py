@@ -76,8 +76,13 @@ def add_student():
         newStudent = Student("name", "test", netid, cos_333)
         db.session.add(newStudent)
         db.session.commit()
-
     return "true"
+
+    newStudent = Student()
+    newStudent.netid = netid
+    newStudent.name = ""
+    db.session.add(newStudent)
+    db.session.commit()
 
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):

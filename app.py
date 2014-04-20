@@ -61,6 +61,13 @@ def release_assignment():
 
     return "failure"
 
+@app.route('/_addStudent')
+def add_student():
+
+@app.route('/_addGrader')
+def add_grader():
+
+
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

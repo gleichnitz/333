@@ -14,6 +14,8 @@ $(document).ready(function() {
 
 	$('#assignment-submit-select').change(function() {
 		console.log($("#assignment-submit-select option:selected").text());
+		var assignmentSelected = $("#assignment-submit-select option:selected").text();
+		
 	});
 
 	$('#manual-submit-modal-student').click(function() {

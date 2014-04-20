@@ -172,7 +172,7 @@ def store():
     if request.method == 'GET':
         return jsonify(array)
     else:
-        return
+        return None
 
 
 @app.route('/login')

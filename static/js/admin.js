@@ -15,10 +15,11 @@ $(document).ready(function() {
 	$('#assignment-submit-select').change(function() {
 		console.log($("#assignment-submit-select option:selected").text());
 		var assignmentSelected = $("#assignment-submit-select option:selected").text();
-		
+		var numToUpload = $("#assignment-submit-select option:selected").attr('id');
+		console.log(numToUpload);
 	});
 
-	$('#manual-submit-modal-student').click(function() {
+	$('#num-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({

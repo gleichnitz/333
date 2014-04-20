@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 
 def addAssignment(course_name, student_netid, name, files):
     new_assignment = Assignment(course_name, student_netid, name)
-    new_assignment.date = datetime.today()
+    new_assignment.sub_date = datetime.today()
     new_assignment.AddFiles(files)
     db.session.add(new_assignment)
     db.session.commit()
@@ -146,5 +146,5 @@ class Assignment(db.Model):
     self.grader = Grader.query.filter_by(netid = grader_netid).first()
 
   def __repr__(self):
-    return 'Assignment {} {} {} {}'.format(self.course.name, self.student.netid, self.name, self.date)
+    return 'Assignment {} {} {} {}'.format(self.course.name, self.student.netid, self.name, self.sub_date)
 

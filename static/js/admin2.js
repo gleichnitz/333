@@ -89,6 +89,7 @@ $(document).ready(function() {
 
 	$('.delete-buttons-grader').click(function () {
 		var netid = $(this).closest('tr').children('.netid-row').text();
+		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({
 	  			url: "/_delete_grader",

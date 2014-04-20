@@ -36,7 +36,7 @@ $(document).ready(function() {
 	      	$.ajax({
 	  			url: "/_add_grader",
 	  			context: document.body,
-	  			data: { name: output }
+	  			data: { netid: output }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			inputfieldParent.removeClass('has-error');

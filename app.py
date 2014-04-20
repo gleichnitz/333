@@ -95,7 +95,7 @@ def add_grader():
     if student is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
         newGrader = Grader(netid, cos_333)
-        db.session.add(newStudent)
+        db.session.add(newGrader)
         db.session.commit()
 
     return "true"

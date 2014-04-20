@@ -1,6 +1,8 @@
 import os
 from flask import Flask, render_template, send_from_directory, jsonify
 from flask import Response, request, redirect, session
+from flask import Blueprint
+from flask import g, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 from database import *
@@ -171,6 +173,10 @@ def create():
     else:
         return jsonify('No JSON payload sent. Annotation not created.',
                        status=400)
+
+@app.route('/store')
+def store():
+    return "hellow"
 
 
 @app.route('/login')

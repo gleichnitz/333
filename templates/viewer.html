@@ -7,7 +7,7 @@
   <script type="text/javascript" src="../static/js/shBrushJava.js"></script>
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/shCoreDefault.css"/>
   <script type="text/javascript">
-    SyntaxHighlighter.defaults.toolbar = false; 
+    SyntaxHighlighter.defaults.toolbar = false;
     SyntaxHighlighter.all();
   </script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -17,7 +17,15 @@
   <script>
       jQuery(function ($) {
           {% for item in assignment %}
-            $('#{{ item.name }}').annotator();
+            var content = $('#{{ item.name }}').annotator();
+            content.annotator('addPlugin', 'Store', {
+              urls: {
+                create: '/store',
+                read: '/store/:id',
+                update: '/store/:id',
+                destroy: '/store/:id'
+              }
+            });
           {% endfor %}
       });
   </script>
@@ -25,7 +33,7 @@
 {% endblock %}
 
 {% block body %}
-  <div style="float: left; margin-top: 3.2em; margin-left: 6%;"> 
+  <div style="float: left; margin-top: 3.2em; margin-left: 6%;">
     <table class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 19%;">
     <tr><th>File</th><th>Grade</th></tr>
     {% for item in assignment %}

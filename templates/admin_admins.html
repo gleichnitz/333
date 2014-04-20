@@ -55,11 +55,11 @@
       <tbody>
       <tr>
         {% for assignment in assignments %}
-          <td><a href="#"><div style="height:100%;width:100%">{{assignment}}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">click here</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">5</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">7</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">4/20</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.due_date}}</div></a></td>
           <td><div class="btn-group" align="center">
                   <button id="deleteassignment" class="btn btn-default delete-buttons" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

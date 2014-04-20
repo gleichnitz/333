@@ -613,7 +613,7 @@ def admin_admins():
     courses = []
     for assignment in assignment_db:
         if assignment.master is True:
-            assignments.append(assignment.name)
+            assignments.append(assignment)
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 

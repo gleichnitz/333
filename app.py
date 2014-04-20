@@ -1,6 +1,8 @@
 import os
 from flask import Flask, render_template, send_from_directory, jsonify
-from flask import request, redirect, session
+from flask import Response, request, redirect, session
+from flask import Blueprint
+from flask import g, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 from database import *
@@ -9,6 +11,7 @@ from xml.etree import ElementTree
 import cgi
 import pickle
 import traceback
+import json
 
 # initialization
 app = Flask(__name__)
@@ -60,8 +63,21 @@ def release_assignment():
 
     return "failure"
 
+@app.route('/_add_student')
+def add_student():
 
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+    
+    student = Student.query.filter_by(netid=netid).first();
+    if student is None:
+        cos_333 = Course.query.filter_by(name= 'cos333').first()
+        newStudent = Student("name", "test", netid, cos_333)
+        db.session.add(newStudent)
+        db.session.commit()
 
+    return "true"
 
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
@@ -144,6 +160,24 @@ def makeRoles(netid):
     if isAdmin(netid):
         roles.append("admin")
     return roles
+
+
+def jsonify(obj, *args, **kwargs):
+    res = json.dumps(obj, indent=None if request.is_xhr else 2)
+    return Response(res, mimetype='application/json', *args, **kwargs)
+
+@app.route('/annotations/create', methods = ['POST'])
+def create():
+    if request.json is not None:
+        return request.json
+    else:
+        return jsonify('No JSON payload sent. Annotation not created.',
+                       status=400)
+
+@app.route('/store')
+def store():
+    return "hellow"
+
 
 @app.route('/login')
 def login():
@@ -238,6 +272,7 @@ def submitted():
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
 
+    assignment_active = 0
     for item in assignments:
         assignment_active = 0
         if int(assignmentID) == item.id:
@@ -328,7 +363,7 @@ def grader():
         if item.grader not in assignment_names:
             if item.grader == button_html:
                 graders.add("None")
-            else: 
+            else:
                 graders.add(item.grader)
 
     roles = makeRoles(netid)
@@ -457,7 +492,7 @@ def admin_graders():
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin/graders")
     if netid is "0":
-        return redirect('/')   
+        return redirect('/')
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

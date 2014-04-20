@@ -72,7 +72,8 @@ def add_student():
     if student is not None:
         return "true"
 
-    newStudent = Student("", "", netid, "cos333")
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    newStudent = Student("", "", netid, cos_333)
     db.session.add(newStudent)
     db.session.commit()
 

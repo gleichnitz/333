@@ -114,17 +114,15 @@ def add_assignment():
 
     return "true"
 
-@app.route('/_remove_student')
+@app.route('/_delete_student')
 def remove_student():
     netid = str(request.args.get('netid'))
     if netid.isalnum() is False:
         return "false"
 
     student = Student.query.filter_by(netid=netid).first();
-    if student is None:
-        cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newStudent = Student("name", "test", netid, cos_333)
-        db.session.add(newStudent)
+    if student is not None:
+        db.session.delete(student)                
         db.session.commit()
 
     return "true"

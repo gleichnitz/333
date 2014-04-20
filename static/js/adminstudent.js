@@ -19,10 +19,12 @@ $(document).ready(function() {
 		  		if (data == "true") {
 		  			inputfieldParent.removeClass('has-error');
 		  			inputfieldParent.addClass('has-success');
+		  			console.log(data);
 		  		}
 		  		else {
 		  			inputfieldParent.addClass('has-error');
 		  			inputfieldParent.removeClass('has-success');
+		  			console.log(data);
 		  		}
 		  	});
 	});

@@ -17,6 +17,13 @@ $(document).ready(function() {
 		var assignmentSelected = $("#assignment-submit-select option:selected").text();
 		var numToUpload = $("#assignment-submit-select option:selected").attr('id');
 		console.log(numToUpload);
+
+		for (var i = 0; i < numToUpload; i++) {
+			var thisClone = $("#code-upload-sample").clone();
+			thisClone.appendTo("#code-upload-landing");
+			thisClone.css("display", "initial");
+		}
+
 	});
 
 	$('#num-submit-modal-student').click(function() {

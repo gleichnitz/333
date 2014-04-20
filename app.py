@@ -162,7 +162,7 @@ def makeRoles(netid):
     return roles
 
 
-@app.route('/store', methods = ['POST'])
+@app.route('/store', methods = ['POST', 'GET'])
 def store():
     array = []
     return jsonify(array)

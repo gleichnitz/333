@@ -109,36 +109,6 @@ def add_assignment():
 
     return "true"
 
-@app.route('/_delete_student')
-def remove_student():
-    netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
-        return "false"
-
-    student = Student.query.filter_by(netid=netid).first();
-    if student is None:
-        return "true"
-
-    db.session.delete(student)                
-    db.session.commit()
-
-    return "true"
-
-@app.route('/_delete_grader')
-def remove_student():
-    netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
-        return "false"
-
-    grader = Grader.query.filter_by(netid=netid).first();
-    if grader is None:
-        return "true"
-
-    db.session.delete(grader)                
-    db.session.commit()
-
-    return "true"
-
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

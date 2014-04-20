@@ -28,6 +28,7 @@ $(document).ready(function() {
 	});
 
 	$('#file-submit-modal').click(function() {
+		console.log("test");
 		var files = new Array();
 		var i = 0;
 		$('#code-upload-landing').children('input').each(function() {

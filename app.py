@@ -508,7 +508,7 @@ def admin_graders():
     allassignments = []
     for assignment in assignment_db:
         if assignment.name not in allassignments:
-            allassignments.append(name)
+            allassignments.append(assignment.name)
 
     # names = []
     # for name in graders:

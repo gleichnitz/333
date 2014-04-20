@@ -162,7 +162,7 @@ def makeRoles(netid):
     return roles
 
 
-@app.route('/store', methods = ['POST', 'GET'])
+@app.route('/store', methods = ['GET', 'POST'])
 def store():
     array = []
     if request.method == 'GET':

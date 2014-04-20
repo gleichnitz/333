@@ -72,7 +72,7 @@ $(document).ready(function() {
 	});
 
 	$('.delete-buttons-student').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').children('div').text();
+		var netid = $(this).closest('tr').children('.netid-row').children('div');
 		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({
@@ -89,7 +89,7 @@ $(document).ready(function() {
 	});
 
 	$('.delete-buttons-grader').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').children('div').text();
+		var netid = $(this).closest('tr').children('.netid-row').children('div');
 		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({

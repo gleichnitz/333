@@ -4845,6 +4845,6 @@ td.visible-print {
   color:red !important;
 }
 
-body#admin_students a#sidebar-item {
-  background:#474747;
+body#admin_students li a#sidebar-item {
+  background:#474747 !important;
 }

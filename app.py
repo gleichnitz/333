@@ -83,6 +83,7 @@ def add_student():
 def add_grader():
 
     netid = str(request.args.get('netid'))
+    return netid
     if netid.isalnum() is False:
         return "false"
 

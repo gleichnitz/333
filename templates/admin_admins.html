@@ -7,7 +7,9 @@
   <script>
         $(document).ready(function($)
             {
-                $("#admin-admin-table").tablesorter();
+                $("#admin-admin-table").tablesorter() ({
+                  sortList: [4,0]
+                });
               });
   </script>
   {% endblock %}

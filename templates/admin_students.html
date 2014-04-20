@@ -46,17 +46,8 @@
       </th>
       </thead>
       <tbody>
-<<<<<<< HEAD
-        {% for name in names %}
-              <tr><td><a href="#"><div style="height:100%;width:100%">-------- ---------</div></a></td>
-        {% endfor %}
-        {% for student in studentnetid %}
-              <td><a href="#"><div style="height:100%;width:100%">{{student}}</div></a></td>
-              </tr>
-=======
         {% for item in students %}
               <tr><td><a href="#"><div style="height:100%;width:100%">{{ item.name }}</div></a></td><td><a href="#"><div style="height:100%;width:100%">{{ item.netid }}</div></a></td></tr>
->>>>>>> 4288fff3be7301f328cab5388e68a17cc4713b0f
         {% endfor %}
       </tbody>
     </table>

@@ -5,7 +5,11 @@ $(document).ready(function() {
 	});
 
 	$('#add_buttons').click(function() {
-		$('.modal').modal('toggle');
+		$('#modal-add').modal('toggle');
+	});
+
+	$('.upload-button').click(function() {
+		$('#modal-add').modal('toggle');
 	});
 
 	$('#manual-submit-modal-student').click(function() {

@@ -174,7 +174,7 @@ def create():
         return jsonify('No JSON payload sent. Annotation not created.',
                        status=400)
 
-@app.route('/', methods = ['POST'])
+@app.route('/store', methods = ['POST'])
 def store():
     return "hellow"
 

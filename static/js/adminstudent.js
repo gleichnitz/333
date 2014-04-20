@@ -8,4 +8,8 @@ $(document).ready(function() {
 		$('.modal').modal('toggle');
 	});
 
+	$('modal .btn').each(function() {
+		$('.modal').modal('toggle');
+	});
+
 });

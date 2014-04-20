@@ -127,6 +127,19 @@ def remove_student():
 
     return "true"
 
+@app.route('/_delete_grader')
+def remove_student():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is not None:
+        db.session.delete(grader)                
+        db.session.commit()
+
+    return "true"
+
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

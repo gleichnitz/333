@@ -38,9 +38,12 @@
  -->      {% for grader in gradernetid %}
           <tr><td><a href="#"><div style="height:100%;width:100%">no name</div></a></td>
               <td><a href="#"><div style="height:100%;width:100%">{{grader}}</div></a></td>
-              </tr>
-          {% endfor %}
-      </tbody>
+              <td><div class="btn-group">
+                  <button id="deletegrader" class="btn btn-default" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  </button>
+              </div></a></td>
+          </tr>
+     </tbody>
     </table>
 
     <div class="modal fade">

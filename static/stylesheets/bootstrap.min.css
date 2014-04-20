@@ -4841,7 +4841,7 @@ td.visible-print {
   }
 }
 
-#deleteassignment:hover {
+#delete:hover {
   color:red !important;
 }
 

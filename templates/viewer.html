@@ -20,10 +20,10 @@
             var content = $('#{{ item.name }}').annotator();
             content.annotator('addPlugin', 'Store', {
               urls: {
-                create: '/store',
-                read: '/store/:id',
-                update: '/store/:id',
-                destroy: '/store/:id'
+                create: '/',
+                read: '/:id',
+                update: '/:id',
+                destroy: '/:id'
               }
             });
           {% endfor %}

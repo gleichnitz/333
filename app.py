@@ -169,7 +169,8 @@ def makeRoles(netid):
 @app.route('/store', methods = ['POST', 'GET'])
 def store():
     array = []
-    return jsonify(array)
+    if request.method == 'GET':
+        return jsonify(array)
 
 
 @app.route('/login')

@@ -253,14 +253,14 @@ def submitted():
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
 
-    assignment_active = 0
+    assignment_active = Assignment(0,0,0,0,0,0,0,0)
     for item in assignments:
         assignment_active = 0
         if int(assignmentID) == item.id:
             assignment_active = item
             break
 
-    if assignment_active == 0:
+    if assignment_active.name == 0:
         if accountType == "s":
             return redirect('/student')
         else:

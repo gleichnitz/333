@@ -40,12 +40,10 @@
         {% endfor %}
  -->      {% for grader in gradernetid %}
           <tr><td><a href="#"><div style="height:100%;width:100%">no name</div></a></td>
-              <td><a href="#"><div style="height:100%;width:100%">{{grader}}</div></a></td>
+              <td><a href="#"><div class="netid-row" style="height:100%;width:100%">{{grader}}</div></a></td>
               <td><div class="btn-group" align="center">
-               <div id="delete">
-                  <button id="deletegrader" class="btn btn-default" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  <button id="deletegrader" class="btn btn-default delete-buttons" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>
-               </div>
               </div></a></td>
           </tr>
           {% endfor %}

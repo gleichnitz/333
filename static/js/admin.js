@@ -28,6 +28,7 @@ $(document).ready(function() {
 		  		}
 		  	});
 	});
+
 	$('#manual-submit-modal-grader').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
@@ -71,7 +72,8 @@ $(document).ready(function() {
 	});
 
 	$('.delete-buttons-student').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').text();
+		var netid = $(this).closest('tr').children().children('.netid-row').text();
+		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({
 	  			url: "/_delete_student",
@@ -80,11 +82,15 @@ $(document).ready(function() {
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
+		  		} else {
+		  			console.log("false");
 		  		}
+		});
 	});
 
 	$('.delete-buttons-grader').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').text();
+		var netid = $(this).closest('tr').children().children('.netid-row').text();
+		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({
 	  			url: "/_delete_grader",
@@ -93,7 +99,11 @@ $(document).ready(function() {
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
+		  			console.log("true");
+		  		} else {
+		  			console.log("false");
 		  		}
 		});
 	});
+
 });

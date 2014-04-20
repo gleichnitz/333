@@ -17,6 +17,8 @@ $(document).ready(function() {
 		var numToUpload = $("#assignment-submit-select option:selected").attr('id');
 		console.log(numToUpload);
 
+		$('#code-upload-landing').empty();
+
 		for (var i = 0; i < numToUpload; i++) {
 			var thisClone = $("#code-upload-sample").clone();
 			thisClone.appendTo("#code-upload-landing");

@@ -556,7 +556,7 @@ def admin_students():
 
     for assignment in assignment_db:
         if assignment.master is True:
-            assignments.append(assignment)
+            masters.append(assignment)
 
     return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters)
 

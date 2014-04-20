@@ -56,7 +56,7 @@
       <tr>
         {% for assignment in assignments %}
           <td><a href="#"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">{% for item in assignment.files %} {{ item.name }} <br> {% end for %}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{% for item in assignment.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">5</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">7</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">{{assignment.due_date}}</div></a></td>

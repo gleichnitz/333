@@ -43,10 +43,16 @@
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netid <span class="caret"></span>
                   </button>
               </div>
+          </th>
+          <th class="header">
+            <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Remove 
+                  </button>
+              </div>
+          </th>
       </tr>
-      </th>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
         {% for item in students %}
               <tr>
                 <td><a href="#"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>

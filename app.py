@@ -23,6 +23,13 @@ app.config.update(
 # print Course.query.all()
 Base = declarative_base()
 
+def AddtoListAssignment(files, file_name):
+  file_ = open(file_name, 'r')
+  file_content = file_.read()
+  ass_file = {'name': file_name, 'content': file_content, 'annotations': []}
+  files.append(ass_file)
+  return files
+
 @app.route('/_assign')
 def assign_assignment():
 
@@ -214,7 +221,7 @@ def store():
     if request.method == 'GET':
         return jsonify(array)
     else:
-        return None
+        return 5
 
 
 @app.route('/login')

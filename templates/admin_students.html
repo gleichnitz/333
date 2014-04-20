@@ -58,7 +58,7 @@
                 <td><a href="#"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td class="netid-row"><a href="#"><div style="height:100%;width:100%">{{ item.netid }}</div></a></td>
                 <td><div class="btn-group" align="center">
-                    <button id="{{ item.netid }}" class="btn btn-default" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> Upload work </span>
+                    <button id="{{ item.netid }}" class="btn btn-default upload-button" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> Upload work </span>
                     </button>
                     </div>
                 </td>
@@ -112,25 +112,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Add students</h4>
+              <h4 class="modal-title">Upload files</h4>
           </div>
         <div class="modal-body">
             <form role="form">
               <div class="form-group">
-                <label for="exampleInputEmail1">Manual input</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
-                <br>
-                <button type="button" id="manual-submit-modal-student" class="btn">Submit</button>
-              </div>
-              <br>
-            </form>
-            <form role="form">
-              <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
-                <br>
-                <button type="button" id="file-submit-modal" class="btn">Upload</button>
-                <p class="help-block">Make sure your file is .txt, one netid per line.</p>
+                
               </div>
             </form>
         </div>

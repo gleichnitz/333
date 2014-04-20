@@ -19,6 +19,16 @@
         $(document).ready(function($)
             {
                 $("#admin-student-table").tablesorter();
+                $("#admin-student-table > tr > .netid-row").click(function() {
+                  var netid= $(this).map(function() {
+                    return $(this).text();
+                  });
+                  $.ajax({
+                    url:"/admin/students/assignments",
+                    context: document.body,
+                    data: {netid: netid}
+                  });
+                )};
             });
 </script>
 {% endblock %}

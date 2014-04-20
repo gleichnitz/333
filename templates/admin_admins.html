@@ -26,29 +26,30 @@
           </th>
           <th>
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both">  Rubric <span class="caret"></span>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both">  Rubric
                   </button>
               </div></th>
           <th>
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> % Graded <span class="caret"></span>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Graded <span class="caret"></span>
                   </button>
               </div>
           </th>
           <th class="header">
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both">  Rubric <span class="caret"></span>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both">  Total <span class="caret"></span>
                   </button>
               </div></th>
           <th>
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> % Graded <span class="caret"></span>
-                  </button>
-              </div>
-          </th>
           <th class="header">
               <div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Due Date <span class="caret"></span>
+                  </button>
+              </div>
+          </th>
+          <th class="header">
+            <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Remove <span class="caret"></span>
                   </button>
               </div>
           </th>
@@ -59,8 +60,9 @@
         {% for assignment in assignments %}
           <td><a href="#"><div style="height:100%;width:100%">{{assignment}}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">click here</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">20%</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">April 17</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">5</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">7</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">4/20</div></a></td>
           <td><div class="btn-group">
                   <button id="deleteassignment" class="btn btn-default" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

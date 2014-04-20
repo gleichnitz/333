@@ -8,7 +8,7 @@ $(document).ready(function() {
 		$('.modal').modal('toggle');
 	});
 
-	$('#manual-submit-modal').click(function() {
+	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({
@@ -28,7 +28,7 @@ $(document).ready(function() {
 		  		}
 		  	});
 	});
-	$('#manual-submit-modal').click(function() {
+	$('#manual-submit-modal-grader').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({

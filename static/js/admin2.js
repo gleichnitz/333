@@ -32,6 +32,7 @@ $(document).ready(function() {
 	$('#manual-submit-modal-grader').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
+		console.log(output);
 	      	$.ajax({
 	  			url: "/_add_grader",
 	  			context: document.body,

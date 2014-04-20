@@ -95,6 +95,20 @@ def add_grader():
 
     return "true"
 
+@app.route('/_add_assignment')
+def add_assignment():
+
+    name = str(request.args.get('name'))
+
+    assignment = Assignment.query.filter_by(name=name).first();
+    if assignment is None:
+        cos_333 = Course.query.filter_by(name= 'cos333').first()
+        # newAssignment = Assignment(cos_333, "test", name, )
+        # db.session.add(newGrader)
+        # db.session.commit()
+
+    return "true"
+
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

@@ -84,6 +84,22 @@ def add_student():
 
     return "true"
 
+@app.route('/_add_grader')
+def add_grader():
+
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        cos_333 = Course.query.filter_by(name= 'cos333').first()
+        newGrader = Grader("name", "test", netid, cos_333)
+        db.session.add(newGrader)
+        db.session.commit()
+
+    return "true"
+
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

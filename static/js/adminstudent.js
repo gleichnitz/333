@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 	$('#manual-submit-modal').click(function() {
 		var output = $(this).parent().children('input').text();
-		consloe.log(output);
+		console.log(output);
 	});
 
 });

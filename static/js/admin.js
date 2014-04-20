@@ -40,13 +40,19 @@ $(document).ready(function() {
 			data.append(key, value);
 		});
 
-		 $.ajax({
-	        url: '/_upload_student_files',
-	        data: { files : data },
-	        context: document.body
-	      }).done(function(input) {
-	      	console.log('upload complete');
-	      });
+		var fd = new FormData();    
+		fd.append( 'file', files[0] );
+
+		$.ajax({
+		  url: '/_upload_student_files',
+		  data: fd,
+		  processData: false,
+		  contentType: false,
+		  type: 'POST',
+		  success: function(data){
+		    alert(data);
+		  }
+		});
 
 	});
 

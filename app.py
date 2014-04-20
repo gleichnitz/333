@@ -32,7 +32,7 @@ def AddtoListAssignment(files, file_name):
   return files
 
 
-@app.route('/upload_student_files'):
+@app.route('/upload_student_files')
 def upload_student_files():
     return "success"
 

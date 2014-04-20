@@ -24,9 +24,10 @@ app.config.update(
 Base = declarative_base()
 
 def AddtoListAssignment(files, file_name):
-  file_ = open(file_name, 'r')
-  file_content = file_.read()
-  ass_file = {'name': file_name, 'content': file_content, 'annotations': []}
+  # need to read file
+  #file_ = open(file_name, 'r')
+  #file_content = file_.read()
+  ass_file = {'name': file_name, 'content': None, 'annotations': []}
   files.append(ass_file)
   return files
 
@@ -133,6 +134,31 @@ def remove_grader():
         return "true"
 
     db.session.delete(grader)                
+    db.session.commit()
+
+    return "true"
+
+@app.route('/_add_assignment')
+def add_assignment():
+    name = request.args.get('name')
+    fileNames = request.args.get('files').split()
+    rubric = request.args.get('rubric').split()
+    totalPoints = request.args.get('totalPoints')
+    dueDate = request.args.get('dueDate')
+
+    assignment = Assignment('cos333', "", name)
+    assignment.master = True
+    assignment.points_possible = totalPoints
+    assignment.rubric = rubric
+    assignment.due_date = dueDate
+
+    files = []
+    for string in fileNames:
+        AddtoListAssignment(files, string)
+
+    assignment.files = files
+
+    db.session.add(assignment)
     db.session.commit()
 
     return "true"

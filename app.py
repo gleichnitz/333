@@ -260,7 +260,7 @@ def submitted():
             assignment_active = item
             break
 
-    if assignment_active.name == 0:
+    if assignment_active == 0:
         if accountType == "s":
             return redirect('/student')
         else:

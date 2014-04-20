@@ -116,9 +116,11 @@ def remove_student():
         return "false"
 
     student = Student.query.filter_by(netid=netid).first();
-    if student is not None:
-        db.session.delete(student)                
-        db.session.commit()
+    if student is None:
+        return "true"
+
+    db.session.delete(student)                
+    db.session.commit()
 
     return "true"
 
@@ -129,9 +131,11 @@ def remove_student():
         return "false"
 
     grader = Grader.query.filter_by(netid=netid).first();
-    if grader is not None:
-        db.session.delete(grader)                
-        db.session.commit()
+    if grader is None:
+        return "true"
+
+    db.session.delete(grader)                
+    db.session.commit()
 
     return "true"
 

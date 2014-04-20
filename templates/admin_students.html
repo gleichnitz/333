@@ -134,7 +134,7 @@
                 <label>Select Assignment</label>
                   <select class="form-control">
                   {% for item in masters, num in numFiles %}
-                    <option id="{{ item.name|length }}">{{ item.name }}</option>
+                    <option id="{{ item.files|length }}">{{ item.name }}</option>
                   {% endfor %}
                   </select>
               </div>

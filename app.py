@@ -78,9 +78,7 @@ def add_student():
         db.session.commit()
     return "true"
 
-    newStudent = Student()
-    newStudent.netid = netid
-    newStudent.name = ""
+    newStudent = Student("", "", netid, "cos333")
     db.session.add(newStudent)
     db.session.commit()
 

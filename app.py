@@ -31,6 +31,11 @@ def AddtoListAssignment(files, file_name):
   files.append(ass_file)
   return files
 
+
+@app.route('/upload_student_files'):
+def upload_student_files():
+    return "success"
+
 @app.route('/_assign')
 def assign_assignment():
 

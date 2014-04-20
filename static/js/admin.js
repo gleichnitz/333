@@ -30,7 +30,7 @@ $(document).ready(function() {
 	$('#file-submit-modal').click(function() {
 		var files = new Array();
 		var i = 0;
-		$(#code-upload-landing).children('input').each(function() {
+		$('#code-upload-landing').children('input').each(function() {
 			files[i++] = $(this).files;
 		});
 

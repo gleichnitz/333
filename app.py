@@ -175,7 +175,7 @@ def store():
     else:
         return None
 
-@app.route('/store')
+@app.route('/store', methods = ['POST'])
 def store():
     return "hellow"
 

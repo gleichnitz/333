@@ -12,7 +12,7 @@ $(document).ready(function() {
 		$('#modal-upload').modal('toggle');
 	});
 
-	$('#assignment-submit-select').click(function() {
+	$('#assignment-submit-select').change(function() {
 		console.log($("#assignment-submit-select option:selected").text());
 	});
 

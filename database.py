@@ -9,8 +9,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 def addAssignment(course_name, student_netid, name, files):
-    new_assignment = Assignment(course_name, student_netid, name, files)
+    new_assignment = Assignment(course_name, student_netid, name)
     new_assignment.date = datetime.today()
+    new_assignment.AddFiles(files)
     db.session.add(new_assignment)
     db.session.commit()
 

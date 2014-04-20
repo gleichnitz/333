@@ -5,7 +5,15 @@ $(document).ready(function() {
 	});
 
 	$('#add_buttons').click(function() {
-		$('.modal').modal('toggle');
+		$('#modal-add').modal('toggle');
+	});
+
+	$('.upload-button').click(function() {
+		$('#modal-upload').modal('toggle');
+	});
+
+	$('#assignment-submit-select').change(function() {
+		console.log($("#assignment-submit-select option:selected").text());
 	});
 
 	$('#manual-submit-modal-student').click(function() {
@@ -36,7 +44,7 @@ $(document).ready(function() {
 	      	$.ajax({
 	  			url: "/_add_grader",
 	  			context: document.body,
-	  			data: { name: output }
+	  			data: { netid: output }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			inputfieldParent.removeClass('has-error');
@@ -52,21 +60,16 @@ $(document).ready(function() {
 	});
 
 	$('#manual-submit-modal-assignment').click(function() {
-		var output = $(this).parent().children('input').val();
-		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({
 	  			url: "/_add_assignment",
 	  			context: document.body,
-	  			data: { netid: output }
+	  			data: { netid: "", name: $('#assignTitle').val(), files: $('#assignFiles').val(),
+	  			rubric: $('#assignPoints').val(), totalPoints: $('#totalPoints').val(), dueDate: $('#dueDate').val() }
 		  	}).done(function(data) {
 		  		if (data == "true") {
-		  			inputfieldParent.removeClass('has-error');
-		  			inputfieldParent.addClass('has-success');
 		  			console.log(data);
 		  		}
 		  		else {
-		  			inputfieldParent.addClass('has-error');
-		  			inputfieldParent.removeClass('has-success');
 		  			console.log(data);
 		  		}
 		  	});

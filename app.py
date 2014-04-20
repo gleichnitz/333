@@ -68,7 +68,7 @@ def add_student():
     if netid.isalnum() is False:
         return "false"
     
-    student = Student.query.filter_by(netid='netid');
+    student = Student.query.filter_by(netid=netid);
     if student is not None:
         return "true"
 

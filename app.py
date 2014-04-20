@@ -73,7 +73,7 @@ def add_student():
         return "true"
 
     cos_333 = Course.query.filter_by(name= 'cos333').first()
-    newStudent = Student("", "", netid, cos_333)
+    newStudent = Student("name", "test", netid, cos_333)
     db.session.add(newStudent)
     db.session.commit()
 

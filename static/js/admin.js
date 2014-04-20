@@ -27,7 +27,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#file-submit-modal').click(function() {
+	$('#file-submit-modal-code').click(function() {
 		console.log("test");
 		var files = new Array();
 		var i = 0;

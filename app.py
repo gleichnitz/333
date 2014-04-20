@@ -546,7 +546,7 @@ def admin_students():
     for student in students_db:
         students_form.append(StudentClass("no name", student.netid))
 
-    assignment_db = Assignments.query.all()
+    assignment_db = Assignment.query.all()
 
     masters = []
 

@@ -16,10 +16,14 @@ $(document).ready(function() {
 	  			context: document.body,
 	  			data: { netid: output }
 		  	}).done(function(data) {
-		  		if (data == "true")
-		  			inputfieldParent.addClass('.has-success')
-		  		else
-		  			inputfieldParent.addClass('.has-error')
+		  		if (data == "true") {
+		  			inputfieldParent.removeClass('.has-error');
+		  			inputfieldParent.addClass('.has-success');
+		  		}
+		  		else {
+		  			inputfieldParent.addClass('.has-error');
+		  			inputfieldParent.removeClass('.has-success');
+		  		}
 		  	});
 	});
 

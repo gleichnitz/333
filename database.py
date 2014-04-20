@@ -38,6 +38,10 @@ class Student(db.Model):
 
 class Grader(db.Model):
     id = db.Column(db.Integer, primary_key = True)
+
+    firstname = db.Column(db.String(80))
+    lastname = db.Column(db.String(80))
+
     netid = db.Column(db.String(80), unique = True)
     courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
     course = db.relationship('Course', backref = db.backref('graders', lazy = 'dynamic'))
@@ -80,7 +84,8 @@ class Assignment(db.Model):
   courseid = db.Column(db.Integer, db.ForeignKey('course.id'))  
   course = db.relationship('Course', backref = db.backref('assignments', lazy = 'dynamic'))
 
-  date = db.Column(db.String(80))
+  sub_date = db.Column(db.String(80))
+  due_date = db.Column(db.String(80))
 
   student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
   student = db.relationship('Student', backref = db.backref('assignments', lazy = 'dynamic'))
@@ -91,11 +96,50 @@ class Assignment(db.Model):
   name = db.Column(db.String(80))
   files = db.Column(db.PickleType)
 
-  def __init__(self, course_name, student_netid, name, files):
+  rubric = db.Column(db.PickleType)
+
+  graded = db.Column(db.Boolean)
+  in_progress = db.Column(db.Boolean)
+
+  master = db.Column(db.Boolean)
+
+  grade = db.Column(db.Float)
+  points_possible = db.Column(db.Integer)
+
+  def __init__(self, course_name, student_netid, name):
     self.course = Course.query.filter_by(name = course_name).first()
     self.student = Student.query.filter_by(netid = student_netid).first()
-    self.files = files
     self.name = name
+    self.master = False
+
+  def AddFiles(self, files):
+    self.files = files
+
+  def PointsPossible(self, points):
+    self.points_possible = points
+
+  def Master(self):
+    self.master = True
+
+  def Grade(self, grade):
+    self.grade = grade
+
+  def Sub_date(self, sub_date):
+    self.sub_date = sub_date
+
+  def Due_date(self, due_date):
+    self.due_date = due_date
+
+  def addRubric(self, rubric):
+    self.rubric = rubric
+
+  def in_progress(self):
+    self.graded = False
+    self.in_progress = True
+
+  def graded(self):
+    self.graded = True
+    self.in_progress = False
 
   def addGrader(self, grader_netid):
     self.grader = Grader.query.filter_by(netid = grader_netid).first()

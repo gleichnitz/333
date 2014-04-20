@@ -10,6 +10,7 @@ $(document).ready(function() {
 
 	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
+		console.log(output);
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({
 	  			url: "/_add_student",

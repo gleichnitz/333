@@ -32,6 +32,7 @@ $(document).ready(function() {
 	$('#manual-submit-modal-grader').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
+		console.log(output);
 	      	$.ajax({
 	  			url: "/_add_grader",
 	  			context: document.body,
@@ -72,7 +73,7 @@ $(document).ready(function() {
 	});
 
 	$('.delete-buttons-student').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').children('div');
+		var netid = $(this).attr('id');
 		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({
@@ -89,7 +90,7 @@ $(document).ready(function() {
 	});
 
 	$('.delete-buttons-grader').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').children('div');
+		var netid = $(this).attr('id');
 		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({

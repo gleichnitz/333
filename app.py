@@ -23,6 +23,14 @@ app.config.update(
 # print Course.query.all()
 Base = declarative_base()
 
+def AddtoListAssignment(files, file_name):
+  # need to read file
+  #file_ = open(file_name, 'r')
+  #file_content = file_.read()
+  ass_file = {'name': file_name, 'content': None, 'annotations': []}
+  files.append(ass_file)
+  return files
+
 @app.route('/_assign')
 def assign_assignment():
 
@@ -125,6 +133,31 @@ def remove_grader():
 
     return "true"
 
+@app.route('/_add_assignment')
+def add_assignment():
+    name = request.args.get('name')
+    fileNames = request.args.get('files').split()
+    rubric = request.args.get('rubric').split()
+    totalPoints = request.args.get('totalPoints')
+    dueDate = request.args.get('dueDate')
+
+    assignment = Assignment('cos333', "", name)
+    assignment.master = True
+    assignment.points_possible = totalPoints
+    assignment.rubric = rubric
+    assignment.due_date = dueDate
+
+    files = []
+    for string in fileNames:
+        AddtoListAssignment(files, string)
+
+    assignment.files = files
+
+    db.session.add(assignment)
+    db.session.commit()
+
+    return "true"
+
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id
@@ -214,7 +247,7 @@ def store():
     if request.method == 'GET':
         return jsonify(array)
     else:
-        return None
+        return jsonify(5)
 
 
 @app.route('/login')
@@ -382,9 +415,9 @@ def grader():
     assignments_form = []
     for item in assignments:
         if item.grader is None:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "None", item.student.netid))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.sub_date.split()[0], item.files, "40/40", "None", item.student.netid))
         elif item.grader.netid == netid:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.sub_date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -450,7 +483,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.sub_date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -513,7 +546,15 @@ def admin_students():
     for student in students_db:
         students_form.append(StudentClass("no name", student.netid))
 
-    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles)
+    assignment_db = Assignment.query.all()
+
+    masters = []
+
+    for assignment in assignment_db:
+        if assignment.master is True:
+            masters.append(assignment)
+
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters)
 
 @app.route("/admin/graders")
 def admin_graders():
@@ -579,8 +620,8 @@ def admin_admins():
     assignments = []
     courses = []
     for assignment in assignment_db:
-        if assignment.name not in assignments:
-            assignments.append(assignment.name)
+        if assignment.master is True:
+            assignments.append(assignment)
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 

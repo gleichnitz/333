@@ -21,14 +21,14 @@
     <thead>
       <tr>
           <th class="header">
-              <div class="btn-group">
+              <div class="btn-group" id="add-buttons">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
                   </button>
               </div>
           </th>
           <th>
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both">  Rubric
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both">  Files
                   </button>
               </div>
           </th>
@@ -57,11 +57,11 @@
       <tbody>
       <tr>
         {% for assignment in assignments %}
-          <td><a href="#"><div style="height:100%;width:100%">{{assignment}}</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">click here</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{% for item in assignment.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">5</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">7</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">4/20</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.due_date}}</div></a></td>
           <td><div class="btn-group" align="center">
                   <button id="deleteassignment" class="btn btn-default delete-buttons" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>
@@ -72,7 +72,7 @@
       </tbody>
     </table>
 
-    <div class="modal fade">
+    <div class="modal fade" id="modal-add">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -83,22 +83,29 @@
             <form role="form">
               <div class="form-group">
                 <label for="exampleInputEmail1">Assignment Title</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title">
-                <br>
-                <button type="button" id="manual-submit-modal-assignment" class="btn">Submit</button>                
+                <input type="text" class="form-control" id="assignTitle" placeholder="Enter title">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Files</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
+                <input type="text" class="form-control" id="assignFiles" placeholder="Separate files with a space">
                 <p class="help-block">Separate the file names with a space. Make sure they're spelled correctly!</p>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Rubric</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
+                <input type="text" class="form-control" id="assignPoints" placeholder="Separate point totals with a space">
               </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Total Points</label>
+                <input type="text" class="form-control" id="totalPoints" placeholder="Enter a number">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Due Date</label>
+                <input type="date" class="form-control" id="dueDate" placeholder="Enter a number">
+              </div>
+              <div class="form-group">
+                  <br>
+                  <button type="button" id="manual-submit-modal-assignment" class="btn">Submit</button> 
+              </div>                                        
         </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

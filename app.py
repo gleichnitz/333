@@ -162,21 +162,10 @@ def makeRoles(netid):
     return roles
 
 
-def jsonify(obj, *args, **kwargs):
-    res = json.dumps(obj, indent=None if request.is_xhr else 2)
-    return Response(res, mimetype='application/json', *args, **kwargs)
-
-@app.route('/annotations/create', methods = ['POST'])
-def create():
-    if request.json is not None:
-        return request.json
-    else:
-        return jsonify('No JSON payload sent. Annotation not created.',
-                       status=400)
-
-@app.route('/store', methods = ['POST'])
+@app.route('/store', methods = ['POST', 'GET'])
 def store():
-    return "hellow"
+    array = []
+    return jsonify(array)
 
 
 @app.route('/login')

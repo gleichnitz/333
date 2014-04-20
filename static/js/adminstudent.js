@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 
 	$('#manual-submit-modal').click(function() {
-		var output = $(this).parent().children('input').text();
+		var output = $(this).parent().children('input').val();
 		console.log(output);
 	});
 

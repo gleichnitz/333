@@ -10,7 +10,23 @@ $(document).ready(function() {
 
 	$('#manual-submit-modal').click(function() {
 		var output = $(this).parent().children('input').val();
-		console.log(output);
+		var inputfieldParent = $(this).parent().parent();
+	      	$.ajax({
+	  			url: "/_add_student",
+	  			context: document.body,
+	  			data: { netid: output }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+		  			inputfieldParent.removeClass('has-error');
+		  			inputfieldParent.addClass('has-success');
+		  			console.log(data);
+		  		}
+		  		else {
+		  			inputfieldParent.addClass('has-error');
+		  			inputfieldParent.removeClass('has-success');
+		  			console.log(data);
+		  		}
+		  	});
 	});
 
 });

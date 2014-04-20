@@ -61,6 +61,14 @@ def release_assignment():
 
     return "failure"
 
+@app.route('/_add_student')
+def add_student():
+
+    netid = str(request.args.get('netid'))
+    if netid.isalpha() is False:
+        return "false"
+    else:
+        return "true"
 
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):

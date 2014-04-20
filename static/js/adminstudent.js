@@ -26,6 +26,7 @@ $(document).ready(function() {
 		  			inputfieldParent.removeClass('has-success');
 		  			console.log(data);
 		  		}
+		  		console.log(data);
 		  	});
 	});
 

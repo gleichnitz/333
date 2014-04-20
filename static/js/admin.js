@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 
 	$('.upload-button').click(function() {
-		$('#modal-add').modal('toggle');
+		$('#modal-upload').modal('toggle');
 	});
 
 	$('#manual-submit-modal-student').click(function() {

@@ -10,12 +10,16 @@ $(document).ready(function() {
 
 	$('#manual-submit-modal').click(function() {
 		var output = $(this).parent().children('input').val();
+		var inputfieldParent = $(this).parent();
 	      	$.ajax({
 	  			url: "/_add_student",
 	  			context: document.body,
 	  			data: { netid: output }
 		  	}).done(function(data) {
-		  		console.log(data);
+		  		if (data == "true")
+		  			inputfieldParent.addClass('.has-success')
+		  		else
+		  			inputfieldParent.addClass('.has-error')
 		  	});
 	});
 

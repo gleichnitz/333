@@ -546,7 +546,13 @@ def admin_students():
     for student in students_db:
         students_form.append(StudentClass("no name", student.netid))
 
-    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles)
+    masters = []
+
+    for assignment in assignment_db:
+        if assignment.master is True:
+            assignments.append(assignment)
+
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters)
 
 @app.route("/admin/graders")
 def admin_graders():

@@ -17,12 +17,12 @@ $(document).ready(function() {
 	  			data: { netid: output }
 		  	}).done(function(data) {
 		  		if (data == "true") {
-		  			inputfieldParent.removeClass('.has-error');
-		  			inputfieldParent.addClass('.has-success');
+		  			inputfieldParent.removeClass('has-error');
+		  			inputfieldParent.addClass('has-success');
 		  		}
 		  		else {
-		  			inputfieldParent.addClass('.has-error');
-		  			inputfieldParent.removeClass('.has-success');
+		  			inputfieldParent.addClass('has-error');
+		  			inputfieldParent.removeClass('has-success');
 		  		}
 		  	});
 	});

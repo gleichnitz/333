@@ -54,10 +54,12 @@
               <tr>
                 <td><a href="#"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="#"><div style="height:100%;width:100%">{{ item.netid }}</div></a></td>
-                <td align="center"><div class="btn-group">
-                  <button id="deletestudent delete" class="btn btn-default" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x 
+                <td><div class="btn-group" align="center">
+               <div id="delete">
+                  <button id="deletestudent" class="btn btn-default" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>
-                </div></a></td>
+               </div>
+              </div></a></td>
               </tr>
         {% endfor %}
       </tbody>

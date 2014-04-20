@@ -67,15 +67,13 @@ def add_student():
     netid = str(request.args.get('netid'))
     if netid.isalnum() is False:
         return "false"
-    
-    student = Student.query.filter_by(netid=netid).first();
-    if student is not None:
-        return "true"
 
     cos_333 = Course.query.filter_by(name= 'cos333').first()
     newStudent = Student("name", "test", netid, cos_333)
     db.session.add(newStudent)
     db.session.commit()
+
+    return "success"
 
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):

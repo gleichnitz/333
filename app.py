@@ -65,7 +65,7 @@ def release_assignment():
 def add_student():
 
     netid = str(request.args.get('netid'))
-    if netid.isalpha() is False:
+    if netid.isalphanum() is False:
         return "false"
     else:
         return "true"

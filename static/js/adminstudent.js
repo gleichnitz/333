@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 
 	$('modal .btn').each(function() {
-		$('.modal').modal('toggle');
+		$('.modal').modal('show');
 	});
 
 });

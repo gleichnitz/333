@@ -8,8 +8,8 @@ $(document).ready(function() {
 		$('.modal').modal('toggle');
 	});
 
-	$('modal .btn').each(function() {
-		$('.modal').modal('show');
+	$('#manual-submit-modal').click(function() {
+		var output = $(this).parent().children('input').text()
 	});
 
 });

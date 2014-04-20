@@ -28,6 +28,7 @@ $(document).ready(function() {
 		  		}
 		  	});
 	});
+
 	$('#manual-submit-modal-grader').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
@@ -81,6 +82,7 @@ $(document).ready(function() {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
 		  		}
+		});
 	});
 
 	$('.delete-buttons-grader').click(function () {
@@ -96,4 +98,5 @@ $(document).ready(function() {
 		  		}
 		});
 	});
+
 });

@@ -4844,3 +4844,7 @@ td.visible-print {
 #deleteassignment:hover {
   color:red !important;
 }
+
+body#admin_students a#sidebar-item {
+  background:#474747;
+}

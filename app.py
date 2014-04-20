@@ -175,6 +175,10 @@ def store():
     else:
         return None
 
+@app.route('/store')
+def store():
+    return "hellow"
+
 
 @app.route('/login')
 def login():

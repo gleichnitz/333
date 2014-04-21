@@ -26,10 +26,10 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
-def AddtoListAssignment(files, name):
-  # need to read file
-  
-  ass_file = {'name': name, 'content': file_content, 'annotations': []}
+def AddtoListAssignmentMaster(files, file_name):
+  #file_ = open(file_name, 'r')
+  #file_content = file_.read()
+  ass_file = {'name': file_name, 'content': None, 'annotations': []}
   files.append(ass_file)
   return files
 
@@ -177,7 +177,7 @@ def add_assignment():
 
     files = []
     for string in fileNames:
-        AddtoListAssignment(files, string)
+        AddtoListAssignmentMaster(files, string)
 
     assignment.files = files
 
@@ -505,7 +505,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.sub_date.split()[0], item.files, "40/40", "", item.student.netid))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form:

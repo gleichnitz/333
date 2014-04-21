@@ -12,6 +12,7 @@ import cgi
 import pickle
 import traceback
 import json
+from werkzeug import secure_filename
 
 # initialization
 app = Flask(__name__)

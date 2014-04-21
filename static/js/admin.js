@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 		$.ajax({
 		  url: '/_upload_student_files',
-		  data: fd,
+		  data: {files: fd},
 		  processData: false,
 		  contentType: false,
 		  type: 'POST',

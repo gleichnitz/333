@@ -252,7 +252,11 @@ def makeRoles(netid):
 
 @app.route('/store/annotations', methods = ['GET', 'POST'])
 def store():
-    return jsonify(testArray)
+    if request.method == 'GET':
+        return jsonify(testArray)
+    else:
+        testArray.append(requests.json)
+        return jsonify(length(testArray))
 
 @app.route('/login')
 def login():

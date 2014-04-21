@@ -37,6 +37,9 @@ def AddtoListAssignmentMaster(files, file_name):
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
+    files = request.files.getlist('file')
+    for file in files:
+        return file.read()
 
     fileList = []
     string = ""

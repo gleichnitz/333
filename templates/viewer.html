@@ -20,10 +20,19 @@
             var content = $('#{{ item.name }}').annotator();
             content.annotator('addPlugin', 'Store', {
               prefix: '/store',
-              
+
               annotationData: {
-                  'uri': '{{ item.id }}'
+                  'uri': '{{ item.id.toString() }}'
               }
+
+              urls: {
+                create: '/annotations/create',
+                read: '/annotations/read/:id' 
+                update: '/annotations/update/:id'
+                destroy: '/annotations/destroy/:id'
+                search: '/search'
+              }
+
             });
           {% endfor %}
       });

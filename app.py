@@ -41,10 +41,8 @@ def upload_student_files():
     fileList = []
     string = ""
 
-    return len(request.files)
-
     for item in request.files:
-        string = string + item
+        return request.files[item].read()
 
     return string
 

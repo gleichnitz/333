@@ -36,6 +36,7 @@ def AddtoListAssignment(files, name, fileName):
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
+
     fileList = []
     i = 1
 
@@ -43,7 +44,7 @@ def upload_student_files():
         AddtoListAssignment(fileList, "file" + i, item)
         i = i + 1
 
-    addAssignment("cos333", "gtl", assignmentName, files)
+    addAssignment("cos333", "gtl", assignmentName, fileList)
 
     return redirect('/admin/students')
 

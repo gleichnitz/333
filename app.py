@@ -40,8 +40,9 @@ def upload_student_files():
 
     fileList = []
     i = 1
+
     for item in request.files:
-        AddtoListAssignment(fileList, item.fileName, item)
+        AddtoListAssignment(fileList, "file" + i, item)
         i = i + 1
 
     assignment.files = fileList

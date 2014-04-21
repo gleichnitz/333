@@ -19,6 +19,8 @@ app.config.update(
     DEBUG = True,
 )
 
+testArray = []
+
 # print Student.query.all()
 # print Course.query.all()
 Base = declarative_base()
@@ -250,12 +252,8 @@ def makeRoles(netid):
 
 @app.route('/store', methods = ['GET', 'POST'])
 def store():
-    assignment = Assignment.query.filter_by(id=3)
-    for item in assignment.files:
-        annotations = item['annotations']
-
     if request.method == 'GET':
-        return jsonify(annotations)
+        return jsonify(testArray)
     else:
         annotations.append(request.json)
         return len(annotations)

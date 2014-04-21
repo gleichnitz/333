@@ -40,7 +40,7 @@ def upload_student_files():
     assignment = Assignment("cos333", "jaevans", assignmentName)
     db.session.add(assignment)
     db.session.commit()
-    return redirect('/admin/student')
+    return redirect('/admin/students')
 
 @app.route('/_assign')
 def assign_assignment():

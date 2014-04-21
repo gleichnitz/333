@@ -28,7 +28,7 @@ Base = declarative_base()
 
 def AddtoListAssignment(files, name):
   # need to read file
-  f = open(name, 'r')
+  f = open(tempfile.gettempdir() + '/' + name, 'r')
   file_content = f.read()
   ass_file = {'name': name, 'content': file_content, 'annotations': []}
   files.append(ass_file)
@@ -43,8 +43,7 @@ def upload_student_files():
     i = 1
 
     for item in request.files:
-        request.files[item].save('/file' + str(i))
-        AddtoListAssignment(fileList, '/file' + str(i))
+        AddtoListAssignment(fileList, item)
         i = i + 1
 
     addAssignment("cos333", "gtl", assignmentName, fileList)

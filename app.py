@@ -283,7 +283,7 @@ def find_Annotation(id, name):
     return None
    
 @app.route('/store/annotations/create', methods = ['POST'])
-def create:
+def create():
     return json.dumps('No JSON payload sent. Annotation not created.')
 
 
@@ -297,11 +297,11 @@ def read(id, name):
     return Response(annotation, mimetype = 'application/json')
 
 
-@app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
-def update(id, name):
+# @app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
+# def update(id, name):
 
-@app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
-def destroy(id, name):
+# @app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
+# def destroy(id, name):
 
 # @app.route('/store/annotations/search', methods = ['GET'])
 # def search:

@@ -18,7 +18,7 @@ files = AddtoListAssignment(files, 'nbody.java')
 assignments = Assignment.query.all()
 for item in assignments:
   item.files = files
-  db.commit()
+  db.session.commit()
 
 # files = []
 # files = AddtoListAssignment(files, 'HelloWorld.java')

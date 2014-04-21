@@ -252,8 +252,7 @@ def makeRoles(netid):
 
 @app.route('/store/annotations', methods = ['GET', 'POST'])
 def store():
-    return jsonify('No JSON payload sent. Annotation not created.',
-                       status=400)
+    return jsonify('No JSON payload sent. Annotation not created.')
 
 @app.route('/login')
 def login():

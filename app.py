@@ -263,6 +263,7 @@ def store():
     if request.method == 'GET':
         return jsonify(testArray)
     else:
+        testArray.append(request.json)
         return jsonify(request.json)
 
 @app.route('/login')

@@ -28,6 +28,7 @@ $(document).ready(function() {
 	});
 
 	$('#num-submit-modal-student').click(function() {
+		console.log("test");
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({

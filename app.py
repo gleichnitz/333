@@ -41,8 +41,7 @@ def upload_student_files():
     fileList = []
 
     for item in request.files:
-        item.save('/' + secure_filename(item.filename))
-        content = item.read()
+        request.files[item].save('/' + secure_filename(item.filename))
         AddtoListAssignment(fileList, secure_filename(item.filename))
 
     addAssignment("cos333", "gtl", assignmentName, fileList)

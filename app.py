@@ -290,10 +290,10 @@ def create():
     name = uri.split(" ")[0]
     id = uri.split(" ")[1]
 
-    assignment1 = Assignment.query.filter_by(id = id).first()
-    for item in assignment1.files:
-        if (item["name"].split('.')[0] == name):
-            item["annotations"].append(request.json)
+    a = Assignment.query.filter_by(id = id).first()
+    for i in range(0, len(a.files)):
+        if (a.files[i]["name"].split('.')[0] == name):
+            a.files[i]["annotations"].append(request.json)
             db.session.commit()
             return json.dumps(len(item["annotations"]))
 

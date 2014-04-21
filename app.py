@@ -43,10 +43,10 @@ def upload_student_files():
     fileList = []
 
     for file in files:
-        ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
+        ass_file = {'name': file.name, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
-    addAssignment("cos333", "jaevans", assignmentName, fileList)
+    addAssignment("cos333", "rfreling", assignmentName, fileList)
 
     return redirect('/admin/students')
 
@@ -293,9 +293,9 @@ def create():
     a = Assignment.query.filter_by(id = id).first()
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
-            files_new = a.files[i]
-            files_new["annotations"].append(str(request.json))
-            a.files = files_new
+            a.files[i]["annotations"].append(str(request.json))
+            db.session.delete(a)
+            db.session.add(a)
             db.session.commit()
             return json.dumps(len(a.files[i]["annotations"]))
 

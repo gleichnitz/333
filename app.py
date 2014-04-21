@@ -39,7 +39,7 @@ def upload_student_files():
     assignment = Assignment("cos333", "jaevans", "Percolation")
     db.session.add(assignment)
     db.session.commit()
-    return 'success!'
+    return request.form['assignmentTitle']
 
 @app.route('/_assign')
 def assign_assignment():

@@ -293,6 +293,16 @@ def find_Annotation(id, name):
    
 @app.route('/store/annotations/create', methods = ['POST'])
 def create():
+    uri = request.args.get('uri')
+    name = uri.split(" ")[0]
+    id = uri.split(" ")[1]
+
+    assignment1 = Assignment.query.filter_by(id = id).first()
+    for item in assignment1.files:
+        if (item["name"].split('.')[0] == name):
+            item["annotations"].append(request.json)
+            return json.dumps(len(item["annotations"]))
+
     return json.dumps('No JSON payload sent. Annotation not created.')
 
 

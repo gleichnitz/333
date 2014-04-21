@@ -28,8 +28,7 @@ Base = declarative_base()
 
 def AddtoListAssignment(files, name):
   # need to read file
-  f = open(tempfile.gettempdir() + '/' + name, 'r')
-  file_content = f.read()
+  
   ass_file = {'name': name, 'content': file_content, 'annotations': []}
   files.append(ass_file)
   return files
@@ -43,10 +42,11 @@ def upload_student_files():
     i = 1
 
     for item in request.files:
-        AddtoListAssignment(fileList, item)
-        i = i + 1
+        file_content = request.files[item].read()
+        ass_file = {'name': item, 'content': file_content, 'annotations': []}
+        fileList.append(ass_file)
 
-    addAssignment("cos333", "gtl", assignmentName, fileList)
+    addAssignment("cos333", "rfreling", assignmentName, fileList)
 
     return redirect('/admin/students')
 

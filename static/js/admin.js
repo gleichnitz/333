@@ -13,9 +13,18 @@ $(document).ready(function() {
 	});
 
 	$('#assignment-submit-select').change(function() {
-		console.log($("#assignment-submit-select option:selected").text());
-		$('#code-upload-area').append('<label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">');
+		var assignmentSelected = $("#assignment-submit-select option:selected").text();
+		var numToUpload = $("#assignment-submit-select option:selected").attr('id');
+		console.log(numToUpload);
+
+		$('#code-upload-landing').empty();
+
+		for (var i = 0; i < numToUpload; i++) {
+			var thisClone = $("#code-upload-sample").clone();
+			thisClone.appendTo("#code-upload-landing");
+			thisClone.css("display", "initial");
+			thisClone.children('label').text("Test");
+		}
 	});
 
 	$('#manual-submit-modal-student').click(function() {
@@ -40,6 +49,7 @@ $(document).ready(function() {
 	});
 
 	$('#manual-submit-modal-grader').click(function() {
+		console.log("bump");
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
 		console.log(output);

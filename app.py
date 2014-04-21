@@ -19,6 +19,8 @@ app.config.update(
     DEBUG = True,
 )
 
+testArray = []
+
 # print Student.query.all()
 # print Course.query.all()
 Base = declarative_base()
@@ -30,6 +32,13 @@ def AddtoListAssignment(files, file_name):
   ass_file = {'name': file_name, 'content': None, 'annotations': []}
   files.append(ass_file)
   return files
+
+
+@app.route('/_upload_student_files', methods = ['GET', 'POST'])
+def upload_student_files():
+    assignment = Assignment("cos333", "jaevans", "Percolation")
+    db.session.add(assignment)
+    db.session.commit()
 
 @app.route('/_assign')
 def assign_assignment():
@@ -245,14 +254,13 @@ def makeRoles(netid):
     return roles
 
 
-@app.route('/store/', methods = ['GET', 'POST'])
+@app.route('/store', methods = ['GET', 'POST'])
 def store():
-    array = []
     if request.method == 'GET':
-        return jsonify(array)
+        return jsonify(testArray)
     else:
-        return jsonify(5)
-
+        testArray.append(request.json)
+        return jsonify("5")
 
 @app.route('/login')
 def login():
@@ -376,7 +384,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', netid = netid, assignment = files, title=title)
+    return render_template('viewer.html', netid = netid, assignment = files, title=title, id=assignmentID)
 
 @app.route("/grader")
 def grader():
@@ -418,9 +426,9 @@ def grader():
 
     assignments_form = []
     for item in assignments:
-        if item.grader is None:
+        if item.master is False and item.grader is None and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid))
-        elif item.grader.netid == netid:
+        elif item.master is False and item.grader.netid == netid:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []

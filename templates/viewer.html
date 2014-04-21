@@ -24,6 +24,9 @@
                 read: '/:id',
                 update: '/:id',
                 destroy: '/:id'
+              }, 
+              annotationData: {
+                  'uri': '{{ item.name }}'
               }
             });
           {% endfor %}

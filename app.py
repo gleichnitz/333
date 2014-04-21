@@ -35,6 +35,8 @@ def AddtoListAssignment(files, file_name):
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignment = Assignment("cos333", "jaevans", "Percolation")
+    db.session.add(assignment)
+    db.session.commit()
 
 @app.route('/_assign')
 def assign_assignment():

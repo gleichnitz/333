@@ -19,8 +19,10 @@
           {% for item in assignment %}
             var content = $('#{{ item.name }}').annotator();
             content.annotator('addPlugin', 'Store', {
+              prefix: '/store',
+              
               annotationData: {
-                  'uri': '{{ item.name }}'
+                  'uri': '{{ item.id }}'
               }
             });
           {% endfor %}

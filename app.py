@@ -47,7 +47,7 @@ def upload_student_files():
     return string
 
 
-    for item in request.files:
+    #for item in request.files:
         #file_content = request.files[item].read()
         #ass_file = {'name': item, 'content': file_content, 'annotations': []}
         #fileList.append(ass_file)

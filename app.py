@@ -259,8 +259,8 @@ def store():
     if request.method == 'GET':
         return jsonify(testArray)
     else:
-        annotations.append(request.json)
-        return len(annotations)
+        testArray.append(request.json)
+        return jsonify(len(annotations))
 
 @app.route('/login')
 def login():

@@ -42,7 +42,7 @@ def upload_student_files():
     string = ""
 
     for item in request.files:
-        return request.files[item].read()
+        return request.files['file'].read()
 
     return string
 

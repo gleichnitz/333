@@ -14,9 +14,12 @@ def AddtoListAssignment(files, file_name):
 
 
 files = []
+print "here1"
 files = AddtoListAssignment(files, 'nbody.java')
 assignments = Assignment.query.all()
+print "here2"
 for item in assignments:
+  print "here3"
   item.files = files
   db.commit()
 

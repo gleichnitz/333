@@ -280,10 +280,11 @@ def create():
     a = Assignment.query.filter_by(id = id).first()
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
-            a.files[i]["annotations"].append(str(request.json))
             db.session.delete(a)
+            a.files[i]["annotations"].append(str(request.json))
             db.session.add(a)
             db.session.commit()
+            a = Assignment.query.filter_by(id = id).first()
             return json.dumps(len(a.files[i]["annotations"]))
 
     return json.dumps('No JSON payload sent. Annotation not created.')

@@ -250,7 +250,7 @@ def makeRoles(netid):
 
 @app.route('/store', methods = ['GET', 'POST'])
 def store():
-    assignment = Assignment.query.filter_by(id='3')
+    assignment = Assignment.query.filter_by(id=3)
     for item in assignment.files:
         annotations = item['annotations']
 

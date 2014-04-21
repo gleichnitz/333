@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory, jsonify
+from flask import Flask, render_template, send_from_directory
 from flask import Response, request, redirect, session
 from flask import Blueprint
 from flask import g, url_for
@@ -289,7 +289,7 @@ def read(id, name):
     annotation = find_Annotation(id, name)
     if annotation is None:
         return jsonify('Annotation not found!', status= 404)
-        
+
     return jsonify(annotation)
 
 

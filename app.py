@@ -254,7 +254,9 @@ def makeRoles(netid):
 
 @app.route('/store/', methods = ['GET', 'POST'])
 def store():
+    source = request.url
     array = []
+
     if request.method == 'GET':
         return jsonify(array)
     else:

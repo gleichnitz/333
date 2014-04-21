@@ -27,8 +27,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#num-submit-modal-student').click(function() {
-		console.log("test");
+	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({
@@ -50,6 +49,7 @@ $(document).ready(function() {
 	});
 
 	$('#manual-submit-modal-grader').click(function() {
+		console.log("bump");
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
 		console.log(output);

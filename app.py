@@ -258,9 +258,9 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
-def jsonify(obj, *args, **kwargs):
-    res = json.dumps(obj, indent=None if request.is_xhr else 2)
-    return Response(res, mimetype='application/json', *args, **kwargs)
+# def jsonify(obj, *args, **kwargs):
+#     res = json.dumps(obj, indent=None if request.is_xhr else 2)
+#     return Response(res, mimetype='application/json', *args, **kwargs)
 
 def find_Annotation(id, name):
     assignment1 = Assignment.query.filter_by(id = id).first()
@@ -278,9 +278,10 @@ def create:
 def read(id, name):
     annotation = find_Annotation(id, name)
     if annotation is None:
-        return jsonify('Annotation not found!', status= 404)
+        obj= json.dumps('Annotation not found!')
+        return Response(obj, mimetype = 'application/json', status = 404)
 
-    return jsonify(annotation)
+    return Response(annotation, mimetype = 'application/json')
 
 
 @app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])

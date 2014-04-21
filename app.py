@@ -41,7 +41,7 @@ def upload_student_files():
     i = 1
 
     for item in request.files:
-        AddtoListAssignment(fileList, "file" + str(i), item)
+        content = item.read()
         i = i + 1
 
     addAssignment("cos333", "gtl", assignmentName, fileList)

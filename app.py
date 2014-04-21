@@ -295,7 +295,7 @@ def create():
         if (a.files[i]["name"].split('.')[0] == name):
             a.files[i]["annotations"].append(request.json)
             db.session.commit()
-            return json.dumps(len(item["annotations"]))
+            return json.dumps(len(a.files[i]["annotations"]))
 
     return json.dumps('No JSON payload sent. Annotation not created.')
 

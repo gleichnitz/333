@@ -24,6 +24,7 @@ $(document).ready(function() {
 			thisClone.appendTo("#code-upload-landing");
 			thisClone.css("display", "initial");
 			thisClone.children('label').text("Test");
+			thisClone.attr('name', assignmentSelected + i);
 		}
 	});
 

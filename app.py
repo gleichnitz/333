@@ -248,16 +248,17 @@ def makeRoles(netid):
     return roles
 
 
-@app.route('/store/', methods = ['GET', 'POST'])
+@app.route('/store', methods = ['GET', 'POST'])
 def store():
-    source = request.url
-    array = []
+    assignment = Assignment.query.filter_by(id='3')
+    for item in assignment.files:
+        annotations = item['annotations']
 
     if request.method == 'GET':
-        return jsonify(array)
+        return jsonify(annotations)
     else:
-        return jsonify(5)
-
+        annotations.append(request.json)
+        return len(annotations)
 
 @app.route('/login')
 def login():
@@ -381,7 +382,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', netid = netid, assignment = files, title=title)
+    return render_template('viewer.html', netid = netid, assignment = files, title=title, id=assignmentID)
 
 @app.route("/grader")
 def grader():

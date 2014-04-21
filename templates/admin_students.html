@@ -2,7 +2,7 @@
 
 {% block head %}
 {{ super() }}
-<script type="text/javascript" src="../static/js/adminstudent.js"></script>
+<script type="text/javascript" src="../static/js/admin.js"></script>
 <!--<script type="text/javascript">
   $(document).ready(function () {
       $('.btn-large').active(function () {
@@ -13,16 +13,28 @@
       });
   });
 </script> -->
+
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
 <script>
         $(document).ready(function($)
             {
                 $("#admin-student-table").tablesorter();
+                $("#admin-student-table > tr > .netid-row").click(function() {
+                  var netid= $(this).map(function() {
+                    return $(this).text();
+                  });
+                  $.ajax({
+                    url:"/admin/students/assignments",
+                    context: document.body,
+                    data: {netid: netid}
+                  });
+                )};
             });
 </script>
 {% endblock %}
 
 {% block content %}
+  <body id="admin_students">
     {{super()}}
     <div style="margin-right: 10%;">
       <div id="add_buttons">
@@ -42,18 +54,36 @@
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netid <span class="caret"></span>
                   </button>
               </div>
+          </th>
+          <th class="header" style="text-align:left">
+            Upload
+          </th>
+          <th class="header" style="text-align:left">
+            Remove
+          </th>
       </tr>
-      </th>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
         {% for item in students %}
-              <tr><td><a href="#"><div style="height:100%;width:100%">{{ item.name }}</div></a></td><td><a href="#"><div style="height:100%;width:100%">{{ item.netid }}</div></a></td></tr>
+              <tr>
+                <td><a href="#"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+                <td class="netid-row"><a href="#"><div style="height:100%;width:100%">{{ item.netid }}</div></a></td>
+                <td><div class="btn-group" align="center">
+                    <button id="{{ item.netid }}" class="btn btn-default upload-button" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> Upload work </span>
+                    </button>
+                    </div>
+                </td>
+                <td><div class="btn-group" align="center">
+                  <button id="{{ item.netid }}" class="btn btn-default delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  </button>
+              </div></a></td>
+              </tr>
         {% endfor %}
       </tbody>
     </table>
 
     <!-- #dialog is the id of a DIV defined in the code below -->
-    <div class="modal fade">
+    <div id="modal-add" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -66,7 +96,7 @@
                 <label for="exampleInputEmail1">Manual input</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
                 <br>
-                <button type="button" id="manual-submit-modal" class="btn">Submit</button>
+                <button type="button" id="manual-submit-modal-student" class="btn">Submit</button>
               </div>
               <br>
             </form>
@@ -77,6 +107,7 @@
                 <br>
                 <button type="button" id="file-submit-modal" class="btn">Upload</button>
                 <p class="help-block">Make sure your file is .txt, one netid per line.</p>
+              </div>
             </form>
         </div>
         <div class="modal-footer">
@@ -86,4 +117,48 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+        <!-- #dialog is the id of a DIV defined in the code below -->
+    <div id="modal-upload" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Upload files</h4>
+          </div>
+        <div class="modal-body">
+            <form role="form" action="/_upload_student_files" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label>Upload Student Code</label>
+              </div>
+              <div class="form-group">
+                <label>Select Assignment</label>
+                  <select name="assignmentTitle" class="form-control" id="assignment-submit-select">
+                  {% for item in masters %}
+                    <option id="{{ item.files|length }}">{{ item.name }}</option>
+                  {% endfor %}
+                  </select>
+              </div>
+              <div class="form-group">
+                <div id="code-upload-sample" style="display: none">
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" name="file" id="exampleInputFile">
+                </div>
+                <div id="code-upload-landing">
+
+                </div>
+                <br>
+                <button type="submit" id="file-submit-modal-code" class="btn">Upload</button>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+  </body>
 {% endblock %}

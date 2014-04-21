@@ -2,7 +2,7 @@
 
 {% block head %}
 {{ super() }}
-<script type="text/javascript" src="../static/js/adminstudent.js"></script>
+<script type="text/javascript" src="../static/js/admin.js"></script>
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
 <script>
         $(document).ready(function($)
@@ -30,6 +30,9 @@
                   </button>
               </div>
           </th>
+          <th class="header" style="text-align:left">
+            Remove
+          </th>
       </tr>
       </thead>
       <tbody>
@@ -37,13 +40,17 @@
         {% endfor %}
  -->      {% for grader in gradernetid %}
           <tr><td><a href="#"><div style="height:100%;width:100%">no name</div></a></td>
-              <td><a href="#"><div style="height:100%;width:100%">{{grader}}</div></a></td>
-              </tr>
+              <td class="netid-row"><a href="#"><div style="height:100%;width:100%">{{ grader }}</div></a></td>
+              <td><div class="btn-group" align="center">
+                  <button id="{{ grader }}" class="btn btn-default delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  </button>
+              </div></a></td>
+          </tr>
           {% endfor %}
-      </tbody>
+     </tbody>
     </table>
 
-    <div class="modal fade">
+    <div class="modal fade" id="modal-add">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -55,6 +62,8 @@
               <div class="form-group">
                 <label for="exampleInputEmail1">Manual input</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
+                <br>
+                <button type="button" id="manual-submit-modal-grader" class="btn">Submit</button>
               </div>
               <br>
             </form>
@@ -71,4 +80,5 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
 {% endblock %}

@@ -12,6 +12,7 @@ import cgi
 import pickle
 import traceback
 import json
+from werkzeug import secure_filename
 
 # initialization
 app = Flask(__name__)
@@ -19,9 +20,35 @@ app.config.update(
     DEBUG = True,
 )
 
+testArray = []
+
 # print Student.query.all()
 # print Course.query.all()
 Base = declarative_base()
+
+def AddtoListAssignment(files, name):
+  # need to read file
+  
+  ass_file = {'name': name, 'content': file_content, 'annotations': []}
+  files.append(ass_file)
+  return files
+
+
+@app.route('/_upload_student_files', methods = ['GET', 'POST'])
+def upload_student_files():
+    assignmentName = request.form['assignmentTitle']
+
+    fileList = []
+    i = 1
+
+    for item in request.files:
+        file_content = request.files[item].read()
+        ass_file = {'name': item, 'content': file_content, 'annotations': []}
+        fileList.append(ass_file)
+
+    addAssignment("cos333", "rfreling", assignmentName, fileList)
+
+    return redirect('/admin/students')
 
 @app.route('/_assign')
 def assign_assignment():
@@ -76,6 +103,77 @@ def add_student():
         newStudent = Student("name", "test", netid, cos_333)
         db.session.add(newStudent)
         db.session.commit()
+
+    return "true"
+
+@app.route('/_add_grader')
+def add_grader():
+
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        cos_333 = Course.query.filter_by(name= 'cos333').first()
+        newGrader = Grader(netid, cos_333)
+        db.session.add(newGrader)
+        db.session.commit()
+
+    return "true"
+
+@app.route('/_delete_student')
+def remove_student():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    student = Student.query.filter_by(netid=netid).first();
+    if student is None:
+        return "true"
+
+    db.session.delete(student)                
+    db.session.commit()
+
+    return "true"
+
+@app.route('/_delete_grader')
+def remove_grader():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        return "true"
+
+    db.session.delete(grader)                
+    db.session.commit()
+
+    return "true"
+
+@app.route('/_add_assignment')
+def add_assignment():
+    name = request.args.get('name')
+    fileNames = request.args.get('files').split()
+    rubric = request.args.get('rubric').split()
+    totalPoints = request.args.get('totalPoints')
+    dueDate = request.args.get('dueDate')
+
+    assignment = Assignment('cos333', "", name)
+    assignment.master = True
+    assignment.points_possible = totalPoints
+    assignment.rubric = rubric
+    assignment.due_date = dueDate
+
+    files = []
+    for string in fileNames:
+        AddtoListAssignment(files, string)
+
+    assignment.files = files
+
+    db.session.add(assignment)
+    db.session.commit()
 
     return "true"
 
@@ -162,14 +260,9 @@ def makeRoles(netid):
     return roles
 
 
-@app.route('/store/', methods = ['GET', 'POST'])
+@app.route('/store/annotations', methods = ['GET', 'POST'])
 def store():
-    array = []
-    if request.method == 'GET':
-        return jsonify(array)
-    else:
-        return None
-
+    return jsonify('No JSON payload sent. Annotation not created.')
 
 @app.route('/login')
 def login():
@@ -293,7 +386,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', netid = netid, assignment = files, title=title)
+    return render_template('viewer.html', netid = netid, assignment = files, title=title, id=assignmentID)
 
 @app.route("/grader")
 def grader():
@@ -335,10 +428,10 @@ def grader():
 
     assignments_form = []
     for item in assignments:
-        if item.grader is None:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "None", item.student.netid))
-        elif item.grader.netid == netid:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", item.grader.netid, item.student.netid))
+        if item.master is False and item.grader is None and item.student is not None:
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid))
+        elif item.master is False and item.grader.netid == netid:
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -404,7 +497,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date.split()[0], item.files, "40/40", "", item.student.netid))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.sub_date.split()[0], item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -467,7 +560,15 @@ def admin_students():
     for student in students_db:
         students_form.append(StudentClass("no name", student.netid))
 
-    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles)
+    assignment_db = Assignment.query.all()
+
+    masters = []
+
+    for assignment in assignment_db:
+        if assignment.master is True:
+            masters.append(assignment)
+
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters)
 
 @app.route("/admin/graders")
 def admin_graders():
@@ -533,8 +634,8 @@ def admin_admins():
     assignments = []
     courses = []
     for assignment in assignment_db:
-        if assignment.name not in assignments:
-            assignments.append(assignment.name)
+        if assignment.master is True:
+            assignments.append(assignment)
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 

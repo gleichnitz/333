@@ -5,7 +5,15 @@ $(document).ready(function() {
 	});
 
 	$('#add_buttons').click(function() {
-		$('.modal').modal('toggle');
+		$('#modal-add').modal('toggle');
+	});
+
+	$('.upload-button').click(function() {
+		$('#modal-upload').modal('toggle');
+	});
+
+	$('#assignment-submit-select').change(function() {
+		console.log($("#assignment-submit-select option:selected").text());
 	});
 
 	$('#manual-submit-modal-student').click(function() {
@@ -28,32 +36,13 @@ $(document).ready(function() {
 		  		}
 		  	});
 	});
+
 	$('#manual-submit-modal-grader').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
+		console.log(output);
 	      	$.ajax({
 	  			url: "/_add_grader",
-	  			context: document.body,
-	  			data: { name: output }
-		  	}).done(function(data) {
-		  		if (data == "true") {
-		  			inputfieldParent.removeClass('has-error');
-		  			inputfieldParent.addClass('has-success');
-		  			console.log(data);
-		  		}
-		  		else {
-		  			inputfieldParent.addClass('has-error');
-		  			inputfieldParent.removeClass('has-success');
-		  			console.log(data);
-		  		}
-		  	});
-	});
-
-	$('#manual-submit-modal-assignment').click(function() {
-		var output = $(this).parent().children('input').val();
-		var inputfieldParent = $(this).parent().parent();
-	      	$.ajax({
-	  			url: "/_add_assignment",
 	  			context: document.body,
 	  			data: { netid: output }
 		  	}).done(function(data) {
@@ -70,8 +59,25 @@ $(document).ready(function() {
 		  	});
 	});
 
+	$('#manual-submit-modal-assignment').click(function() {
+	      	$.ajax({
+	  			url: "/_add_assignment",
+	  			context: document.body,
+	  			data: { netid: "", name: $('#assignTitle').val(), files: $('#assignFiles').val(),
+	  			rubric: $('#assignPoints').val(), totalPoints: $('#totalPoints').val(), dueDate: $('#dueDate').val() }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+		  			console.log(data);
+		  		}
+		  		else {
+		  			console.log(data);
+		  		}
+		  	});
+	});
+
 	$('.delete-buttons-student').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').text();
+		var netid = $(this).attr('id');
+		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({
 	  			url: "/_delete_student",
@@ -80,11 +86,15 @@ $(document).ready(function() {
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
+		  		} else {
+		  			console.log("false");
 		  		}
+		});
 	});
 
 	$('.delete-buttons-grader').click(function () {
-		var netid = $(this).closest('tr').children('.netid-row').text();
+		var netid = $(this).attr('id');
+		console.log(netid);
 		var thisButton = $(this);
 	      	$.ajax({
 	  			url: "/_delete_grader",
@@ -93,7 +103,10 @@ $(document).ready(function() {
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
+		  			console.log("true");
+		  		} else {
+		  			console.log("false");
 		  		}
+		});
 	});
-
 });

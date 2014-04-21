@@ -4841,6 +4841,14 @@ td.visible-print {
   }
 }
 
-#deleteassignment:hover {
+.delete-buttons-student:hover {
   color:red !important;
+}
+
+.delete-buttons-grader:hover {
+  color:red !important;
+}
+
+body#admin_students li a#studentside {
+  background:#474747 !important;
 }

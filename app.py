@@ -39,7 +39,6 @@ def upload_student_files():
     assignmentName = request.form['assignmentTitle']
 
     fileList = []
-    i = 1
 
     for item in request.files:
         file_content = request.files[item].read()

@@ -34,7 +34,7 @@ def AddtoListAssignment(files, file_name):
 
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
-    
+    return "success"
 
 @app.route('/_assign')
 def assign_assignment():

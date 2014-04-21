@@ -147,6 +147,10 @@ def remove_grader():
 
     return "true"
 
+@app.route('/admin/students/assignments')
+def admin_studentsdent_assigments:
+
+
 @app.route('/_add_assignment')
 def add_assignment():
     name = request.args.get('name')

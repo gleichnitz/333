@@ -27,35 +27,6 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#file-submit-modal-code').click(function() {
-		var assignmentSelected = $("#assignment-submit-select option:selected").text();
-		var files = new Array();
-		var i = 0;
-		$('#code-upload-landing').children('input').each(function() {
-			files[i++] = $(this).files;
-		});
-
-		var data = new FormData();
-		$.each(files, function(key, value) {
-			data.append(key, value);
-		});
-
-		var fd = new FormData();    
-		fd.append( 'file', files[0] );
-
-		$.ajax({
-		  url: '/_upload_student_files',
-		  data: {files: fd, netid: "jaevans", assignment: assignmentSelected},
-		  processData: false,
-		  contentType: false,
-		  type: 'POST',
-		  success: function(data){
-		    alert(data);
-		  }
-		});
-
-	});
-
 	$('#num-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();

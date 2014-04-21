@@ -260,7 +260,7 @@ def store():
         return jsonify(testArray)
     else:
         testArray.append(request.json)
-        return jsonify(len(annotations))
+        return jsonify("5")
 
 @app.route('/login')
 def login():

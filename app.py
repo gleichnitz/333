@@ -40,28 +40,15 @@ def upload_student_files():
     files = request.files.getlist('file')
     string = ""
 
-    for file in files:
-        string = string + file.read()
-
-    return string
-
     fileList = []
-    string = ""
 
-    for item in request.files:
-        return request.files['file'].read()
+    for file in files:
+        ass_file = {'name': file.name, 'content': file.read(), 'annotations': []}
+        fileList.append(ass_file)
 
-    return string
+    addAssignment("cos333", "rfreling", assignmentName, fileList)
 
-
-    #for item in request.files:
-        #file_content = request.files[item].read()
-        #ass_file = {'name': item, 'content': file_content, 'annotations': []}
-        #fileList.append(ass_file)
-
-    #addAssignment("cos333", "rfreling", assignmentName, fileList)
-
-    #return redirect('/admin/students')
+    return redirect('/admin/students')
 
 @app.route('/_assign')
 def assign_assignment():

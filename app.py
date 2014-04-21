@@ -278,7 +278,7 @@ def jsonify(obj, *args, **kwargs):
 def find_Annotation(id, name):
     assignment1 = Assignment.query.filter_by(id = id).first()
     for item in assignment1.files:
-        if (item["name"] == name):
+        if (item["name"].split('.')[0] == name):
             return json.dumps(item["annotations"])
     return None
    

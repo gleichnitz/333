@@ -278,7 +278,7 @@ def find_Annotation(id, name):
    
 @app.route('/store/annotations/create', methods = ['POST'])
 def create():
-    data = dict(request.data)
+    data = dict(request.json)
     uri = data["uri"]
     name = uri.split(" ")[0]
     id = uri.split(" ")[1]

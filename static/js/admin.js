@@ -28,7 +28,7 @@ $(document).ready(function() {
 	});
 
 	$('#file-submit-modal-code').click(function() {
-		console.log("test");
+		var assignmentSelected = $("#assignment-submit-select option:selected").text();
 		var files = new Array();
 		var i = 0;
 		$('#code-upload-landing').children('input').each(function() {
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 		$.ajax({
 		  url: '/_upload_student_files',
-		  data: {files: fd},
+		  data: {files: fd, netid: "jaevans", assignment: assignmentSelected},
 		  processData: false,
 		  contentType: false,
 		  type: 'POST',

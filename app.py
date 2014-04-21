@@ -40,10 +40,12 @@ def upload_student_files():
     assignmentName = request.form['assignmentTitle']
 
     fileList = []
+    i = 1
 
     for item in request.files:
-        request.files[item].save('/' + secure_filename(item.filename))
-        AddtoListAssignment(fileList, secure_filename(item.filename))
+        request.files[item].save('/file' + str(i))
+        AddtoListAssignment(fileList, '/file' + str(i))
+        i = i + 1
 
     addAssignment("cos333", "gtl", assignmentName, fileList)
 

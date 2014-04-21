@@ -259,9 +259,9 @@ def makeRoles(netid):
     return roles
 
 
-@app.route('/store/annotations', methods = ['GET', 'POST'])
+@app.route('/store/annotations', methods = ['POST'])
 def store():
-    return jsonify('No JSON payload sent. Annotation not created.')
+    return json.dumps('No JSON payload sent. Annotation not created.')
 
 @app.route('/login')
 def login():

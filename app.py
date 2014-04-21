@@ -281,6 +281,8 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             a.files[i]["annotations"].append(str(request.json))
+            return json.dumps(len(a.files[i]["annotations"]))
+
             db.session.commit()
             return json.dumps(len(a.files[i]["annotations"]))
 

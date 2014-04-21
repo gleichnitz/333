@@ -25,10 +25,10 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
-def AddtoListAssignment(files, fileName):
+def AddtoListAssignment(files, name, fileName):
   # need to read file
   file_content = fileName.read()
-  ass_file = {'name': file_name, 'content': None, 'annotations': []}
+  ass_file = {'name': name, 'content': file_content, 'annotations': []}
   files.append(ass_file)
   return files
 
@@ -41,7 +41,7 @@ def upload_student_files():
     fileList = []
     i = 1
     for item in request.files:
-        AddtoListAssignment("file" + i, item)
+        AddtoListAssignment(fileList, item.fileName, item)
         i = i + 1
 
     assignment.files = fileList

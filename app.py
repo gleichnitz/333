@@ -255,10 +255,7 @@ def store():
     if request.method == 'GET':
         return jsonify(testArray)
     else:
-        try:
-            testArray.append(request.json)
-        except:
-            return jsonify('No JSON payload sent. Annotation not created.',
+        return jsonify('No JSON payload sent. Annotation not created.',
                        status=400)
 
 @app.route('/login')

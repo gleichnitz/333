@@ -21,7 +21,7 @@ print "here2"
 for item in assignments:
   print "here3"
   item.files = files
-  db.commit()
+  db.session.commit()
 
 # files = []
 # files = AddtoListAssignment(files, 'HelloWorld.java')

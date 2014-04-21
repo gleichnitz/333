@@ -268,8 +268,40 @@ def makeRoles(netid):
     return roles
 
 @app.route('/store/annotations', methods = ['POST'])
-def store():
+def jsonify(obj, *args, **kwargs):
+    res = json.dumps(obj, indent=None if request.is_xhr else 2)
+    return Response(res, mimetype='application/json', *args, **kwargs)
+
+def find_Annotation(id, name):
+    assignment1 = Assignment.query.filter_by(id = id).first()
+    for item in assignment1.files:
+        if (item["name"] == name):
+            return json.dumps(item["annotations"])
+    return None
+   
+@app.route('/store/annotations/create', methods = ['POST'])
+def create:
     return json.dumps('No JSON payload sent. Annotation not created.')
+
+
+@app.route('/store/annotations/read/<id>/<name>', methods = ['GET'])
+def read(id, name):
+    annotation = find_Annotation(id, name)
+    if annotation is None:
+        return jsonify('Annotation not found!', status= 404)
+        
+    return jsonify(annotation)
+
+
+@app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
+def update(id, name):
+
+@app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
+def destroy(id, name):
+
+# @app.route('/store/annotations/search', methods = ['GET'])
+# def search:
+
 
 @app.route('/login')
 def login():

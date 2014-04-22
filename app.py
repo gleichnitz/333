@@ -694,7 +694,7 @@ def logout():
 
 @app.route("/demo")
 def demo():
-    return render_template('demo.html')
+    return render_template('demo.html', assignments=assignments)
 
 # launch
 if __name__ == "__main__":

@@ -1,18 +1,14 @@
 $(document).ready(function() {
 
-	netid = 
-	$('#netid-default-field').attr('val')
-
-
 	$('#add_buttons').click(function() {
 		$('#modal-add').modal('toggle');
 	});
 
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
+		netid = $(this).nearest('tr').children('netid-row').children('div').text();
+		$('#netid-default-field').val(netid);
 	});
-
-	$('#')
 
 	$('#assignment-submit-select').change(function() {
 		var assignmentSelected = $("#assignment-submit-select option:selected").text();

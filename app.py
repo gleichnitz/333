@@ -705,6 +705,10 @@ def logout():
     session.pop('username', None)
     return redirect('/')
 
+@app.route("/demo")
+def demo():
+    return true
+
 # launch
 if __name__ == "__main__":
     app.secret_key = 'qeqg;abuerjabyekeusxjblelauwbajbhvyhenssj'

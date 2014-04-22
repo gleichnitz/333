@@ -154,7 +154,12 @@ def remove_grader():
 
 @app.route("/_delete_assignment")
 def remove_assignment():
-    
+    name = str(request.args.get('name'))
+    assignments = Assignment.query.filter_by(name=name).first();
+    for assignment in assignments:
+        db.session.delete(assignment)
+        db.session.commit()
+    return "true"
 
 @app.route('/admin/students/assignments')
 def admin_studentsdent_assigments:

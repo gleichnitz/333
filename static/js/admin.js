@@ -120,4 +120,21 @@ $(document).ready(function() {
 		  		}
 		});
 	});
+	$('.delete-buttons-assignment').click(function () {
+		var name = $(this).attr('id');
+		console.log(name);
+		var thisButton = $(this);
+	      	$.ajax({
+	  			url: "/_delete_assignment",
+	  			context: document.body,
+	  			data: { name: name }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+		  			thisButton.closest('tr').css('display','none');
+		  			console.log("true");
+		  		} else {
+		  			console.log("false");
+		  		}
+		});
+	});
 });

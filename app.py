@@ -152,6 +152,10 @@ def remove_grader():
 
     return "true"
 
+@app.route("/_delete_assignment")
+def remove_assignment():
+    
+
 @app.route('/admin/students/assignments')
 def admin_studentsdent_assigments:
 

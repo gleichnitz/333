@@ -300,7 +300,7 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
-            new_files[i]["annotations"].append(str(request.json))
+            new_files[i]["annotations"].append(request.json)
             Assignment.query.filter_by(id = id).update({'files': new_files})
             db.session.commit()
             a = Assignment.query.filter_by(id = id).first()

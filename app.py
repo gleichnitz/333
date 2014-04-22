@@ -487,6 +487,9 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
+    if (grader is None):
+        redirect('/')
+
     button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Claim</button>"
     release_html = "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Release</button>"
 

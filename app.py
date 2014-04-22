@@ -710,23 +710,23 @@ def logout():
     session.pop('username', None)
     return redirect('/')
 
-@app.route("/demo")
-def demo():
-    html_escape_table = {
-    "&" : "&amp;",
-    '"': "&quot;",
-    "'": "&apos;",
-    ">": "&gt;",
-    "<": "&lt;",
-    }
+# @app.route("/demo")
+# def demo():
+#     html_escape_table = {
+#     "&" : "&amp;",
+#     '"': "&quot;",
+#     "'": "&apos;",
+#     ">": "&gt;",
+#     "<": "&lt;",
+#     }
     
-    f = open('Grayscale.java', 'r')
-    code = f.read()
-    code = "".join(html_escape_table.get(c,c) for c in code)
-    code = code.replace("\n","<br>")
-    code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-    return render_template('demo.html', studentwork = code)
-}
+#     f = open('Grayscale.java', 'r')
+#     code = f.read()
+#     code = "".join(html_escape_table.get(c,c) for c in code)
+#     code = code.replace("\n","<br>")
+#     code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+#     return render_template('demo.html', studentwork = code)
+# }
 
 # launch
 if __name__ == "__main__":

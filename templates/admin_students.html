@@ -18,9 +18,7 @@
 <script>
         $(document).ready(function($)
             {
-                $("#admin-student-table").tablesorter({
-                  sortList:[[4,0], [0,0]]
-                });
+                $("#admin-student-table").tablesorter();
                 $("#admin-student-table > tr > .netid-row").click(function() {
                   var netid= $(this).map(function() {
                     return $(this).text();

@@ -43,7 +43,7 @@ def upload_student_files():
     fileList = []
 
     for file in files:
-        ass_file = {'name': file.name, 'content': file.read(), 'annotations': []}
+        ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
     addAssignment("cos333", "rfreling", assignmentName, fileList)

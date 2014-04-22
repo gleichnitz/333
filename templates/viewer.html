@@ -19,15 +19,20 @@
           {% for item in assignment %}
             var content = $('#{{ item.name }}').annotator();
             content.annotator('addPlugin', 'Store', {
-              urls: {
-                create: '/',
-                read: '/:id',
-                update: '/:id',
-                destroy: '/:id'
-              }, 
+              prefix: '/store',
+
               annotationData: {
-                  'uri': '{{ item.name }}'
+                  'uri': '{{ item.name }} {{ id }}'
+              },
+
+              urls: {
+                create: '/annotations/create',
+                read: '/annotations/read/{{id}}/{{item.name}}',
+                update: '/annotations/update/{{id}}/{{item.name}}',
+                destroy: '/annotations/destroy/{{id}}/{{item.name}}',
+                search: '/search'
               }
+
             });
           {% endfor %}
       });

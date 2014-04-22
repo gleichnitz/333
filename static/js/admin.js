@@ -1,15 +1,13 @@
 $(document).ready(function() {
 
-	$('.modal').modal({
-		show: false
-	});
-
 	$('#add_buttons').click(function() {
 		$('#modal-add').modal('toggle');
 	});
 
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
+		netid = $(this).nearest('tr').children('.netid-row').children('div').text();
+		$('#netid-default-field').attr('value', netid);
 	});
 
 	$('#assignment-submit-select').change(function() {
@@ -24,6 +22,7 @@ $(document).ready(function() {
 			thisClone.appendTo("#code-upload-landing");
 			thisClone.css("display", "initial");
 			thisClone.children('label').text("Test");
+			thisClone.attr('name', assignmentSelected + i);
 		}
 	});
 

@@ -132,22 +132,18 @@
               </div>
               <div class="form-group">
                 <label>Select Assignment</label>
-                  <select class="form-control" id="assignment-submit-select">
+                  <select name="assignmentTitle" class="form-control" id="assignment-submit-select">
                   {% for item in masters %}
                     <option id="{{ item.files|length }}">{{ item.name }}</option>
                   {% endfor %}
                   </select>
               </div>
               <div class="form-group">
-                <div id="code-upload-sample" style="display: none">
+                <div id="code-upload-sample">
+                  <input type="text" value="" style="display: initial;" name="netid" id="netid-default-field">
                   <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-                </div>
-                <div id="code-upload-landing">
-
-                </div>
-                <br>
-                <button type="button" id="file-submit-modal-code" class="btn">Upload</button>
+                  <input type=file name="file" multiple>
+                <button type="submit" id="file-submit-modal-code" class="btn">Upload</button>
               </div>
             </form>
         </div>

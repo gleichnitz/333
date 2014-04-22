@@ -1,0 +1,32 @@
+{% extends "base3.html" %}
+
+{% block head %}
+  <title>CodePost: {{ title }}</title>
+
+  <script type="text/javascript" src="../static/js/shCore.js"></script>
+  <script type="text/javascript" src="../static/js/shBrushJava.js"></script>
+  <link type="text/css" rel="stylesheet" href="../static/stylesheets/shCoreDefault.css"/>
+  <script type="text/javascript">
+    SyntaxHighlighter.defaults.toolbar = false;
+    SyntaxHighlighter.all();
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
+  <script type="text/javascript" src="../static/js/viewer.js"></script>
+  <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+
+  <div style="width: 65%; text-align: center; border-color: gray; margin-top: 6em; margin-right: 5%; border: 1px solid; float: center;" class="myClickDisabledElm" id="codearea">
+    <h4 id="codeTitle"></h4>
+    {% for item in assignment %}
+      <div id="{{ item.name }}" class="span9" style="display: none;">
+          <pre class="brush: java; quick-code: false;">{{ item.code }}</pre>
+          <div class="hero-unit"></div>
+      </div>
+    {% endfor %}
+
+  </div>
+{% endblock %}

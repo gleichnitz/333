@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
-		netid = $(this).nearest('tr').children('.netid-row').children('div').text();
+		netid = $(this).closest('tr').children('.netid-row').children('div').text();
 		$('#netid-default-field').attr('value', netid);
 	});
 

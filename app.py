@@ -479,7 +479,7 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
-    if (grader is None):
+    if grader is None:
         redirect('/')
 
     button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Claim</button>"
@@ -489,7 +489,7 @@ def grader():
     for item in assignments:
         if item.master is False and item.grader is None and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid))
-        elif item.master is False and item.grader is not None and item.grader.netid == netid:
+        elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []

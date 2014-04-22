@@ -4841,11 +4841,7 @@ td.visible-print {
   }
 }
 
-.delete-buttons-student:hover {
-  color:red !important;
-}
-
-.delete-buttons-grader:hover {
+.delete-buttons:hover {
   color:red !important;
 }
 

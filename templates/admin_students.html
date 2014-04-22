@@ -2,7 +2,7 @@
 
 {% block head %}
 {{ super() }}
-<script type="text/javascript" src="../static/js/admin.js"></script>
+<script type="text/javascript" src="../static/js/admin2.js"></script>
 <!--<script type="text/javascript">
   $(document).ready(function () {
       $('.btn-large').active(function () {
@@ -74,7 +74,7 @@
                     </div>
                 </td>
                 <td><div class="btn-group" align="center">
-                  <button id="{{ item.netid }}" class="btn btn-default delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  <button id="{{ item.netid }}" class="btn btn-default delete-buttons delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>
               </div></a></td>
               </tr>
@@ -139,14 +139,10 @@
                   </select>
               </div>
               <div class="form-group">
-                <div id="code-upload-sample" style="display: none">
+                <div id="code-upload-sample">
+                  <input type="text" value="" style="display: none;" name="netid" id="netid-default-field">
                   <label for="exampleInputFile">File input</label>
-                  <input type="file" name="file" id="exampleInputFile">
-                </div>
-                <div id="code-upload-landing">
-
-                </div>
-                <br>
+                  <input type=file name="file" multiple>
                 <button type="submit" id="file-submit-modal-code" class="btn">Upload</button>
               </div>
             </form>

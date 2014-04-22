@@ -1,15 +1,14 @@
 $(document).ready(function() {
 
-	$('.modal').modal({
-		show: false
-	});
-
 	$('#add_buttons').click(function() {
 		$('#modal-add').modal('toggle');
 	});
 
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
+		netid = $(this).closest('tr').children('.netid-row').children('div').text();
+		console.log(netid);
+		$('#netid-default-field').attr('value', netid);
 	});
 
 	$('#assignment-submit-select').change(function() {
@@ -24,6 +23,7 @@ $(document).ready(function() {
 			thisClone.appendTo("#code-upload-landing");
 			thisClone.css("display", "initial");
 			thisClone.children('label').text("Test");
+			thisClone.attr('name', assignmentSelected + i);
 		}
 	});
 
@@ -112,6 +112,23 @@ $(document).ready(function() {
 	  			url: "/_delete_grader",
 	  			context: document.body,
 	  			data: { netid: netid }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+		  			thisButton.closest('tr').css('display','none');
+		  			console.log("true");
+		  		} else {
+		  			console.log("false");
+		  		}
+		});
+	});
+	$('.delete-buttons-assignment').click(function () {
+		var name = $(this).attr('id');
+		console.log(name);
+		var thisButton = $(this);
+	      	$.ajax({
+	  			url: "/_delete_assignment",
+	  			context: document.body,
+	  			data: { name: name }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');

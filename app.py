@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory, jsonify
+from flask import Flask, render_template, send_from_directory
 from flask import Response, request, redirect, session
 from flask import Blueprint
 from flask import g, url_for
@@ -26,10 +26,10 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
-def AddtoListAssignment(files, name):
-  # need to read file
-  
-  ass_file = {'name': name, 'content': file_content, 'annotations': []}
+def AddtoListAssignmentMaster(files, file_name):
+  #file_ = open(file_name, 'r')
+  #file_content = file_.read()
+  ass_file = {'name': file_name, 'content': None, 'annotations': []}
   files.append(ass_file)
   return files
 
@@ -37,16 +37,17 @@ def AddtoListAssignment(files, name):
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
+    netid = request.form['netid']
+    files = request.files.getlist('file')
+    string = ""
 
     fileList = []
-    i = 1
 
-    for item in request.files:
-        file_content = request.files[item].read()
-        ass_file = {'name': item, 'content': file_content, 'annotations': []}
+    for file in files:
+        ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
-    addAssignment("cos333", "rfreling", assignmentName, fileList)
+    addAssignment("cos333", netid, assignmentName, fileList)
 
     return redirect('/admin/students')
 
@@ -152,6 +153,15 @@ def remove_grader():
 
     return "true"
 
+@app.route("/_delete_assignment")
+def remove_assignment():
+    name = str(request.args.get('name'))
+    assignments = Assignment.query.filter_by(name=name).all();
+    for assignment in assignments:
+        db.session.delete(assignment)
+        db.session.commit()
+    return "true"
+
 @app.route('/_add_assignment')
 def add_assignment():
     name = request.args.get('name')
@@ -168,7 +178,7 @@ def add_assignment():
 
     files = []
     for string in fileNames:
-        AddtoListAssignment(files, string)
+        AddtoListAssignmentMaster(files, string)
 
     assignment.files = files
 
@@ -259,10 +269,56 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
+# def jsonify(obj, *args, **kwargs):
+#     res = json.dumps(obj, indent=None if request.is_xhr else 2)
+#     return Response(res, mimetype='application/json', *args, **kwargs)
 
-@app.route('/store/annotations', methods = ['GET', 'POST'])
-def store():
-    return jsonify('No JSON payload sent. Annotation not created.')
+def find_Annotation(id, name):
+    assignment1 = Assignment.query.filter_by(id = id).first()
+    for item in assignment1.files:
+        if (item["name"].split('.')[0] == name):
+            return json.dumps(item["annotations"])
+    return None
+   
+@app.route('/store/annotations/create', methods = ['POST'])
+def create():
+    data = dict(request.json)
+    uri = data["uri"]
+    name = uri.split(" ")[0]
+    id = uri.split(" ")[1]
+
+    a = Assignment.query.filter_by(id = id).first()
+    for i in range(0, len(a.files)):
+        if (a.files[i]["name"].split('.')[0] == name):
+            new_files = a.files
+            new_files[i]["annotations"].append(request.json)
+            Assignment.query.filter_by(id = id).update({'files': new_files})
+            db.session.commit()
+            a = Assignment.query.filter_by(id = id).first()
+            return json.dumps(len(a.files[i]["annotations"]))
+
+    return json.dumps('No JSON payload sent. Annotation not created.')
+
+
+@app.route('/store/annotations/read/<id>/<name>', methods = ['GET'])
+def read(id, name):
+    annotation = find_Annotation(id, name)
+    if annotation is None:
+        obj= json.dumps('Annotation not found!')
+        return Response(obj, mimetype = 'application/json', status = 404)
+
+    return Response(annotation, mimetype = 'application/json')
+
+
+# @app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
+# def update(id, name):
+
+# @app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
+# def destroy(id, name):
+
+# @app.route('/store/annotations/search', methods = ['GET'])
+# def search:
+
 
 @app.route('/login')
 def login():
@@ -423,6 +479,9 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
+    if grader is None:
+        redirect('/')
+
     button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Claim</button>"
     release_html = "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Release</button>"
 
@@ -430,7 +489,7 @@ def grader():
     for item in assignments:
         if item.master is False and item.grader is None and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid))
-        elif item.master is False and item.grader.netid == netid:
+        elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
@@ -497,7 +556,7 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.sub_date.split()[0], item.files, "40/40", "", item.student.netid))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid))
 
     classes = []
     for item in assignments_form:
@@ -645,6 +704,24 @@ def admin_admins():
 def logout():
     session.pop('username', None)
     return redirect('/')
+
+# @app.route("/demo")
+# def demo():
+#     html_escape_table = {
+#     "&" : "&amp;",
+#     '"': "&quot;",
+#     "'": "&apos;",
+#     ">": "&gt;",
+#     "<": "&lt;",
+#     }
+    
+#     f = open('Grayscale.java', 'r')
+#     code = f.read()
+#     code = "".join(html_escape_table.get(c,c) for c in code)
+#     code = code.replace("\n","<br>")
+#     code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+#     return render_template('demo.html', studentwork = code)
+# }
 
 # launch
 if __name__ == "__main__":

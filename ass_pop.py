@@ -14,16 +14,21 @@ def AddtoListAssignment(files, file_name):
 
 
 files = []
+print "here1"
 files = AddtoListAssignment(files, 'nbody.java')
-name = "Nbody"
-addAssignment('cos333', 'gtl', name, files)
+assignments = Assignment.query.all()
+print "here2"
+for item in assignments:
+  print "here3"
+  item.files = files
+  db.session.commit()
 
-files = []
-files = AddtoListAssignment(files, 'HelloWorld.java')
-files = AddtoListAssignment(files, 'HiFour.java')
-files = AddtoListAssignment(files, 'SumThree.java')
-name = 'Assignment1'
-addAssignment('cos333', 'gtl', name, files)
+# files = []
+# files = AddtoListAssignment(files, 'HelloWorld.java')
+# files = AddtoListAssignment(files, 'HiFour.java')
+# files = AddtoListAssignment(files, 'SumThree.java')
+# name = 'Assignment1'
+# addAssignment('cos333', 'gtl', name, files)
 
 # ass_file = {}
 # name = 'Nbody'

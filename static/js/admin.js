@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-	$('.modal').modal({
-		show: false
-	});
+	netid = 
+	$('#netid-default-field').attr('val')
+
 
 	$('#add_buttons').click(function() {
 		$('#modal-add').modal('toggle');
@@ -11,6 +11,8 @@ $(document).ready(function() {
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
 	});
+
+	$('#')
 
 	$('#assignment-submit-select').change(function() {
 		var assignmentSelected = $("#assignment-submit-select option:selected").text();

@@ -1,0 +1,49 @@
+{% extends admin2.html %}
+
+{% block head %}
+{{ super() }}
+<script type="text/javascript" src="../static/js/admin.js"></script>
+<script type="text/javascript" src="../static/js/admin_grader.js"></script>
+<script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
+<script>
+        $(document).ready(function($)
+            {
+                $("#admin-grader-table").tablesorter();
+              });
+</script>
+{% endblock %}
+
+{% block content %}
+    {{super()}}
+        <table id="grader-assignment-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 15px;">
+      <thead>
+        <th class="header">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
+                  </button>
+              </div>
+        </th>
+        <th class="header">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Student <span class="caret"></span>
+                  </button>
+              </div>
+        </th>
+        <th class="header">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grade <span class="caret"></span>
+                  </button>
+              </div>
+        </th>
+      </thead>
+      <tbody>
+        {% for assignment in assigments %}
+          <tr>
+            <td> assignment name </td>
+            <td> student name </td>
+            <td> grade </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

@@ -46,7 +46,7 @@ def upload_student_files():
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
-    addAssignment("cos333", "rfreling", assignmentName, fileList)
+    addAssignment("cos333", "gtl", assignmentName, fileList)
 
     return redirect('/admin/students')
 

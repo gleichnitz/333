@@ -37,6 +37,7 @@ def AddtoListAssignmentMaster(files, file_name):
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
+    netid = request.form['netid']
     files = request.files.getlist('file')
     string = ""
 
@@ -46,7 +47,7 @@ def upload_student_files():
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
-    addAssignment("cos333", "gtl", assignmentName, fileList)
+    addAssignment("cos333", netid, assignmentName, fileList)
 
     return redirect('/admin/students')
 

@@ -39,14 +39,14 @@
       </thead>
       <tbody>
        {% for grader in gradernetid %}
-          <a href="/admin/grader/assignments"><tr>
-            <td><div style="height:100%;width:100%">no name</div></td>
-              <td class="netid-row"><div style="height:100%;width:100%">{{ grader }}</div></td>
+          <tr>
+            <td><a href="/admin/grader/assignments"><div style="height:100%;width:100%">no name</div></a></td>
+              <td class="netid-row"><a href="/admin/grader/assignments"><div style="height:100%;width:100%">{{ grader }}</div></a></td>
               <td><div class="btn-group" align="center">
                   <button id="{{ grader }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>
               </div></a></td>
-          </tr></a>
+          </a></tr>
           {% endfor %}
      </tbody>
     </table>

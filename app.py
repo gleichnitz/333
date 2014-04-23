@@ -678,7 +678,7 @@ def admin_graders():
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
-@app.route("/admin/<grader>/assignments")
+@app.route("/admin/<grader>/assignments", methods=["GET"])
 def admin_grader_assignments(grader):
     roles = makeRoles(grader)
     if (roles.count("admin") != 0):

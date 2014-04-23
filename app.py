@@ -300,7 +300,7 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
-            new_dict = dict(json.loads(request.json))
+            new_dict = dict(request.json)
             length = len(a.files[i]["annotations"])
             if length == 0:
                 new_dict["id"] = 0

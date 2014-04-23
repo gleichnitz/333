@@ -305,7 +305,7 @@ def create():
             Assignment.query.filter_by(id = id).update({'files': new_files})
             db.session.commit()
             a = Assignment.query.filter_by(id = id).first()
-            return json.dumps(a.files[i]["annotations"]["id"])
+            return json.dumps(a.files[i]["annotations"][length]["id"])
 
     return json.dumps('No JSON payload sent. Annotation not created.')
 

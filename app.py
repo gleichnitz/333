@@ -678,9 +678,18 @@ def admin_graders():
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
-@app.route("/admin/grader/assignments")
+@app.route("/admin/<grader>/assignments")
 def admin_grader_assignments():
-    return render_template('admin_grader_assignments.html')
+    roles = makeRoles(grader)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    assignments_cos333 = Assignment.query.filter_by(course.name=cos_333).all()
+    assignments=[]
+    for assignment in assignments_cos333:
+        if assignment.grader.netid is grader:
+            assignments.append(assignment)
+    return render_template('admin_grader_assignments.html', roles=roles, assignments=assignments)
 
 @app.route("/admin/assignments")
 def admin_admins():

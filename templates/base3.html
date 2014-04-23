@@ -44,7 +44,8 @@
     <li role="presentation"><a role="menuitem" tabindex="-1" href="/account">Account</a></li>
 
    	{% for role in roles %}
-   	<li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href={{url_for(**role)}}>Switch to {{role}}</a></li>
+   		{% set redirect = url_for('role')%}
+   	<li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href={{redirect}}>Switch to {{role}}</a></li>
    	{% endfor %}
 
     <li role="presentation" class="divider"></li>

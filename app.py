@@ -192,6 +192,86 @@ def add_assignment():
 
     return "true"
 
+@app.route('/_add_grader')
+def add_grader():
+
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        cos_333 = Course.query.filter_by(name= 'cos333').first()
+        newGrader = Grader(netid, cos_333)
+        db.session.add(newGrader)
+        db.session.commit()
+
+    return "true"
+
+@app.route('/_delete_student')
+def remove_student():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    student = Student.query.filter_by(netid=netid).first();
+    if student is None:
+        return "true"
+
+    db.session.delete(student)                
+    db.session.commit()
+
+    return "true"
+
+@app.route('/_delete_grader')
+def remove_grader():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        return "true"
+
+    db.session.delete(grader)                
+    db.session.commit()
+
+    return "true"
+
+@app.route("/_delete_assignment")
+def remove_assignment():
+    name = str(request.args.get('name'))
+    assignments = Assignment.query.filter_by(name=name).all();
+    for assignment in assignments:
+        db.session.delete(assignment)
+        db.session.commit()
+    return "true"
+
+@app.route('/_add_assignment')
+def add_assignment():
+    name = request.args.get('name')
+    fileNames = request.args.get('files').split()
+    rubric = request.args.get('rubric').split()
+    totalPoints = request.args.get('totalPoints')
+    dueDate = request.args.get('dueDate')
+
+    assignment = Assignment('cos333', "", name)
+    assignment.master = True
+    assignment.points_possible = totalPoints
+    assignment.rubric = rubric
+    assignment.due_date = dueDate
+
+    files = []
+    for string in fileNames:
+        AddtoListAssignmentMaster(files, string)
+
+    assignment.files = files
+
+    db.session.add(assignment)
+    db.session.commit()
+
+    return "true"
+
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

@@ -340,8 +340,8 @@ def destroy(id, name, ann_id):
             for j in range(0, len(annotations)):
                 if annotations[j]["id"] == id:
                     del annotations[j]
-                    return 1
-    return 0
+                    return Response(json.dumps("1"), mimetype = 'application/json')
+    return Response(json.dumps("0"), mimetype = 'application/json')
 
 
 # @app.route('/store/annotations/search', methods = ['GET'])

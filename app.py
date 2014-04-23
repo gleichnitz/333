@@ -331,8 +331,8 @@ def read(id, name):
 # @app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
 # def update(id, name):
 
-@app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
-def destroy(id, name):
+# @app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
+# def destroy(id, name):
 
 # @app.route('/store/annotations/search', methods = ['GET'])
 # def search:

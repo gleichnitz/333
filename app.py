@@ -297,7 +297,7 @@ def create():
             if length == 0:
                 new_dict["id"] = 0
             else:
-                old_dict = dict(a.files[i]["annotations"][length-1])
+                old_dict = dict(json.loads(a.files[i]["annotations"][length-1]))
                 old_id = old_dict["id"]
                 new_dict["id"] = old_id + 1
 
@@ -305,7 +305,7 @@ def create():
             Assignment.query.filter_by(id = id).update({'files': new_files})
             db.session.commit()
             a = Assignment.query.filter_by(id = id).first()
-            return json.dumps(a.files[i]["annotations"]["id"])
+            return json.dumps(length)
 
     return json.dumps('No JSON payload sent. Annotation not created.')
 

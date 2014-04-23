@@ -158,15 +158,6 @@ def remove_grader():
 
     return "true"
 
-@app.route("/_delete_assignment")
-def remove_assignment():
-    name = str(request.args.get('name'))
-    assignments = Assignment.query.filter_by(name=name).all();
-    for assignment in assignments:
-        db.session.delete(assignment)
-        db.session.commit()
-    return "true"
-
 @app.route('/_add_assignment')
 def add_assignment():
     name = request.args.get('name')
@@ -188,21 +179,6 @@ def add_assignment():
     assignment.files = files
 
     db.session.add(assignment)
-    db.session.commit()
-
-    return "true"
-
-@app.route('/_delete_student')
-def remove_student():
-    netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
-        return "false"
-
-    student = Student.query.filter_by(netid=netid).first();
-    if student is None:
-        return "true"
-
-    db.session.delete(student)                
     db.session.commit()
 
     return "true"

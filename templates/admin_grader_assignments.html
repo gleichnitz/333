@@ -4,9 +4,11 @@
 {{ super() }}
 <script type="text/javascript" src="../static/js/admin.js"></script>
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
-<script>
-        $(document).ready(function($)
-            {
+<script type="text/javascript">
+        $(document).ready(function($) {
+                $(.table > tr).click(function() {
+                    window.document.location = $(this).attr("href");
+                });
                 $("#admin-grader-table").tablesorter();
               });
 </script>
@@ -14,35 +16,39 @@
 
 {% block content %}
     {{super()}}
-    <table id="grader-assignment-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 15px;">
-      <thead>
-        <th class="header">
+  <a href="#" id="add_buttons" class="btn btn-large"><i class="icon-white icon-plus"></i> Add a Grader</a>
+    <table id="admin-grader-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 15px;">
+    <thead>
+      <tr>
+          <th class="header">
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Name <span class="caret"></span>
                   </button>
               </div>
-        </th>
-        <th class="header">
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Student <span class="caret"></span>
+          </th>
+          <th class="header">
+          	<div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> netid <span class="caret"></span>
                   </button>
               </div>
-        </th>
-        <th class="header">
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grade <span class="caret"></span>
-                  </button>
-              </div>
-        </th>
+          </th>
+          <th class="header" style="text-align:left">
+            Remove
+          </th>
+      </tr>
       </thead>
       <tbody>
-        {% for assignment in assigments %}
+       {% for grader in gradernetid %}
           <tr>
-            <td> assignment name </td>
-            <td> student name </td>
-            <td> grade </td>
-          </tr>
-        {% endfor %}
-      </tbody>
+            <td><a href="/admin/grader/assignments"><div style="height:100%;width:100%">no name</div></a></td>
+              <td class="netid-row"><a href="/admin/grader/assignments"><div style="height:100%;width:100%">{{ grader }}</div></a></td>
+              <td><div class="btn-group" align="center">
+                  <button id="{{ grader }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  </button>
+              </div></a></td>
+          </a></tr>
+          {% endfor %}
+     </tbody>
     </table>
+
 {% endblock %}

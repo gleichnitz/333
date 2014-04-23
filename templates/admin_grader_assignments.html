@@ -1,19 +1,18 @@
-{% extends "base3.html" %}
+{% extends "base_admin.html" %}
 
 {% block head %}
 {{ super() }}
-<script type="text/javascript" src="../static/js/admin.js"></script>
+<script type="text/javascript" src="../static/js/admin2.js"></script>
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
-<script type="text/javascript">
-        $(document).ready(function($) {
-                $(.table > tr).click(function() {
-                    window.document.location = $(this).attr("href");
-                });
-                $("#admin-grader-table").tablesorter();
-              });
-</script>
-{% endblock %}
-
+<!-- <script type="text/javascript">
+//         $(document).ready(function($) {
+//                 $(.table > tr).click(function() {
+//                     window.document.location = $(this).attr("href");
+//                 });
+//                 $("#admin-grader-table").tablesorter();
+//               });
+// </script>
+{% endblock %} -->
 <!-- {% block content %}
     {{super()}}
     <table id="grader-assignments-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 15px;">

@@ -684,7 +684,7 @@ def admin_grader_assignments():
     if (roles.count("admin") != 0):
         roles.remove("admin")
     cos_333 = Course.query.filter_by(name= 'cos333').first()
-    assignments_cos333 = Assignment.query.filter_by(course.name=cos_333).all()
+    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
     assignments=[]
     for assignment in assignments_cos333:
         if assignment.grader.netid is grader:

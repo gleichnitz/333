@@ -338,7 +338,7 @@ def destroy(id, name, ann_id):
         if (a.files[i]["name"].split('.')[0] == name):
             annotations = a.files[i]["annotations"]
             for j in range(0, len(annotations)):
-                if annotations[j]["id"] == id:
+                if annotations[j]["id"] == ann_id:
                     del annotations[j]
                     return Response(json.dumps("1"), mimetype = 'application/json')
     return Response(json.dumps("0"), mimetype = 'application/json')

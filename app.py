@@ -334,12 +334,15 @@ def read(id, name):
 @app.route('/store/annotations/destroy/<id>/<name>/<ann_id>', methods = ['DELETE'])
 def destroy(id, name, ann_id):
     a = Assignment.query.filter_by(id = id).first()
+    new_files = a.files
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
-            annotations = a.files[i]["annotations"]
+            annotations = new_files[i]["annotations"]
             for j in range(0, len(annotations)):
-                if annotations[j]["id"] == ann_id:
+                if str(annotations[j]["id"]) == ann_id:
                     del annotations[j]
+                    Assignment.query.filter_by(id = id).update({'files': new_files})
+                    db.session.commit()
                     return Response(json.dumps("1"), mimetype = 'application/json')
     return Response(json.dumps("0"), mimetype = 'application/json')
 

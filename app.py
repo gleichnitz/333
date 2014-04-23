@@ -192,31 +192,6 @@ def remove_assignment():
         db.session.commit()
     return "true"
 
-@app.route('/_add_assignment')
-def add_assignment():
-    name = request.args.get('name')
-    fileNames = request.args.get('files').split()
-    rubric = request.args.get('rubric').split()
-    totalPoints = request.args.get('totalPoints')
-    dueDate = request.args.get('dueDate')
-
-    assignment = Assignment('cos333', "", name)
-    assignment.master = True
-    assignment.points_possible = totalPoints
-    assignment.rubric = rubric
-    assignment.due_date = dueDate
-
-    files = []
-    for string in fileNames:
-        AddtoListAssignmentMaster(files, string)
-
-    assignment.files = files
-
-    db.session.add(assignment)
-    db.session.commit()
-
-    return "true"
-
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student):
         self.id = id

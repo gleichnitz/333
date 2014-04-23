@@ -331,8 +331,18 @@ def read(id, name):
 # @app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
 # def update(id, name):
 
-# @app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
-# def destroy(id, name):
+@app.route('/store/annotations/destroy/<id>/<name>/<ann_id>', methods = ['DELETE'])
+def destroy(id, name, ann_id):
+    a = Assignment.query.filter_by(id = id).first()
+    for i in range(0, len(a.files)):
+        if (a.files[i]["name"].split('.')[0] == name):
+            annotations = a.files[i]["annotations"]
+            for j in range(0, len(annotations)):
+                if annotations[j]["id"] == id:
+                    del annotations[j]
+                    return 1
+    return 0
+
 
 # @app.route('/store/annotations/search', methods = ['GET'])
 # def search:

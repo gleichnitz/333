@@ -183,21 +183,6 @@ def add_assignment():
 
     return "true"
 
-@app.route('/_delete_grader')
-def remove_grader():
-    netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
-        return "false"
-
-    grader = Grader.query.filter_by(netid=netid).first();
-    if grader is None:
-        return "true"
-
-    db.session.delete(grader)                
-    db.session.commit()
-
-    return "true"
-
 @app.route("/_delete_assignment")
 def remove_assignment():
     name = str(request.args.get('name'))

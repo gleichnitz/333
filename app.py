@@ -291,11 +291,21 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
-            new_files[i]["annotations"].append(request.json)
+
+            new_dict = dict(request.json)
+            length = len(a.files[i]["annotations"])
+            if length == 0):
+                new_dict["id"] = 0
+            else:
+                old_dict = dict(a.files[i]["annotations"][length-1])
+                old_id = old_dict["id"]
+                new_dict["id"] = old_id + 1
+
+            new_files[i]["annotations"].append(json.dumps(new_dict))
             Assignment.query.filter_by(id = id).update({'files': new_files})
             db.session.commit()
             a = Assignment.query.filter_by(id = id).first()
-            return json.dumps(len(a.files[i]["annotations"]))
+            return json.dumps(a.files[i]["annotations"]["id"])
 
     return json.dumps('No JSON payload sent. Annotation not created.')
 
@@ -667,6 +677,10 @@ def admin_graders():
     #     names.append(graders.firstname + " " + graders.lastname)
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+
+@app.route("/admin/grader/assignments")
+def admin_grader_assignments():
+    return render_template('admin_grader_assignments.html')
 
 @app.route("/admin/assignments")
 def admin_admins():

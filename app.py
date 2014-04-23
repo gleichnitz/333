@@ -294,7 +294,7 @@ def create():
 
             new_dict = dict(request.json)
             length = len(a.files[i]["annotations"])
-            if length == 0):
+            if length == 0:
                 new_dict["id"] = 0
             else:
                 old_dict = dict(a.files[i]["annotations"][length-1])

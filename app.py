@@ -305,7 +305,7 @@ def create():
             if length == 0:
                 new_dict["id"] = 0
             else:
-                old_dict = dict(json.loads(a.files[i]["annotations"][length-1]))
+                old_dict = dict(a.files[i]["annotations"][length-1])
                 old_id = old_dict["id"]
                 new_dict["id"] = old_id + 1
 
@@ -331,8 +331,8 @@ def read(id, name):
 # @app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
 # def update(id, name):
 
-# @app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
-# def destroy(id, name):
+@app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
+def destroy(id, name):
 
 # @app.route('/store/annotations/search', methods = ['GET'])
 # def search:

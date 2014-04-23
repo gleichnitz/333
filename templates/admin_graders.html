@@ -4,9 +4,11 @@
 {{ super() }}
 <script type="text/javascript" src="../static/js/admin.js"></script>
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
-<script>
-        $(document).ready(function($)
-            {
+<script type="text/javascript">
+        $(document).ready(function($) {
+                $(.table > tr).click(function() {
+                    window.document.location = $(this).attr("href");
+                });
                 $("#admin-grader-table").tablesorter();
               });
 </script>
@@ -36,19 +38,19 @@
       </tr>
       </thead>
       <tbody>
-<!--       {% for name in names %}
-        {% endfor %}
- -->      {% for grader in gradernetid %}
-          <tr><td><a href="#"><div style="height:100%;width:100%">no name</div></a></td>
-              <td class="netid-row"><a href="#"><div style="height:100%;width:100%">{{ grader }}</div></a></td>
+       {% for grader in gradernetid %}
+          <tr>
+            <td><a href="/admin/{{grader}}/assignments"><div style="height:100%;width:100%">no name</div></a></td>
+              <td class="netid-row"><a href="/admin/{{grader}}/assignments" methods=["POST"]><div style="height:100%;width:100%">{{ grader }}</div></a></td>
               <td><div class="btn-group" align="center">
                   <button id="{{ grader }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>
               </div></a></td>
-          </tr>
+          </a></tr>
           {% endfor %}
      </tbody>
     </table>
+
 
     <div class="modal fade" id="modal-add">
       <div class="modal-dialog">

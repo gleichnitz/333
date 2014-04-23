@@ -37,6 +37,7 @@ def AddtoListAssignmentMaster(files, file_name):
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
+    netid = request.form['netid']
     files = request.files.getlist('file')
     string = ""
 
@@ -46,7 +47,7 @@ def upload_student_files():
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
-    addAssignment("cos333", "rfreling", assignmentName, fileList)
+    addAssignment("cos333", netid, assignmentName, fileList)
 
     return redirect('/admin/students')
 
@@ -154,11 +155,12 @@ def remove_grader():
 
 @app.route("/_delete_assignment")
 def remove_assignment():
-    
-
-@app.route('/admin/students/assignments')
-def admin_studentsdent_assigments:
-
+    name = str(request.args.get('name'))
+    assignments = Assignment.query.filter_by(name=name).all();
+    for assignment in assignments:
+        db.session.delete(assignment)
+        db.session.commit()
+    return "true"
 
 @app.route('/_add_assignment')
 def add_assignment():
@@ -289,11 +291,21 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
-            new_files[i]["annotations"].append(str(request.json))
+
+            new_dict = dict(request.json)
+            length = len(a.files[i]["annotations"])
+            if length == 0:
+                new_dict["id"] = 0
+            else:
+                old_dict = dict(json.loads(a.files[i]["annotations"][length-1]))
+                old_id = old_dict["id"]
+                new_dict["id"] = old_id + 1
+
+            new_files[i]["annotations"].append(json.dumps(new_dict))
             Assignment.query.filter_by(id = id).update({'files': new_files})
             db.session.commit()
             a = Assignment.query.filter_by(id = id).first()
-            return json.dumps(len(a.files[i]["annotations"]))
+            return json.dumps(length)
 
     return json.dumps('No JSON payload sent. Annotation not created.')
 
@@ -477,6 +489,9 @@ def grader():
     course = grader.course
     assignments = course.assignments.all()
 
+    if grader is None:
+        redirect('/')
+
     button_html = "<button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Claim</button>"
     release_html = "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button type=\"button\" class=\"btn\" style=\"color: black; background-color: white; border: 1px solid black;\">Release</button>"
 
@@ -484,7 +499,7 @@ def grader():
     for item in assignments:
         if item.master is False and item.grader is None and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid))
-        elif item.master is False and item.grader.netid == netid:
+        elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid))
 
     classes = []
@@ -663,6 +678,20 @@ def admin_graders():
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
+@app.route("/admin/<gradernetid>/assignments", methods=["GET"])
+def admin_grader_assignments(gradernetid):
+    roles = makeRoles(gradernetid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
+    grader = Grader.query.filter_by(netid=gradernetid).first()
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
+    assignments=[]
+    for assignment in assignments_cos333:
+        if assignment.grader is grader:
+            assignments.append(assignment)
+    return render_template('admin_grader_assignments.html', roles=roles, assignments=assignments)
+
 @app.route("/admin/assignments")
 def admin_admins():
     try:
@@ -700,23 +729,23 @@ def logout():
     session.pop('username', None)
     return redirect('/')
 
-@app.route("/demo")
-def demo():
-    html_escape_table = {
-    "&" : "&amp;",
-    '"': "&quot;",
-    "'": "&apos;",
-    ">": "&gt;",
-    "<": "&lt;",
-    }
+# @app.route("/demo")
+# def demo():
+#     html_escape_table = {
+#     "&" : "&amp;",
+#     '"': "&quot;",
+#     "'": "&apos;",
+#     ">": "&gt;",
+#     "<": "&lt;",
+#     }
     
-    f = open('Grayscale.java', 'r')
-    code = f.read()
-    code = "".join(html_escape_table.get(c,c) for c in code)
-    code = code.replace("\n","<br>")
-    code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-    return render_template('demo.html', studentwork = code)
-}
+#     f = open('Grayscale.java', 'r')
+#     code = f.read()
+#     code = "".join(html_escape_table.get(c,c) for c in code)
+#     code = code.replace("\n","<br>")
+#     code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+#     return render_template('demo.html', studentwork = code)
+# }
 
 # launch
 if __name__ == "__main__":

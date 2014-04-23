@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
-		netid = $(this).closest('tr').children('.netid-row').children('div').text();
+		netid = $(this).closest('tr').children('.netid-row').children('a').children('div').text();
 		console.log(netid);
 		$('#netid-default-field').attr('value', netid);
 	});
@@ -25,15 +25,6 @@ $(document).ready(function() {
 			thisClone.children('label').text("Test");
 			thisClone.attr('name', assignmentSelected + i);
 		}
-	});
-
-	$('table tr').click(function() {
-		var output = $(this).children('.netid-row').text();
-		$.ajax({
-			url:"/admin/grader/assignments",
-			context: document.body,
-			data: {netid: output}
-		});
 	});
 
 	$('#manual-submit-modal-student').click(function() {

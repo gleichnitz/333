@@ -309,7 +309,7 @@ def create():
                 old_id = old_dict["id"]
                 new_dict["id"] = old_id + 1
 
-            new_files[i]["annotations"].append(json.dumps(new_dict))
+            new_files[i]["annotations"].append(json.loads(new_dict))
             Assignment.query.filter_by(id = id).update({'files': new_files})
             db.session.commit()
             a = Assignment.query.filter_by(id = id).first()

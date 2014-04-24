@@ -708,6 +708,8 @@ def admin_grader_assignments(grader):
     if (roles.count("admin") != 0):
         roles.remove("admin")
     grader = Grader.query.filter_by(netid=gradernetid).first()
+    if grader is None:
+        return False
     cos_333 = Course.query.filter_by(name= 'cos333').first()
     assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
     assignments=[]

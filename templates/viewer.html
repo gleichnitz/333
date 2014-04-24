@@ -27,7 +27,7 @@
   <script>
       jQuery(function ($) {
           {% for item in assignment %}
-            var content = $('#{{ item.name }}').annotator();
+            var content = $('#{{ item.name }}').annotator({{ item.isReadOnly }});
             content.annotator('addPlugin', 'Store', {
               prefix: '/store',
 

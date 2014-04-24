@@ -231,7 +231,7 @@ class AssignmentClass:
         self.student = student
 
 class File:
-    def __init__(self, name, code, grade):
+    def __init__(self, name, code, grade, isReadOnly = ""):
         self.name = name.split('.')[0]
         if len(name.split('.')) > 1:
             self.ext = name.split('.')[1]
@@ -239,6 +239,7 @@ class File:
             self.ext = ""
         self.code = code
         self.grade = grade
+        self.isReadOnly = isReadOnly
 
 class StudentClass:
     def __init__(self, name, netid):
@@ -494,7 +495,11 @@ def submitted():
     files = []
 
     for item in assignment_active.files:
-        files.append(File(item['name'], item['content'], "10/10"))
+        if accountType == "s"
+            files.append(File(item['name'], item['content'], "10/10"))
+        else:
+            files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))
+
 
     ##################################
     # need to pass: item containing assignment files to be loaded

@@ -460,6 +460,10 @@ def submitted():
         else:
             return redirect('/grader')
 
+    roles = makeRoles(netid)
+    if (roles.count("grader") != 0):
+        roles.remove("grader")
+
     title = assignment_active.name
 
     files = []
@@ -476,7 +480,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', netid = netid, assignment = files, title=title, id=assignmentID)
+    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID)
 
 @app.route("/grader")
 def grader():

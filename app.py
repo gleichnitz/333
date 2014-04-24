@@ -95,7 +95,7 @@ def release_assignment():
 def add_student():
 
     netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
+    if netid.isalphanum() is False:
         return "false"
 
     student = Student.query.filter_by(netid=netid).first();
@@ -104,6 +104,11 @@ def add_student():
         newStudent = Student("name", "test", netid, cos_333)
         db.session.add(newStudent)
         db.session.commit()
+
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    newStudent = Student("name", "test", netid, cos_333)
+    db.session.add(newStudent)
+    db.session.commit()
 
     return "true"
 
@@ -153,15 +158,6 @@ def remove_grader():
 
     return "true"
 
-@app.route("/_delete_assignment")
-def remove_assignment():
-    name = str(request.args.get('name'))
-    assignments = Assignment.query.filter_by(name=name).all();
-    for assignment in assignments:
-        db.session.delete(assignment)
-        db.session.commit()
-    return "true"
-
 @app.route('/_add_assignment')
 def add_assignment():
     name = request.args.get('name')
@@ -185,6 +181,15 @@ def add_assignment():
     db.session.add(assignment)
     db.session.commit()
 
+    return "true"
+
+@app.route("/_delete_assignment")
+def remove_assignment():
+    name = str(request.args.get('name'))
+    assignments = Assignment.query.filter_by(name=name).all();
+    for assignment in assignments:
+        db.session.delete(assignment)
+        db.session.commit()
     return "true"
 
 class AssignmentClass:
@@ -269,6 +274,19 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
+@app.route('/store/annotations', methods = ['POST'])
+def jsonify(obj, *args, **kwargs):
+    res = json.dumps(obj, indent=None if request.is_xhr else 2)
+    return Response(res, mimetype='application/json', *args, **kwargs)
+<<<<<<< HEAD
+>>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
+=======
+>>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
 # def jsonify(obj, *args, **kwargs):
 #     res = json.dumps(obj, indent=None if request.is_xhr else 2)
 #     return Response(res, mimetype='application/json', *args, **kwargs)
@@ -291,11 +309,27 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
-            new_files[i]["annotations"].append(request.json)
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
+=======
+>>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
+            new_dict = dict(request.json)
+            length = len(a.files[i]["annotations"])
+            if length == 0:
+                new_dict["id"] = 0
+            else:
+                old_dict = dict(a.files[i]["annotations"][length-1])
+                old_id = old_dict["id"]
+                new_dict["id"] = old_id + 1
+
+            new_files[i]["annotations"].append(new_dict)
             Assignment.query.filter_by(id = id).update({'files': new_files})
             db.session.commit()
             a = Assignment.query.filter_by(id = id).first()
-            return json.dumps(len(a.files[i]["annotations"]))
+            return json.dumps(length)
 
     return json.dumps('No JSON payload sent. Annotation not created.')
 
@@ -313,8 +347,21 @@ def read(id, name):
 # @app.route('/store/annotations/update/<id>/<name>', methods = ['PUT'])
 # def update(id, name):
 
-# @app.route('/store/annotations/destroy/<id>/<name>', methods = ['DELETE'])
-# def destroy(id, name):
+@app.route('/store/annotations/destroy/<id>/<name>/<ann_id>', methods = ['DELETE'])
+def destroy(id, name, ann_id):
+    a = Assignment.query.filter_by(id = id).first()
+    new_files = a.files
+    for i in range(0, len(a.files)):
+        if (a.files[i]["name"].split('.')[0] == name):
+            annotations = new_files[i]["annotations"]
+            for j in range(0, len(annotations)):
+                if str(annotations[j]["id"]) == ann_id:
+                    del annotations[j]
+                    Assignment.query.filter_by(id = id).update({'files': new_files})
+                    db.session.commit()
+                    return Response(json.dumps("1"), mimetype = 'application/json')
+    return Response(json.dumps("0"), mimetype = 'application/json')
+
 
 # @app.route('/store/annotations/search', methods = ['GET'])
 # def search:
@@ -667,6 +714,20 @@ def admin_graders():
     #     names.append(graders.firstname + " " + graders.lastname)
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+
+@app.route("/admin/<gradernetid>/assignments", methods=["GET"])
+def admin_grader_assignments(gradernetid):
+    roles = makeRoles(gradernetid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
+    grader = Grader.query.filter_by(netid=gradernetid).first()
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
+    assignments=[]
+    for assignment in assignments_cos333:
+        if assignment.grader is grader:
+            assignments.append(assignment)
+    return render_template('admin_grader_assignments2.html', roles=roles, assignments=assignments)
 
 @app.route("/admin/assignments")
 def admin_admins():

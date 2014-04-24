@@ -1,0 +1,58 @@
+{% extends "base_admin.html" %}
+
+{% block head %}
+{{ super() }}
+<script type="text/javascript" src="../static/js/admin2.js"></script>
+<script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
+<!-- <script type="text/javascript">
+//         $(document).ready(function($) {
+//                 $(.table > tr).click(function() {
+//                     window.document.location = $(this).attr("href");
+//                 });
+//                 $("#admin-grader-table").tablesorter();
+//               });
+// </script> -->
+{% endblock %}
+<!-- {% block content %}
+    {{super()}}
+    <table id="grader-assignments-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 15px;">
+    <thead>
+      <tr>
+          <th class="header">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
+                  </button>
+              </div>
+          </th>
+          <th class="header">
+          	<div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Student <span class="caret"></span>
+                  </button>
+              </div>
+          </th>
+          <th class="header">
+            <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grade <span class="caret"></span>
+                  </button>
+              </div>
+          </th>
+          <th class="header" style="text-align:left">
+            Remove
+          </th>
+      </tr>
+      </thead>
+      <tbody>
+       {% for assignment in assignments %}
+          <tr>
+            <td><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
+              <td class="netid-row"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
+              <td><div class="btn-group" align="center">
+                  <button id="{{ grader }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> {{assignment.grade}} </span>
+                  </button>
+              </div></a></td>
+          </a></tr>
+          {% endfor %}
+     </tbody>
+    </table>
+
+{% endblock %} -->

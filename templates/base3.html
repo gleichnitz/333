@@ -31,7 +31,7 @@
     {% endblock %}
 </head>
 
-<body style="background-color: white;">
+<body background="../static/img/cutcube.png";>
 	<div style="background-color: black;" class="navbar navbar-fixed-top" data-activeslide="1">
                 <a style="text-decoration: none;" href='http://saltytyga.herokuapp.com '>
                     <h1 style="margin-top:5px;margin-bottom:1px;color:white; float: left; margin-left: 2%;" class="font-semibold">code<font color="red">P</font><span class="font-thin">ost</span></h1></a>
@@ -44,7 +44,8 @@
     <li role="presentation"><a role="menuitem" tabindex="-1" href="/account">Account</a></li>
 
    	{% for role in roles %}
-   	<li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href="/{{role}}">Switch to {{role}}</a></li>
+   		{% set redirect = url_for(role)%}
+   	<li id="{{role}}" role="presentation"><a role="menuitem" tabindex="-1" href={{redirect}}>Switch to {{role}}</a></li>
    	{% endfor %}
 
     <li role="presentation" class="divider"></li>

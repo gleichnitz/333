@@ -36,9 +36,6 @@
                   </button>
               </div>
           </th>
-          <th class="header" style="text-align:left">
-            Remove
-          </th>
       </tr>
       </thead>
       <tbody>
@@ -47,10 +44,6 @@
             <td><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
               <td class="netid-row"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
               <td class="netid-row"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
-              <td><div class="btn-group" align="center">
-                  <button id="{{ grader }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
-                  </button>
-              </div></a></td>
           </a></tr>
           {% endfor %}
      </tbody>

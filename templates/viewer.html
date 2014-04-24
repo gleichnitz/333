@@ -43,16 +43,18 @@
 {% block body %}
   <div style="float: left; margin-top: 3.2em; margin-left: 6%;">
     <table class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 19%;">
-    <tr><th>File</th><th>Grade</th></tr>
-    {% for item in assignment %}
+    <thead><tr><th>File</th><th>Grade</th></tr> </thead>
+    <tbody>
+      {% for item in assignment %}
         <tr id="-{{ item.name }}"><td>{{ item.name }}</td><td>{{ item.grade }}</td></tr>
-    {% endfor %}
-    <tr> 
-      <div class="btn-group" align="center">
-                  <button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+      {% endfor %}
+      <tr> 
+        <div class="btn-group" align="center">
+                  <button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> Mark Grading as Done </span>
                   </button>
-      </div>
-    </tr>
+        </div>
+      </tr>
+    </tbody>
     </table>
   </div>
   <div id="clicker"></div>

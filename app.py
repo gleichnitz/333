@@ -41,7 +41,7 @@ def mass_upload_students():
 
     for item in netids:
         student = Student.query.filter_by(netid = item).first();
-            if student is None:
+        if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
             newStudent = Student("name", "test", netid, cos_333)
             db.session.add(newStudent)

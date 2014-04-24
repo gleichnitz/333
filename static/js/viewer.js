@@ -15,6 +15,10 @@ $(document).ready(function(e) {
 		$('#codeTitle').text(idName);
 	});
 
+	$('#mark_as_done').click(function() {
+
+	});
+
 	/* $('table tr').click(function() {
 		 var href = $(this).find("a").attr("href");
 		 output = href.substring(1, href.length);

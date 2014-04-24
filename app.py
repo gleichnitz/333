@@ -30,7 +30,7 @@ def isValidNetid(netid):
     if len(netid) < 2 or len(netid) > 8:
         return False
 
-    if isalnum(netid):
+    if netid.isalnum():
         return True
     else:
         return False

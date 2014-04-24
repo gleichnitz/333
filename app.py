@@ -26,7 +26,7 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
-def isValidNetid(netid) {
+def isValidNetid(netid):
     if len(netid) < 2 or len(netid) > 8:
         return False
 
@@ -34,7 +34,6 @@ def isValidNetid(netid) {
         return True
     else:
         return False
-}
 
 
 def AddtoListAssignmentMaster(files, file_name):

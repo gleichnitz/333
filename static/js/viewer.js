@@ -16,8 +16,8 @@ $(document).ready(function(e) {
 	});
 
 	$('#mark_as_done').click(function() {
-		var assignmentname = $(this).parent().children('.assignment-name').attr('id')
-		
+		var assignmentname = $(this).closest(".table").attr('id')
+
 	});
 
 	/* $('table tr').click(function() {

@@ -700,7 +700,7 @@ def admin_graders():
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
-@app.route('/admin/grader/assignments')
+@app.route('/admin/grader_assignments')
 def plz_work():
     gradernetid="gtl"
     roles=makeRoles(gradernetid)

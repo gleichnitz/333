@@ -12,8 +12,9 @@
   </script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   <script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
+  <script src="../static/js/jquery.i18n.min.js"></script>
   <!-- Scroll panel -->
-  <script src="../static/js/jquery.slimscroll.js"></script>
+  <script src="../static/js/jquery.slimscroll.min.js"></script>
   <script type="text/javascript" src="../static/js/viewer.js"></script>
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
   <!--<link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator_viewer.css">-->
@@ -22,6 +23,7 @@
   <script>
       jQuery(function ($) {
           {% for item in assignment %}
+            $.i18n.load(i18n_dict);
             var content = $('#{{ item.name }}').annotator();
             content.annotator('addPlugin', 'Store', {
               prefix: '/store',

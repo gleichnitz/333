@@ -136,13 +136,13 @@
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
                 <td><div class="row_grader" style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
-                <td><div class="row_grader" style="height:100%;width:100%">
-                    {% if item.graded == "True" %}
+                <td><div class="graded_status" style="height:100%;width:100%">
+                    {% if item.graded %}
                         Completed
-                    {% elif item.in_progress == "True" %}
+                    {% elif item.in_progress %}
                         In Progress
                     {% else %}
-                        Unclaimed
+                        --------
                     {% endif %}
                 </div></td>
                 <td><div id="{{ item.id }}" style="height:100%;width:100%"><button type="button" class="btn" style="color: black; background-color: white; border: 1px solid black;">Claim</button></div></td>

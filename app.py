@@ -700,6 +700,11 @@ def admin_graders():
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
+@app.route('/admin/<student>_assignment')
+def admin_student_assignment(grader):
+
+    return render_template('admin_student_assignment.html', roles=roles, netid=admin_netid, assignments=assignments)
+
 @app.route('/admin/<grader>_assignments')
 def admin_grader_assignments(grader):
     admin_netid = str(request.args.get('admin_netid'))

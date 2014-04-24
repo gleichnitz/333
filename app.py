@@ -701,9 +701,9 @@ def admin_graders():
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route('/admin/<grader>_assignments', methods=['GET'])
-def admin_grader_assignments():
+def admin_grader_assignments(grader):
     admin_netid = str(request.args.get('admin_netid'))
-    gradernetid="gtl"
+    gradernetid=grader
     roles=makeRoles(gradernetid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

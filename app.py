@@ -718,7 +718,7 @@ def admin_student_assignment(netid, student):
     assignments_student = Assignment.query.filter_by(student=student).all()
     assignments=[]
     for assignment in assignments_student:
-        if assignment.course is cos_333:
+        if assignment.course is cos_333 and assignment.master is False:
             assignments.append(assignment)
     return render_template('admin_student_assignment.html', roles=roles, netid=admin_netid, student_netid=student_netid, assignments=assignments)
 

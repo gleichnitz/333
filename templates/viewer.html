@@ -61,7 +61,7 @@
     <thead><tr><th>File</th><th>Grade</th></tr> </thead>
     <tbody>
       {% for item in assignment %}
-        <tr id="-{{ item.name }}"><td>{{ item.name }}</td><td>{{ item.grade }}</td></tr>
+        <tr id="-{{ item.name }}" class="assignment-name"><td>{{ item.name }}</td><td>{{ item.grade }}</td></tr>
       {% endfor %}
       <tr>
       </tr>

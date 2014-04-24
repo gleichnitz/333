@@ -705,7 +705,7 @@ def admin_student_assignment(netid, student):
 
     return render_template('admin_student_assignment.html', roles=roles, netid=admin_netid, assignments=assignments)
 
-@app.route('/admin<netid>/<grader>_assignments')
+@app.route('/admin_<netid>/<grader>_assignments')
 def admin_grader_assignments(netid, grader):
     admin_netid = netid
     gradernetid=grader

@@ -730,7 +730,7 @@ def admin_grader_assignments(netid, grader):
     for assignment in assignments_cos333:
         if assignment.grader is grader:
             assignments.append(assignment)
-    return render_template('admin_grader_assignments.html', roles=roles, netid=admin_netid, assignments=assignments)
+    return render_template('admin_grader_assignments.html', roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
 
 @app.route('/admin_<netid>/<assignment>_all_assignments')
 def admin_all_assignments(netid, assignment):

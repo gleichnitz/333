@@ -12,8 +12,13 @@
   </script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   <script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
+  <!-- Scroll panel -->
+  <script src="../static/js/jquery.slimscroll.js"></script>
   <script type="text/javascript" src="../static/js/viewer.js"></script>
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
+  <!--<link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator_viewer.css">-->
+  <!-- anotator plug in -->
+  <script src="../static/js/view_annotator.js"></script>
   <script>
       jQuery(function ($) {
           {% for item in assignment %}
@@ -34,6 +39,9 @@
               }
 
             });
+            $content.annotator('addPlugin', 'AnnotatorViewer');
+            //Annotation scroll
+            $('#anotacions-uoc-panel').slimscroll({height: '100%'});
           {% endfor %}
       });
   </script>
@@ -48,7 +56,7 @@
       {% for item in assignment %}
         <tr id="-{{ item.name }}"><td>{{ item.name }}</td><td>{{ item.grade }}</td></tr>
       {% endfor %}
-      <tr> 
+      <tr>
       </tr>
     </tbody>
     </table>

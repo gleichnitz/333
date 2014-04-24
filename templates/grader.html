@@ -136,7 +136,7 @@
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
                 <td><div class="row_grader" style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
-                <td><div class="row_grader" style="height:100%;width:100%">
+                <td><div class="graded_status" style="height:100%;width:100%">
                     {% if item.graded == "True" %}
                         Completed
                     {% elif item.in_progress == "True" %}

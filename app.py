@@ -34,6 +34,22 @@ def AddtoListAssignmentMaster(files, file_name):
   return files
 
 
+@app.route('/_mass_upload_students', methods=['POST'])
+def mass_upload_students():
+    f = request.files['netids']
+    netids = f.read().split('\n')
+
+    for item in netids:
+        student = Student.query.filter_by(netid=netid).first();
+            if student is None:
+            cos_333 = Course.query.filter_by(name= 'cos333').first()
+            newStudent = Student("name", "test", netid, cos_333)
+            db.session.add(newStudent)
+            db.session.commit()
+
+    return "true"
+
+
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']

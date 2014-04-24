@@ -274,19 +274,11 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
 @app.route('/store/annotations', methods = ['POST'])
 def jsonify(obj, *args, **kwargs):
     res = json.dumps(obj, indent=None if request.is_xhr else 2)
     return Response(res, mimetype='application/json', *args, **kwargs)
-<<<<<<< HEAD
->>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
-=======
->>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
+
 # def jsonify(obj, *args, **kwargs):
 #     res = json.dumps(obj, indent=None if request.is_xhr else 2)
 #     return Response(res, mimetype='application/json', *args, **kwargs)
@@ -309,13 +301,6 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
-=======
->>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
             new_dict = dict(request.json)
             length = len(a.files[i]["annotations"])
             if length == 0:

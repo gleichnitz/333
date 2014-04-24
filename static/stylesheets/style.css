@@ -6,6 +6,14 @@
  * Version: 1.0
  * URL: http://blacktie.co
  */
+
+table {
+	font-size: 16px;
+}
+
+ th {
+ 	background-color: white;
+ }
  
 .font-thin {
 	font-family: "Titillium Web", sans-serif;

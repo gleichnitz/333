@@ -729,8 +729,8 @@ def admin_grader_assignments(netid, grader):
     cos_333 = Course.query.filter_by(name= 'cos333').first()
     assignments_grader = Assignment.query.filter_by(grader=grader).all()
     assignments=[]
-    for assignment in assignments_cos333:
-        if assignment.grader is grader:
+    for assignment in assignments_grader:
+        if assignment.course is cos_333:
             assignments.append(assignment)
     return render_template('admin_grader_assignments.html', roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
 

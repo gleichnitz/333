@@ -65,6 +65,7 @@ def assign_assignment():
                 if entry.grader is None:
                     try:
                         entry.grader = Grader.query.filter_by(netid = netid).first()
+                        entry.in_progress = True
                         db.session.add(entry)
                         db.session.commit()
                         return "success"
@@ -85,6 +86,7 @@ def release_assignment():
         for entry in assignments:
             if entry.id == int(assignID):
                 entry.grader = None
+                entry.in_progress = False
                 db.session.add(entry)
                 db.session.commit()
                 return "success"

@@ -23,7 +23,6 @@
   <script>
       jQuery(function ($) {
           {% for item in assignment %}
-            $.i18n.load(i18n_dict);
             var content = $('#{{ item.name }}').annotator();
             content.annotator('addPlugin', 'Store', {
               prefix: '/store',

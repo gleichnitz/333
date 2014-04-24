@@ -27,15 +27,6 @@ $(document).ready(function() {
 		}
 	});
 
-	$('table tr').click(function() {
-		var output = $(this).children('.netid-row').text();
-		$.ajax({
-			url:"/admin/grader/assignments",
-			context: document.body,
-			data: {netid: output}
-		});
-	});
-
 	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();

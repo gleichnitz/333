@@ -107,11 +107,6 @@ def add_student():
         db.session.add(newStudent)
         db.session.commit()
 
-    cos_333 = Course.query.filter_by(name= 'cos333').first()
-    newStudent = Student("name", "test", netid, cos_333)
-    db.session.add(newStudent)
-    db.session.commit()
-
     return "true"
 
 @app.route('/_add_grader')

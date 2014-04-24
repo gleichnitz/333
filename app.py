@@ -26,12 +26,42 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
+# Verify that netid fulfills OIT requirements. 
+# Found here: http://www.universitypressclub.com/archive/2013/03/where-does-your-netid-come-from/
+def isValidNetid(netid):
+    if len(netid) < 2 or len(netid) > 8:
+        return False
+
+    if netid.isalnum():
+        return True
+    else:
+        return False
+
+
 def AddtoListAssignmentMaster(files, file_name):
   #file_ = open(file_name, 'r')
   #file_content = file_.read()
   ass_file = {'name': file_name, 'content': None, 'annotations': []}
   files.append(ass_file)
   return files
+
+
+@app.route('/_mass_upload_students', methods=['GET', 'POST'])
+def mass_upload_students():
+    f = request.files['netids']
+    netids = f.read().split('\n')
+
+    for item in netids:
+        if isValidNetid(item) is not True:
+            return "Error: " + item + " is not a valid netid"
+        student = Student.query.filter_by(netid = item).first();
+        if student is None:
+            cos_333 = Course.query.filter_by(name= 'cos333').first()
+            newStudent = Student("name", "test", item, cos_333)
+            db.session.add(newStudent)
+            db.session.commit()
+
+    return redirect('/admin/students')
 
 
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
@@ -201,7 +231,7 @@ class AssignmentClass:
         self.student = student
 
 class File:
-    def __init__(self, name, code, grade):
+    def __init__(self, name, code, grade, isReadOnly = ""):
         self.name = name.split('.')[0]
         if len(name.split('.')) > 1:
             self.ext = name.split('.')[1]
@@ -209,6 +239,7 @@ class File:
             self.ext = ""
         self.code = code
         self.grade = grade
+        self.isReadOnly = isReadOnly
 
 class StudentClass:
     def __init__(self, name, netid):
@@ -464,7 +495,11 @@ def submitted():
     files = []
 
     for item in assignment_active.files:
-        files.append(File(item['name'], item['content'], "10/10"))
+        if accountType == "g":
+            files.append(File(item['name'], item['content'], "10/10"))
+        else:
+            files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))
+
 
     ##################################
     # need to pass: item containing assignment files to be loaded

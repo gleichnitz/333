@@ -47,7 +47,7 @@ def mass_upload_students():
             db.session.add(newStudent)
             db.session.commit()
 
-    return "true"
+    return redirect('/admin/students')
 
 
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])

@@ -47,6 +47,12 @@
     {% for item in assignment %}
         <tr id="-{{ item.name }}"><td>{{ item.name }}</td><td>{{ item.grade }}</td></tr>
     {% endfor %}
+    <tr> 
+      <div class="btn-group" align="center">
+                  <button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  </button>
+      </div>
+    </tr>
     </table>
   </div>
   <div id="clicker"></div>

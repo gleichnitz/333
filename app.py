@@ -711,7 +711,7 @@ def admin_student_assignment(netid, student):
         roles.remove("admin")
     student = Student.query.filter_by(netid=student_netid).first()
     cos_333 = Course.query.filter_by(name= 'cos333').first()
-    assignments_student = Assignment.query.filter_by(student.netid=student_netid).all()
+    assignments_student = Assignment.query.filter_by(student=student).all()
     assignments=[]
     for assignment in assignments_cos333:
         if assignment.course is cos_333:
@@ -727,7 +727,7 @@ def admin_grader_assignments(netid, grader):
         roles.remove("admin")
     grader = Grader.query.filter_by(netid=gradernetid).first()
     cos_333 = Course.query.filter_by(name= 'cos333').first()
-    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
+    assignments_cos333 = Assignment.query.filter_by(grader.netid=cos_333).all()
     assignments=[]
     for assignment in assignments_cos333:
         if assignment.grader is grader:

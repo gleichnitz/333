@@ -26,6 +26,17 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
+def isValidNetid(netid) {
+    if len(netid) < 2 or len(netid) > 8:
+        return False
+
+    if isalnum(netid):
+        return True
+    else:
+        return False
+}
+
+
 def AddtoListAssignmentMaster(files, file_name):
   #file_ = open(file_name, 'r')
   #file_content = file_.read()
@@ -40,6 +51,8 @@ def mass_upload_students():
     netids = f.read().split('\n')
 
     for item in netids:
+        if isValidNetid(item) is not True:
+            return "Error: " + item + " is not a valid netid"
         student = Student.query.filter_by(netid = item).first();
         if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()

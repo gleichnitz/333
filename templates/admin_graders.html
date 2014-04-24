@@ -40,8 +40,8 @@
       <tbody>
        {% for grader in gradernetid %}
           <tr>
-            <td><a href="/admin/grader_assignments"><div style="height:100%;width:100%">no name</div></a></td>
-              <td class="netid-row"><a href="/admin/grader_assignments" ><div style="height:100%;width:100%">{{ grader }}</div></a></td>
+            <td><a href="/admin/grader_assignments"><div style="height:100%;width:100%" id="-{{ grader }}" class="grader_assignments">no name</div></a></td>
+              <td class="netid-row"><a href="/admin/grader_assignments" ><div id="+{{ grader }}" style="height:100%;width:100%" class="grader_assignments">{{ grader }}</div></a></td>
               <td><div class="btn-group" align="center">
                   <button id="{{ grader }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

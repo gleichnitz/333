@@ -701,7 +701,8 @@ def admin_graders():
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route('/admin/grader_assignments')
-def plz_work():
+def admin_grader_assignments():
+    admin_netid = str(request.args.get('admin_netid'))
     gradernetid="gtl"
     roles=makeRoles(gradernetid)
     if (roles.count("admin") != 0):
@@ -713,7 +714,7 @@ def plz_work():
     for assignment in assignments_cos333:
         if assignment.grader is grader:
             assignments.append(assignment)
-    return render_template('admin_grader_assignments.html', roles=roles, netid=gradernetid, assignments=assignments)
+    return render_template('admin_grader_assignments.html', roles=roles, netid=admin_netid, assignments=assignments)
 
 @app.route("/admin/assignments")
 def admin_admins():

@@ -147,4 +147,21 @@ $(document).ready(function() {
 		  		}
 		});
 	});
+	$('.grader_assignments').click(function () {
+		var grader_netid = $(this).attr('id');
+		var admin_netid = $(this).parent().parent().parent().parent().attr('id');
+		console.log(admin_netid);
+		$.ajax({
+	  			url: "/admin/grader_assignments",
+	  			context: document.body,
+	  			data: { grader_netid: grader_netid,
+	  					admin_netid: admin_netid }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+		  			console.log("true");
+		  		} else {
+		  			console.log("false");
+		  		}
+		});
+	});
 });

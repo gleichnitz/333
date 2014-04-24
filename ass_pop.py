@@ -17,9 +17,13 @@ files = []
 print "here1"
 files = AddtoListAssignment(files, 'nbody.java')
 assignments = Assignment.query.all()
+<<<<<<< HEAD
 print "here2"
 for item in assignments:
   print "here3"
+=======
+for item in assignments:
+>>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
   item.files = files
   db.session.commit()
 

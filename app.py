@@ -95,7 +95,7 @@ def release_assignment():
 def add_student():
 
     netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
+    if netid.isalphanum() is False:
         return "false"
 
     student = Student.query.filter_by(netid=netid).first();
@@ -104,6 +104,91 @@ def add_student():
         newStudent = Student("name", "test", netid, cos_333)
         db.session.add(newStudent)
         db.session.commit()
+
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    newStudent = Student("name", "test", netid, cos_333)
+    db.session.add(newStudent)
+    db.session.commit()
+
+    return "true"
+
+@app.route('/_add_grader')
+def add_grader():
+
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        cos_333 = Course.query.filter_by(name= 'cos333').first()
+        newGrader = Grader(netid, cos_333)
+        db.session.add(newGrader)
+        db.session.commit()
+
+    return "true"
+
+@app.route('/_delete_student')
+def remove_student():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    student = Student.query.filter_by(netid=netid).first();
+    if student is None:
+        return "true"
+
+    db.session.delete(student)                
+    db.session.commit()
+
+    return "true"
+
+@app.route('/_delete_grader')
+def remove_grader():
+    netid = str(request.args.get('netid'))
+    if netid.isalnum() is False:
+        return "false"
+
+    grader = Grader.query.filter_by(netid=netid).first();
+    if grader is None:
+        return "true"
+
+    db.session.delete(grader)                
+    db.session.commit()
+
+    return "true"
+
+@app.route("/_delete_assignment")
+def remove_assignment():
+    name = str(request.args.get('name'))
+    assignments = Assignment.query.filter_by(name=name).all();
+    for assignment in assignments:
+        db.session.delete(assignment)
+        db.session.commit()
+    return "true"
+
+@app.route('/_add_assignment')
+def add_assignment():
+    name = request.args.get('name')
+    fileNames = request.args.get('files').split()
+    rubric = request.args.get('rubric').split()
+    totalPoints = request.args.get('totalPoints')
+    dueDate = request.args.get('dueDate')
+
+    assignment = Assignment('cos333', "", name)
+    assignment.master = True
+    assignment.points_possible = totalPoints
+    assignment.rubric = rubric
+    assignment.due_date = dueDate
+
+    files = []
+    for string in fileNames:
+        AddtoListAssignmentMaster(files, string)
+
+    assignment.files = files
+
+    db.session.add(assignment)
+    db.session.commit()
 
     return "true"
 
@@ -269,6 +354,13 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
+<<<<<<< HEAD
+=======
+@app.route('/store/annotations', methods = ['POST'])
+def jsonify(obj, *args, **kwargs):
+    res = json.dumps(obj, indent=None if request.is_xhr else 2)
+    return Response(res, mimetype='application/json', *args, **kwargs)
+>>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
 # def jsonify(obj, *args, **kwargs):
 #     res = json.dumps(obj, indent=None if request.is_xhr else 2)
 #     return Response(res, mimetype='application/json', *args, **kwargs)
@@ -291,7 +383,10 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
+<<<<<<< HEAD
 
+=======
+>>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
             new_dict = dict(request.json)
             length = len(a.files[i]["annotations"])
             if length == 0:

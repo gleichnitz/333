@@ -702,7 +702,12 @@ def admin_graders():
 
 @app.route('/ahahahaha')
 def plz_work():
-    return render_template('admin_grader_assignments3.html')
+    netid="gtl"
+    roles=makeRoles(netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
+
+    return render_template('admin_grader_assignments3.html', roles=roles, netid=netid)
 
 @app.route("/admin/<gradernetid>/assignments", methods=["GET"])
 def admin_grader_assignments(gradernetid):

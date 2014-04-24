@@ -495,7 +495,7 @@ def submitted():
     files = []
 
     for item in assignment_active.files:
-        if accountType == "s"
+        if accountType == "s":
             files.append(File(item['name'], item['content'], "10/10"))
         else:
             files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))

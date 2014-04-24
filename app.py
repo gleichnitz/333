@@ -705,9 +705,9 @@ def admin_student_assignment(grader):
 
     return render_template('admin_student_assignment.html', roles=roles, netid=admin_netid, assignments=assignments)
 
-@app.route('/admin/<grader>_assignments')
-def admin_grader_assignments(grader):
-    admin_netid = str(request.args.get('admin_netid'))
+@app.route('/admin<netid>/<grader>_assignments')
+def admin_grader_assignments(netid, grader):
+    admin_netid = netid
     gradernetid=grader
     roles=makeRoles(gradernetid)
     if (roles.count("admin") != 0):

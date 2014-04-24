@@ -34,7 +34,7 @@ def AddtoListAssignmentMaster(files, file_name):
   return files
 
 
-@app.route('/_mass_upload_students', methods=['POST'])
+@app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
     f = request.files['netids']
     netids = f.read().split('\n')

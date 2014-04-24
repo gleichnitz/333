@@ -6,7 +6,7 @@
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
 <script type="text/javascript">
         $(document).ready(function($) {
-                $(.table > tr).click(function() {
+                $(table > tr).click(function() {
                     window.document.location = $(this).attr("href");
                 });
                 $("#admin-grader-table").tablesorter();

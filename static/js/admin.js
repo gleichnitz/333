@@ -149,7 +149,7 @@ $(document).ready(function() {
 	});
 	$('.grader_assignments').click(function () {
 		var grader_netid = $(this).attr('id');
-		var admin_netid = $(this).parent().parent().parent().parent().attr('id');
+		var admin_netid = $(this).closest('table').parent().attr('id');
 		console.log(admin_netid);
 		$.ajax({
 	  			url: "/admin/grader_assignments",

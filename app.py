@@ -743,7 +743,7 @@ def admin_all_assignments(netid, assignment):
     assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
     assignments=[]
     for assignment in assignments_cos333:
-        if assignment.name is "Burrows Wheeler":
+        if assignment.name is assignment_name:
             assignments.append(assignment)
     return render_template('admin_assignment_assignments.html', roles=roles, netid=admin_netid, assignments=assignments)
 

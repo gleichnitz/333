@@ -742,11 +742,10 @@ def admin_all_assignments(netid, assignment):
     if (roles.count("admin") != 0):
         roles.remove("admin")
     cos_333 = Course.query.filter_by(name= 'cos333').first()
-    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
+    assignments_name = Assignment.query.filter_by(name=assignment_name).all()
     assignments=[]
-    for assignment in assignments_cos333:
-        return assignment.name
-        if assignment.name is assignment_name:
+    for assignment in assignments_name:
+        if assignment.course is cos_333:
             assignments.append(assignment)
     return render_template('admin_assignment_assignments.html', roles=roles, assignment_name=assignment_name, netid=admin_netid, assignments=assignments)
 

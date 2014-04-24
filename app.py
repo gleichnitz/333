@@ -40,7 +40,7 @@ def mass_upload_students():
     netids = f.read().split('\n')
 
     for item in netids:
-        student = Student.query.filter_by(netid=netid).first();
+        student = Student.query.filter_by(netid = item).first();
             if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
             newStudent = Student("name", "test", netid, cos_333)

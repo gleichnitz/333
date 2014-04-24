@@ -65,6 +65,7 @@ def assign_assignment():
                 if entry.grader is None:
                     try:
                         entry.grader = Grader.query.filter_by(netid = netid).first()
+                        # entry.in_progress = True
                         db.session.add(entry)
                         db.session.commit()
                         return "success"
@@ -85,6 +86,7 @@ def release_assignment():
         for entry in assignments:
             if entry.id == int(assignID):
                 entry.grader = None
+                # entry.in_progress = False
                 db.session.add(entry)
                 db.session.commit()
                 return "success"
@@ -274,19 +276,11 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
 @app.route('/store/annotations', methods = ['POST'])
 def jsonify(obj, *args, **kwargs):
     res = json.dumps(obj, indent=None if request.is_xhr else 2)
     return Response(res, mimetype='application/json', *args, **kwargs)
-<<<<<<< HEAD
->>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
-=======
->>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
+
 # def jsonify(obj, *args, **kwargs):
 #     res = json.dumps(obj, indent=None if request.is_xhr else 2)
 #     return Response(res, mimetype='application/json', *args, **kwargs)
@@ -309,13 +303,6 @@ def create():
     for i in range(0, len(a.files)):
         if (a.files[i]["name"].split('.')[0] == name):
             new_files = a.files
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
-=======
->>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
             new_dict = dict(request.json)
             length = len(a.files[i]["annotations"])
             if length == 0:
@@ -715,9 +702,27 @@ def admin_graders():
 
     return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
-@app.route("/admin/<gradernetid>/assignments", methods=["GET"])
-def admin_grader_assignments(gradernetid):
-    roles = makeRoles(gradernetid)
+@app.route('/admin_<netid>/<student>_assignment')
+def admin_student_assignment(netid, student):
+    admin_netid = netid
+    student_netid=student
+    roles=makeRoles(admin_netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
+    student = Student.query.filter_by(netid=student_netid).first()
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
+    assignments=[]
+    for assignment in assignments_cos333:
+        if assignment.student is student:
+            assignments.append(assignment)
+    return render_template('admin_student_assignment.html', roles=roles, netid=admin_netid, student_netid=student_netid, assignments=assignments)
+
+@app.route('/admin_<netid>/<grader>_assignments')
+def admin_grader_assignments(netid, grader):
+    admin_netid = netid
+    gradernetid=grader
+    roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
     grader = Grader.query.filter_by(netid=gradernetid).first()
@@ -727,7 +732,22 @@ def admin_grader_assignments(gradernetid):
     for assignment in assignments_cos333:
         if assignment.grader is grader:
             assignments.append(assignment)
-    return render_template('admin_grader_assignments2.html', roles=roles, assignments=assignments)
+    return render_template('admin_grader_assignments.html', roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
+
+@app.route('/admin_<netid>/<assignment>_all_assignments')
+def admin_all_assignments(netid, assignment):
+    admin_netid = netid
+    assignment_name=assignment
+    roles=makeRoles(admin_netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
+    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
+    assignments=[]
+    for assignment in assignments_cos333:
+        if assignment.name is assignment_name:
+            assignments.append(assignment)
+    return render_template('admin_assignment_assignments.html', roles=roles, assignment_name=assignment_name, netid=admin_netid, assignments=assignments)
 
 @app.route("/admin/assignments")
 def admin_admins():

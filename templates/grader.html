@@ -112,6 +112,13 @@
             </th>
             <th class="header">
                 <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Status <span class="caret"></span>
+                    </button>
+
+                </div>
+            </th>
+            <th class="header">
+                <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
@@ -129,6 +136,15 @@
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
                 <td><div class="row_grader" style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
+                <td><div class="row_grader" style="height:100%;width:100%">
+                    {% if item.graded == "True" %}
+                        Completed
+                    {% elif item.in_progress == "True" %}
+                        In Progress
+                    {% else %}
+                        Unclaimed
+                    {% endif %}
+                </div></td>
                 <td><div id="{{ item.id }}" style="height:100%;width:100%"><button type="button" class="btn" style="color: black; background-color: white; border: 1px solid black;">Claim</button></div></td>
             </tr>
         {% endfor %}

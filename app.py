@@ -715,20 +715,6 @@ def plz_work():
             assignments.append(assignment)
     return render_template('admin_grader_assignments.html', roles=roles, netid=gradernetid, assignments=assignments)
 
-@app.route('/admin/<gradernetid>/assignments', methods=['GET'])
-def admin_grader_assignments(gradernetid):
-    roles = makeRoles(gradernetid)
-    if (roles.count("admin") != 0):
-        roles.remove("admin")
-    grader = Grader.query.filter_by(netid=gradernetid).first()
-    cos_333 = Course.query.filter_by(name= 'cos333').first()
-    assignments_cos333 = Assignment.query.filter_by(course=cos_333).all()
-    assignments=[]
-    for assignment in assignments_cos333:
-        if assignment.grader is grader:
-            assignments.append(assignment)
-    return render_template('admin_grader_assignments3.html', roles=roles, netid=gradernetid, assignments=assignments)
-
 @app.route("/admin/assignments")
 def admin_admins():
     try:

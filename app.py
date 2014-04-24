@@ -26,6 +26,8 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
+# Verify that netid fulfills OIT requirements. 
+# Found here: http://www.universitypressclub.com/archive/2013/03/where-does-your-netid-come-from/
 def isValidNetid(netid):
     if len(netid) < 2 or len(netid) > 8:
         return False

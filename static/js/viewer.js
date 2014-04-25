@@ -19,7 +19,7 @@ $(document).ready(function(e) {
 		var assignmentid = $(this).closest(".table").attr('id')
 		var clickButton = $(this)
 		var state = clickButton.text()
-		if (state == "Mark Grading as Done"):
+		if (state == "Mark Grading as Done") {
 			$.ajax({
 				url: "/_done",
 	  				context: document.body,
@@ -32,7 +32,8 @@ $(document).ready(function(e) {
 
 			  		}
 			});
-		else:
+		}
+		else {
 			$.ajax({
 				url: "/_undone",
 	  				context: document.body,
@@ -45,6 +46,7 @@ $(document).ready(function(e) {
 
 			  		}
 			});
+		}
 	});
 
 	/* $('table tr').click(function() {

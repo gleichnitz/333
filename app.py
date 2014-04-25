@@ -13,6 +13,7 @@ import pickle
 import traceback
 import json
 from werkzeug import secure_filename
+import tarfile
 
 # initialization
 app = Flask(__name__)
@@ -44,6 +45,17 @@ def AddtoListAssignmentMaster(files, file_name):
   ass_file = {'name': file_name, 'content': None, 'annotations': []}
   files.append(ass_file)
   return files
+
+@app.route('/_mass_upload_student_files', methods=['GET', 'POST'])
+def mass_upload_student_files():
+    files = request.files.getlist('file')
+
+    content = ""
+
+    for file in files:
+        content = content + file.read()
+
+    return content
 
 
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])

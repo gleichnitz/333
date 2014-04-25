@@ -80,7 +80,18 @@ def upload_student_files():
     addAssignment("cos333", netid, assignmentName, fileList)
 
     return redirect('/admin/students')
-
+@app.route('/_done')
+def done():
+    assignmentID = request.args.get('id')
+    assignment = Assignment.query.filter_by(id = assignmentID).first()
+    assignment.graded = True
+    try:
+        db.session.add(assignment)
+        db.session.commit()
+        return "success"
+    except:
+        return traceback.format_exc()
+        
 @app.route('/_assign')
 def assign_assignment():
 

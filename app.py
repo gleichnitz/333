@@ -85,6 +85,7 @@ def done():
     assignmentID = request.args.get('id')
     assignment = Assignment.query.filter_by(id = assignmentID).first()
     assignment.graded = True
+    assignment.in_progress = False
     try:
         db.session.add(assignment)
         db.session.commit()
@@ -96,7 +97,8 @@ def done():
 def undone():
     assignmentID = request.args.get('id')
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    assignment.graded = True
+    assignment.in_progress = True
+    assignment.graded = False
     try:
         db.session.add(assignment)
         db.session.commit()

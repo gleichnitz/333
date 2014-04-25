@@ -17,7 +17,7 @@ $(document).ready(function(e) {
 
 	$('#mark_as_done').click(function() {
 		var assignmentid = $(this).closest(".table").attr('id')
-		clickButton = $(this)
+		var clickButton = $(this)
 		$.ajax({
 			url: "/_done",
 	  			context: document.body,
@@ -27,7 +27,7 @@ $(document).ready(function(e) {
 		  			clickButton.text("Regrade")
 		  			// Update grader field
 		  		} else {
-		  			
+
 		  		}
 		});
 	});

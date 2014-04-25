@@ -20,6 +20,7 @@ $(document).ready(function(e) {
 		  		if (data == "success") {
 		  			clickButton.text("Release");
 		  			clickButton.closest('tr').children().children('.row_grader').text($('#netid').text());
+		  			clickButton.closest('tr').children().children('.graded_status').text($'In Progress');
 		  			// Update grader field
 		  		} else {
 		  			clickButton.parent().parent().parent().css('display', 'none')

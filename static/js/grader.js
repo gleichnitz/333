@@ -7,13 +7,6 @@ $(document).ready(function(e) {
 		}
 	});
 
-	$('td > .grade_status').each(function() {
-		var graderType = $(this).closest('tr').children().children('.row_grader').text();
-		if (graderType != "None") {
-			$(this).text("Release");
-		}
-	});
-
 	$('td > div > .btn').click(function() {
 		var clickButton = $(this);
 		var buttonType = clickButton.text()

@@ -15,6 +15,22 @@ $(document).ready(function(e) {
 		$('#codeTitle').text(idName);
 	});
 
+	$('.given_grade').on("keyup change", function() {
+   		var value = text(this.value);
+   		var file = $(this).closest('tr').children('.file_name').text()
+   		$.ajax({
+   			url: "/_change_grade",
+   			context: document.body,
+   			data: {grade = value, file=file}
+   		}).done(function(data) {
+	 		if (data == "success") {
+	 			
+		  	} else {
+
+	  		}
+		});
+	});
+
 	$('#mark_as_done').click(function() {
 		var assignmentid = $(this).closest(".table").attr('id')
 		var clickButton = $(this)
@@ -22,15 +38,14 @@ $(document).ready(function(e) {
 		if (state == "Mark Grading as Done") {
 			$.ajax({
 				url: "/_done",
-	  				context: document.body,
-	  				data: { id: assignmentid}
-			  	}).done(function(data) {
-			  		if (data == "success") {
-			  			clickButton.text("Edit Again")
-			  			// Update grader field
-		  			} else {
+	  			context: document.body,
+	  			data: { id: assignmentid}
+			}).done(function(data) {
+		 		if (data == "success") {
+		  			clickButton.text("Edit Again")
+		  		} else {
 
-			  		}
+		  		}
 			});
 		}
 		else {

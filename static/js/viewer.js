@@ -18,18 +18,33 @@ $(document).ready(function(e) {
 	$('#mark_as_done').click(function() {
 		var assignmentid = $(this).closest(".table").attr('id')
 		var clickButton = $(this)
-		$.ajax({
-			url: "/_done",
-	  			context: document.body,
-	  			data: { id: assignmentid}
-		  	}).done(function(data) {
-		  		if (data == "success") {
-		  			clickButton.text("Regrade")
-		  			// Update grader field
-		  		} else {
+		var state = clickButton.text()
+		if (state == "Mark Grading as Done"):
+			$.ajax({
+				url: "/_done",
+	  				context: document.body,
+	  				data: { id: assignmentid}
+			  	}).done(function(data) {
+			  		if (data == "success") {
+			  			clickButton.text("Edit Again")
+			  			// Update grader field
+		  			} else {
 
-		  		}
-		});
+			  		}
+			});
+		else:
+			$.ajax({
+				url: "/_edit",
+	  				context: document.body,
+	  				data: { id: assignmentid}
+			  	}).done(function(data) {
+			  		if (data == "success") {
+			  			clickButton.text("Mark Grading as Done")
+			  			// Update grader field
+		  			} else {
+
+			  		}
+			});
 	});
 
 	/* $('table tr').click(function() {

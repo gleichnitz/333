@@ -51,7 +51,7 @@ def mass_upload_student_files():
     files = request.files.getlist('file')
     content = ""
 
-    return len(files) + ""
+    return str(len(files))
 
     for file in files:
         return file.read()

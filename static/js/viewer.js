@@ -34,7 +34,7 @@ $(document).ready(function(e) {
 			});
 		else:
 			$.ajax({
-				url: "/_edit",
+				url: "/_undone",
 	  				context: document.body,
 	  				data: { id: assignmentid}
 			  	}).done(function(data) {

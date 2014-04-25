@@ -91,7 +91,19 @@ def done():
         return "success"
     except:
         return traceback.format_exc()
-        
+
+@app.route('/_undone')
+def undone():
+    assignmentID = request.args.get('id')
+    assignment = Assignment.query.filter_by(id = assignmentID).first()
+    assignment.graded = True
+    try:
+        db.session.add(assignment)
+        db.session.commit()
+        return "success"
+    except:
+        return traceback.format_exc()    
+
 @app.route('/_assign')
 def assign_assignment():
 

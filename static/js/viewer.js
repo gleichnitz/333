@@ -17,7 +17,17 @@ $(document).ready(function(e) {
 
 	$('#mark_as_done').click(function() {
 		var assignmentid = $(this).closest(".table").attr('id')
-		
+		$.ajax({
+			url: "/_done",
+	  			context: document.body,
+	  			data: { id: assignmentid}
+		  	}).done(function(data) {
+		  		if (data == "success") {
+
+		  			// Update grader field
+		  		} else {
+		  		}
+		});
 	});
 
 	/* $('table tr').click(function() {

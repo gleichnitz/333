@@ -119,7 +119,12 @@ def undone():
             db.session.commit()
             return "success"
         except:
-            return traceback.format_exc()    
+            return traceback.format_exc()
+
+@app.route('/_change_grade')
+def change_grade():
+    value = request.args.get('grade')
+    file_name = request.args.get('file')    
 
 @app.route('/_assign')
 def assign_assignment():

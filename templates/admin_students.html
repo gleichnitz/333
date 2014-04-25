@@ -121,6 +121,45 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+
+        <div id="modal-mass-upload" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Upload student code</h4>
+          </div>
+        <div class="modal-body">
+            <form role="form" action="/_mass_upload_student_files" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label>Upload Student Code</label>
+              </div>
+              <div class="form-group">
+                <label>Select Assignment</label>
+                  <select name="assignmentTitle" class="form-control" id="assignment-submit-select">
+                  {% for item in masters %}
+                    <option id="{{ item.files|length }}">{{ item.name }}</option>
+                  {% endfor %}
+                  </select>
+              </div>
+              <div class="form-group">
+                <div id="code-upload-sample">
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" id="file_input" webkitdirectory="" directory="">
+                  <p class="help-block">Make sure your file is .txt, one netid per line.</p>
+                  <br>
+                <button type="submit" id="mass-file-submit-modal-code" class="btn">Upload</button>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+
         <!-- #dialog is the id of a DIV defined in the code below -->
     <div id="modal-upload" class="modal fade">
       <div class="modal-dialog">
@@ -159,42 +198,6 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div id="modal-mass-upload" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Upload student code</h4>
-          </div>
-        <div class="modal-body">
-            <form role="form" action="/_mass_upload_student_files" method="post" enctype="multipart/form-data">
-              <div class="form-group">
-                <label>Upload Student Code</label>
-              </div>
-              <div class="form-group">
-                <label>Select Assignment</label>
-                  <select name="assignmentTitle" class="form-control" id="assignment-submit-select">
-                  {% for item in masters %}
-                    <option id="{{ item.files|length }}">{{ item.name }}</option>
-                  {% endfor %}
-                  </select>
-              </div>
-              <div class="form-group">
-                <div id="code-upload-sample">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="file_input" webkitdirectory="" directory="">
-                  <p class="help-block">Make sure your file is .txt, one netid per line.</p>
-                  <br>
-                <button type="submit" id="mass-file-submit-modal-code" class="btn">Upload</button>
-              </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
 
 

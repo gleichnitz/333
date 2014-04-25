@@ -156,7 +156,7 @@ def release_assignment():
         for entry in assignments:
             if entry.id == int(assignID):
                 entry.grader = None
-                # entry.in_progress = False
+                entry.in_progress = False
                 db.session.add(entry)
                 db.session.commit()
                 return "success"
@@ -601,7 +601,7 @@ def grader():
         elif item.in_progress is True:
             status = "In Progress"
         else:
-            status = "None"
+            status = "--------"
         if item.master is False and item.grader is None and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid, status))
         elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
@@ -679,7 +679,7 @@ def student():
         elif item.in_progress is True:
             status = "In Progress"
         else:
-            status = "None"
+            status = "--------"
         assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status))
 
     classes = []

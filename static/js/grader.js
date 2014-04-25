@@ -35,6 +35,7 @@ $(document).ready(function(e) {
 		  		if (data == "success") {
 		  			clickButton.text("Claim");
 		  			clickButton.closest('tr').children().children('.row_grader').text("None");
+		  			clickButton.closest('tr').children().children('.graded_status').text('--------');
 		  		} else {
 		  			clickButton.parent().parent().parent().css('display', 'none');
 		  		}

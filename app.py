@@ -258,7 +258,7 @@ def remove_assignment():
     return "true"
 
 class AssignmentClass:
-    def __init__(self, id, course, name, date, files, grade, grader, student):
+    def __init__(self, id, course, name, date, files, grade, grader, student, status):
         self.id = id
         self.course = course
         self.name = name
@@ -267,6 +267,7 @@ class AssignmentClass:
         self.grade = grade
         self.grader = grader
         self.student = student
+        self.status = status
 
 class File:
     def __init__(self, name, code, grade, isReadOnly = ""):
@@ -593,10 +594,16 @@ def grader():
 
     assignments_form = []
     for item in assignments:
+        if item.graded is True:
+            status = "Graded"
+        elif item.in_progress is True:
+            status = "In Progress"
+        else:
+            status = "None"
         if item.master is False and item.grader is None and item.student is not None:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid, status))
         elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid, status))
 
     classes = []
     for item in assignments_form:
@@ -607,6 +614,9 @@ def grader():
     for item in assignments_form:
         if item.name not in assignment_names:
             assignment_names.append(item.name)
+
+    status = []
+
 
     graders = set()
     for item in assignments_form:
@@ -662,7 +672,13 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid))
+        if item.graded is True:
+            status = "Graded"
+        elif item.in_progress is True:
+            status = "In Progress"
+        else:
+            status = "None"
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status))
 
     classes = []
     for item in assignments_form:

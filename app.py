@@ -124,7 +124,8 @@ def undone():
 @app.route('/_change_grade')
 def change_grade():
     value = request.args.get('grade')
-    file_name = request.args.get('file')    
+    file_name = request.args.get('file')
+        # add code to change rubric for this file 
 
 @app.route('/_assign')
 def assign_assignment():

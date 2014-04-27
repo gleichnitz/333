@@ -22,13 +22,14 @@ $(document).ready(function(e) {
    			url: "/_change_grade",
    			context: document.body,
    			data: {grade = value, file=file}
-   		}).done(function(data) {
-	 		if (data == "success") {
+   		)};
+  //  		}).done(function(data) {
+	 // 		if (data == "success") {
 	 			
-		  	} else {
+		//   	} else {
 
-	  		}
-		});
+	 //  		}
+		// });
 	});
 
 	$('#mark_as_done').click(function() {

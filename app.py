@@ -58,7 +58,7 @@ def mass_upload_student_files():
 
     return "none"
 
-
+# Create a bunch of students from a list of netids. 
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
     f = request.files['netids']
@@ -66,7 +66,10 @@ def mass_upload_students():
 
     for item in netids:
         if isValidNetid(item) is not True:
-            return "Error: " + item + " is not a valid netid"
+            session['error'] = 'invalidid'
+            return redirect('/admin/students')
+
+    for item in netids:
         student = Student.query.filter_by(netid = item).first();
         if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
@@ -76,7 +79,7 @@ def mass_upload_students():
 
     return redirect('/admin/students')
 
-
+# Upload code and create a new assignment bound to a particular student. 
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
@@ -93,6 +96,7 @@ def upload_student_files():
     fileList = []
 
     for file in files:
+        # HACK: identify no files uploaded by empty filename
         if file.filename == "":
             session['error'] = 'nofiles'
             return redirect('/admin/students')           
@@ -779,6 +783,8 @@ def admin_students():
             alertString = "An unkown error occurred while uploading student code. Please try again."
         elif session['error'] == 'nofiles':
             alertString = "No files were selected to upload."
+        elif session['error'] == 'invalidid':
+            alertString = "The file you uploaded contained an invalid netid. Please try again."
 
         session.pop('error', None)
 

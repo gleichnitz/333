@@ -17,7 +17,7 @@ $(document).ready(function(e) {
 
 	$('.given_grade').on("keyup change", function() {
    		var value = text(this.value);
-   		var file = $(this).closest('tr').children('.file_name').text()
+   		var file = $(this).closest('tr').children('.file_name').text();
    		$.ajax({
    			url: "/_change_grade",
    			context: document.body,

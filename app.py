@@ -754,6 +754,9 @@ def admin_students():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
+    alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"margin-bottom: -52px; z-index: 1\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
+
     students_db = Student.query.all()
 
     students_form = []
@@ -769,7 +772,7 @@ def admin_students():
         if assignment.master is True:
             masters.append(assignment)
 
-    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters)
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
 
 @app.route("/admin/graders")
 def admin_graders():

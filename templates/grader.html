@@ -65,7 +65,7 @@
 {% block body %}
 <div style="margin: 7em 10%;">
 
-    <table id="grader-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 5em;">
+    <table id="grader-table" class="table table-hover tablesorter" style="background-color: transparent; margin-top: 5em;">
         <thead>
         <tr>
             <th class="header">
@@ -129,7 +129,6 @@
         </tr>
         </thead>
         <tbody id="grader-table-body">
-
        {% for item in assignments %}
             <tr style="display: table-row">
                 <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>

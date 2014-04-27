@@ -99,12 +99,13 @@ def upload_student_files():
     # Return an error if no files are uploaded.
     if len(files) == 0:
         session['error'] = 'nofiles'
+        return "error"
         return redirect('/admin/students')
 
     addAssignment("cos333", netid, assignmentName, fileList)
 
     return redirect('/admin/students')
-    
+
 @app.route('/_done')
 def done():
     assignmentID = request.args.get('id')

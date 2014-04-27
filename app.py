@@ -467,7 +467,24 @@ def page_not_found(e):
 def index():
     # if users can switch between modes (student, grader, admin), then we could redirect to logged-in page
     # if user is logged into CAS.
-    return render_template('index3.html')
+
+    alertString = ""
+    alertMessage = ""
+
+    if 'error' in session:
+        if session['error'] is 'admin':
+            alertString = "Looks like you don't have admin rights! If you think this is in error, please contact the CS department."
+        elif session['error'] is 'grader':
+            alertString = "Looks like you aren't signed up as a grader for any courses. If this is in error, please contact your lead preceptor."
+        elif session['error'] is 'student':
+            alertString = "Looks like you aren't signed up as a student for any courses. If this is in error, please contact your preceptor."
+
+        alertMessage =  "<div class=\"alert alert-warning alert-dismissable\" style=\"margin-bottom: -52px; z-index: 1\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning!</strong>" + alertString + "</div>"
+
+        session.pop('error', None)
+
+    return render_template('index3.html', alert = alertMessage)
 
 @app.route("/index3")
 def index3():

@@ -81,8 +81,17 @@ def mass_upload_students():
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     netid = request.form['netid']
+
+    if assignmentName.isalpha() is False or isValidNetid(netid) is False:
+        session['error'] = 'unk'
+        return redirect('/admin/students')
+
     files = request.files.getlist('file')
     string = ""
+
+    if len(files) == 0:
+        session['error'] = 'nofiles'
+        return redirect('/admin/students')
 
     fileList = []
 
@@ -754,9 +763,15 @@ def admin_students():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    alertString = "There was an error uploading the student's code."
+    alertMessage = ""
 
-    alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+    if 'error' in session:
+        if session['error'] == 'unk':
+            alertString = "An unkown error occurred while uploading student code. Please try again."
+        elif session['error'] == 'nofiles'
+            alertString = "No files were selected to upload."
+
+        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
     students_db = Student.query.all()

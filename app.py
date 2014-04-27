@@ -91,18 +91,14 @@ def upload_student_files():
     string = ""
 
     fileList = []
-    noFiles = True
 
     for file in files:
         if file.filename == "":
-            return "bump"    
+            session['error'] = 'nofiles'
+            return redirect('/admin/students')           
+
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
-
-    # Return an error if no files are uploaded.
-    if noFiles is True:
-        session['error'] = 'nofiles'
-        return redirect('/admin/students')
 
     addAssignment("cos333", netid, assignmentName, fileList)
 

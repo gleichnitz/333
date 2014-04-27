@@ -472,11 +472,11 @@ def index():
     alertMessage = ""
 
     if 'error' in session:
-        if session['error'] is 'admin':
+        if session['error'] == 'admin':
             alertString = "Looks like you don't have admin rights! If you think this is in error, please contact the CS department."
-        elif session['error'] is 'grader':
+        elif session['error'] == 'grader':
             alertString = "Looks like you aren't signed up as a grader for any courses. If this is in error, please contact your lead preceptor."
-        elif session['error'] is 'student':
+        elif session['error'] == 'student':
             alertString = "Looks like you aren't signed up as a student for any courses. If this is in error, please contact your preceptor."
 
         alertMessage =  "<div class=\"alert alert-warning alert-dismissable\" style=\"margin-bottom: -52px; z-index: 1\"><button type=\"button\" \

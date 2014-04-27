@@ -325,16 +325,6 @@ def isLoggedIn(ticket, page):
 def validate(data):
     if "yes" in data:
         name = data.split()[1]
-        netid = Student.query.filter_by(netid=name).first()
-        if netid is None:
-            cos_333 = Course.query.filter_by(name= 'cos333').first()
-            if cos_333 is None:
-                cos_333 = Course('cos333')
-                db.session.add(cos_333)
-                db.session.commit()
-            new_student = Student('dummy', 'name', name, cos_333)
-            db.session.add(new_student)
-            db.session.commit()
         return name
     else:
         return "NO"

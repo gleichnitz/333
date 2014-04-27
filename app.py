@@ -82,7 +82,7 @@ def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     netid = request.form['netid']
 
-    if assignmentName.isalpha() is False or isValidNetid(netid) is False:
+    if isValidNetid(netid) is False:
         session['error'] = 'unk'
         return redirect('/admin/students')
 
@@ -745,6 +745,9 @@ def admin():
 
 @app.route("/admin/students")
 def admin_students():
+    #######################################
+    # Boiler plate CAS authentication
+    #######################################
     try:
         ticket = request.args.get('ticket')
     except:
@@ -759,10 +762,14 @@ def admin_students():
     netid = isLoggedIn(ticket, "admin/students")
     if netid is "0":
         return redirect('/')
+   
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
+    #######################################
+
+    # Check to see if an error occured before refresh. 
     alertMessage = ""
 
     if 'error' in session:
@@ -776,6 +783,8 @@ def admin_students():
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
+   
+    # Load all students in admin's class.
     students_db = Student.query.all()
 
     students_form = []
@@ -787,6 +796,7 @@ def admin_students():
 
     masters = []
 
+    # Load assignments for reference when uploading code. 
     for assignment in assignment_db:
         if assignment.master is True:
             masters.append(assignment)

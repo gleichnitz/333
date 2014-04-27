@@ -8,7 +8,8 @@ $(document).ready(function(e) {
 	$('table tr').click(function() {
 		var href = $(this).attr("id");
 		var idName = href.substring(1, href.length);
-
+		if (idName == "" || idName == "Total" || idName == "total")
+			return
 		$('#codearea > div').css("display", "none");
 
 		$('#' + idName).css("display", "initial");

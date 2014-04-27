@@ -771,6 +771,8 @@ def admin_students():
         elif session['error'] == 'nofiles'
             alertString = "No files were selected to upload."
 
+        session.pop('error', None)
+
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 

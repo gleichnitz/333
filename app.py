@@ -756,7 +756,7 @@ def admin_students():
 
     alertString = "There was an error uploading the student's code."
 
-    alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"margin-bottom: -52px; z-index: 1\"><button type=\"button\" \
+    alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
     students_db = Student.query.all()

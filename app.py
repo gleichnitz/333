@@ -265,7 +265,7 @@ def remove_assignment():
     return "true"
 
 class AssignmentClass:
-    def __init__(self, id, course, name, date, files, grade, grader, student, status):
+    def __init__(self, id, course, name, date, files, grade, grader, student, status, points):
         self.id = id
         self.course = course
         self.name = name
@@ -275,6 +275,7 @@ class AssignmentClass:
         self.grader = grader
         self.student = student
         self.status = status
+        self.points = points
 
 class File:
     def __init__(self, name, code, grade, isReadOnly = ""):
@@ -608,9 +609,9 @@ def grader():
         else:
             status = "--------"
         if item.master is False and item.grader is None and item.student is not None:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid, status))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "None", item.student.netid, status, item.points_possible))
         elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
-            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid, status))
+            assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid, status, item.points_possible))
 
     classes = []
     for item in assignments_form:
@@ -685,7 +686,7 @@ def student():
             status = "In Progress"
         else:
             status = "--------"
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status, item.points_possible))
 
     classes = []
     for item in assignments_form:

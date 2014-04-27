@@ -54,6 +54,7 @@
             Remove
           </th>
       </tr>
+    </thead>
       <tbody>
         {% for assignment in assignments %}
           <tr><td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.name )}}"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>

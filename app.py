@@ -593,8 +593,9 @@ def grader():
     if netid is "0":
         return redirect('/')
 
-    # if isGrader(session['username']) is False:
-    #     return redirect('/')
+    if isGrader(netid) is False:
+        session['error'] = 'grader'
+        return redirect('/')
 
     ##################################
     # need to pass: class grader is assigned to

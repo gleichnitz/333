@@ -97,9 +97,8 @@ def upload_student_files():
         fileList.append(ass_file)
 
     # Return an error if no files are uploaded.
-    if len(files) == 0:
+    if len(fileList) == 0:
         session['error'] = 'nofiles'
-        return "error"
         return redirect('/admin/students')
 
     addAssignment("cos333", netid, assignmentName, fileList)

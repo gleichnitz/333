@@ -22,7 +22,7 @@ $(document).ready(function(e) {
    			url: "/_change_grade",
    			context: document.body,
    			data: {grade: value}
-   		)};
+   		});
   //  		}).done(function(data) {
 	 // 		if (data == "success") {
 	 			

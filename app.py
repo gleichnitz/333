@@ -94,8 +94,8 @@ def upload_student_files():
     noFiles = True
 
     for file in files:
-        if file is None:
-            return "bump"
+        if file.filename == "":
+            return "bump"    
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 

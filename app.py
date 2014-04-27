@@ -203,7 +203,7 @@ def add_student():
 def add_grader():
 
     netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
+    if isValidNetid(netid) is False:
         return "false"
 
     grader = Grader.query.filter_by(netid=netid).first();

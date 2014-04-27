@@ -90,6 +90,8 @@ def upload_student_files():
     files = request.files.getlist('file')
     string = ""
 
+    return str(len(files))
+
     fileList = []
     noFiles = True
 

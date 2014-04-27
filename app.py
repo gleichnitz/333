@@ -82,6 +82,7 @@ def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     netid = request.form['netid']
 
+    # Netid is automatically generated, so it should be valid. 
     if isValidNetid(netid) is False:
         session['error'] = 'unk'
         return redirect('/admin/students')
@@ -89,19 +90,21 @@ def upload_student_files():
     files = request.files.getlist('file')
     string = ""
 
-    if len(files) == 0:
-        session['error'] = 'nofiles'
-        return redirect('/admin/students')
-
     fileList = []
 
     for file in files:
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
+    # Return an error if no files are uploaded.
+    if len(files) == 0:
+        session['error'] = 'nofiles'
+        return redirect('/admin/students')
+
     addAssignment("cos333", netid, assignmentName, fileList)
 
     return redirect('/admin/students')
+    
 @app.route('/_done')
 def done():
     assignmentID = request.args.get('id')

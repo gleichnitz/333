@@ -676,8 +676,9 @@ def student():
     if netid is "0":
         return redirect('/')
 
-    # if isStudent(session['username']) is False:
-    #     return redirect('/')
+    if isStudent(netid) is False:
+        session['error'] = 'student'
+        return redirect('/')
 
     ##################################
     # need to pass: item containing all classes student is in

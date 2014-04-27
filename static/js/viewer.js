@@ -21,7 +21,7 @@ $(document).ready(function(e) {
    		$.ajax({
    			url: "/_change_grade",
    			context: document.body,
-   			data: {grade: value, file: file}
+   			data: {grade: value}
    		)};
   //  		}).done(function(data) {
 	 // 		if (data == "success") {

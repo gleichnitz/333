@@ -91,13 +91,15 @@ def upload_student_files():
     string = ""
 
     fileList = []
+    noFiles = True
 
     for file in files:
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
+        noFiles = False
 
     # Return an error if no files are uploaded.
-    if len(fileList) == 0:
+    if noFiles is True:
         session['error'] = 'nofiles'
         return redirect('/admin/students')
 

@@ -190,7 +190,7 @@ def check_student():
     if student is None:
         return ""
 
-    assignments = Assignment.query.filter_by(student=student).all()
+    assignments = Assignment.query.filter_by(student=netid).all()
     if len(assignments) != 0:
         return "check"
     else:

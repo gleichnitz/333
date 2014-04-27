@@ -58,10 +58,10 @@
 {% block body %}
   <div style="float: left; margin-top: 3.2em; margin-left: 6%;">
     <table id="{{id}}" class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 19%; font-size: 16px;">
-    <thead><tr><th style="background-color: white;">File</th><th style="background-color: white;">Grade</th></tr> </thead>
+    <thead><tr><th  font-size="15px" style="background-color: white;">File</th><th style="background-color: white;">Grade</th></tr> </thead>
     <tbody>
       {% for item in assignment %}
-        <tr id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td><nobr><input class="given_grade" type="text" size="1" maxlength="2">/10</nobr></td></tr>
+        <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td><nobr><input class="given_grade" type="text" size="1" maxlength="2">/10</nobr></td></tr>
       {% endfor %}
       <tr>
       </tr>

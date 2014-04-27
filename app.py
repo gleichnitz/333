@@ -90,15 +90,13 @@ def upload_student_files():
     files = request.files.getlist('file')
     string = ""
 
-    return str(len(files))
-
     fileList = []
     noFiles = True
 
     for file in files:
+        return file.filename
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
-        noFiles = False
 
     # Return an error if no files are uploaded.
     if noFiles is True:

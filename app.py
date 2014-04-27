@@ -48,16 +48,15 @@ def AddtoListAssignmentMaster(files, file_name):
 
 @app.route('/_mass_upload_student_files', methods=['GET', 'POST'])
 def mass_upload_student_files():
-    files = request.files.getlist('files')
-
-    return "bump!"
-
+    files = request.files.getlist('file')
     content = ""
 
-    for file in files:
-        content = content + file.read()
+    return str(len(files))
 
-    return content
+    for file in files:
+        return file.read()
+
+    return "none"
 
 
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])

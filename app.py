@@ -183,6 +183,19 @@ def release_assignment():
 
     return "failure"
 
+@app.route('/_check_student')
+def check_student():
+    netid = str(request.args.get('netid'))
+    student = Student.query.filter_by(netid=netid).first();
+    if student is None:
+        return ""
+
+    assignments = Assignment.query.filter_by(student=student).all()
+    if len(assignments) != 0:
+        return "check"
+    else:
+        return ""
+
 @app.route('/_add_student')
 def add_student():
 
@@ -255,6 +268,20 @@ def add_assignment():
     rubric = request.args.get('rubric').split()
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
+
+    for item in fileNames:
+        if item.isalpha() is False and re.match("^([a-z])+.(c|(java))$", item) is None:
+            session['error'] = 'invalidfilename'
+
+    if len(fileNames) != len(rubric):
+        session['error'] = 'rubricmismatch'
+
+    for item in rubric:
+        if re.match("^(\d)+$", item) is None:
+            session['error'] = 'invalidrubric'
+
+    if re.match("^(\d)+$", totalPoints) is None:
+        sesion['error'] = 'invalidpoints'
 
     assignment = Assignment('cos333', "", name)
     assignment.master = True

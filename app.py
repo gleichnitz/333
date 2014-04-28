@@ -568,6 +568,9 @@ def account():
 
 @app.route("/viewer")
 def submitted():
+    if 'assignment' not in request.args:
+        return redirect('/')
+
     try:
         ticket = request.args.get('ticket')
     except:

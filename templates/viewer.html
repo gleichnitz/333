@@ -38,7 +38,7 @@
               urls: {
                 create: '/annotations/create',
                 read: '/annotations/read/{{id}}/{{item.name}}',
-                update: '/annotations/update/{{id}}/{{item.name}}',
+                update: '/annotations/update/{{id}}/{{item.name}}/:id',
                 destroy: '/annotations/destroy/{{id}}/{{item.name}}/:id',
                 search: '/search'
               }
@@ -46,9 +46,9 @@
             });
             $.i18n.load(i18n_dict);
 
-            /* content.annotator('addPlugin', 'AnnotatorViewer');
+            /*content.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
-            $('#anotacions-uoc-panel').slimscroll({height: '100%'}); */
+            $('#anotacions-uoc-panel').slimscroll({height: '100%'});*/
           {% endfor %}
       });
   </script>

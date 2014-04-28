@@ -440,7 +440,7 @@ def read(id, name):
 
 
 @app.route('/store/annotations/update/<id>/<name>/<ann_id>', methods = ['PUT'])
-def update(id, name):
+def update(id, name, ann_id):
     a = Assignment.query.filter_by(id = id).first()
     new_files = a.files
     new_dict = dict(request.json)

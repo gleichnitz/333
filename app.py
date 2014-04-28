@@ -120,19 +120,17 @@ def done():
     except:
         return traceback.format_exc()
 
-@app.route('/_undone')
+@app.route('/_undone', methods = ['POST'])
 def undone():
-    assignmentID = request.args.get('id')
+    assignmentID = request.form('id')
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    if assiment.graded is True:
-        assignment.in_progress = True
-        assignment.graded = False
-        try:
-            db.session.add(assignment)
-            db.session.commit()
-            return "success"
-        except:
-            return traceback.format_exc()
+    assignment.in_progress()
+    try:
+        db.session.add(assignment)
+        db.session.commit()
+        return redirect('/grader')
+    except:
+        return traceback.format_exc()
 
 @app.route('/_change_grade')
 def change_grade():
@@ -639,8 +637,10 @@ def submitted():
     grading_status = ""
     if (assignment_active.graded):
         grading_status = "Unmark as Done"
+        status_redirection = "/_undone"
     else:
         grading_status = "Mark Grading as Done"
+        status_redirection = "/_done"
 
     files = []
 
@@ -660,7 +660,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status )
+    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
 
 @app.route("/grader")
 def grader():

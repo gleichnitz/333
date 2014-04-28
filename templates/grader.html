@@ -45,13 +45,6 @@
                         marked = 0;
                         for(var j=0;j<grader_table.rows[i].cells.length;j++)
                         {
-                            if (grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected)
-                                console.log("replace")
-                            else if (grader_table.rows[i].cells[j].innerText == selected)
-                                console.log("no replace")
-                            else
-                                console.log("FUCK")
-
                             if (selected == "All") {
                                 $(grader_table.rows[i]).show();
                             }

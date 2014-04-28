@@ -268,7 +268,7 @@ def add_assignment():
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
 
-    if len(name) == 0:
+    if len(name) == 0 or name == "":
         session['error'] = 'noname'
         return "false"
 

@@ -87,6 +87,7 @@ def upload_student_files():
 
     # Netid is automatically generated, so it should be valid. 
     if isValidNetid(netid) is False:
+        return netid
         session['error'] = 'unk'
         return redirect('/admin/students')
 

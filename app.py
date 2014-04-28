@@ -605,6 +605,14 @@ def submitted():
     elif accountType == "g":
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
+    elif accountType = "a":
+        admin = Admin.query.filter_by(netid = netid).first()
+        assignment = Assignment.query.filter_by(id = assignmentID).first()
+        if admin is None or assignment is None:
+            return redirect('/admin')
+        ### THIS IS GOING TO CHANGE!!!!
+        if admin.course.id != assignment.course.id:
+            return redirect('/admin')
 
     assignment_active = 0
     for item in assignments:

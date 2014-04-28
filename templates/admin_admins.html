@@ -16,11 +16,12 @@
 
 {% block content %}
   {{super()}}
+  <div style="margin-right: 10%;">
   <a href="#" id="add_buttons" class="btn btn-large"><i class="icon-white icon-plus"></i> Add an Assignment</a>
 
     {{ alert|safe }}
     
-    <table id="admin-admin-table" class="table table-hover tablesorter" style="background-color: transparent; margin-top: 15px;">
+    <table id="admin-admin-table" class="table table-hover tablesorter" style="background-color: transparent; margin-top: 15px; margin-right: 10%;">
     <thead>
       <tr>
           <th class="header">
@@ -74,6 +75,7 @@
           {% endfor %}
       </tbody>
     </table>
+  </div>
 
     <div class="modal fade" id="modal-add">
       <div class="modal-dialog">

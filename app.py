@@ -586,7 +586,7 @@ def submitted():
         student = Student.query.filter_by(netid = netid).first()
         assignments = student.assignments.all()
         grader_button_display = "none"
-        input_style = 'readonly style="border:none"'
+        input_style = "readonly style=\"border:none\""
     elif accountType == "g":
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()

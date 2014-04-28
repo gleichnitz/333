@@ -568,6 +568,9 @@ def account():
 
 @app.route("/viewer")
 def submitted():
+    if 'assignment' not in request.args:
+        return redirect('/')
+
     try:
         ticket = request.args.get('ticket')
     except:
@@ -602,6 +605,16 @@ def submitted():
     elif accountType == "g":
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
+    elif accountType == "a":
+        admin = Admin.query.filter_by(netid = netid).first()
+        assignment = Assignment.query.filter_by(id = assignmentID).first()
+        if admin is None or assignment is None:
+            return redirect('/admin')
+        ### THIS IS GOING TO CHANGE!!!!
+        if admin.course.id != assignment.course.id:
+            return redirect('/admin')
+        assignments = []
+        assignments.append(assignment)
 
     assignment_active = 0
     for item in assignments:
@@ -996,10 +1009,10 @@ def admin_admins():
         elif session['error'] == 'noname':
             alertString = "Please enter an assignment name."
 
-        session.pop('error', None)
-
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"        
+
+    session.pop('error', None)
 
     assignment_db = Assignment.query.all()
 

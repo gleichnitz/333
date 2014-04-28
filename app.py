@@ -655,9 +655,9 @@ def grader():
 
     assignments_form = []
     for item in assignments:
-        if item.graded is True:
+        if item.graded:
             status = "Graded"
-        elif item.in_progress is True:
+        elif item.in_progress:
             status = "In Progress"
         else:
             status = "--------"

@@ -27,7 +27,7 @@ testArray = []
 # print Course.query.all()
 Base = declarative_base()
 
-# Verify that netid fulfills OIT requirements. 
+# Verify that netid fulfills OIT requirements.
 # Found here: http://www.universitypressclub.com/archive/2013/03/where-does-your-netid-come-from/
 def isValidNetid(netid):
     if len(netid) < 2 or len(netid) > 8:
@@ -58,7 +58,7 @@ def mass_upload_student_files():
 
     return "none"
 
-# Create a bunch of students from a list of netids. 
+# Create a bunch of students from a list of netids.
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
     f = request.files['netids']
@@ -79,13 +79,13 @@ def mass_upload_students():
 
     return redirect('/admin/students')
 
-# Upload code and create a new assignment bound to a particular student. 
+# Upload code and create a new assignment bound to a particular student.
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     netid = request.form['netid']
 
-    # Netid is automatically generated, so it should be valid. 
+    # Netid is automatically generated, so it should be valid.
     if isValidNetid(netid) is False:
         session['error'] = 'unk'
         return redirect('/admin/students')
@@ -99,7 +99,7 @@ def upload_student_files():
         # HACK: identify no files uploaded by empty filename
         if file.filename == "":
             session['error'] = 'nofiles'
-            return redirect('/admin/students')           
+            return redirect('/admin/students')
 
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
@@ -108,16 +108,15 @@ def upload_student_files():
 
     return redirect('/admin/students')
 
-@app.route('/_done')
+@app.route('/_done', methods = ['POST'])
 def done():
-    assignmentID = request.args.get('id')
+    assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    assignment.graded = True
-    assignment.in_progress = False
+    assignment.graded()
     try:
         db.session.add(assignment)
         db.session.commit()
-        return "success"
+        return redirect('/grader')
     except:
         return traceback.format_exc()
 
@@ -139,7 +138,7 @@ def undone():
 def change_grade():
     value = request.args.get('grade')
     file_name = request.args.get('file')
-        # add code to change rubric for this file 
+        # add code to change rubric for this file
 
 @app.route('/_assign')
 def assign_assignment():
@@ -241,7 +240,7 @@ def remove_student():
     # for assignment in assignments:
     #     db.session.delete(assignment)
 
-    db.session.delete(student)                
+    db.session.delete(student)
     db.session.commit()
 
     return "true"
@@ -256,7 +255,7 @@ def remove_grader():
     if grader is None:
         return "true"
 
-    db.session.delete(grader)                
+    db.session.delete(grader)
     db.session.commit()
 
     return "true"
@@ -269,19 +268,27 @@ def add_assignment():
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
 
+    if len(name) == 0 or name == "":
+        session['error'] = 'noname'
+        return "false"
+
     for item in fileNames:
         if item.isalpha() is False and re.match("^([a-z])+.(c|(java))$", item) is None:
             session['error'] = 'invalidfilename'
+            return "false"
 
     if len(fileNames) != len(rubric):
         session['error'] = 'rubricmismatch'
+        return "false"
 
     for item in rubric:
         if re.match("^(\d)+$", item) is None:
             session['error'] = 'invalidrubric'
+            return "false"
 
     if re.match("^(\d)+$", totalPoints) is None:
-        sesion['error'] = 'invalidpoints'
+        session['error'] = 'invalidpoints'
+        return "false"
 
     assignment = Assignment('cos333', "", name)
     assignment.master = True
@@ -399,7 +406,7 @@ def find_Annotation(id, name):
         if (item["name"].split('.')[0] == name):
             return json.dumps(item["annotations"])
     return None
-   
+
 @app.route('/store/annotations/create', methods = ['POST'])
 def create():
     data = dict(request.json)
@@ -576,12 +583,22 @@ def submitted():
     if netid is "0":
         return redirect('/')
 
-    assignmentID = request.args.get('assignment').split('*')[0]
-    accountType = request.args.get('assignment').split('*')[1]
+    if 'assignment' in request.args:
+        assignmentID = request.args.get('assignment').split('*')[0]
+        accountType = request.args.get('assignment').split('*')[1]
+    else:
+        return redirect('/')
+
+    grader_button_display = ""
+    input_ro = ""
+    input_style = ""
 
     if accountType == "s":
         student = Student.query.filter_by(netid = netid).first()
         assignments = student.assignments.all()
+        grader_button_display = "none"
+        input_ro = "readonly"
+        input_style = "border:none"
     elif accountType == "g":
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
@@ -605,6 +622,13 @@ def submitted():
 
     title = assignment_active.name
 
+
+    grading_status = "Mark Grading as Done"
+    ##if (assignment_active.graded):
+    ##    grading_status = "Unmark as Done"
+    ##else:
+    ##    grading_status = "Mark Grading as Done"
+
     files = []
 
     for item in assignment_active.files:
@@ -623,7 +647,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID)
+    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status )
 
 @app.route("/grader")
 def grader():
@@ -809,14 +833,14 @@ def admin_students():
     netid = isLoggedIn(ticket, "admin/students")
     if netid is "0":
         return redirect('/')
-   
+
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
     #######################################
 
-    # Check to see if an error occured before refresh. 
+    # Check to see if an error occured before refresh.
     alertMessage = ""
 
     if 'error' in session:
@@ -832,7 +856,7 @@ def admin_students():
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
-   
+
     # Load all students in admin's class.
     students_db = Student.query.all()
 
@@ -845,7 +869,7 @@ def admin_students():
 
     masters = []
 
-    # Load assignments for reference when uploading code. 
+    # Load assignments for reference when uploading code.
     for assignment in assignment_db:
         if assignment.master is True:
             masters.append(assignment)
@@ -958,6 +982,25 @@ def admin_admins():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
+    alertMessage = ""
+
+    if 'error' in session:
+        if session['error'] == 'invalidfilename':
+            alertString = "You entered an invalid file name. Please try again."
+        elif session['error'] == 'rubricmismatch':
+            alertString = "There was a mismatch between the number of files you entered and your rubric."
+        elif session['error'] == 'invalidrubric':
+            alertString = "You entered an invalid rubric value. Please try again."
+        elif session['error'] == 'invalidpoints':
+            alertString = "You entered an invalid point value. Please try again."
+        elif session['error'] == 'noname':
+            alertString = "Please enter an assignment name."
+
+        session.pop('error', None)
+
+        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"        
+
     assignment_db = Assignment.query.all()
 
     assignments = []
@@ -968,7 +1011,7 @@ def admin_admins():
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 
-    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles)
+    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles, alert = alertMessage)
 
 @app.route("/logout")
 def logout():
@@ -984,7 +1027,7 @@ def logout():
 #     ">": "&gt;",
 #     "<": "&lt;",
 #     }
-    
+
 #     f = open('Grayscale.java', 'r')
 #     code = f.read()
 #     code = "".join(html_escape_table.get(c,c) for c in code)

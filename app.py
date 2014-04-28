@@ -268,19 +268,27 @@ def add_assignment():
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
 
+    if len(name) == 0:
+        session['error'] = 'noname'
+        return "false"
+
     for item in fileNames:
         if item.isalpha() is False and re.match("^([a-z])+.(c|(java))$", item) is None:
             session['error'] = 'invalidfilename'
+            return "false"
 
     if len(fileNames) != len(rubric):
         session['error'] = 'rubricmismatch'
+        return "false"
 
     for item in rubric:
         if re.match("^(\d)+$", item) is None:
             session['error'] = 'invalidrubric'
+            return "false"
 
     if re.match("^(\d)+$", totalPoints) is None:
-        sesion['error'] = 'invalidpoints'
+        session['error'] = 'invalidpoints'
+        return "false"
 
     assignment = Assignment('cos333', "", name)
     assignment.master = True
@@ -974,6 +982,8 @@ def admin_admins():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
+    alertMessage = ""
+
     if 'error' in session:
         if session['error'] == 'invalidfilename':
             alertString = "You entered an invalid file name. Please try again."
@@ -983,6 +993,8 @@ def admin_admins():
             alertString = "You entered an invalid rubric value. Please try again."
         elif session['error'] == 'invalidpoints':
             alertString = "You entered an invalid point value. Please try again."
+        elif session['error'] == 'noname':
+            alertString = "Please enter an assignment name."
 
         session.pop('error', None)
 

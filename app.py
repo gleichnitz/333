@@ -974,6 +974,21 @@ def admin_admins():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
+    if 'error' in session:
+        if session['error'] == 'invalidfilename':
+            alertString = "You entered an invalid file name. Please try again."
+        elif session['error'] == 'rubricmismatch':
+            alertString = "There was a mismatch between the number of files you entered and your rubric."
+        elif session['error'] == 'invalidrubric':
+            alertString = "You entered an invalid rubric value. Please try again."
+        elif session['error'] == 'invalidpoints':
+            alertString = "You entered an invalid point value. Please try again."
+
+        session.pop('error', None)
+
+        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"        
+
     assignment_db = Assignment.query.all()
 
     assignments = []
@@ -984,7 +999,7 @@ def admin_admins():
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 
-    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles)
+    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles, alert = alertMessage)
 
 @app.route("/logout")
 def logout():

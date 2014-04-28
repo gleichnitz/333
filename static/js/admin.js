@@ -91,16 +91,31 @@ $(document).ready(function() {
 		var netid = $(this).attr('id');
 		console.log(netid);
 		var thisButton = $(this);
-	      	$.ajax({
-	  			url: "/_delete_student",
-	  			context: document.body,
-	  			data: { netid: netid }
-		  	}).done(function(data) {
-		  		if (data == "true") {
-		  			thisButton.closest('tr').css('display','none');
-		  		} else {
-		  			console.log("false");
-		  		}
+		var toContinue = true;
+		$.ajax({
+  			url: "/_check_student",
+  			context: document.body,
+  			data: { netid: netid }
+	  	}).done(function(data) {
+	  		if (data == "check") {
+	  			if (!confirm("You've uploaded code for this student. Are you sure you want to delete?"))
+	  				toContinue = false;
+	  		}
+		});
+
+	  	if (toContinue == false)
+	  		return;
+
+      	$.ajax({
+  			url: "/_delete_student",
+  			context: document.body,
+  			data: { netid: netid }
+	  	}).done(function(data) {
+	  		if (data == "true") {
+	  			thisButton.closest('tr').css('display','none');
+	  		} else {
+	  			console.log("false");
+	  		}
 		});
 	});
 

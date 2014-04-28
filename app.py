@@ -58,7 +58,7 @@ def mass_upload_student_files():
 
     return "none"
 
-
+# Create a bunch of students from a list of netids. 
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
     f = request.files['netids']
@@ -66,7 +66,10 @@ def mass_upload_students():
 
     for item in netids:
         if isValidNetid(item) is not True:
-            return "Error: " + item + " is not a valid netid"
+            session['error'] = 'invalidid'
+            return redirect('/admin/students')
+
+    for item in netids:
         student = Student.query.filter_by(netid = item).first();
         if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
@@ -76,23 +79,35 @@ def mass_upload_students():
 
     return redirect('/admin/students')
 
-
+# Upload code and create a new assignment bound to a particular student. 
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     netid = request.form['netid']
+
+    # Netid is automatically generated, so it should be valid. 
+    if isValidNetid(netid) is False:
+        session['error'] = 'unk'
+        return redirect('/admin/students')
+
     files = request.files.getlist('file')
     string = ""
 
     fileList = []
 
     for file in files:
+        # HACK: identify no files uploaded by empty filename
+        if file.filename == "":
+            session['error'] = 'nofiles'
+            return redirect('/admin/students')           
+
         ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
         fileList.append(ass_file)
 
     addAssignment("cos333", netid, assignmentName, fileList)
 
     return redirect('/admin/students')
+
 @app.route('/_done')
 def done():
     assignmentID = request.args.get('id')
@@ -168,6 +183,19 @@ def release_assignment():
 
     return "failure"
 
+@app.route('/_check_student')
+def check_student():
+    netid = str(request.args.get('netid'))
+    student = Student.query.filter_by(netid=netid).first();
+    if student is None:
+        return ""
+
+    assignments = Assignment.query.filter_by(student=netid).all()
+    if len(assignments) != 0:
+        return "check"
+    else:
+        return ""
+
 @app.route('/_add_student')
 def add_student():
 
@@ -188,7 +216,7 @@ def add_student():
 def add_grader():
 
     netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
+    if isValidNetid(netid) is False:
         return "false"
 
     grader = Grader.query.filter_by(netid=netid).first();
@@ -240,6 +268,20 @@ def add_assignment():
     rubric = request.args.get('rubric').split()
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
+
+    for item in fileNames:
+        if item.isalpha() is False and re.match("^([a-z])+.(c|(java))$", item) is None:
+            session['error'] = 'invalidfilename'
+
+    if len(fileNames) != len(rubric):
+        session['error'] = 'rubricmismatch'
+
+    for item in rubric:
+        if re.match("^(\d)+$", item) is None:
+            session['error'] = 'invalidrubric'
+
+    if re.match("^(\d)+$", totalPoints) is None:
+        sesion['error'] = 'invalidpoints'
 
     assignment = Assignment('cos333', "", name)
     assignment.master = True
@@ -736,6 +778,9 @@ def admin():
 
 @app.route("/admin/students")
 def admin_students():
+    #######################################
+    # Boiler plate CAS authentication
+    #######################################
     try:
         ticket = request.args.get('ticket')
     except:
@@ -750,10 +795,31 @@ def admin_students():
     netid = isLoggedIn(ticket, "admin/students")
     if netid is "0":
         return redirect('/')
+   
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
+    #######################################
+
+    # Check to see if an error occured before refresh. 
+    alertMessage = ""
+
+    if 'error' in session:
+        if session['error'] == 'unk':
+            alertString = "An unkown error occurred while uploading student code. Please try again."
+        elif session['error'] == 'nofiles':
+            alertString = "No files were selected to upload."
+        elif session['error'] == 'invalidid':
+            alertString = "The file you uploaded contained an invalid netid. Please try again."
+
+        session.pop('error', None)
+
+        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
+
+   
+    # Load all students in admin's class.
     students_db = Student.query.all()
 
     students_form = []
@@ -765,11 +831,12 @@ def admin_students():
 
     masters = []
 
+    # Load assignments for reference when uploading code. 
     for assignment in assignment_db:
         if assignment.master is True:
             masters.append(assignment)
 
-    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters)
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
 
 @app.route("/admin/graders")
 def admin_graders():

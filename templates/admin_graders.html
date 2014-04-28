@@ -18,7 +18,7 @@
     {{super()}}
   <a href="#" id="add_buttons" class="btn btn-large"><i class="icon-white icon-plus"></i> Add a Grader</a>
   <div id="{{netid}}">
-    <table id="admin-grader-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 15px;">
+    <table id="admin-grader-table" class="table table-hover tablesorter" style="background-color: transparent; margin-top: 15px;">
     <thead>
       <tr>
           <th class="header">
@@ -53,7 +53,6 @@
     </table>
   </div>
 
-
     <div class="modal fade" id="modal-add">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -69,13 +68,6 @@
                 <br>
                 <button type="button" id="manual-submit-modal-grader" class="btn">Submit</button>
               </div>
-              <br>
-            </form>
-            <form role="form">
-              <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
-                <p class="help-block">Make sure your file is .txt, one netid per line.</p>
             </form>
         </div>
         <div class="modal-footer">

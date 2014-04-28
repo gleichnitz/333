@@ -16,6 +16,7 @@
 
 {% block content %}
   {{super()}}
+  <div style="margin-right: 10%;">
   <a href="#" id="add_buttons" class="btn btn-large"><i class="icon-white icon-plus"></i> Add an Assignment</a>
 
     {{ alert|safe }}
@@ -74,6 +75,7 @@
           {% endfor %}
       </tbody>
     </table>
+  </div>
 
     <div class="modal fade" id="modal-add">
       <div class="modal-dialog">

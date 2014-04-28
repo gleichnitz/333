@@ -122,7 +122,7 @@ def done():
 
 @app.route('/_undone', methods = ['POST'])
 def undone():
-    assignmentID = request.form('id')
+    assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
     assignment.in_progress()
     try:

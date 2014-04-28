@@ -236,9 +236,9 @@ def remove_student():
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
         return "true"
-    # assignments = Assignments.query.filter_by(student=student).all();
-    # for assignment in assignments:
-    #     db.session.delete(assignment)
+    assignments = Assignments.query.filter_by(student=student).all();
+    for assignment in assignments:
+        db.session.delete(assignment)
 
     db.session.delete(student)
     db.session.commit()

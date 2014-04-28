@@ -112,8 +112,7 @@ def upload_student_files():
 def done():
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    assignment.graded = True
-    assignment.in_progress = False
+    assignment.graded()
     try:
         db.session.add(assignment)
         db.session.commit()

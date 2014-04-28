@@ -15,6 +15,11 @@
   <script>
         $(document).ready(function($)
             {
+
+                $('#grader').click(function() {
+                    window.location.href = "/grader";
+                });
+
                 $("#student-table").tablesorter({
                     headers: {
                     // assign the secound column (we start counting zero)

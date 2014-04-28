@@ -36,6 +36,7 @@
                 $('.dropdown-menu li').click(function(e){
                     e.preventDefault();
                     var selected = $(this).text();
+                    console.log("selected" + selected);
                     var marked = 0;
 
                     var grader_table = document.getElementById('grader-table-body');
@@ -44,6 +45,8 @@
                         marked = 0;
                         for(var j=0;j<grader_table.rows[i].cells.length;j++)
                         {
+                            console.log("======")
+                            console.log(grader_table.rows[i].cells[j].innerText)
                             if (selected == "All") {
                                 $(grader_table.rows[i]).show();
                             }

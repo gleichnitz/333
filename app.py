@@ -646,7 +646,7 @@ def submitted():
 
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], "10/10"))
+            files.append(File(item['name'], item['content'], "10/10")) ## item['grade_given'], item['grade_total']
         else:
             files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))
 

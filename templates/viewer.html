@@ -66,7 +66,13 @@
       <tr id="total">
         <td></td> <td> <nobr><input class="given_grade" style="width: 1em;" type="text" size="1" maxlength="2" {{ input_ro }} style="{{ input_style }}" >&nbsp;/{{assignment.points_possible}}</nobr> </td>
       </tr>
-      <tr valign"middle" style="display: {{ button_display }}"><td><div class="btn-group" align="center"><button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both" text-align="center"> Mark Grading as Done </button></div></td><td></td></tr>
+      <tr valign"middle" style="display: {{ button_display }}"><td><div class="btn-group" align="center">
+        <form role="form" action="/_done" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="submit" style="height:100%;width:100%;background-color: white; color: black; clear: both" text-align="center"> Mark Grading as Done </button>
+          </div>
+        </form>
+        </div></td><td></td></tr>
 
     </tbody>
     </table>

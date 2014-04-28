@@ -615,11 +615,11 @@ def submitted():
     title = assignment_active.name
 
 
-    grading_status = ""
-    if (assignment_active.graded):
-        grading_status = "Unmark as Done"
-    else:
-        grading_status = "Mark Grading as Done"
+    grading_status = "Mark Grading as Done"
+    ##if (assignment_active.graded):
+    ##    grading_status = "Unmark as Done"
+    ##else:
+    ##    grading_status = "Mark Grading as Done"
 
     files = []
 

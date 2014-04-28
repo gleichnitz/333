@@ -117,7 +117,7 @@ def done():
     try:
         db.session.add(assignment)
         db.session.commit()
-        return "success"
+        return redirect('/grader')
     except:
         return traceback.format_exc()
 

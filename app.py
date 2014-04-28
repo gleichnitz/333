@@ -999,6 +999,8 @@ def admin_admins():
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"        
 
+    session.pop('error', None)
+
     assignment_db = Assignment.query.all()
 
     assignments = []

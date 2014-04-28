@@ -61,7 +61,7 @@
     <thead><tr><th  font-size="15px" style="background-color: white;">File</th><th style="background-color: white;">Grade</th></tr> </thead>
     <tbody>
       {% for item in assignment %}
-        <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td><nobr><input class="given_grade" type="text" size="1" maxlength="2">/10</nobr></td></tr>
+        <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td><nobr><input class="given_grade" type="text" size="1" maxlength="2" readonly>/10</nobr></td></tr>
       {% endfor %}
       <tr id="total">
         <td></td> <td> <nobr><input class="given_grade" style="width: 1em;" type="text" size="1" maxlength="2">&nbsp;/{{assignment.points_possible}}</nobr> </td>

@@ -576,8 +576,11 @@ def submitted():
     if netid is "0":
         return redirect('/')
 
-    assignmentID = request.args.get('assignment').split('*')[0]
-    accountType = request.args.get('assignment').split('*')[1]
+    if 'assignment' in request.args:
+        assignmentID = request.args.get('assignment').split('*')[0]
+        accountType = request.args.get('assignment').split('*')[1]
+    else:
+        return redirect('/')
 
     grader_button_display = ""
     input_ro = ""

@@ -108,7 +108,7 @@ def upload_student_files():
 
     return redirect('/admin/students')
 
-@app.route('/_done')
+@app.route('/_done', methods = ['POST'])
 def done():
     assignmentID = request.args.get('id')
     assignment = Assignment.query.filter_by(id = assignmentID).first()

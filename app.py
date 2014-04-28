@@ -614,7 +614,7 @@ def submitted():
         if admin.course.id != assignment.course.id:
             return redirect('/admin')
         assignments = []
-        assigments.append(assignment)
+        assignments.append(assignment)
 
     assignment_active = 0
     for item in assignments:

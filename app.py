@@ -623,11 +623,11 @@ def submitted():
     title = assignment_active.name
 
 
-    grading_status = "Mark Grading as Done"
-    ##if (assignment_active.graded):
-    ##    grading_status = "Unmark as Done"
-    ##else:
-    ##    grading_status = "Mark Grading as Done"
+    grading_status = ""
+    if (assignment_active.graded):
+        grading_status = "Unmark as Done"
+    else:
+        grading_status = "Mark Grading as Done"
 
     files = []
 
@@ -999,7 +999,7 @@ def admin_admins():
         session.pop('error', None)
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"        
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
     assignment_db = Assignment.query.all()
 

@@ -612,6 +612,13 @@ def submitted():
 
     title = assignment_active.name
 
+
+    grading_status = ""
+    if (assignment_active.graded):
+        grading_status = "Unmark as Done: Continue Grading"
+    else:
+        grading_status = "Mark Grading as Done"
+
     files = []
 
     for item in assignment_active.files:

@@ -580,13 +580,15 @@ def submitted():
     accountType = request.args.get('assignment').split('*')[1]
 
     grader_button_display = ""
+    input_ro = ""
     input_style = ""
 
     if accountType == "s":
         student = Student.query.filter_by(netid = netid).first()
         assignments = student.assignments.all()
         grader_button_display = "none"
-        input_style = "readonly style=\"border:none\""
+        input_ro = "readonly"
+        input_style = "border:none"
     elif accountType == "g":
         grader = Grader.query.filter_by(netid = netid).first()
         assignments = grader.assignments.all()
@@ -628,7 +630,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_style=input_style )
+    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style )
 
 @app.route("/grader")
 def grader():

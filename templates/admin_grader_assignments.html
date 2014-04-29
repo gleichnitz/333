@@ -24,8 +24,6 @@
                     e.preventDefault();
                     var selected = $(this).text();
                     var marked = 0;
-                    console.log(selected)
-                    console.log("=====")
 
                     var grader_table = document.getElementById('grader-assignments-table-body');
                     for(var i=0;i<grader_table.rows.length;i++)
@@ -33,13 +31,10 @@
                         marked = 0;
                         for(var j=0;j<grader_table.rows[i].cells.length;j++)
                         {
-                            console.log("selected   " + selected)
-                            console.log("inner text  " + grader_table.rows[i].cells[j].innerText)
-                            console.log("innertext repl   " + grader_table.rows[i].cells[j].innerText.replace(/\s+/g, ''))
                             if (selected == "All") {
                                 $(grader_table.rows[i]).show();
                             }
-                            else if (grader_table.rows[i].cells[j].innerText == selected || grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected.replace(/\s+/g, '')) {
+                            else if (grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected.replace(/\s+/g, '')) {
                                 $(grader_table.rows[i]).show();
                                 marked = 1;
                             }

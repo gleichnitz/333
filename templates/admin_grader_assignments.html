@@ -72,7 +72,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                         {% for assignment in assignments %}
-                            <li role="presentation"><a role="menuitem" tabindex="-1">{{assignment.name}}</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1">{{ assignment.name }}</a></li>
                         {% endfor %}
                     </ul>
               </div>
@@ -84,7 +84,7 @@
                     <ul id="ddlAssignments" class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                         {% for assignment in assignments %}
-                            <li role="presentation"><a id="{{ item }}" role="menuitem" tabindex="-1">{{assignment.student.netid}}</a></li>
+                            <li role="presentation"><a id="{{ item }}" role="menuitem" tabindex="-1">{{ assignment.student.netid }}</a></li>
                         {% endfor %}
                     </ul>
               </div>
@@ -100,7 +100,7 @@
       <tbody id="grader-assignments-table-body">
        {% for assignment in assignments %}
           <tr>
-            <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
+            <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.name }}</div></a></td>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
           </a></tr>

@@ -37,7 +37,7 @@
                             if (selected == "All") {
                                 $(grader_table.rows[i]).show();
                             }
-                            else if (grader_table.rows[i].cells[j].innerText == selected) {
+                            else if (grader_table.rows[i].cells[j].innerText == selected || grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected) {
                                 $(grader_table.rows[i]).show();
                                 marked = 1;
                             }

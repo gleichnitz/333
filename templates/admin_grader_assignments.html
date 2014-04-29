@@ -35,7 +35,7 @@
                         {
                             console.log("selected   " + selected)
                             console.log("inner text  " + grader_table.rows[i].cells[j].innerText)
-                            console.log("innertext repl   " + grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected)
+                            console.log("innertext repl   " + grader_table.rows[i].cells[j].innerText.replace(/\s+/g, ''))
                             if (selected == "All") {
                                 $(grader_table.rows[i]).show();
                             }

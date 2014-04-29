@@ -64,14 +64,26 @@
       <tr>
           <th class="header">
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
-                  </button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                        {% for assignment in assignments %}
+                            <li role="presentation"><a role="menuitem" tabindex="-1">{{ assignment.name }}</a></li>
+                        {% endfor %}
+                    </ul>
               </div>
           </th>
           <th class="header">
           	<div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Student <span class="caret"></span>
-                  </button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Student <span class="caret"></span>
+                    </button>
+                    <ul id="ddlAssignments" class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                        {% for assignment in assignments %}
+                            <li role="presentation"><a id="{{ item }}" role="menuitem" tabindex="-1">{{ assignment.student.netid }}</a></li>
+                        {% endfor %}
+                    </ul>
               </div>
           </th>
           <th class="header">

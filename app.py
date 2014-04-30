@@ -639,7 +639,7 @@ def submitted():
     if (assignment_active.graded):
         grading_status = "Unmark as Done"
         status_redirection = "/_undone"
-    else if (assignment_active.in_progress:
+    else if (assignment_active.in_progress):
         grading_status = "Mark Grading as Done"
         status_redirection = "/_done"
 

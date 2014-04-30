@@ -112,7 +112,8 @@ def upload_student_files():
 def done():
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    assignment.graded()
+    assignment.graded = True
+    assignment.in_progress = False
     try:
         db.session.add(assignment)
         db.session.commit()
@@ -124,7 +125,8 @@ def done():
 def undone():
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    assignment.in_progress()
+    assignment.in_progress = True
+    assignment.graded = False
     try:
         db.session.add(assignment)
         db.session.commit()
@@ -153,6 +155,7 @@ def assign_assignment():
                     try:
                         entry.grader = Grader.query.filter_by(netid = netid).first()
                         entry.in_progress = True
+                        entry.graded = False
                         db.session.add(entry)
                         db.session.commit()
                         return "success"
@@ -174,6 +177,7 @@ def release_assignment():
             if entry.id == int(assignID):
                 entry.grader = None
                 entry.in_progress = False
+                entry.graded = False
                 db.session.add(entry)
                 db.session.commit()
                 return "success"

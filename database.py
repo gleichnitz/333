@@ -15,27 +15,39 @@ def addAssignment(course_name, student_netid, name, files):
     db.session.add(new_assignment)
     db.session.commit()
 
+s_courses = db.Table('s_courses', 
+  db.Column('course_id', db.Integer, db.ForeignKey('course.id')),
+  db.Column('student_id', db.Integer, db.ForeignKey('student.id')))
+
+g_courses = db.Table('g_courses', 
+  db.Column('course_id', db.Integer, db.ForeignKey('course.id')),
+  db.Column('grader_id', db.Integer, db.ForeignKey('grader.id')))
+
+a_courses = db.Table('a_courses', 
+  db.Column('course_id', db.Integer, db.ForeignKey('course.id')),
+  db.Column('admin_id', db.Integer, db.ForeignKey('admin.id')))
+
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     firstname = db.Column(db.String(80))
     lastname = db.Column(db.String(80))
     netid = db.Column(db.String(80), unique = True)
-    courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
-    course = db.relationship('Course', backref = db.backref('students', lazy = 'dynamic'))
+    courses = db.relationship('Course', secondary=s_courses,
+      backref=db.backref('students', lazy='dynamic'))
 
     # assignments = db.relationship('Assignment', backref = 'student', lazy = 'dynamic')
-    def __init__(self, firstname, lastname, netid, course):
+    def __init__(self, firstname, lastname, netid):
       self.firstname = firstname
       self.lastname = lastname
       self.netid = netid
-      self.course = course
+
+    def addCourse(self, course):
+      new_course = Course.query.filter_by(name = course).first()
+      if new_course is not None:
+        self.courses.append(new_course)
 
     def __repr__(self):
-#      return format('<Student {0} {1} {2} {3}>', self.firstname, self.lastname, self.netid,self.course.name)
-      #args = [self.firstname, self.lastname, self.netid, self.course.name]
-      return 'Student {} {} {} {}'.format(self.firstname, self.lastname, self.netid, self.course.name)
-    def __str__(self):
-      return format('<Student {0} {1} {2} {3}>', self.firstname, self.lastname, self.netid,self.course.name)
+      return 'Student {} {} {}'.format(self.firstname, self.lastname, self.netid )
 
 class Grader(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -44,31 +56,43 @@ class Grader(db.Model):
     lastname = db.Column(db.String(80))
 
     netid = db.Column(db.String(80), unique = True)
-    courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
-    course = db.relationship('Course', backref = db.backref('graders', lazy = 'dynamic'))
-    # graded_assignments = db.relationship('Assignment', backref = 'graders', lazy = 'dynamic')
-    def __init__(self, netid, course):
+    courses = db.relationship('Course', secondary=g_courses,
+      backref=db.backref('graders', lazy='dynamic'))
+
+    def __init__(self, netid):
       self.netid = netid
-      self.course = course
+
+
+    def addCourse(self, course):
+      new_course = Course.query.filter_by(name = course).first()
+      if new_course is not None:
+        self.courses.append(new_course)
+
+
 
     def __repr__(self):
       return 'Grader {} {}'.format(self.netid, self.course.name)
 
     def __str__(self):
-      return '<Grader {} {}>'.format(self.netid, self.course.name)
+      return '<Grader {}>'.format(self.netid )
 
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     netid = db.Column(db.String(80), unique = True)
-    courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
-    course = db.relationship('Course', backref = db.backref('admins', lazy = 'dynamic'))
-
-    def __init__(self, netid, course):
+    courses = db.relationship('Course', secondary=a_courses,
+      backref=db.backref('admins', lazy='dynamic'))
+    def __init__(self, netid):
       self.netid = netid
-      self.course = course
+
+    def addCourse(self, course):
+      new_course = Course.query.filter_by(name = course).first()
+      if new_course is not None:
+        self.courses.append(new_course)
+
+
 
     def __repr__(self):
-      return 'Admin {} {}'.format(self.netid, self.course.name)
+      return 'Admin {}'.format(self.netid)
 
 class Course(db.Model):
   id = db.Column(db.Integer, primary_key = True)
@@ -112,6 +136,8 @@ class Assignment(db.Model):
     self.student = Student.query.filter_by(netid = student_netid).first()
     self.name = name
     self.master = False
+    self.graded = False
+    self.in_progress = False
 
   def AddFiles(self, files):
     self.files = files
@@ -134,11 +160,15 @@ class Assignment(db.Model):
   def addRubric(self, rubric):
     self.rubric = rubric
 
-  def in_progress(self):
+  def mark_ungraded(self):
+    self.graded = False
+    self.in_progress = False
+
+  def mark_inprogress(self):
     self.graded = False
     self.in_progress = True
 
-  def graded(self):
+  def mark_graded(self):
     self.graded = True
     self.in_progress = False
 

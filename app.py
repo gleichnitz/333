@@ -73,7 +73,8 @@ def mass_upload_students():
         student = Student.query.filter_by(netid = item).first();
         if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
-            newStudent = Student("name", "test", item, cos_333)
+            newStudent = Student("name", "test", item)
+            newStudent.courses.add(cos_333)
             db.session.add(newStudent)
             db.session.commit()
 
@@ -112,7 +113,8 @@ def upload_student_files():
 def done():
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    assignment.graded()
+    assignment.graded = True
+    assignment.in_progress = False
     try:
         db.session.add(assignment)
         db.session.commit()
@@ -120,19 +122,18 @@ def done():
     except:
         return traceback.format_exc()
 
-@app.route('/_undone')
+@app.route('/_undone', methods = ['POST'])
 def undone():
-    assignmentID = request.args.get('id')
+    assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
-    if assiment.graded is True:
-        assignment.in_progress = True
-        assignment.graded = False
-        try:
-            db.session.add(assignment)
-            db.session.commit()
-            return "success"
-        except:
-            return traceback.format_exc()
+    assignment.in_progress = True
+    assignment.graded = False
+    try:
+        db.session.add(assignment)
+        db.session.commit()
+        return redirect('/grader')
+    except:
+        return traceback.format_exc()
 
 @app.route('/_change_grade')
 def change_grade():
@@ -155,6 +156,7 @@ def assign_assignment():
                     try:
                         entry.grader = Grader.query.filter_by(netid = netid).first()
                         entry.in_progress = True
+                        entry.graded = False
                         db.session.add(entry)
                         db.session.commit()
                         return "success"
@@ -182,6 +184,7 @@ def release_assignment():
                     for j in range(0, len(annotations)):
                         del annotations[j]
                         Assignment.query.filter_by(id = id).update({'files': new_files})
+                entry.graded = False
                 db.session.add(entry)
                 db.session.commit()
                 return "success"
@@ -211,7 +214,8 @@ def add_student():
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newStudent = Student("name", "test", netid, cos_333)
+        newStudent = Student("name", "test", netid)
+        newStudent.courses.append(cos_333)
         db.session.add(newStudent)
         db.session.commit()
 
@@ -227,7 +231,8 @@ def add_grader():
     grader = Grader.query.filter_by(netid=netid).first();
     if grader is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newGrader = Grader(netid, cos_333)
+        newGrader = Grader(netid)
+        newGrader.courses.append(cos_333)
         db.session.add(newGrader)
         db.session.commit()
 
@@ -617,7 +622,13 @@ def submitted():
         if admin is None or assignment is None:
             return redirect('/admin')
         ### THIS IS GOING TO CHANGE!!!!
-        if admin.course.id != assignment.course.id:
+        a_courses = admin.courses
+        check = False
+        for item in a_courses:
+            if item.id == assignment.course.id:
+                check = True
+
+        if check == False:
             return redirect('/admin')
         assignments = []
         assignments.append(assignment)
@@ -642,17 +653,20 @@ def submitted():
     title = assignment_active.name
 
 
-    grading_status = "Mark Grading as Done"
-    ##if (assignment_active.graded):
-    ##    grading_status = "Unmark as Done"
-    ##else:
-    ##    grading_status = "Mark Grading as Done"
+    grading_status = ""
+    status_redirection = ""
+    if (assignment_active.graded):
+        grading_status = "Unmark as Done"
+        status_redirection = "/_undone"
+    elif (assignment_active.in_progress):
+        grading_status = "Mark Grading as Done"
+        status_redirection = "/_done"
 
     files = []
 
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], "10/10"))
+            files.append(File(item['name'], item['content'], "10/10")) ## item['grade_given'], item['grade_total']
         else:
             files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))
 
@@ -666,7 +680,7 @@ def submitted():
     ##################################
 
     # render_template('viewer.html', netid = session['username'], assignment=)
-    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status )
+    return render_template('viewer.html', roles = roles, netid = netid, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
 
 @app.route("/grader")
 def grader():
@@ -701,7 +715,7 @@ def grader():
     ##################################
 
     grader = Grader.query.filter_by(netid = netid).first()
-    course = grader.course
+    course = grader.courses[0]
     assignments = course.assignments.all()
 
     if grader is None:
@@ -800,9 +814,9 @@ def student():
         assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status, item.points_possible))
 
     classes = []
-    for item in assignments_form:
-        if item.course not in classes:
-            classes.append(item.course)
+
+    for item in student.courses:
+        classes.append(item.name)
 
     roles = makeRoles(netid)
     if (roles.count("student") != 0):
@@ -1016,7 +1030,7 @@ def admin_admins():
             alertString = "Please enter an assignment name."
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"        
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
     session.pop('error', None)
 

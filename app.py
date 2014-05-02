@@ -73,7 +73,8 @@ def mass_upload_students():
         student = Student.query.filter_by(netid = item).first();
         if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
-            newStudent = Student("name", "test", item, cos_333)
+            newStudent = Student("name", "test", item)
+            newStudent.courses.add(cos_333)
             db.session.add(newStudent)
             db.session.commit()
 
@@ -207,7 +208,8 @@ def add_student():
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newStudent = Student("name", "test", netid, cos_333)
+        newStudent = Student("name", "test", netid)
+        newStudent.courses.append(cos_333)
         db.session.add(newStudent)
         db.session.commit()
 
@@ -223,7 +225,8 @@ def add_grader():
     grader = Grader.query.filter_by(netid=netid).first();
     if grader is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newGrader = Grader(netid, cos_333)
+        newGrader = Grader(netid)
+        newGrader.courses.append(cos_333)
         db.session.add(newGrader)
         db.session.commit()
 
@@ -613,7 +616,13 @@ def submitted():
         if admin is None or assignment is None:
             return redirect('/admin')
         ### THIS IS GOING TO CHANGE!!!!
-        if admin.course.id != assignment.course.id:
+        a_courses = admin.courses
+        check = False
+        for item in a_courses:
+            if item.id == assignment.course.id:
+                check = True
+
+        if check == False:
             return redirect('/admin')
         assignments = []
         assignments.append(assignment)
@@ -700,7 +709,7 @@ def grader():
     ##################################
 
     grader = Grader.query.filter_by(netid = netid).first()
-    course = grader.course
+    course = grader.courses[0]
     assignments = course.assignments.all()
 
     if grader is None:

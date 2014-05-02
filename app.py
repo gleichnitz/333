@@ -810,7 +810,7 @@ def student():
     classes = []
 
     for item in student.courses:
-        classes.append(item.course.name)
+        classes.append(item.name)
 
     roles = makeRoles(netid)
     if (roles.count("student") != 0):

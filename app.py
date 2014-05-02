@@ -176,6 +176,12 @@ def release_assignment():
             if entry.id == int(assignID):
                 entry.grader = None
                 entry.in_progress = False
+                new_files = entry.files
+                for i in range(0, len(entry.files)):
+                    annotations = new_files[i]["annotations"]
+                    for j in range(0, len(annotations)):
+                        del annotations[j]
+                        Assignment.query.filter_by(id = id).update({'files': new_files})
                 db.session.add(entry)
                 db.session.commit()
                 return "success"

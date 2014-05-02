@@ -73,7 +73,8 @@ def mass_upload_students():
         student = Student.query.filter_by(netid = item).first();
         if student is None:
             cos_333 = Course.query.filter_by(name= 'cos333').first()
-            newStudent = Student("name", "test", item, cos_333)
+            newStudent = Student("name", "test", item)
+            newStudent.courses.add(cos_333)
             db.session.add(newStudent)
             db.session.commit()
 
@@ -177,6 +178,12 @@ def release_assignment():
             if entry.id == int(assignID):
                 entry.grader = None
                 entry.in_progress = False
+                new_files = entry.files
+                for i in range(0, len(entry.files)):
+                    annotations = new_files[i]["annotations"]
+                    for j in range(0, len(annotations)):
+                        del annotations[j]
+                        Assignment.query.filter_by(id = id).update({'files': new_files})
                 entry.graded = False
                 db.session.add(entry)
                 db.session.commit()
@@ -207,7 +214,8 @@ def add_student():
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newStudent = Student("name", "test", netid, cos_333)
+        newStudent = Student("name", "test", netid)
+        newStudent.courses.append(cos_333)
         db.session.add(newStudent)
         db.session.commit()
 
@@ -223,7 +231,8 @@ def add_grader():
     grader = Grader.query.filter_by(netid=netid).first();
     if grader is None:
         cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newGrader = Grader(netid, cos_333)
+        newGrader = Grader(netid)
+        newGrader.courses.append(cos_333)
         db.session.add(newGrader)
         db.session.commit()
 
@@ -613,7 +622,13 @@ def submitted():
         if admin is None or assignment is None:
             return redirect('/admin')
         ### THIS IS GOING TO CHANGE!!!!
-        if admin.course.id != assignment.course.id:
+        a_courses = admin.courses
+        check = False
+        for item in a_courses:
+            if item.id == assignment.course.id:
+                check = True
+
+        if check == False:
             return redirect('/admin')
         assignments = []
         assignments.append(assignment)
@@ -700,7 +715,7 @@ def grader():
     ##################################
 
     grader = Grader.query.filter_by(netid = netid).first()
-    course = grader.course
+    course = grader.courses[0]
     assignments = course.assignments.all()
 
     if grader is None:
@@ -799,9 +814,9 @@ def student():
         assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status, item.points_possible))
 
     classes = []
-    for item in assignments_form:
-        if item.course not in classes:
-            classes.append(item.course)
+
+    for item in student.courses:
+        classes.append(item.name)
 
     roles = makeRoles(netid)
     if (roles.count("student") != 0):

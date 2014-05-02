@@ -17,6 +17,7 @@ files = []
 files = AddtoListAssignment(files, 'nbody.java')
 files = AddtoListAssignment(files, 'HelloWorld.java')
 
+name = 'Assignment1'
 
 addAssignment('cos333', 'gtl', name, files)
 addAssignment('cos333', 'rfreling', name, files)
@@ -25,6 +26,8 @@ addAssignment('cos333', 'akubiak', name, files)
 addAssignment('cos333', 'vayyala', name, files)
 db.session.commit()
 
+
+name = 'Assignment 2'
 
 files = []
 files = AddtoListAssignment(files, 'HiFour.java')

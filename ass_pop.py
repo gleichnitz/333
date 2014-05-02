@@ -14,25 +14,38 @@ def AddtoListAssignment(files, file_name):
 
 
 files = []
-print "here1"
 files = AddtoListAssignment(files, 'nbody.java')
-assignments = Assignment.query.all()
-<<<<<<< HEAD
-<<<<<<< HEAD
-print "here2"
-for item in assignments:
-  print "here3"
-=======
-for item in assignments:
->>>>>>> a03f7c479572ed5aae39d70d1813c3cd094e3e4b
-=======
+files = AddtoListAssignment(files, 'HelloWorld.java')
 
-print "here2"
-for item in assignments:
-  print "here3"
->>>>>>> 21f82f391eee256528796376ec13ce99e2d5a069
-  item.files = files
-  db.session.commit()
+
+addAssignment('cos333', 'gtl', name, files)
+addAssignment('cos333', 'rfreling', name, files)
+addAssignment('cos333', 'jaevans', name, files)
+addAssignment('cos333', 'akubiak', name, files)
+addAssignment('cos333', 'vayyala', name, files)
+db.session.commit()
+
+
+files = []
+files = AddtoListAssignment(files, 'HiFour.java')
+files = AddtoListAssignment(files, 'SumThree.java')
+
+addAssignment('cos226', 'gtl', name, files)
+addAssignment('cos226', 'rfreling', name, files)
+addAssignment('cos226', 'jaevans', name, files)
+addAssignment('cos226', 'akubiak', name, files)
+addAssignment('cos226', 'vayyala', name, files)
+db.session.commit()
+
+
+# assignments = Assignment.query.all()
+
+# for item in assignments:
+
+
+
+#   item.files = files
+  
 
 # files = []
 # files = AddtoListAssignment(files, 'HelloWorld.java')

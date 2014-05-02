@@ -20,6 +20,11 @@
         $(document).ready(function($)
             {
                 $("#admin-student-table").tablesorter();
+              });
+</script>
+<script>
+        $(document).ready(function($)
+            {
                 $("#admin-student-table > tr > .netid-row").click(function() {
                   var netid= $(this).map(function() {
                     return $(this).text();
@@ -46,8 +51,8 @@
       </div>
 
     {{ alert|safe }}
-      
-    <table id="admin-student-table" class="table table-hover" style="background-color: transparent; margin-top: 15px; margin-right: 10%;">
+
+    <table id="admin-student-table" class="table table-hover tablesorter" style="background-color: transparent; margin-top: 15px; margin-right: 10%;">
     <thead>
       <tr>
           <th class="header">

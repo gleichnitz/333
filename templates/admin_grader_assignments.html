@@ -4,31 +4,86 @@
 {{ super() }}
 <script type="text/javascript" src="../static/js/admin2.js"></script>
 <script type="text/javascript" src="../static/js/jquery.tablesorter.js"></script>
+<script>
+        $(document).ready(function($) {
+                $("#grader-assignments-table").tablesorter({
+                    headers: {
+                    // assign the secound column (we start counting zero)
+                    0: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    },
+                    // assign the third column (we start counting zero)
+                    1: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    }
+                  }
+                });
+                $('.dropdown-menu li').click(function(e){
+                    e.preventDefault();
+                    var selected = $(this).text();
+                    var marked = 0;
+
+                    var grader_table = document.getElementById('grader-assignments-table-body');
+                    for(var i=0;i<grader_table.rows.length;i++)
+                    {
+                        marked = 0;
+                        for(var j=0;j<grader_table.rows[i].cells.length;j++)
+                        {
+                            if (selected == "All") {
+                                $(grader_table.rows[i]).show();
+                            }
+                            else if (grader_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected.replace(/\s+/g, '')) {
+                                $(grader_table.rows[i]).show();
+                                marked = 1;
+                            }
+                            else if (marked != 1) {
+                                $(grader_table.rows[i]).hide();
+                            }
+                        }
+                    }
+                });
+            }
+        );
+    </script>
 <script type="text/javascript">
         $(document).ready(function($) {
                 $('.table > tr').click(function() {
                     window.document.location = $(this).attr("href");
                 });
-                $("#admin-grader-table").tablesorter();
+
               });
 </script>
 {% endblock %}
 {% block content %}
     {{super()}}
     <h2> {{gradernetid}}'s Graded Assignments</h2>
-    <table id="grader-assignments-table" class="table table-hover, tablesorter" style="background-color: transparent; margin-top: 15px;">
+    <table id="grader-assignments-table" class="table table-hover tablesorter" style="background-color: transparent; margin-top: 15px;">
     <thead>
       <tr>
           <th class="header">
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
-                  </button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                        {% for assignment in assignments %}
+                            <li role="presentation"><a role="menuitem" tabindex="-1">{{ assignment.name }}</a></li>
+                        {% endfor %}
+                    </ul>
               </div>
           </th>
           <th class="header">
           	<div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Student <span class="caret"></span>
-                  </button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Student <span class="caret"></span>
+                    </button>
+                    <ul id="ddlAssignments" class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                        {% for assignment in assignments %}
+                            <li role="presentation"><a id="{{ item }}" role="menuitem" tabindex="-1">{{ assignment.student.netid }}</a></li>
+                        {% endfor %}
+                    </ul>
               </div>
           </th>
           <th class="header">
@@ -39,12 +94,12 @@
           </th>
       </tr>
       </thead>
-      <tbody>
+      <tbody id="grader-assignments-table-body">
        {% for assignment in assignments %}
           <tr>
-            <td><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
-              <td class="netid-row"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
-              <td class="netid-row"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
+              <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.name }}</div></a></td>
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
           </a></tr>
           {% endfor %}
      </tbody>

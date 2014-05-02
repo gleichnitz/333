@@ -15,6 +15,15 @@
   <script>
         $(document).ready(function($)
             {
+
+                $('#grader').click(function() {
+                    window.location.href = "/grader";
+                });
+
+                $('#admin').click(function() {
+                    window.location.href = "/admin";
+                });
+
                 $("#student-table").tablesorter({
                     headers: {
                     // assign the secound column (we start counting zero)
@@ -23,8 +32,6 @@
                         sorter: false
                     }
                     }
-                    sortInitialOrder: 'desc'
-                    sortList = [[2,0], [0,0]]
                 });
                 $('.dropdown-menu li').click(function(e){
                     e.preventDefault();

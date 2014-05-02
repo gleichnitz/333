@@ -44,11 +44,11 @@
               }
 
             });
-            $.i18n.load(i18n_dict);
 
-            /* content.annotator('addPlugin', 'AnnotatorViewer');
+            /*$.i18n.load(i18n_dict);
+            content.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
-            $('#anotacions-uoc-panel').slimscroll({height: '100%'}); */
+            $('#anotacions-uoc-panel').slimscroll({height: '100%'});*/
           {% endfor %}
       });
   </script>
@@ -57,16 +57,23 @@
 
 {% block body %}
   <div style="float: left; margin-top: 3.2em; margin-left: 6%;">
-    <table id="{{id}}" class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 19%; font-size: 16px;">
+    <table id="{{id}}" class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 14%; font-size: 16px;">
     <thead><tr><th  font-size="15px" style="background-color: white;">File</th><th style="background-color: white;">Grade</th></tr> </thead>
     <tbody>
       {% for item in assignment %}
-        <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td><nobr><input class="given_grade" type="text" size="1" maxlength="2">/10</nobr></td></tr>
+        <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td><nobr><input class="given_grade" type="text" size="1" maxlength="2" {{ input_ro }} style="{{ input_style }}" >/10</nobr></td></tr>
       {% endfor %}
       <tr id="total">
-        <td></td> <td> <nobr><input class="given_grade" style="width: 1em;" type="text" size="1" maxlength="2">&nbsp;/{{assignment.points_possible}}</nobr> </td>
+        <td></td> <td> <nobr><input class="given_grade" type="text" size="1" maxlength="2" {{ input_ro }} style="{{ input_style }}" >&nbsp;/{{assignment.points_possible}}</nobr> </td>
       </tr>
-      <tr valign"middle"><td><div class="btn-group" align="center"><button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both" text-align="center"> Mark Grading as Done </button></div></td><td></td></tr>
+      <tr valign"middle" style="display: {{ button_display }}"><td><div class="btn-group" align="center">
+        <form role="form" action="{{ status_redirection }}" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <input style="display: none" name="id" value="{{ id }}">
+            <button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="submit" style="height:100%;width:100%;background-color: white; color: black; clear: both" text-align="center"> {{ grading_status }} </button>
+          </div>
+        </form>
+        </div></td><td></td></tr>
 
     </tbody>
     </table>

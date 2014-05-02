@@ -807,16 +807,11 @@ def student():
             status = "--------"
         assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status, item.points_possible))
 
-    classes = []
-    for item in assignments_form:
-        if item.course not in classes:
-            classes.append(item.course)
-
     roles = makeRoles(netid)
     if (roles.count("student") != 0):
         roles.remove("student")
 
-    return render_template('student.html', netid=netid, classes = classes, roles = roles, assignments = assignments_form)
+    return render_template('student.html', netid=netid, classes = student.courses, roles = roles, assignments = assignments_form)
 
 @app.route("/admin")
 def admin():

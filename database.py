@@ -71,7 +71,7 @@ class Grader(db.Model):
 
 
     def __repr__(self):
-      return 'Grader {} {}'.format(self.netid)
+      return 'Grader {}'.format(self.netid)
 
 
 class Admin(db.Model):

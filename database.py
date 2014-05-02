@@ -47,9 +47,7 @@ class Student(db.Model):
         self.courses.append(new_course)
 
     def __repr__(self):
-      return 'Student {} {} {} {}'.format(self.firstname, self.lastname, self.netid, self.course.name)
-    def __str__(self):
-      return format('<Student {0} {1} {2} {3}>', self.firstname, self.lastname, self.netid,self.course.name)
+      return 'Student {} {} {}'.format(self.firstname, self.lastname, self.netid )
 
 class Grader(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -76,7 +74,7 @@ class Grader(db.Model):
       return 'Grader {} {}'.format(self.netid, self.course.name)
 
     def __str__(self):
-      return '<Grader {} {}>'.format(self.netid, self.course.name)
+      return '<Grader {}>'.format(self.netid )
 
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -94,7 +92,7 @@ class Admin(db.Model):
 
 
     def __repr__(self):
-      return 'Admin {} {}'.format(self.netid, self.course.name)
+      return 'Admin {}'.format(self.netid)
 
 class Course(db.Model):
   id = db.Column(db.Integer, primary_key = True)

@@ -343,6 +343,8 @@ def add_assignment():
     db.session.add(assignment)
     db.session.commit()
 
+    session['error'] = 'unk'
+
     return "true"
 
 @app.route("/_delete_assignment")

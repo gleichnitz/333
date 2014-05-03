@@ -30,15 +30,17 @@ $(document).ready(function(e) {
 			var id = clickButton.parent().attr('id');
 			var annotations = false;
 			$.ajax({
-				url: "/_checkAnnotations",
+				url: "/_check_annotations",
 				context: document.body,
 				data: { id: id}
 			}).done(function(data) {
-				if (data != "empty") {
+				console.log(data)
+				if (data == "empty") {
 					annotations = true; 
 				}
 			});
-			if (annotations == true) {
+			console.log(annotations);
+			if (annotations == false) {
 	      	$.ajax({
 	  			url: "/_release",
 	  			context: document.body,

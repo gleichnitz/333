@@ -14,6 +14,7 @@ import traceback
 import json
 from werkzeug import secure_filename
 import tarfile
+import re
 
 # initialization
 app = Flask(__name__)
@@ -323,7 +324,7 @@ def add_assignment():
         session['error'] = 'invalidpoints'
         return "false"
 
-    admin = Admin.query.filter_by(netid=netid).first()
+    admin = Admin.query.filter_by(netid="jaevans").first()
     course = admin.courses[0]
     return course.name
 
@@ -1056,6 +1057,8 @@ def admin_admins():
             alertString = "You entered an invalid point value. Please try again."
         elif session['error'] == 'noname':
             alertString = "Please enter an assignment name."
+        else:
+            alertString = "An unknown error occurred."
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"

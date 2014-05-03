@@ -35,25 +35,38 @@ $(document).ready(function(e) {
 				data: { id: id}
 			}).done(function(data) {
 				if (data == "not_empty") {
-					annotations = true; 
+					if (confirm("Releasing this assignment will delete all associated annotations. Would you like to continue?")) {
+						$.ajax({
+		  					url: "/_release",
+			  				context: document.body,
+	  						data: { netid: $('#netid').text(), id: id}
+		  				}).done(function(data) {
+		  					if (data == "success") {
+					  			clickButton.text("Claim");
+					  			clickButton.closest('tr').children().children('.row_grader').text("None");
+					  			clickButton.closest('tr').children().children('.graded_status').text('--------');
+		  					} else {
+					  			clickButton.parent().parent().parent().css('display', 'none');
+		  					}
+		  				});	
+					}
+				} else {
+					$.ajax({
+	  					url: "/_release",
+			  			context: document.body,
+	  					data: { netid: $('#netid').text(), id: id}
+				  	}).done(function(data) {
+				  		if (data == "success") {
+		  					clickButton.text("Claim");
+				  			clickButton.closest('tr').children().children('.row_grader').text("None");
+				  			clickButton.closest('tr').children().children('.graded_status').text('--------');
+		  				} else {
+				  			clickButton.parent().parent().parent().css('display', 'none');
+				  		}
+			  		});	
 				}
 			});
-			console.log(annotations)
-			if (annotations == true) {
-	      	$.ajax({
-	  			url: "/_release",
-	  			context: document.body,
-	  			data: { netid: $('#netid').text(), id: id}
-		  	}).done(function(data) {
-		  		if (data == "success") {
-		  			clickButton.text("Claim");
-		  			clickButton.closest('tr').children().children('.row_grader').text("None");
-		  			clickButton.closest('tr').children().children('.graded_status').text('--------');
-		  		} else {
-		  			clickButton.parent().parent().parent().css('display', 'none');
-		  		}
-		  	});	
-		  	}		
+	      	
 		}
 	});
 

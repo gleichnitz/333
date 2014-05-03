@@ -121,7 +121,7 @@ def done():
         file_name = str(item['name'])
         file_name = os.path.splitext(file_name)[0]
         file_grade = request.form[file_name]
-        assignment.rubric.append(file_grade)
+        assignment.rubric = file_grade
 
     assignment.graded = True
     assignment.in_progress = False

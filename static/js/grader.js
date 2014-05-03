@@ -30,7 +30,7 @@ $(document).ready(function(e) {
 			var id = clickButton.parent().attr('id');
 			var annotations = false;
 			$.ajax({
-				url: "/_checkAnnotations",
+				url: "/_check_annotations",
 				context: document.body,
 				data: { id: id}
 			}).done(function(data) {
@@ -38,6 +38,7 @@ $(document).ready(function(e) {
 					annotations = true; 
 				}
 			});
+			console.log(annotations);
 			if (annotations == false) {
 	      	$.ajax({
 	  			url: "/_release",

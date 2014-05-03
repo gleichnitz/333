@@ -34,11 +34,11 @@ $(document).ready(function(e) {
 				context: document.body,
 				data: { id: id}
 			}).done(function(data) {
-				if (data == "empty") {
+				if (data == "not_empty") {
 					annotations = true; 
 				}
 			});
-			if (annotations == true) {
+			if (annotations == false) {
 	      	$.ajax({
 	  			url: "/_release",
 	  			context: document.body,

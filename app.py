@@ -14,6 +14,7 @@ import traceback
 import json
 from werkzeug import secure_filename
 import tarfile
+import re
 
 # initialization
 app = Flask(__name__)
@@ -292,7 +293,6 @@ def remove_grader():
 
     return "true"
 
-@app.route('/_add_assignment')
 def add_assignment():
     name = request.args.get('name')
     fileNames = request.args.get('files').split()
@@ -341,8 +341,6 @@ def add_assignment():
 
     db.session.add(assignment)
     db.session.commit()
-
-    session['error'] = 'unk'
 
     return "true"
 
@@ -1071,7 +1069,7 @@ def admin_admins():
     assignments = []
     courses = []
     for assignment in assignment_db:
-        if assignment.master is False:
+        if assignment.master is True:
             assignments.append(assignment)
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)

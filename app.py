@@ -201,6 +201,18 @@ def release_assignment():
 
     return "failure"
 
+@app.route('/_check_annotations')
+def check_annotations():
+    assignID = request.args.get('id')
+    assignments = Assignment.query.all()
+    for assignment in assignments:
+        if assignment.id = assignID:
+            for submission in assignment.files:
+                annotations = submission["annotations"]
+                if len(annotations) != 0:
+                    return "not_empty"
+    return "empty"
+
 @app.route('/_check_student')
 def check_student():
     netid = str(request.args.get('netid'))

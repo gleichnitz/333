@@ -192,7 +192,7 @@ def release_assignment():
                 for submission in entry.files:
                     annotations = submission["annotations"]
                     for j in range(0, len(annotations)):
-                        ann_id = annotations[j]["id"]
+                        ann_id = str(annotations[j]["id"])
                         destroy(int(assignID), entry.name, ann_id)
                 return "success"
 

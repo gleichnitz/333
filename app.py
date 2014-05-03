@@ -117,7 +117,7 @@ def done():
     file_name = ""
     for item in assignment.files:
         ##file_name = item.get('name')
-        file_name = str(item)
+        file_name = item
         file_grade = request.form[file_name]
         assignment.rubric.append(file_grade)
 
@@ -666,6 +666,8 @@ def submitted():
     if (assignment_active.graded):
         grading_status = "Unmark as Done"
         status_redirection = "/_undone"
+        input_ro = "readonly"
+        input_style = "border:none"
     elif (assignment_active.in_progress):
         grading_status = "Mark Grading as Done"
         status_redirection = "/_done"

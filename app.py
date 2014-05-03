@@ -342,6 +342,8 @@ def add_assignment():
     db.session.add(assignment)
     db.session.commit()
 
+    session['error'] = 'unk'
+
     return "true"
 
 @app.route("/_delete_assignment")
@@ -1056,6 +1058,8 @@ def admin_admins():
             alertString = "You entered an invalid point value. Please try again."
         elif session['error'] == 'noname':
             alertString = "Please enter an assignment name."
+        else:
+            alertString = "An unknown error occurred."
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"

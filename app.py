@@ -324,7 +324,7 @@ def add_assignment():
         session['error'] = 'invalidpoints'
         return "false"
 
-    admin = Admin.query.filter_by(netid="jaevans").first()
+    admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
     return course.name
 

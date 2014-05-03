@@ -113,6 +113,13 @@ def upload_student_files():
 def done():
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
+
+    file_name = ""
+    for item in assignment.files:
+        file_name = item.name
+        file_grade = request.form[file_name]
+        assignment.rubric.append(file_grade)
+
     assignment.graded = True
     assignment.in_progress = False
     try:
@@ -666,7 +673,7 @@ def submitted():
 
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], "10/10")) ## item['grade_given'], item['grade_total']
+            files.append(File(item['name'], item['content'], "10/10"))
         else:
             files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))
 

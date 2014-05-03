@@ -113,6 +113,14 @@ def upload_student_files():
 def done():
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
+
+    file_name = ""
+    for key in assignment.files.keys():
+        ##file_name = item.get('name')
+        ##file_name = item
+        file_grade = request.form[assignment.files[key]]
+        assignment.rubric.append(file_grade)
+
     assignment.graded = True
     assignment.in_progress = False
     try:
@@ -277,6 +285,7 @@ def add_assignment():
     rubric = request.args.get('rubric').split()
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
+    netid = request.args.get('form_netid')
 
     if len(name) == 0 or name == "":
         session['error'] = 'noname'
@@ -300,7 +309,10 @@ def add_assignment():
         session['error'] = 'invalidpoints'
         return "false"
 
-    assignment = Assignment('cos333', "", name)
+    admin = Admin.query.filter_by(netid=netid).first()
+    course = admin.courses[0]
+
+    assignment = Assignment(course.name, "", name)
     assignment.master = True
     assignment.points_possible = totalPoints
     assignment.rubric = rubric
@@ -473,7 +485,6 @@ def update(id, name, ann_id):
                     db.session.commit()
                     return Response(json.dumps("1"), mimetype = 'application/json')
     return Response(json.dumps("0"), mimetype = 'application/json')
-
 @app.route('/store/annotations/destroy/<id>/<name>/<ann_id>', methods = ['DELETE'])
 def destroy(id, name, ann_id):
     a = Assignment.query.filter_by(id = id).first()
@@ -658,6 +669,8 @@ def submitted():
     if (assignment_active.graded):
         grading_status = "Unmark as Done"
         status_redirection = "/_undone"
+        input_ro = "readonly"
+        input_style = "border:none"
     elif (assignment_active.in_progress):
         grading_status = "Mark Grading as Done"
         status_redirection = "/_done"
@@ -666,7 +679,7 @@ def submitted():
 
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], "10/10")) ## item['grade_given'], item['grade_total']
+            files.append(File(item['name'], item['content'], "10/10"))
         else:
             files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))
 
@@ -1044,7 +1057,7 @@ def admin_admins():
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 
-    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles, alert = alertMessage)
+    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid= netid, roles = roles, alert = alertMessage)
 
 @app.route("/logout")
 def logout():

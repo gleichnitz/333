@@ -15,15 +15,15 @@ def addAssignment(course_name, student_netid, name, files):
     db.session.add(new_assignment)
     db.session.commit()
 
-s_courses = db.Table('s_courses', 
+s_courses = db.Table('s_courses',
   db.Column('course_id', db.Integer, db.ForeignKey('course.id')),
   db.Column('student_id', db.Integer, db.ForeignKey('student.id')))
 
-g_courses = db.Table('g_courses', 
+g_courses = db.Table('g_courses',
   db.Column('course_id', db.Integer, db.ForeignKey('course.id')),
   db.Column('grader_id', db.Integer, db.ForeignKey('grader.id')))
 
-a_courses = db.Table('a_courses', 
+a_courses = db.Table('a_courses',
   db.Column('course_id', db.Integer, db.ForeignKey('course.id')),
   db.Column('admin_id', db.Integer, db.ForeignKey('admin.id')))
 
@@ -104,7 +104,7 @@ class Course(db.Model):
 
 class Assignment(db.Model):
   id = db.Column(db.Integer, primary_key = True)
-  courseid = db.Column(db.Integer, db.ForeignKey('course.id'))  
+  courseid = db.Column(db.Integer, db.ForeignKey('course.id'))
   course = db.relationship('Course', backref = db.backref('assignments', lazy = 'dynamic'))
 
   sub_date = db.Column(db.String(80))

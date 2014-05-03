@@ -38,7 +38,7 @@ $(document).ready(function(e) {
 					annotations = true; 
 				}
 			});
-			console.log(data)
+			console.log(annotations)
 			if (annotations == true) {
 	      	$.ajax({
 	  			url: "/_release",

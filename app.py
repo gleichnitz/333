@@ -116,8 +116,7 @@ def done():
 
     file_name = ""
     for item in assignment.files:
-        file_name = item.get('name')
-        if (file_name == "nbody"):
+        if (item == "nbody"):
             file_grade = request.form[file_name]
             assignment.rubric.append(file_grade)
 

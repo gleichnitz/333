@@ -119,6 +119,7 @@ def done():
         ##file_name = item.get('name')
         ##file_name = item
         file_name = str(item['name'])
+        return file_name
         file_grade = request.form[file_name]
         assignment.rubric.append(file_grade)
 

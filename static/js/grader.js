@@ -35,7 +35,7 @@ $(document).ready(function(e) {
 				data: { id: id}
 			}).done(function(data) {
 				console.log(data)
-				if (data == "not_empty") {
+				if (data == "empty") {
 					annotations = true; 
 				}
 			});

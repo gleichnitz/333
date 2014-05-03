@@ -34,6 +34,7 @@ $(document).ready(function(e) {
 				context: document.body,
 				data: { id: id}
 			}).done(function(data) {
+				console.log(data)
 				if (data == "not_empty") {
 					annotations = true; 
 				}

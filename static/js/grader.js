@@ -27,10 +27,22 @@ $(document).ready(function(e) {
 		  		}
 		  	});
 		} else {
+			var id = clickButton.parent().attr('id');
+			var annotations = false;
+			$.ajax({
+				url: "/_checkAnnotations",
+				context: document.body,
+				data: { id: id}
+			}).done(function(data) {
+				if (data != "empty") {
+					annotations = true; 
+				}
+			});
+			if (annotations == true) {
 	      	$.ajax({
 	  			url: "/_release",
 	  			context: document.body,
-	  			data: { netid: $('#netid').text(), id: clickButton.parent().attr('id')}
+	  			data: { netid: $('#netid').text(), id: id}
 		  	}).done(function(data) {
 		  		if (data == "success") {
 		  			clickButton.text("Claim");
@@ -39,7 +51,8 @@ $(document).ready(function(e) {
 		  		} else {
 		  			clickButton.parent().parent().parent().css('display', 'none');
 		  		}
-		  	});			
+		  	});	
+		  	}		
 		}
 	});
 

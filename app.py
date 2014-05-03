@@ -184,6 +184,9 @@ def release_assignment():
                     for j in range(0, len(annotations)):
                         del annotations[j]
                         Assignment.query.filter_by(id = id).update({'files': new_files})
+                        db.session.commit()
+                        return Response(json.dumps("1"), mimetype = 'application/json')
+                return Response(json.dumps("0"), mimetype = 'application/json')
                 entry.graded = False
                 db.session.add(entry)
                 db.session.commit()
@@ -474,6 +477,7 @@ def update(id, name, ann_id):
                     db.session.commit()
                     return Response(json.dumps("1"), mimetype = 'application/json')
     return Response(json.dumps("0"), mimetype = 'application/json')
+
 @app.route('/store/annotations/destroy/<id>/<name>/<ann_id>', methods = ['DELETE'])
 def destroy(id, name, ann_id):
     a = Assignment.query.filter_by(id = id).first()

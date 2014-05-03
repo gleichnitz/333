@@ -201,7 +201,7 @@ def release_assignment():
     return "failure"
 
 @app.route('/_check_annotations')
-def check_annotations:
+def check_annotations():
     assignID = request.args.get('id')
     assignments = Assignment.query.all()
     for assignment in assignments:

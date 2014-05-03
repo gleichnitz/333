@@ -207,9 +207,9 @@ def check_annotations():
     for assignment in assignments:
         if assignment.id == assignID:
             for submission in assignment.files:
-            annotations = submission["annotations"]
-            if len(annotations) != 0:
-                return "not_empty"
+                annotations = submission["annotations"]
+                if len(annotations) != 0:
+                    return "not_empty"
     return "empty"
 
 @app.route('/_check_student')

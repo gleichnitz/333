@@ -178,18 +178,14 @@ def release_assignment():
             if entry.id == int(assignID):
                 entry.grader = None
                 entry.in_progress = False
-                new_files = entry.files
-                for i in range(0, len(entry.files)):
-                    annotations = new_files[i]["annotations"]
-                    for j in range(0, len(annotations)):
-                        del annotations[j]
-                        Assignment.query.filter_by(id = id).update({'files': new_files})
-                        db.session.commit()
-                        return Response(json.dumps("1"), mimetype = 'application/json')
-                return Response(json.dumps("0"), mimetype = 'application/json')
                 entry.graded = False
                 db.session.add(entry)
                 db.session.commit()
+                for submission in entry.files:
+                    annotations = submission["annotations"]
+                    for j in range(0, len(annotations)):
+                        ann_id = annotations[j]["id"]
+                        destroy(int(assignID), entry.name, ann_id)
                 return "success"
 
     return "failure"

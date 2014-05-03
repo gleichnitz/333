@@ -115,10 +115,11 @@ def done():
     assignment = Assignment.query.filter_by(id = assignmentID).first()
 
     file_name = ""
-    for key in assignment.files.keys():
+    for item in assignment.files:
         ##file_name = item.get('name')
         ##file_name = item
-        file_grade = request.form[assignment.files[key]]
+
+        file_grade = request.form[str(item)]
         assignment.rubric.append(file_grade)
 
     assignment.graded = True

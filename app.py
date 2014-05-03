@@ -205,7 +205,7 @@ def check_annotations():
     assignID = request.args.get('id')
     assignments = Assignment.query.all()
     for assignment in assignments:
-        if assignment.id = assignID:
+        if assignment.id == assignID:
             for submission in assignment.files:
                 annotations = submission["annotations"]
                 if len(annotations) != 0:

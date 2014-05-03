@@ -119,7 +119,7 @@ class Assignment(db.Model):
   name = db.Column(db.String(80))
   files = db.Column(db.PickleType)
 
-  rubric = db.Column(db.PickleType(mutable=True))
+  rubric = db.Column(db.PickleType)
 
   graded = db.Column(db.Boolean)
   in_progress = db.Column(db.Boolean)

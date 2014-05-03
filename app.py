@@ -187,15 +187,14 @@ def release_assignment():
             if entry.id == int(assignID):
                 entry.grader = None
                 entry.in_progress = False
-                new_files = entry.files
-                for i in range(0, len(entry.files)):
-                    annotations = new_files[i]["annotations"]
-                    for j in range(0, len(annotations)):
-                        del annotations[j]
-                        Assignment.query.filter_by(id = id).update({'files': new_files})
                 entry.graded = False
                 db.session.add(entry)
                 db.session.commit()
+                for submission in entry.files:
+                    annotations = submission["annotations"]
+                    for j in range(0, len(annotations)):
+                        ann_id = annotations[j]["id"]
+                        destroy(int(assignID), entry.name, ann_id)
                 return "success"
 
     return "failure"
@@ -287,6 +286,7 @@ def add_assignment():
     rubric = request.args.get('rubric').split()
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
+    netid = request.args.get('form_netid')
 
     if len(name) == 0 or name == "":
         session['error'] = 'noname'
@@ -310,7 +310,10 @@ def add_assignment():
         session['error'] = 'invalidpoints'
         return "false"
 
-    assignment = Assignment('cos333', "", name)
+    admin = Admin.query.filter_by(netid=netid).first()
+    course = admin.courses[0]
+
+    assignment = Assignment(course.name, "", name)
     assignment.master = True
     assignment.points_possible = totalPoints
     assignment.rubric = rubric
@@ -1055,7 +1058,7 @@ def admin_admins():
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 
-    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid=session['username'], roles = roles, alert = alertMessage)
+    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid= netid, roles = roles, alert = alertMessage)
 
 @app.route("/logout")
 def logout():

@@ -118,8 +118,8 @@ def done():
     for item in assignment.files:
         ##file_name = item.get('name')
         ##file_name = item
-
-        file_grade = request.form[item]
+        file_name = str(item['name'])
+        file_grade = request.form[file_name]
         assignment.rubric.append(file_grade)
 
     assignment.graded = True
@@ -325,6 +325,7 @@ def add_assignment():
 
     admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
+    return course.name
 
     assignment = Assignment(course.name, "", name)
     assignment.master = True

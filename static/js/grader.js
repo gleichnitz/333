@@ -34,7 +34,7 @@ $(document).ready(function(e) {
 				context: document.body,
 				data: { id: id}
 			}).done(function(data) {
-				if (data != "empty") {
+				if (data == "empty") {
 					annotations = true; 
 				}
 			});

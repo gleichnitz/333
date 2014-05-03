@@ -345,7 +345,7 @@ def add_assignment():
 
     session['error'] = 'unk'
 
-    return "true"
+    return redirect('/admin/assignments')
 
 @app.route("/_delete_assignment")
 def remove_assignment():

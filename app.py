@@ -130,7 +130,7 @@ def done():
     assignment.graded = True
     assignment.in_progress = False
     try:
-        Assignment.query.filter_by(id = id).update({'files': new_files})
+        Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
         db.session.commit()
         return redirect('/grader')
     except:

@@ -127,12 +127,12 @@ def done():
         ## list is fine for now
         item["grade"] = file_grade
 
-    assignment_grade = request.form['total']
+    assignment.grade = float(request.form['total'])
     assignment.graded = True
     assignment.in_progress = False
+
     try:
         Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
-        Assignment.query.filter_by(id = assignmentID).update({'grade': assignment_grade})
         db.session.commit()
         return redirect('/grader')
     except:

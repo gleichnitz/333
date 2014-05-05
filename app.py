@@ -43,7 +43,7 @@ def isValidNetid(netid):
 def AddtoListAssignmentMaster(files, file_name):
   #file_ = open(file_name, 'r')
   #file_content = file_.read()
-  ass_file = {'name': file_name, 'content': None, 'grade': None, 'annotations': []}
+  ass_file = {'name': file_name, 'content': None, 'grade': "", 'annotations': []}
   files.append(ass_file)
   return files
 
@@ -103,7 +103,7 @@ def upload_student_files():
             session['error'] = 'nofiles'
             return redirect('/admin/students')
 
-        ass_file = {'name': file.filename, 'content': file.read(), 'grade': None, 'annotations': []}
+        ass_file = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
         fileList.append(ass_file)
 
     addAssignment("cos333", netid, assignmentName, fileList)
@@ -125,7 +125,7 @@ def done():
         file_grade = request.form[file_name]
         ## will be easier if rubric is a dictionary with key being filename
         ## list is fine for now
-        item.grade = file_grade
+        item["grade"] = file_grade
 
     assignment.graded = True
     assignment.in_progress = False

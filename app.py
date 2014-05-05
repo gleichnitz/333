@@ -127,6 +127,7 @@ def done():
         ## list is fine for now
         item["grade"] = file_grade
 
+    assignment.grade = request.form['total']
     assignment.graded = True
     assignment.in_progress = False
     try:

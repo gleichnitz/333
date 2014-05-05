@@ -383,6 +383,8 @@ class File:
             self.ext = "plain"
         if self.ext == "c":
             self.ext = "cpp"
+        if self.ext == "txt":
+            self.ext = "plain"
         self.code = code
         self.grade = grade
         self.isReadOnly = isReadOnly

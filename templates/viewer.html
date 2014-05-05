@@ -65,7 +65,7 @@
       {% for item in assignment %}
         <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td>
 
-                <nobr><input class="given_grade" type="text" size="1" maxlength="2" name="{{ item.name }}" {{ input_ro }} style="{{ input_style }}" value="{{assignment.rubric}}">/10</nobr>
+                <nobr><input class="given_grade" type="text" size="1" maxlength="2" name="{{ item.name }}" {{ input_ro }} style="{{ input_style }}" value="{{ assignment.rubric[0],[1], [2]...  }}">/10</nobr>
 
         </td></tr>
       {% endfor %}

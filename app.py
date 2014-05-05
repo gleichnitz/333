@@ -127,8 +127,10 @@ def done():
         ## list is fine for now
         item["grade"] = file_grade
 
+    assignment.grade = float(request.form['total'])
     assignment.graded = True
     assignment.in_progress = False
+
     try:
         Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
         db.session.commit()
@@ -330,7 +332,6 @@ def add_assignment():
 
     admin = Admin.query.filter_by(netid="jaevans").first()
     course = admin.courses[0]
-    return course.name
 
     assignment = Assignment(course.name, "", name)
     assignment.master = True

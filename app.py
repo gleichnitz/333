@@ -118,7 +118,7 @@ def done():
     new_files = assignment.files
 
     file_name = ""
-    for item in new_files:
+    for item in assignment.files:
         ##file_name = item.get('name')
         ##file_name = item
         file_name = str(item['name'])
@@ -126,13 +126,12 @@ def done():
         file_grade = request.form[file_name]
         ## will be easier if rubric is a dictionary with key being filename
         ## list is fine for now
-        item['grade'] = file_grade
-
+        item["grade"] =  file_grade
 
     assignment.graded = True
     assignment.in_progress = False
     try:
-        Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
+        db.session.add(assignment)
         db.session.commit()
         return redirect('/grader')
     except:
@@ -708,9 +707,9 @@ def submitted():
 
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], item['grade']))
+            files.append(File(item['name'], item['content'], "10/10"))
         else:
-            files.append(File(item['name'], item['content'], item['grade'], "{readOnly: true}"))
+            files.append(File(item['name'], item['content'], "10/10", "{readOnly: true}"))
 
 
     ##################################

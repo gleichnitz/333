@@ -115,8 +115,6 @@ def done():
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
 
-    new_files = assignment.files
-
     file_name = ""
     for item in assignment.files:
         ##file_name = item.get('name')
@@ -126,7 +124,7 @@ def done():
         file_grade = request.form[file_name]
         ## will be easier if rubric is a dictionary with key being filename
         ## list is fine for now
-        item["grade"] =  file_grade
+        assignment.rubric = file_grade
 
     assignment.graded = True
     assignment.in_progress = False

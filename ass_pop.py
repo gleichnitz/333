@@ -8,10 +8,16 @@ from database import *
 def AddtoListAssignment(files, file_name):
   file_ = open(file_name, 'r')
   file_content = file_.read()
-  ass_file = {'name': file_name, 'content': file_content, 'annotations': []}
+  ass_file = {'name': file_name, 'content': file_content, 'annotations': [], 'grade': None}
   files.append(ass_file)
   return files
 
+def DeleteAssignment(assignment):
+  db.session.delete(assignment)
+  db.session.commit()
+
+for item in Assignment.query.all():
+  DeleteAssignment(item)
 
 files = []
 files = AddtoListAssignment(files, 'nbody.java')
@@ -48,7 +54,7 @@ db.session.commit()
 
 
 #   item.files = files
-  
+
 
 # files = []
 # files = AddtoListAssignment(files, 'HelloWorld.java')

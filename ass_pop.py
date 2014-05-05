@@ -8,7 +8,7 @@ from database import *
 def AddtoListAssignment(files, file_name):
   file_ = open(file_name, 'r')
   file_content = file_.read()
-  ass_file = {'name': file_name, 'content': file_content, 'annotations': []}
+  ass_file = {'name': file_name, 'content': file_content, 'annotations': [], 'grade': None}
   files.append(ass_file)
   return files
 

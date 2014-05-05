@@ -12,6 +12,12 @@ def AddtoListAssignment(files, file_name):
   files.append(ass_file)
   return files
 
+def DeleteAssignment(assignment):
+  db.session.delete(assignment)
+  db.session.commit()
+
+for item in Assignment.query.all():
+  DeleteAssignment(item)
 
 files = []
 files = AddtoListAssignment(files, 'nbody.java')
@@ -48,7 +54,7 @@ db.session.commit()
 
 
 #   item.files = files
-  
+
 
 # files = []
 # files = AddtoListAssignment(files, 'HelloWorld.java')

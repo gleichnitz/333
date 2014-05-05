@@ -16,9 +16,13 @@ def DeleteAssignment(assignment):
   db.session.delete(assignment)
   db.session.commit()
 
+print "here"
 for item in Assignment.query.all():
-  DeleteAssignment(item)
+  db.sesison.delete(item)
+  db.session.commit()
+  print len(Assignment.query.all())
 
+print 'there'
 files = []
 files = AddtoListAssignment(files, 'nbody.java')
 files = AddtoListAssignment(files, 'HelloWorld.java')

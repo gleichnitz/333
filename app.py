@@ -750,8 +750,8 @@ def grader():
     ##################################
 
     grader = Grader.query.filter_by(netid = netid).first()
-    course = grader.courses[0]
-    assignments = course.assignments.all()
+    #course = grader.courses[0]
+    assignments = Assignment.query.all()
 
     if grader is None:
         redirect('/')

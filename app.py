@@ -847,7 +847,7 @@ def student():
     for item in assignments:
         grade = ""
         if item.graded is True:
-            grade = item.grade + " / " + item.points_possible
+            grade = str(item.grade) + " / " + str(item.points_possible)
             status = "Graded"
         elif item.in_progress is True:
             grade = "In Progress"

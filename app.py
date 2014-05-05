@@ -52,12 +52,20 @@ def mass_upload_student_files():
     files = request.files.getlist('file')
     content = ""
 
-    return str(len(files))
+    studentFiles = {}
+    netids = []
 
     for file in files:
-        return file.read()
+        netid = re.search("netid:\s?[a-z]+", file).expand()
+        if studentFiles[netid] is None:
+            studentFiles[netid] = []
+            netids.append(netid)
+        studentFiles[netid] = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
 
-    return "none"
+    for item in netids:
+        addAssignment("cos333", item, assignmentName, studentFiles[item])
+
+    return "true"
 
 # Create a bunch of students from a list of netids.
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])

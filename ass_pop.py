@@ -18,7 +18,7 @@ def DeleteAssignment(assignment):
 
 print "here"
 for item in Assignment.query.all():
-  db.sesison.delete(item)
+  db.session.delete(item)
   db.session.commit()
   print len(Assignment.query.all())
 

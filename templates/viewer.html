@@ -89,7 +89,7 @@
     <h4 id="codeTitle"></h4>
     {% for item in assignment %}
       <div id="{{ item.name }}" class="span9" style="display: none;">
-          <pre class="brush: java; quick-code: false;">{{ item.code }}</pre>
+          <pre class="brush: {{ item.ext }}; quick-code: false;">{{ item.code }}</pre>
           <div class="hero-unit"></div>
       </div>
     {% endfor %}

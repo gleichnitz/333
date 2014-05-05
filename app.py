@@ -380,7 +380,9 @@ class File:
         if len(name.split('.')) > 1:
             self.ext = name.split('.')[1]
         else:
-            self.ext = ""
+            self.ext = "plain"
+        if self.ext == "c":
+            self.ext = "cpp"
         self.code = code
         self.grade = grade
         self.isReadOnly = isReadOnly

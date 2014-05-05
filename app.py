@@ -332,7 +332,6 @@ def add_assignment():
 
     admin = Admin.query.filter_by(netid="jaevans").first()
     course = admin.courses[0]
-    return course.name
 
     assignment = Assignment(course.name, "", name)
     assignment.master = True

@@ -190,7 +190,7 @@ def release_assignment():
     students = Student.query.all()
 
 
-    a = Assignment.query.filter_by(id  = assignId).first()
+    a = Assignment.query.filter_by(id  = assignID).first()
     if a is not None:
         a.mark_ungraded()
         a.grader = None
@@ -198,7 +198,7 @@ def release_assignment():
         new_files = a.files
         for item in new_files:
             item["annotations"] = []
-        Assignment.query.filter_by(id = id).update({'files': new_files})
+        Assignment.query.filter_by(id = assignID).update({'files': new_files})
         return "success"
 
     else:

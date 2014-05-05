@@ -126,7 +126,7 @@ def done():
         file_grade = request.form[file_name]
         ## will be easier if rubric is a dictionary with key being filename
         ## list is fine for now
-        item["grade"] =  file_grade
+        item['grade'] = file_grade
 
 
     assignment.graded = True
@@ -708,9 +708,9 @@ def submitted():
 
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], item["grade"]))
+            files.append(File(item['name'], item['content'], item['grade']))
         else:
-            files.append(File(item['name'], item['content'], item["grade"], "{readOnly: true}"))
+            files.append(File(item['name'], item['content'], item['grade'], "{readOnly: true}"))
 
 
     ##################################

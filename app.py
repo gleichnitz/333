@@ -189,23 +189,38 @@ def release_assignment():
     netid = str(request.args.get('netid')).strip()
     students = Student.query.all()
 
-    for item in students:
-        assignments = item.assignments.all()
-        for entry in assignments:
-            if entry.id == int(assignID):
-                entry.grader = None
-                entry.in_progress = False
-                entry.graded = False
-                db.session.add(entry)
-                db.session.commit()
-                for submission in entry.files:
-                    annotations = submission["annotations"]
-                    for j in range(0, len(annotations)):
-                        ann_id = str(annotations[j]["id"])
-                        destroy(int(assignID), entry.name, ann_id)
-                return "success"
 
-    return "failure"
+    a = Assignment.query.filter_by(id  = assignId).first()
+    if a is not None:
+        a.mark_ungraded()
+        a.grader = None
+        db.session.commit()
+        new_files = a.files
+        for item in new_files:
+            item["annotations"] = []
+        Assignment.query.filter_by(id = id).update({'files': new_files})
+        return "success"
+
+    else:
+        return "failure"
+
+    # for item in students:
+    #     assignments = item.assignments.all()
+    #     for entry in assignments:
+    #         if entry.id == int(assignID):
+    #             entry.grader = None
+    #             entry.in_progress = False
+    #             entry.graded = False
+    #             db.session.add(entry)
+    #             db.session.commit()
+    #             new_files = entry.files
+    #             for item in new_files:
+    #                 item["annotations"] = []
+    #             Assignment.query.filter_by(id = id).update({'files': new_files})
+
+    #             return "success"
+
+    # return "failure"
 
 @app.route('/_check_annotations')
 def check_annotations():

@@ -43,7 +43,7 @@ def isValidNetid(netid):
 def AddtoListAssignmentMaster(files, file_name):
   #file_ = open(file_name, 'r')
   #file_content = file_.read()
-  ass_file = {'name': file_name, 'content': None, 'annotations': []}
+  ass_file = {'name': file_name, 'content': None, 'grade': None, 'annotations': []}
   files.append(ass_file)
   return files
 
@@ -103,7 +103,7 @@ def upload_student_files():
             session['error'] = 'nofiles'
             return redirect('/admin/students')
 
-        ass_file = {'name': file.filename, 'content': file.read(), 'annotations': []}
+        ass_file = {'name': file.filename, 'content': file.read(), 'grade': None, 'annotations': []}
         fileList.append(ass_file)
 
     addAssignment("cos333", netid, assignmentName, fileList)

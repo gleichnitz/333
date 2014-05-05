@@ -35,7 +35,7 @@ $(document).ready(function(e) {
 				data: { id: id}
 			}).done(function(data) {
 				if (data == "empty") {
-					if (jConfirm("Releasing this assignment will delete all associated annotations. Would you like to continue?", "Confirmation")) {
+					if (confirm("Releasing this assignment will delete all associated annotations. Would you like to continue?")) {
 						$.ajax({
 		  					url: "/_release",
 			  				context: document.body,

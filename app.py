@@ -845,13 +845,17 @@ def student():
 
     assignments_form = []
     for item in assignments:
+        grade = ""
         if item.graded is True:
+            grade = item.grade + " / " + item.points_possible
             status = "Graded"
         elif item.in_progress is True:
+            grade = "In Progress"
             status = "In Progress"
         else:
+            grade = "In Progress"
             status = "--------"
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", "", item.student.netid, status, item.points_possible))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, grade, "", item.student.netid, status, item.points_possible))
 
     classes = []
 

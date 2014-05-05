@@ -38,6 +38,10 @@
                     3: {
                         // disable it by setting the property sorter to false
                         sorter: false
+                    },
+                    4: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
                     }
                     }
                 });
@@ -123,7 +127,12 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Status <span class="caret"></span>
                     </button>
-
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graded</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">In Progress</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">--------</a></li>
+                    </ul>
                 </div>
             </th>
             <th class="header">

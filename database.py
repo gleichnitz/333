@@ -1,3 +1,8 @@
+# Project: codePost
+# Template for Main Page
+# Authors: Ayyala, Evans, Freling, Kubiak, Leichnitz
+# Date: May 2014
+
 import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy

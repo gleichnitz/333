@@ -448,8 +448,9 @@ class AssignmentClass:
         self.points = points
 
 class GraderClass:
-    def __init__(self, netid, num_in_progress, num_graded):
+    def __init__(self, netid, avg_grade, num_in_progress, num_graded):
         self.netid = netid
+        self.avg_grade = avg_grade
         self.num_in_progress = num_in_progress
         self.num_graded = num_graded
 

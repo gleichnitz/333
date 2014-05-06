@@ -999,8 +999,8 @@ def admin():
     assignments = []
     for assignment in assignment_db:
         if assignment.master is True:
-            graded = 0
-            submitted = 0
+            graded = 0.0
+            submitted = 0.0
             assignment_db.remove(assignment)
             for a in assignment_db:
                 if a.name == assignment.name:

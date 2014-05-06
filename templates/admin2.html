@@ -45,7 +45,10 @@
                 var chart4 = new Charts.CircleProgress('chart4', 'AI', 85);
                 var chart5 = new Charts.CircleProgress('chart5', 'RegExp', 17);
 
-                var chart6 = new Charts.BarChart('chart6');
+                var chart6 = new Charts.BarChart('chart6', {
+                    x_label_color: "#333333",
+                    bar_width: 45
+                    });
 
                 chart6.add({
                   label: "Assignment 1",

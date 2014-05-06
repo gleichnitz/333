@@ -181,7 +181,7 @@ $(document).ready(function() {
 		  		}
 		});
 	});
-	$('.delete-buttons-1-ass').click(function() {
+	$('.delete-buttons-1-assignment').click(function() {
 		var id = $(this).attr('id')
 		var thisButton = $(this);
 		console.log(id)

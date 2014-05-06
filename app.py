@@ -402,12 +402,9 @@ def add_assignment():
     assignment.rubric = rubric
     assignment.due_date = dueDate
 
-    i = 0
     files = []
     for string in fileNames:
-        string["grade"] = rubric[i]
         AddtoListAssignmentMaster(files, string)
-        i += 1
 
     assignment.files = files
 

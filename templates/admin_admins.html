@@ -71,7 +71,7 @@
                   <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                         {% for assignment in assignments %}
-                            <li role="presentation"><a role="menuitem" tabindex="-1">{{assignment.name}}</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1">{{assignment.a.name}}</a></li>
                         {% endfor %}
                     </ul>
               </div>
@@ -107,11 +107,11 @@
     </thead>
       <tbody id="admin-admin-table-body">
         {% for assignment in assignments %}
-          <tr><td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.name )}}"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">{% for item in assignment.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">5</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">7</div></a></td>
-          <td><a href="#"><div style="height:100%;width:100%">{{assignment.due_date}}</div></a></td>
+          <tr><td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.name )}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{% for item in assignment.a.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.graded}}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.submitted}}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.a.due_date}}</div></a></td>
           <td><div class="btn-group" align="center">
                   <button id="{{assignment.name}}" class="btn btn-default delete-buttons delete-buttons-assignment" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

@@ -459,8 +459,8 @@ class GraderClass:
         self.num_graded = num_graded
 
 class MasterAssignmentClass:
-    def __init__(self, assignment, avg_grade, graded, submitted):
-        self.assignment = assignment
+    def __init__(self, a, avg_grade, graded, submitted):
+        self.a = a
         self.avg_grade = avg_grade
         self.graded = graded
         self.submitted = submitted

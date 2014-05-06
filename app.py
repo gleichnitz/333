@@ -412,6 +412,7 @@ def add_assignment():
 
     db.session.add(assignment)
     db.session.commit()
+    return assignment.id
 
     return redirect('/admin/assignments')
 
@@ -1077,8 +1078,6 @@ def admin_graders():
         total_grade = 0
         avg_grade = 0
         assignments = Assignment.query.filter_by(grader=grader).all()
-        if assignments == None:
-            continue
         for assignment in assignments:
             if assignment.course != course:
                 continue
@@ -1087,7 +1086,9 @@ def admin_graders():
                 num_graded += 1
             elif assignment.in_progress == True:
                 num_in_progress += 1
-        avg_grade = total_grade/len(assignments)
+        x = len(assignments)
+        if x != 0:
+            avg_grade = total_grade/len(assignments)
 
         grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))
 

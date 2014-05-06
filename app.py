@@ -954,7 +954,7 @@ def admin_students():
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
 
-    admin = Admin.query.filter_by(netid = netid)
+    admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
 
     # Load all students in admin's class.

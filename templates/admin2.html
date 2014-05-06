@@ -22,10 +22,14 @@
                         <p class="lead">Eventually this can be full of fun facts and stats 4 nerdz.</p>
                     </div>
                     <!-- <div id='chart1' style='width: 500px; height: 325px; margin-left: 50px;'></div> -->
-                    <div id='chart2' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block'></div>
-                    <div id='chart3' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
-                    <div id='chart4' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
-                    <div id='chart5' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
+                    <p> Progress: Percent Graded </p>
+                        <div id='chart2' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block'></div>
+                        <div id='chart3' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
+                        <div id='chart4' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
+                        <div id='chart5' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
+                    <br>
+                    <p> Average Grade/Assignment </p>
+                        <div id='chart6' style='width: 800px; height: 100px;'></div>
                 </div>
             </div>
         </div>
@@ -41,11 +45,35 @@
                 var chart4 = new Charts.CircleProgress('chart4', 'AI', 85);
                 var chart5 = new Charts.CircleProgress('chart5', 'RegExp', 17);
 
+                var chart6 = new Charts.BarChart('chart6');
+
+                chart6.add({
+                  label: "Assignment 1",
+                  value: 88.9
+                });
+
+                chart6.add({
+                  label: "Assignment 2",
+                  value: 94
+                });
+
+                chart6.add({
+                  label: "Assignment 3",
+                  value: 64.9
+                });
+
+                chart6.add({
+                  label: "Assignment 4",
+                  value: 78
+                });
+
+
                 //chart.draw();
                 chart2.draw();
                 chart3.draw();
                 chart4.draw();
                 chart5.draw();
+                chart6.draw();
             </script>
 {% endblock %}
 

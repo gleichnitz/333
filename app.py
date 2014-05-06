@@ -970,7 +970,7 @@ def admin_students():
 
 
     admin = Admin.query.filter_by(netid = netid).first()
-    course = admin.courses[0]
+    course = admin.courses[0].name
 
     # Load all students in admin's class.
     students_db = Student.query.all()

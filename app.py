@@ -1160,7 +1160,7 @@ def admin_graders():
         assignments = Assignment.query.filter_by(grader=grader).all()
         for assignment in assignments:
             if assignment.course == course:
-                if assignment.points_possible != None:
+                if assignment.points_possible != None and assignment.grade != None:
                     total_grade += assignment.grade/assignment.points_possible*100
                 else:
                     total_grade += assignment.grade

@@ -54,11 +54,12 @@ $(document).ready(function() {
 		console.log("bump");
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
+		var courseName = $('#courseName').val()
 		console.log(output);
 	      	$.ajax({
 	  			url: "/_add_grader",
 	  			context: document.body,
-	  			data: { netid: output }
+	  			data: { netid: output, courseid: courseName }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			inputfieldParent.removeClass('has-error');

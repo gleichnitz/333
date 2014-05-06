@@ -1201,8 +1201,8 @@ def admin_admins():
     session.pop('error', None)
 
     admin = Admin.query.filter_by(netid = netid).first()
-    assignment_db = admin.courses[0].assignments
     course = admin.courses[0]
+    assignment_db = course.assignments
 
     assignments = []
     for assignment in assignment_db:

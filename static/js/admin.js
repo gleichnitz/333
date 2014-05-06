@@ -184,6 +184,7 @@ $(document).ready(function() {
 	$('.delete-buttons-1-ass').click(function() {
 		var id = $(this).attr('id')
 		var thisButton = $(this);
+		console.log(id)
 		$.ajax({
 			url: "/_delete_1_assignment",
 			context: document.body,

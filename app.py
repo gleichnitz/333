@@ -1048,14 +1048,14 @@ def admin_grader_assignments(netid, grader):
     if (roles.count("admin") != 0):
         roles.remove("admin")
     grader = Grader.query.filter_by(netid=gradernetid).first()
-    course = Admin.query.filter_by(netid=admin_netid).first()
-    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    admin = Admin.query.filter_by(netid=admin_netid).first()
+    course = admin.courses[0]
     assignments_grader = Assignment.query.filter_by(grader=grader).all()
     assignments=[]
     for assignment in assignments_grader:
-        if assignment.course is cos_333 and assignment.master is False:
+        if assignment.course is course and assignment.master is False:
             assignments.append(assignment)
-    return render_template('admin_grader_assignments.html', roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
+    return render_template('admin_grader_assignments.html', course=course, roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
 
 @app.route('/admin_<netid>/<assignment>_all_assignments')
 def admin_all_assignments(netid, assignment):

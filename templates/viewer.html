@@ -27,6 +27,7 @@
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
   <script>
       jQuery(function ($) {
+          i = 0;
           {% for item in assignment %}
             var content = $('#{{ item.name }}').annotator({{ item.isReadOnly|safe}});
             content.annotator('addPlugin', 'Store', {
@@ -46,11 +47,15 @@
 
             });
 
-            $.i18n.load(i18n_dict);
-            //content.annotator('addPlugin', 'AnnotatorViewer');
-            //Annotation scroll
-            //$('#anotacions-uoc-panel').slimscroll({height: '100%'});
+            if (i == 0) {
+              content.annotator('addPlugin', 'AnnotatorViewer');
+              //Annotation scroll
+              $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+            }
+
+            i++;
           {% endfor %}
+          $.i18n.load(i18n_dict);
       });
   </script>
   <script>
@@ -74,10 +79,10 @@
 
     $('#' + idName).css("display", "initial");
 
-    console.log("00000000");
-    ('#' + idName).annotator('addPlugin', 'AnnotatorViewer');
+    //console.log("00000000");
+    //('#' + idName).annotator('addPlugin', 'AnnotatorViewer');
     //Annotation scroll
-    $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+    //$('#anotacions-uoc-panel').slimscroll({height: '100%'});
 
     $('#codeTitle').text(idName);
   });

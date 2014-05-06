@@ -23,7 +23,7 @@
                     <!-- <div id='chart1' style='width: 500px; height: 325px; margin-left: 50px;'></div> -->
                     <h4> Progress: Percent Graded </h4>
                         <div style="width: 100%; height: 250px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid;">
-                            {% for item in recent_assignments %}
+                            {% for item in graph1_assignments %}
                                 <div id='{{ item.name }}' style='width: 200px; height: 250px; margin-right: 25px; display: inline-block'></div>
                             {% endfor %}
                         </div>
@@ -47,38 +47,25 @@
                     data: [[1, 10],[2, 12],[3, 5],[4, 13],[5, 2],[6, 1],[7, 18]]
                 }) */
 
-                {% for item in recent_assignments %}
+                {% for item in graph1_assignments %}
                     var chart{{item.num}} = new Charts.CircleProgress('{{item.name}}', '{{item.name}}', {{item.percent_graded}});
                     chart{{item.num}}.draw()
                 {% endfor %}
 
-                var chart6 = new Charts.BarChart('chart6', {
+                var chartBar = new Charts.BarChart('chart6', {
                     x_label_color: "#333333",
                     bar_width: 80,
                     show_grid: true,
                     label_max: true,
                     label_min: true
-                    });
-
-                chart6.add({
-                  label: "Assignment 1",
-                  value: 88.9
                 });
 
+                {% for item in graph2_assignments %}
                 chart6.add({
-                  label: "Assignment 2",
-                  value: 94
+                  label: "{{item.name}}",
+                  value: {{item.avg_grade}}
                 });
-
-                chart6.add({
-                  label: "Assignment 3",
-                  value: 64.9
-                });
-
-                chart6.add({
-                  label: "Assignment 4",
-                  value: 78
-                });
+                {% endfor %}
 
                 var chart7 = new Charts.LineChart('chart7', {
                     show_grid: true,

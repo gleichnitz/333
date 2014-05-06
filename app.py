@@ -371,8 +371,6 @@ def add_assignment():
     dueDate = request.args.get('dueDate')
     netid = request.args.get('netid_admin')
 
-    return netid
-
     if len(name) == 0 or name == "":
         session['error'] = 'noname'
         return "false"

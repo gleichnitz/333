@@ -1210,7 +1210,7 @@ def admin_admins():
     for assignment in assignment_db:
         if assignment.master is True:
 
-            assignments.append(MasterAssignmentClass(assignment, 6, 8))
+            assignments.append(MasterAssignmentClass(assignment, 6, 8, 9))
 
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
 

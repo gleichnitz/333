@@ -263,7 +263,7 @@ def check_student():
 
 @app.route('/_add_student')
 def add_student():
-    courseName = requeset.args.get('courseid')
+    courseName = request.args.get('courseid')
     netid = str(request.args.get('netid'))
     if netid.isalnum() is False:
         return "false"

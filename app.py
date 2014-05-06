@@ -1103,8 +1103,7 @@ def admin_graders():
                     num_in_progress += 1
         if len(assignments) != 0:
             avg_grade = total_grade/len(assignments)
-            if assignment.points_possible != None:
-                avg_grade = str(int(avg_grade)) + "%"
+            avg_grade = str(int(avg_grade)) + "%"
 
         grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))
 

@@ -203,8 +203,6 @@ def release_assignment():
 
     assignID = request.args.get('id')
     netid = str(request.args.get('netid')).strip()
-    students = Student.query.all()
-
 
     a = Assignment.query.filter_by(id  = assignID).first()
     if a is not None:
@@ -219,24 +217,6 @@ def release_assignment():
 
     else:
         return "failure"
-
-    # for item in students:
-    #     assignments = item.assignments.all()
-    #     for entry in assignments:
-    #         if entry.id == int(assignID):
-    #             entry.grader = None
-    #             entry.in_progress = False
-    #             entry.graded = False
-    #             db.session.add(entry)
-    #             db.session.commit()
-    #             new_files = entry.files
-    #             for item in new_files:
-    #                 item["annotations"] = []
-    #             Assignment.query.filter_by(id = id).update({'files': new_files})
-
-    #             return "success"
-
-    # return "failure"
 
 @app.route('/_check_annotations')
 def check_annotations():
@@ -332,6 +312,18 @@ def remove_grader():
 
     db.session.delete(grader)
     db.session.commit()
+
+    assignments = Assignment.query.filter_by(grader=grader).all();
+    for assignment in assignments:
+        assignment.grader = None
+        if assignment.graded != True:
+            assignment.mark_ungraded()
+            assignment.grader = None
+            db.session.commit()
+            new_files = assignment.files
+            for item in new_files:
+                item["annotations"] = []
+            Assignment.query.filter_by(id=assignment.id).update({'files': new_files})
 
     return "true"
 

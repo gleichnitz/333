@@ -64,19 +64,27 @@
               return;
 
             var idName = href.substring(1, href.length);
-            var current = $('#' + idName).annotator();
-            current.annotator('addPlugin', 'AnnotatorViewer');
-            //Annotation scroll
-            $('#anotacions-uoc-panel').slimscroll({height: '100%'});
 
+
+            viewer = false
             {% for item in assignment %}
-              if (idName != {{item.name}}) {
+              if (idName == {{item.name}}) {
+                var current = $('#' + idName).annotator();
+                current.annotator('addPlugin', 'AnnotatorViewer');
+                //Annotation scroll
+                $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+              else {
+                var current = $('#' + idName).annotator();
                 current.annotator('setupPlugins', {}, {
                    // Disable the tags plugin
                    AnnotatorViewer: false
                 });
               }
             {% endfor %}
+
+
+
+
 
         });
       });

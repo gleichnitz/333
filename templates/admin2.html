@@ -23,9 +23,7 @@
                     <!-- <div id='chart1' style='width: 500px; height: 325px; margin-left: 50px;'></div> -->
                     <h4> Progress: Percent Graded </h4>
                         <div style="width: 100%; height: 250px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid;">
-                                                <h4> Progress: Percent Graded </h4>
-                        <div style="width: 100%; height: 250px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid;">
-                            {% for item in assignProgress %}
+                            {% for item in recent_assignments %}
                                 <div id='{{ item.name }}' style='width: 200px; height: 250px; margin-right: 25px; display: inline-block'></div>
                             {% endfor %}
                         </div>
@@ -49,8 +47,8 @@
                     data: [[1, 10],[2, 12],[3, 5],[4, 13],[5, 2],[6, 1],[7, 18]]
                 }) */
 
-                {% for item in assignProgress %}
-                    var {{item.name}} = new Charts.CircleProgress('{{item.name}}', '{{item.name}}', {{item.percent}});
+                {% for item in recent_assignments %}
+                    var {{item.name}} = new Charts.CircleProgress('{{item.name}}', '{{item.name}}', {{item.percent_graded}});
                 {% endfor %}
 
                 var chart6 = new Charts.BarChart('chart6', {

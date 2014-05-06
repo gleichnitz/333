@@ -471,8 +471,9 @@ class MasterAssignmentClass:
         self.submitted = submitted
 
 class AssignmentProgressClass:
-    def __init__(self, a, percent_graded, due_date):
+    def __init__(self, a, name, percent_graded, due_date):
         self.a = a
+        self.name = name
         self.percent_graded = percent_graded
         self.due_date = due_date
 
@@ -1008,9 +1009,11 @@ def admin():
                         submitted += 1
             submitted += graded
             percent_graded = 0
-            if graded != 0:
+            if submitted == 0:
+                percent_graded = 0
+            elif graded != 0:
                 percent_graded = str(int(graded/submitted))
-            assignments.append(AssignmentProgressClass(assignment, percent_graded, assignment.due_date))
+            assignments.append(AssignmentProgressClass(assignment, assignment.name, percent_graded, assignment.due_date))
 
     assignments.sort(key=operator.attrgetter('due_date'))
 

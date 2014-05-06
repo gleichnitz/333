@@ -61,7 +61,7 @@ def mass_upload_student_files():
         if netid not in studentFiles:
             studentFiles[netid] = []
             netids.append(netid)
-        studentFiles[netid] = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
+        studentFiles[netid].append({'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []})
 
     for item in netids:
         addAssignment("cos333", item, assignmentName, studentFiles[item])

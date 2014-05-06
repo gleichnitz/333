@@ -1052,7 +1052,7 @@ def admin_students():
                 if a.points_possible != None and a.points_possible != 0:
                     total_grade += a.grade/a.points_possible*100
                 graded += 1
-        if len(assignments) != 0:
+        if graded != 0:
             avg_grade = str(int(total_grade/graded))
         students_form.append(StudentClass(student, avg_grade, submitted))
 

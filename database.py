@@ -19,6 +19,7 @@ def addAssignment(course_name, student_netid, name, files):
     new_assignment.AddFiles(files)
     db.session.add(new_assignment)
     db.session.commit()
+    return new_assignment.id
 
 s_courses = db.Table('s_courses',
   db.Column('course_id', db.Integer, db.ForeignKey('course.id')),

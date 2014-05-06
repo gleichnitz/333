@@ -908,7 +908,7 @@ def student():
         else:
             grade = "In Progress"
             status = "--------"
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date, item.files, grade, "", item.student.netid, status, master.points_possible))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.sub_date, item.files, grade, "", item.student.netid, status, master.points_possible))
 
     classes = []
 

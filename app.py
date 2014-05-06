@@ -1118,8 +1118,8 @@ def admin_admins():
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
     session.pop('error', None)
-
-    assignment_db = Assignment.query.all()
+    admin = Admin.query.filter_by(netid = netid).first()
+    assignment_db = admin.courses[0].assignments.all()
 
     assignments = []
     courses = []

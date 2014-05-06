@@ -87,7 +87,7 @@ $(document).ready(function() {
 	      	$.ajax({
 	  			url: "/_add_assignment",
 	  			context: document.body,
-	  			data: { netid: "", name: $('#assignTitle').val(), files: $('#assignFiles').val(),
+	  			data: { netid_admin: $('#form_netid').val(), name: $('#assignTitle').val(), files: $('#assignFiles').val(),
 	  			rubric: $('#assignPoints').val(), totalPoints: $('#totalPoints').val(), dueDate: $('#dueDate').val() }
 		  	}).done(function(data) {
 		  		if (data == "true") {

@@ -369,7 +369,7 @@ def add_assignment():
     rubric = request.args.get('rubric').split()
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
-    netid = request.args.get('form_netid')
+    netid = request.args.get('netid_admin')
 
     return netid
 

@@ -39,10 +39,10 @@ table {
 }
 
 .copyright {
-    padding-top: 500px;
+    padding-top: 150px;
     font-family: "Titillium Web", sans-serif;
 	font-weight: 300;
-    color: #000000;
+    color: #FFFFFF;
 }
 
 * {
@@ -487,8 +487,8 @@ body {
 
 
 #slide-5 {
-	background-color: #f9f1dc;
-	color: #000000;
+	background-image: url('../img/red1.jpg');
+	color: #FFFFFF;
 	padding-top: 90px;
 }
 

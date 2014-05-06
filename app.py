@@ -1007,6 +1007,7 @@ def admin():
                     else:
                         submitted += 1
             submitted += graded
+            percent_graded = 0
             if graded != 0:
                 percent_graded = str(int(graded/submitted))
             assignments.append(AssignmentProgressClass(assignment, percent_graded, assignment.due_date))

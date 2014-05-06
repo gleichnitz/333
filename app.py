@@ -1049,7 +1049,7 @@ def admin_students():
         for a in assignments:
             submitted += 1
             if a.graded == True:
-                if a.points_possible != None:
+                if a.points_possible != None and a.points_possible != 0:
                     total_grade += a.grade/a.points_possible*100
                 graded += 1
         if len(assignments) != 0:

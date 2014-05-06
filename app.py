@@ -1018,7 +1018,7 @@ def admin():
     i = 0
     while (i < 4 and i < len(assignments)):
         recent_assignments.append(assignments[0])
-        i++
+        i += 1
 
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):

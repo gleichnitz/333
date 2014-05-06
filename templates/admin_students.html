@@ -140,7 +140,7 @@
               <div class="form-group">
                 <label for="exampleInputEmail1">Manual input</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter netid">
-                <input type="text" style="display: none;" value="{{course}}" name="course">
+                <input type="text" style="display: none;" value="{{course}}" name="course" id="manual-course">
                 <br>
                 <button type="button" id="manual-submit-modal-student" class="btn">Submit</button>
               </div>
@@ -150,7 +150,7 @@
               <div class="form-group">
                 <label for="exampleInputFile">File input</label>
                 <input type="file" name="netids" id="exampleInputFile">
-                <input type="text" style="display: none;" value="{{course}}" name="course">
+                <input type="text" style="display: none;" value="{{course}}" name="course" id="mass-course">
                 <br>
                 <button type="submit" id="file-submit-modal" class="btn">Upload</button>
                 <p class="help-block">Make sure your file is .txt, one netid per line.</p>

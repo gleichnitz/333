@@ -50,14 +50,15 @@ def AddtoListAssignmentMaster(files, file_name):
 @app.route('/_mass_upload_student_files', methods=['GET', 'POST'])
 def mass_upload_student_files():
     files = request.files.getlist('file')
+    assignmentName = request.form['assignmentTitle']
     content = ""
 
     studentFiles = {}
     netids = []
 
     for file in files:
-        netid = re.search("netid:\s?[a-z]+", file).expand()
-        if studentFiles[netid] is None:
+        netid = re.search("netid:\s*[a-z]+", file.read()).group(0).split()[1]
+        if netid not in studentFiles:
             studentFiles[netid] = []
             netids.append(netid)
         studentFiles[netid] = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}

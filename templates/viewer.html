@@ -49,11 +49,11 @@
 
             });
 
-            //if (i == 0) {
-             // content.annotator('addPlugin', 'AnnotatorViewer');
+            if (i == 0) {
+              content.annotator('addPlugin', 'AnnotatorViewer');
               //Annotation scroll
-             // $('#anotacions-uoc-panel').slimscroll({height: '100%'});
-
+              $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+            }
 
             i++;
           {% endfor %}
@@ -69,6 +69,7 @@
             viewer = false
             {% for item in assignment %}
               if (idName == {{item.name}}) {
+                console.log("000000000")
                 var current = $('#' + idName).annotator();
                 current.annotator('addPlugin', 'AnnotatorViewer');
                 //Annotation scroll

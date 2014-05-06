@@ -20,6 +20,7 @@ import json
 from werkzeug import secure_filename
 import tarfile
 import re
+import operator
 
 # initialization
 app = Flask(__name__)
@@ -462,6 +463,12 @@ class MasterAssignmentClass:
         self.avg_grade = avg_grade
         self.graded = graded
         self.submitted = submitted
+
+class AssignmentProgressClass:
+    def __init__(self, a, percent_graded, due_date):
+        self.a = a
+        self.percent_graded = percent_graded
+        self.due_date = due_date
 
 class File:
     def __init__(self, name, code, grade, isReadOnly = ""):
@@ -981,11 +988,42 @@ def admin():
     if netid is "0":
         return redirect('/')
 
+
+    admin = Admin.query.filter_by(netid = netid).first()
+    course = admin.courses[0]
+    assignment_db = course.assignments.all()
+    assignment_db = order_by(desc(assignment_db.due_date))
+
+    assignments = []
+    for assignment in assignment_db:
+        if assignment.master is True:
+            graded = 0
+            submitted = 0
+            assignment_db.remove(assignment)
+            for a in assignment_db:
+                if a.name == assignment.name:
+                    if a.graded == True:
+                        graded += 1
+                    else:
+                        submitted += 1
+            submitted += graded
+            if graded != 0:
+                percent_graded = str(int(graded/submitted))
+            assignments.append(AssignmentProgressClass(assignment, percent_graded, assignment.due_date))
+
+    assignments.sort(key=operator.attrgetter('due_date'))
+
+    recent_assignments = []
+    i = 0
+    while (i < 4 && i < len(assignments)):
+        recent_assignments.append(assignments[0])
+        i++
+
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    return render_template('admin2.html', course=course.name, netid=netid, roles = roles)
+    return render_template('admin2.html', course=course.name, netid=netid, roles = roles, recent_assignments=recent_assignments)
 
 @app.route("/admin/students")
 def admin_students():

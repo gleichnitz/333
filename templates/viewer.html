@@ -49,10 +49,13 @@
 
             });
 
+            content.annotator('addPlugin', 'AnnotatorViewer');
+            //Annotation scroll
             if (i == 0) {
-              content.annotator('addPlugin', 'AnnotatorViewer');
-              //Annotation scroll
               $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+            }
+            else {
+              $('#anotacions-uoc-panel').hide();
             }
 
             i++;
@@ -74,20 +77,6 @@
                 current.annotator('addPlugin', 'AnnotatorViewer');
                 //Annotation scroll
                 $('#anotacions-uoc-panel').slimscroll({height: '100%'});
-              }
-              else {
-                var current = $('#' + idName).annotator();
-                current.annotator('setupPlugins', {}, {
-                   // Disable the tags plugin
-                   AnnotatorViewer: false,
-                   Tags: false,
-                   Unsupported: false,
-                   Filter: false,
-                   Auth: false,
-                   Permissions: false,
-                   Store: false,
-                   Markdown: false
-                });
               }
             {% endfor %}
 

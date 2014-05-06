@@ -383,9 +383,12 @@ def add_assignment():
     assignment.rubric = rubric
     assignment.due_date = dueDate
 
+    i = 0
     files = []
     for string in fileNames:
         AddtoListAssignmentMaster(files, string)
+        string["grade"] = rubric[i]
+        i += 1
 
     assignment.files = files
 
@@ -745,14 +748,11 @@ def submitted():
         status_redirection = "/_done"
 
     files = []
-    i = 0
     for item in assignment_active.files:
         if accountType == "g":
             files.append(File(item['name'], item['content'], item['grade']))
         else:
             files.append(File(item['name'], item['content'], item['grade'], "{readOnly: true}"))
-        i += 1
-
 
     ##################################
     # need to pass: item containing assignment files to be loaded

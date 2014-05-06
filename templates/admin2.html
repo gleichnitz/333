@@ -13,14 +13,12 @@
                     <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
                     Admin Portal for {{course}}
                 </h1>
+                <p class="lead">Eventually this can be full of fun facts and stats 4 nerdz.</p>
             </div>
             </div>
             <!-- Keep all page content within the page-content inset div! -->
             <div class="page-content">
                 <div class="row">
-                    <div class="col-md-12">
-                        <p class="lead">Eventually this can be full of fun facts and stats 4 nerdz.</p>
-                    </div>
                     <div id='chart1' style='width: 500px; height: 325px; margin-left: 50px;'></div>
                     <div id='chart2' style='width: 500px; height: 325px; margin-right: 25px; float: right'></div>
                 </div>
@@ -33,7 +31,10 @@
                     data: [[1, 10],[2, 12],[3, 5],[4, 13],[5, 2],[6, 1],[7, 18]]
                 })
 
+                var chart2 = new Charts.CircleProgress('chart2', 'Sales', 80);
+
                 chart.draw();
+                chart2.draw()
             </script>
 {% endblock %}
 

@@ -1161,7 +1161,7 @@ def admin_graders():
         for assignment in assignments:
             if assignment.course == course:
                 if assignment.points_possible != None and assignment.grade != None:
-                    total_grade += assignment.grade/assignment.points_possible*100
+                    total_grade += float(assignment.grade)/assignment.points_possible*100
                 else:
                     total_grade += assignment.grade
                 if assignment.graded == True:

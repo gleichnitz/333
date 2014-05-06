@@ -821,7 +821,7 @@ def submitted():
     ##################################
 
     if assignment_active.grade is None:
-        assignment_active.grade = " "
+        assignment_active.grade = ""
 
     # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )

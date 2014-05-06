@@ -43,6 +43,9 @@
                   </button>
               </div>
           </th>
+          <th class="header" style="text-align:left;width:100px">
+            Remove
+          </th>
       </tr>
       </thead>
       <tbody>
@@ -51,6 +54,10 @@
             <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
+              <td><div class="btn-group" align="center">
+                  <button id="{{ item.netid }}" class="btn btn-default delete-buttons delete-buttons-student" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
+                  </button>
+              </div></td>
           </a></tr>
           {% endfor %}
      </tbody>

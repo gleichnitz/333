@@ -78,7 +78,12 @@
                 var current = $('#' + idName).annotator();
                 current.annotator('setupPlugins', {}, {
                    // Disable the tags plugin
-                   AnnotatorViewer: false
+                   AnnotatorViewer: false,
+                   Tags: false,
+                   Filter: false,
+                   Auth: false,
+                   Permissions: false,
+                   Store: false
                 });
               }
             {% endfor %}

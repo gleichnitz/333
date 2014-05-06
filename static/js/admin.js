@@ -54,7 +54,7 @@ $(document).ready(function() {
 		console.log("bump");
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
-		var courseName = $('#courseName').val()
+		var courseName = $('#courseName').text()
 		console.log(output);
 	      	$.ajax({
 	  			url: "/_add_grader",

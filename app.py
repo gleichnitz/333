@@ -332,7 +332,7 @@ def check_graded_assignments():
     if grader is None:
         return "true"
 
-    assignments = Assignments.query.filter_by(grader=grader).all();
+    assignments = Assignment.query.filter_by(grader=grader).all();
     if len(assignments) > 0:
         return "not_empty"
     else:

@@ -370,9 +370,9 @@ def add_assignment():
         return "false"
 
     admin = Admin.query.filter_by(netid=netid).first()
-    course = admin.courses[0]
+    course = admin.courses[0].name
 
-    assignment = Assignment(course.name, "", name)
+    assignment = Assignment(course, "", name)
     assignment.master = True
     assignment.points_possible = totalPoints
     assignment.rubric = rubric

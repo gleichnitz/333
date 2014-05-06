@@ -10,7 +10,7 @@ $(document).ready(function() {
 		$('#netid-default-field-student').attr('value', netid);
 	});
 
-	$('#.grader-close').click(function() {
+	$('#grader-close').click(function() {
 		window.location.reload()
 	});
 

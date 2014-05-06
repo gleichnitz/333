@@ -62,7 +62,7 @@ def mass_upload_student_files():
     studentFiles = {}
     netids = []
 
-    master = Assignment.query.filter_by(master = True, name = assignmentName)
+    master = Assignment.query.filter_by(master = True, name = assignmentName).first()
     points_possible = master.points_possible
 
     for file in files:
@@ -120,7 +120,7 @@ def upload_student_files():
         return redirect('/admin/students')
 
 
-    master = Assignment.query.filter_by(master = True, name = assignmentName)
+    master = Assignment.query.filter_by(master = True, name = assignmentName).first()
     points_possible = master.points_possible
 
     files = request.files.getlist('file')

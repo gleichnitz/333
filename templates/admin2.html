@@ -5,18 +5,13 @@
     <script src="../static/js/raphael-min.js"></script>
     <script src="../static/js/charts.min.js"></script>
     <script>
-    var progress1 = new Charts.CircleProgress(
-    'progress-1', 
-    'Sales', 
-      80,
-      {
-        font_color: "#fff",
-        fill_color: "#222",
-        label_color: "#333",
-        text_shadow: "rgba(0,0,0,.4)",
-        stroke_color: "#6a329e"
-      });
-    progress1.draw()
+    var chart = new Charts.LineChart('chart1');
+    chart.add_line({
+        data: [[1, 828906],[2, 566933],[3, 584150],[4, 1072143],[5, 1622455],[6, 2466746],[7, 2427789]]
+    })
+
+    chart.draw();
+
     </script>
 {% endblock %}
 

@@ -919,6 +919,9 @@ def admin():
 
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")
+    admin = Admin.query.filter_by(netid=netid).first()
+    course = admin.courses[0]
+
     if netid is "0":
         return redirect('/')
 
@@ -926,7 +929,7 @@ def admin():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    return render_template('admin2.html', netid=netid, roles = roles)
+    return render_template('admin2.html', course=course, netid=netid, roles = roles)
 
 @app.route("/admin/students")
 def admin_students():
@@ -977,7 +980,8 @@ def admin_students():
 
     # Load all students in admin's class.
     admin = Admin.query.filter_by(netid = netid).first()
-    students_db = admin.courses[0].students.all()
+    course = admin.courses[0]
+    students_db = course.students.all()
 
     students_form = []
 
@@ -993,7 +997,7 @@ def admin_students():
         if assignment.master is True:
             masters.append(assignment)
 
-    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
+    return render_template('admin_students.html', course=course, students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
 
 @app.route("/admin/graders")
 def admin_graders():
@@ -1016,13 +1020,14 @@ def admin_graders():
         roles.remove("admin")
 
     admin = Admin.query.filter_by(netid = netid).first()
-    graders = admin.courses[0].graders
+    course = admin.courses[0]
+    graders = course.graders
 
     gradernetid = []
     for grader in graders:
         gradernetid.append(grader.netid)
 
-    return render_template('admin_graders.html', gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+    return render_template('admin_graders.html', course=course, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route('/admin_<netid>/<student>_assignment')
 def admin_student_assignment(netid, student):
@@ -1032,13 +1037,14 @@ def admin_student_assignment(netid, student):
     if (roles.count("admin") != 0):
         roles.remove("admin")
     student = Student.query.filter_by(netid=student_netid).first()
-    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    admin = Admin.query.filter_by(netid=admin_netid).first()
+    course = admin.courses[0]
     assignments_student = Assignment.query.filter_by(student=student).all()
     assignments=[]
     for assignment in assignments_student:
-        if assignment.course is cos_333 and assignment.master is False:
+        if assignment.course is course and assignment.master is False:
             assignments.append(assignment)
-    return render_template('admin_student_assignment.html', roles=roles, netid=admin_netid, student_netid=student_netid, assignments=assignments)
+    return render_template('admin_student_assignment.html', course=course, roles=roles, netid=admin_netid, student_netid=student_netid, assignments=assignments)
 
 @app.route('/admin_<netid>/<grader>_assignments')
 def admin_grader_assignments(netid, grader):
@@ -1064,13 +1070,14 @@ def admin_all_assignments(netid, assignment):
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    cos_333 = Course.query.filter_by(name= 'cos333').first()
+    admin = Admin.query.filter_by(netid=admin_netid).first()
+    course = admin.courses[0]
     assignments_name = Assignment.query.filter_by(name=assignment_name).all()
     assignments=[]
     for assignment in assignments_name:
-        if assignment.course is cos_333 and assignment.master is False:
+        if assignment.course is course and assignment.master is False:
             assignments.append(assignment)
-    return render_template('admin_assignment_assignments.html', roles=roles, assignment_name=assignment_name, netid=admin_netid, assignments=assignments)
+    return render_template('admin_assignment_assignments.html', course=course, roles=roles, assignment_name=assignment_name, netid=admin_netid, assignments=assignments)
 
 @app.route("/admin/assignments")
 def admin_admins():

@@ -124,6 +124,7 @@ $(document).ready(function() {
 		var netid = $(this).attr('id');
 		console.log(netid);
 		var thisButton = $(this);
+		$.ajax({
 	      	$.ajax({
 	  			url: "/_delete_grader",
 	  			context: document.body,
@@ -135,6 +136,7 @@ $(document).ready(function() {
 		  		} else {
 		  			console.log("false");
 		  		}
+			});
 		});
 	});
 	$('.delete-buttons-assignment').click(function () {

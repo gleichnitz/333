@@ -378,7 +378,7 @@ def add_assignment():
     for item in fileNames:
         if item.isalpha() is False and re.match("^([a-z])+.(c|(java))$", item) is None:
             session['error'] = 'invalidfilename'
-            return "false"
+            #return "false"
 
     if len(fileNames) != len(rubric):
         session['error'] = 'rubricmismatch'

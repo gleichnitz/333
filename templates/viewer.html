@@ -64,7 +64,7 @@
               return;
 
             var idName = href.substring(1, href.length);
-            var current = $('#' + idName).annotator({{ item.isReadOnly|safe}});
+            var current = $('#' + idName).annotator();
             current.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
             $('#anotacions-uoc-panel').slimscroll({height: '100%'});

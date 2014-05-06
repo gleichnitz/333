@@ -8,7 +8,7 @@ $(document).ready(function() {
 		$('#modal-upload').modal('toggle');
 		netid = $(this).closest('tr').children('.netid-row').children('a').children('div').text();
 		console.log(netid);
-		$('#netid-default-field').attr('value', netid);
+		$('#netid-default-field-student').attr('value', netid);
 	});
 
 	$('#assignment-submit-select').change(function() {

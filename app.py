@@ -363,6 +363,8 @@ def check_graded_assignments():
 
 @app.route('/_add_assignment')
 def add_assignment():
+
+    return redirect('/_add/test/10')
     name = request.args.get('name')
     fileNames = request.args.get('files').split()
     rubric = request.args.get('rubric').split()

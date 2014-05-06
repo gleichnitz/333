@@ -1001,24 +1001,25 @@ def admin():
     for assignment in assignment_db:
         if assignment.master is True:
             graded = 0.0
-            grade = 0.0
+            avg_grade = 0.0
+            total_grade = 0.0
             submitted = 0.0
             assignment_db.remove(assignment)
             for a in assignment_db:
                 if a.name == assignment.name:
                     if a.graded == True:
                         graded += 1
-                        grade += a.grade
+                        if a.points_possible != None:
+                            total_grade += a.grade/a.points_possible*100
                     else:
                         submitted += 1
             submitted += graded
             percent_graded = 0.0
-            avg_grade = 0.0
             if submitted == 0:
                 percent_graded = 0.0
             elif graded != 0:
                 percent_graded = str(int(graded/submitted * 100))
-                avg_grade = str(int(grade / (graded * 100) * 100))
+                avg_grade = str(int(total_grade/graded))
             assignments.append(AssignmentProgressClass(assignment, assignment.name, percent_graded, avg_grade, 0, assignment.due_date))
 
     assignments.sort(key=operator.attrgetter('due_date'))

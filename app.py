@@ -291,18 +291,33 @@ def add_grader():
 @app.route('/_delete_student')
 def remove_student():
     netid = str(request.args.get('netid'))
+    courseid = str(request.args.get('courseid'))
     if netid.isalnum() is False:
         return "false"
 
-    student = Student.query.filter_by(netid=netid).first();
-    if student is None:
-        return "true"
-    assignments = Assignment.query.filter_by(student=student).all();
-    for assignment in assignments:
-        db.session.delete(assignment)
+    student_ = Student.query.filter_by(netid=netid).first()
+    course_ = Course.query.filter_by(id = courseid).first()
 
-    db.session.delete(student)
-    db.session.commit()
+    if student_ is None:
+        return "true"
+    if course_ is not None:
+        assignments = Assignment.query.filter_by(student=student_, course = course_).all()
+        for item in assignments:
+            db.session.delete(item)
+            db.session.commit()
+    else:
+        return "false"
+
+    if(len(student_.courses) > 1):
+        courses_ = []
+        for item in student_.courses:
+            if str(item.id) != coursid:
+                courses_.append(item)
+        Student.query.filter_by(netid=netid).update({'courses': courses_})
+        db.session.commit()
+    else:
+        db.session.delete(student_)
+        db.session.commit()
 
     return "true"
 

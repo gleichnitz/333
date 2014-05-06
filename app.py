@@ -459,6 +459,13 @@ class GraderClass:
         self.num_in_progress = num_in_progress
         self.num_graded = num_graded
 
+class MasterAssignmentClass:
+    def __init__(self, name, avg_grade, graded, submitted):
+        self.name = name
+        self.avg_grade = avg_grade
+        self.graded = graded
+        self.submitted = submitted
+
 class File:
     def __init__(self, name, code, grade, isReadOnly = ""):
         self.name = name.split('.')[0]

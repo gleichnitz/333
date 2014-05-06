@@ -1216,6 +1216,7 @@ def admin_admins():
                             total_grade += a.grade/a.points_possible*100
                     else:
                         submitted += 1
+            submitted += graded
             if graded != 0:
                 avg_grade = total_grade/graded
             assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))

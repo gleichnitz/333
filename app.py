@@ -752,7 +752,7 @@ def submitted():
             files.append(File(item['name'], item['content'], item['grade'], assignment_active.rubric[i]))
         else:
             files.append(File(item['name'], item['content'], item['grade'], assignment_active.rubric[i], "{readOnly: true}"))
-        i++
+        i += 1
 
 
     ##################################

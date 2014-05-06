@@ -1062,11 +1062,11 @@ def admin_graders():
         num_graded = 0
         assignments = Assignment.query.filter_by(grader=grader)
         for assignment in assignments:
-            if assignment.graded == true:
+            if assignment.graded == True:
                 num_graded += 1
         grader_db.append(GraderClass(grader.netid, num_graded)
 
-    return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=session['username'], roles = roles)
+    return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=netid, roles = roles)
 
 @app.route('/admin_<netid>/<student>_assignment')
 def admin_student_assignment(netid, student):

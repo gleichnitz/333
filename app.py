@@ -896,7 +896,7 @@ def student():
         for m in masters:
             if m.name == item.name:
                 master = m
-        if master = 0:
+        if master == 0:
             return "this shouldn't happen"
         grade = ""
         if item.graded is True:

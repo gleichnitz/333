@@ -113,7 +113,7 @@
     </thead>
       <tbody id="admin-admin-table-body">
         {% for assignment in assignments %}
-          <tr><td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.a.name )}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
+          <tr><td><a href="{{url_for('admin_all_assignments', netid=netid, assignment=assignment.a.name )}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
           <td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.a.name )}}"><div style="height:100%;width:100%">{% for item in assignment.a.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
           <td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.a.name )}}"><div style="height:100%;width:100%">{{assignment.avg_grade}}</div></a></td>
           <td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.a.name )}}"><div style="height:100%;width:100%">{{assignment.graded}}</div></a></td>

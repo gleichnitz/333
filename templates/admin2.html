@@ -2,6 +2,22 @@
 
 {% block head %}
     {{ super() }}
+    <script src="../static/js/raphael-min.js"></script>
+    <script src="../static/js/charts.min.js"></script>
+    <script>
+    var progress1 = new Charts.CircleProgress(
+    'progress-1', 
+    'Sales', 
+      80,
+      {
+        font_color: "#fff",
+        fill_color: "#222",
+        label_color: "#333",
+        text_shadow: "rgba(0,0,0,.4)",
+        stroke_color: "#6a329e"
+      });
+    progress1.draw()
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -19,6 +35,7 @@
                     <div class="col-md-12">
                         <p class="lead">Eventually this can be full of fun facts and stats 4 nerdz.</p>
                     </div>
+                    <div id='chart1' style='width: 300px; height: 100px;'></div>
                 </div>
             </div>
         </div>

@@ -22,8 +22,10 @@
                         <p class="lead">Eventually this can be full of fun facts and stats 4 nerdz.</p>
                     </div>
                     <!-- <div id='chart1' style='width: 500px; height: 325px; margin-left: 50px;'></div> -->
-                    <div id='chart2' style='width: 300px; height: 325px; margin-right: 25px; display: inline-block'></div>
-                    <div id='chart3' style='width: 300px; height: 325px; margin-right: 25px; display: inline-block;'></div>
+                    <div id='chart2' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block'></div>
+                    <div id='chart3' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
+                    <div id='chart4' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
+                    <div id='chart5' style='width: 200px; height: 325px; margin-right: 25px; display: inline-block;'></div>
                 </div>
             </div>
         </div>
@@ -36,10 +38,14 @@
 
                 var chart2 = new Charts.CircleProgress('chart2', 'Sales', 80);
                 var chart3 = new Charts.CircleProgress('chart3', 'Sales', 80);
+                var chart4 = new Charts.CircleProgress('chart4', 'Sales', 80);
+                var chart5 = new Charts.CircleProgress('chart5', 'Sales', 80);
 
                 //chart.draw();
                 chart2.draw();
                 chart3.draw();
+                chart4.draw();
+                chart5.draw();
             </script>
 {% endblock %}
 

@@ -1049,9 +1049,8 @@ def admin_students():
 
     assignments_master = Assignment.query.filter_by(master=True).all()
     for assignment in assignments_master:
-        if assignment.course == course:
+        if assignment.course == course and assignment not in masters:
             masters.append(assignment)
-
 
     # Load assignments for reference when uploading code.
     # for assignment in assignment_db:

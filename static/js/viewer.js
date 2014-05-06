@@ -16,6 +16,12 @@ $(document).ready(function(e) {
 		$('#codearea > div').css("display", "none");
 
 		$('#' + idName).css("display", "initial");
+
+		$.i18n.load(i18n_dict);
+		$('#' + idName).annotator('addPlugin', 'AnnotatorViewer');
+    //Annotation scroll
+    $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+
 		$('#codeTitle').text(idName);
 	});
 
@@ -29,7 +35,7 @@ $(document).ready(function(e) {
    		});
   //  		}).done(function(data) {
 	 // 		if (data == "success") {
-	 			
+
 		//   	} else {
 
 	 //  		}
@@ -87,6 +93,6 @@ $(document).ready(function(e) {
 		 	$('#test2').css("display", "none");
 			$('#test3').css("display", "initial");
 		 }
-		 
+
 	}); */
 });

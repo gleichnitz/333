@@ -977,14 +977,14 @@ def admin_students():
 
     # Load all students in admin's class.
     admin = Admin.query.filter_by(netid = netid).first()
-    students_db = admin.courses[0].students
+    students_db = admin.courses[0].students.all()
 
     students_form = []
 
     for student in students_db:
         students_form.append(StudentClass("no name", student.netid))
 
-    assignment_db = admin.courses[0].assignments
+    assignment_db = admin.courses[0].assignments.all()
 
     masters = []
 

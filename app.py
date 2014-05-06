@@ -434,6 +434,11 @@ class AssignmentClass:
         self.status = status
         self.points = points
 
+class GraderClass:
+    def __init__(self, netid, num_graded)
+        self.netid = netid
+        self.num_graded = num_graded
+
 class File:
     def __init__(self, name, code, grade, isReadOnly = ""):
         self.name = name.split('.')[0]
@@ -1052,11 +1057,16 @@ def admin_graders():
     course = admin.courses[0]
     graders = course.graders
 
-    gradernetid = []
+    grader_db = []
     for grader in graders:
-        gradernetid.append(grader.netid)
+        num_graded = 0
+        assignments = Assignment.query.filter_by(grader=grader)
+        for assignment in assignments:
+            if assignment.graded == true:
+                num_graded += 1
+        grader_db.append(GraderClass(grader.netid, num_graded)
 
-    return render_template('admin_graders.html', course=course.name, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+    return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=session['username'], roles = roles)
 
 @app.route('/admin_<netid>/<student>_assignment')
 def admin_student_assignment(netid, student):

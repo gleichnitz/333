@@ -1218,7 +1218,7 @@ def admin_admins():
                         submitted += 1
             submitted += graded
             if graded != 0:
-                avg_grade = total_grade/graded
+                avg_grade = str(total_grade/graded) + "%"
             assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))
 
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)

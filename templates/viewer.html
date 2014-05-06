@@ -55,6 +55,7 @@
   </script>
   <script>
   $(document).ready(function(e) {
+  $.i18n.load(i18n_dict);
 
   var firstFile = $('#codearea > div').first();
   firstFile.css("display", "initial");
@@ -74,7 +75,6 @@
     $('#' + idName).css("display", "initial");
 
     console.log("00000000");
-    $.i18n.load(i18n_dict);
     $('#' + idName).annotator('addPlugin', 'AnnotatorViewer');
     //Annotation scroll
     $('#anotacions-uoc-panel').slimscroll({height: '100%'});

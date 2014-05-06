@@ -369,7 +369,7 @@ def add_assignment():
         session['error'] = 'invalidpoints'
         return "false"
 
-    admin = Admin.query.filter_by(netid="jaevans").first()
+    admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
 
     assignment = Assignment(course.name, "", name)
@@ -386,8 +386,6 @@ def add_assignment():
 
     db.session.add(assignment)
     db.session.commit()
-
-    session['error'] = 'unk'
 
     return redirect('/admin/assignments')
 
@@ -959,13 +957,17 @@ def admin_students():
     # Check to see if an error occured before refresh.
     alertMessage = ""
 
+    session['error'] = 'test'
+
     if 'error' in session:
         if session['error'] == 'unk':
-            alertString = "An unkown error occurred while uploading student code. Please try again."
+            alertString = "An unknown error occurred while uploading student code. Please try again."
         elif session['error'] == 'nofiles':
             alertString = "No files were selected to upload."
         elif session['error'] == 'invalidid':
             alertString = "The file you uploaded contained an invalid netid. Please try again."
+        else:
+            alertString = "Test"
 
         session.pop('error', None)
 
@@ -974,14 +976,15 @@ def admin_students():
 
 
     # Load all students in admin's class.
-    students_db = Student.query.all()
+    admin = Admin.query.filter_by(netid = netid).first()
+    students_db = admin.courses[0].students
 
     students_form = []
 
     for student in students_db:
         students_form.append(StudentClass("no name", student.netid))
 
-    assignment_db = Assignment.query.all()
+    assignment_db = admin.courses[0].assignments
 
     masters = []
 
@@ -1012,13 +1015,14 @@ def admin_graders():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    graders = Grader.query.all()
+    admin = Admin.query.filter_by(netid = netid).first()
+    graders = admin.courses[0].graders
 
     gradernetid = []
     assignments = []
     for grader in graders:
         gradernetid.append(grader.netid)
-        assignments.append(Assignment.query.filter_by(grader_id=12).first())
+        assignments.append(Assignment.query.filter_by(grader_id=grader.id).first())
     assignment_db = Assignment.query.all()
     allassignments = []
     for assignment in assignment_db:
@@ -1120,7 +1124,7 @@ def admin_admins():
 
     session.pop('error', None)
     admin = Admin.query.filter_by(netid = netid).first()
-    assignment_db = admin.courses[0].assignments.all()
+    assignment_db = admin.courses[0].assignments
 
     assignments = []
     courses = []

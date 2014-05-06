@@ -1025,6 +1025,7 @@ def admin_graders():
         if assignment.name not in allassignments:
             allassignments.append(assignment.name)
 
+    totalgraded = len(allassignments)
     # names = []
     # for name in graders:
     #     names.append(graders.firstname + " " + graders.lastname)

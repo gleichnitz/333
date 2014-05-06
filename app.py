@@ -56,8 +56,8 @@ def mass_upload_student_files():
     netids = []
 
     for file in files:
-        netid = re.search("netid:\s*[a-z]+", file.read()).group(0)
-        if studentFiles[netid] is None:
+        netid = re.search("netid:\s*[a-z]+", file.read()).group(0).split()[1]
+        if netid not in studentFiles:
             studentFiles[netid] = []
             netids.append(netid)
         studentFiles[netid] = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}

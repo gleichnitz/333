@@ -29,11 +29,12 @@ $(document).ready(function() {
 
 	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
+		var course = $(this).parent().children('#manual-course').val()
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({
 	  			url: "/_add_student",
 	  			context: document.body,
-	  			data: { netid: output }
+	  			data: { netid: output, courseid: course }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			inputfieldParent.removeClass('has-error');

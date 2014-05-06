@@ -73,6 +73,7 @@ def mass_upload_student_files():
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
     f = request.files['netids']
+    courseName = form.request['courseid']
     netids = f.read().split('\n')
 
     for item in netids:
@@ -80,14 +81,19 @@ def mass_upload_students():
             session['error'] = 'invalidid'
             return redirect('/admin/students')
 
+    course = Course.query.filter_by(name= courseName).first()
+
     for item in netids:
         student = Student.query.filter_by(netid = item).first();
         if student is None:
-            cos_333 = Course.query.filter_by(name= 'cos333').first()
-            newStudent = Student("name", "test", item)
-            newStudent.courses.add(cos_333)
+            student = Student("name", "test", item)
+            student.courses.add(course)
             db.session.add(newStudent)
             db.session.commit()
+        else:
+            student.courses.add(course)
+            db.session.commit()
+
 
     return redirect('/admin/students')
 
@@ -257,17 +263,21 @@ def check_student():
 
 @app.route('/_add_student')
 def add_student():
-
+    courseName = request.args.get('courseid')
     netid = str(request.args.get('netid'))
     if netid.isalnum() is False:
         return "false"
 
+    course = Course.query.filter_by(name = courseName).first()
+
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
-        cos_333 = Course.query.filter_by(name= 'cos333').first()
-        newStudent = Student("name", "test", netid)
-        newStudent.courses.append(cos_333)
+        newStudent = Student("asdf", "test", netid)
+        newStudent.courses.append(course)
         db.session.add(newStudent)
+        db.session.commit()
+    else:
+        student.courses.append(course)
         db.session.commit()
 
     return "true"

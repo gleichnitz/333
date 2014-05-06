@@ -1040,7 +1040,7 @@ def admin():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    return render_template('admin2.html', course=course.name, netid=netid, roles = roles, graph1_assignments=graph1_assignments)
+    return render_template('admin2.html', course=course.name, netid=netid, roles = roles, graph1_assignments=graph1_assignments, graph2_assignments=graph2_assignments)
 
 @app.route("/admin/students")
 def admin_students():

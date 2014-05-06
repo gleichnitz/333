@@ -50,6 +50,7 @@ def AddtoListAssignmentMaster(files, file_name):
 @app.route('/_mass_upload_student_files', methods=['GET', 'POST'])
 def mass_upload_student_files():
     files = request.files.getlist('file')
+    assignmentName = request.form['assignmentTitle']
     content = ""
 
     studentFiles = {}

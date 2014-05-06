@@ -51,6 +51,7 @@ def AddtoListAssignmentMaster(files, file_name):
 def mass_upload_student_files():
     files = request.files.getlist('file')
     assignmentName = request.form['assignmentTitle']
+    course = request.form['course']
     content = ""
 
     studentFiles = {}
@@ -65,7 +66,7 @@ def mass_upload_student_files():
         studentFiles[netid].append({'name': file.filename, 'content': text, 'grade': "", 'annotations': []})
 
     for item in netids:
-        addAssignment("cos333", item, assignmentName, studentFiles[item])
+        addAssignment(course, item, assignmentName, studentFiles[item])
 
     return "true"
 
@@ -96,6 +97,7 @@ def mass_upload_students():
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     netid = request.form['netid']
+    course = request.form['course']
 
     # Netid is automatically generated, so it should be valid.
     if isValidNetid(netid) is False:
@@ -116,7 +118,7 @@ def upload_student_files():
         ass_file = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
         fileList.append(ass_file)
 
-    addAssignment("cos333", netid, assignmentName, fileList)
+    addAssignment(course, netid, assignmentName, fileList)
 
     return redirect('/admin/students')
 
@@ -367,7 +369,7 @@ def add_assignment():
         session['error'] = 'invalidpoints'
         return "false"
 
-    admin = Admin.query.filter_by(netid="jaevans").first()
+    admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
 
     assignment = Assignment(course.name, "", name)
@@ -973,14 +975,15 @@ def admin_students():
     course = admin.courses[0].name
 
     # Load all students in admin's class.
-    students_db = Student.query.all()
+    admin = Admin.query.filter_by(netid = netid).first()
+    students_db = admin.courses[0].students
 
     students_form = []
 
     for student in students_db:
         students_form.append(StudentClass("no name", student.netid))
 
-    assignment_db = Assignment.query.all()
+    assignment_db = admin.courses[0].assignments
 
     masters = []
 
@@ -1011,14 +1014,15 @@ def admin_graders():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    graders = Grader.query.all()
+    admin = Admin.query.filter_by(netid = netid).first()
+    graders = admin.courses[0].graders
 
     gradernetid = []
     assignments = []
     for grader in graders:
         gradernetid.append(grader.netid)
-        assignments.append(Assignment.query.filter_by(grader_id=12).first())
-    assignment_db = Assignment.query.all()
+        assignments.append(Assignment.query.filter_by(grader_id=grader.id).first())
+    assignment_db = admin.courses[0].assignments
     allassignments = []
     for assignment in assignment_db:
         if assignment.name not in allassignments:
@@ -1118,7 +1122,8 @@ def admin_admins():
 
     session.pop('error', None)
 
-    assignment_db = Assignment.query.all()
+    admin = Admin.query.filter_by(netid = netid).first()
+    assignment_db = admin.courses[0].assignments
 
     assignments = []
     courses = []

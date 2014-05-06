@@ -28,12 +28,12 @@ $(document).ready(function(e) {
 		  	});
 		} else {
 			var id = clickButton.parent().attr('id');
-			var annotations = false;
 			$.ajax({
 				url: "/_check_annotations",
 				context: document.body,
 				data: { id: id}
 			}).done(function(data) {
+				console.log(data)
 				if (data == "not_empty") {
 					if (confirm("Releasing this assignment will delete all associated annotations. Would you like to continue?")) {
 						$.ajax({

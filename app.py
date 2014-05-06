@@ -415,8 +415,8 @@ def remove_assignment():
 def remove_1_assignment():
     id = str(request.args.get('id'))
     assignment = Assignment.query.filter_by(id=id).first()
-    if assignment == None:
-        return "false"
+    # if assignment == None:
+    #     return "false"
     db.session.delete(assignment)
     db.session.commit()
     return "true"

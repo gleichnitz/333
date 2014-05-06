@@ -46,16 +46,16 @@
 
             });
 
-            /*$.i18n.load(i18n_dict);
-            content.annotator('addPlugin', 'AnnotatorViewer');
+            $.i18n.load(i18n_dict);
+            //content.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
-            $('#anotacions-uoc-panel').slimscroll({height: '100%'});*/
+            //$('#anotacions-uoc-panel').slimscroll({height: '100%'});
           {% endfor %}
       });
   </script>
   <script>
   $(document).ready(function(e) {
-  $.i18n.load(i18n_dict);
+       // $.i18n.load(i18n_dict);
 
   var firstFile = $('#codearea > div').first();
   firstFile.css("display", "initial");

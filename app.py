@@ -1077,8 +1077,6 @@ def admin_graders():
         total_grade = 0
         avg_grade = 0
         assignments = Assignment.query.filter_by(grader=grader).all()
-        if assignments == None:
-            continue
         for assignment in assignments:
             if assignment.course != course:
                 continue

@@ -1075,16 +1075,18 @@ def admin_graders():
         num_graded = 0
         num_in_progress = 0
         total_grade = 0
+        avg_grade = 0
         assignments = Assignment.query.filter_by(grader=grader)
-        for assignment in assignments:
-            if assignment.course != course:
-                continue
-            total_grade += assignment.grade
-            if assignment.graded == True:
-                num_graded += 1
-            elif assignment.in_progress == True:
-                num_in_progress += 1
-        avg_grade = total_grade/len(assignments.all())
+        if assignments != None:
+            for assignment in assignments:
+                if assignment.course != course:
+                    continue
+                total_grade += assignment.grade
+                if assignment.graded == True:
+                    num_graded += 1
+                elif assignment.in_progress == True:
+                    num_in_progress += 1
+            avg_grade = total_grade/len(assignments.all())
 
         grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))
 

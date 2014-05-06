@@ -1205,14 +1205,11 @@ def admin_admins():
     course = admin.courses[0]
 
     assignments = []
-    courses = []
     for assignment in assignment_db:
         if assignment.master is True:
             assignments.append(assignment)
-        if assignment.courseid not in courses:
-            courses.append(assignment.courseid)
 
-    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
+    return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
 
 @app.route("/logout")
 def logout():

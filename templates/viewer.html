@@ -49,9 +49,10 @@
 
             });
 
-            content.annotator('addPlugin', 'AnnotatorViewer');
+            /*content.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
             /// Need to somehow identify the individual panels
+            /// annotation.uri seems to make sense, but don't know how to alter annotator js to include
             if (i == 0) {
               $('#{{ item.name }} {{ id }}').slimscroll({height: '100%'});
             }
@@ -59,9 +60,9 @@
               $('#{{ item.name }} {{ id }}').hide();
             }
 
-            i++;
+            i++;*/
           {% endfor %}
-          $('table tr').click(function() {
+          /*$('table tr').click(function() {
             var href = $(this).attr("id");
 
             if (href == "" || href == "Total" || href == "total")
@@ -72,10 +73,10 @@
             {% for item in assignment %}
               if (idName == {{item.name}}) {
                 console.log("000000000")
-               /* var current = $('#' + idName).annotator();
+                var current = $('#' + idName).annotator();
                 current.annotator('addPlugin', 'AnnotatorViewer');
                 //Annotation scroll
-                $('#anotacions-uoc-panel').slimscroll({height: '100%'});*/
+                $('#anotacions-uoc-panel').slimscroll({height: '100%'});
               }
             {% endfor %}
 
@@ -83,7 +84,7 @@
 
 
 
-        });
+        });*/
       });
   </script>
   <script>

@@ -386,8 +386,8 @@ def add_assignment():
     i = 0
     files = []
     for string in fileNames:
-        AddtoListAssignmentMaster(files, string)
         string["grade"] = rubric[i]
+        AddtoListAssignmentMaster(files, string)
         i += 1
 
     assignment.files = files

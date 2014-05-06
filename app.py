@@ -892,12 +892,10 @@ def student():
     assignments_form = []
     for item in assignments:
         masters = Assignment.query.filter_by(name=item.name).all()
-        master = 0
+        master = None
         for m in masters:
             if m.master == True:
                 master = m
-        if master == 0:
-            return "this shouldn't happen"
         grade = ""
         if item.graded is True:
             grade = str(item.grade) + " / " + str(master.points_possible)

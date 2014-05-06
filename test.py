@@ -6,7 +6,8 @@ students_db = admin.courses[0].students
 students_form = []
 
 for student in students_db:
-    students_form.append(StudentClass("no name", student.netid))
+    students_form.append(student.netid)
+print students_form
 
 assignment_db = admin.courses[0].assignments
 
@@ -18,4 +19,4 @@ for assignment in assignment_db:
         masters.append(assignment)
 
 print masters
-print students_form
+

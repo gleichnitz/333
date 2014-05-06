@@ -942,7 +942,7 @@ def admin_students():
 
     if 'error' in session:
         if session['error'] == 'unk':
-            alertString = "An unkown error occurred while uploading student code. Please try again."
+            alertString = "An unkown error occurred."
         elif session['error'] == 'nofiles':
             alertString = "No files were selected to upload."
         elif session['error'] == 'invalidid':

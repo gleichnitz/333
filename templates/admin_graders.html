@@ -51,7 +51,7 @@
       <tbody>
        {% for grader in graders %}
           <tr>
-              <td class="netid-row"><a href="{{url_for('admin_grader_assignments', netid=netid, grader=grader)}}"><div style="height:100%;width:100%" class="grader_assignments">{{ grader.netid }}</div></a></td>
+              <td class="netid-row"><a href="{{url_for('admin_grader_assignments', netid=netid, grader=grader.netid)}}"><div style="height:100%;width:100%" class="grader_assignments">{{ grader.netid }}</div></a></td>
               <td class="netid-row" align="left"><a href="{{url_for('admin_grader_assignments', netid=netid, grader=grader)}}"><div style="height:100%;width:100%" class="grader_assignments">{{ grader.num_graded }}</div></a></td>
               <td><div class="btn-group" align="center">
                   <button id="{{ grader }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>

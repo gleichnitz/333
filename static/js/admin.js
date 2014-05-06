@@ -7,8 +7,11 @@ $(document).ready(function() {
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
 		netid = $(this).closest('tr').children('.netid-row').children('a').children('div').text();
-		console.log(netid);
 		$('#netid-default-field-student').attr('value', netid);
+	});
+
+	$('#.grader-close').click(function() {
+		window.location.reload()
 	});
 
 	$('#assignment-submit-select').change(function() {

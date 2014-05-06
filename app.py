@@ -1049,7 +1049,7 @@ def admin_students():
 
     assignments_master = Assignment.query.filter_by(master=True).all()
     for assignment in assignments_master:
-        if assignment.course = course:
+        if assignment.course == course:
             masters.append(assignment)
 
 

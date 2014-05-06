@@ -84,13 +84,19 @@
           </th>
           <th>
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Graded <span class="caret"></span>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Avg. Grade <span class="caret"></span>
+                  </button>
+              </div>
+          </th>
+          <th>
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> # Graded <span class="caret"></span>
                   </button>
               </div>
           </th>
           <th class="header">
               <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both">  Total <span class="caret"></span>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> # Submitted <span class="caret"></span>
                   </button>
               </div>
           </th>
@@ -109,6 +115,7 @@
         {% for assignment in assignments %}
           <tr><td><a href="{{url_for('admin_all_assignments', netid=netid, assignment= assignment.name )}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">{% for item in assignment.a.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
+          <td><a href="#"><div style="height:100%;width:100%">{{assignment.avg_grade}}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">{{assignment.graded}}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">{{assignment.submitted}}</div></a></td>
           <td><a href="#"><div style="height:100%;width:100%">{{assignment.a.due_date}}</div></a></td>

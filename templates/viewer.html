@@ -47,9 +47,9 @@
             });
 
             $.i18n.load(i18n_dict);
-            content.annotator('addPlugin', 'AnnotatorViewer');
+            //content.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
-            $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+            //$('#anotacions-uoc-panel').slimscroll({height: '100%'});
           {% endfor %}
       });
   </script>
@@ -75,9 +75,9 @@
     $('#' + idName).css("display", "initial");
 
     console.log("00000000");
-    //$('#' + idName).annotator('addPlugin', 'AnnotatorViewer');
+    $('#' + idName).annotator('addPlugin', 'AnnotatorViewer');
     //Annotation scroll
-   // $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+    $('#anotacions-uoc-panel').slimscroll({height: '100%'});
 
     $('#codeTitle').text(idName);
   });

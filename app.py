@@ -993,7 +993,6 @@ def admin():
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
     assignment_db = course.assignments.all()
-    assignment_db = order_by(desc(assignment_db.due_date))
 
     assignments = []
     for assignment in assignment_db:

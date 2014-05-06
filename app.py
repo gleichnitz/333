@@ -835,8 +835,11 @@ def grader():
     ##################################
 
     grader = Grader.query.filter_by(netid = netid).first()
-    course = grader.courses[0]
-    assignments = Assignment.query.filter_by(course=course).all()
+    assignments = []
+    for item in grader.courses:
+        a = Assignment.query.filter_by(course=item).all()
+        for assign_ in a:
+            assignments.append(a)
 
     if grader is None:
         redirect('/')
@@ -857,10 +860,10 @@ def grader():
         elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid, status, item.points_possible))
 
-    classes = []
-    for item in assignments_form:
-        if item.course not in classes:
-            classes.append(item.course)
+    classes = grader.courses
+    # for item in assignments_form:
+    #     if item.course not in classes:
+    #         classes.append(item.course)
 
     assignment_names = []
     for item in assignments_form:

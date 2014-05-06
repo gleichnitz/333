@@ -28,6 +28,8 @@
   <script>
       jQuery(function ($) {
           i = 0;
+          $.i18n.load(i18n_dict);
+
           {% for item in assignment %}
             var content = $('#{{ item.name }}').annotator({{ item.isReadOnly|safe}});
             content.annotator('addPlugin', 'Store', {
@@ -55,7 +57,18 @@
 
             i++;
           {% endfor %}
-          $.i18n.load(i18n_dict);
+          $('table tr').click(function() {
+            var href = $(this).attr("id");
+
+            if (href == "" || href == "Total" || href == "total")
+              return;
+
+            var idName = href.substring(1, href.length);
+            var current = $('#' + idName).annotator({{ item.isReadOnly|safe}});
+            current.annotator('addPlugin', 'AnnotatorViewer');
+            //Annotation scroll
+            $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+        });
       });
   </script>
   <script>

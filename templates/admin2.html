@@ -61,11 +61,13 @@
                 });
 
                 {% for item in graph2_assignments %}
-                chart6.add({
+                chartBar.add({
                   label: "{{item.name}}",
                   value: {{item.avg_grade}}
                 });
                 {% endfor %}
+
+                chartBar.draw();
 
                 var chart7 = new Charts.LineChart('chart7', {
                     show_grid: true,
@@ -84,7 +86,6 @@
             });
 
                 //chart.draw();
-                chart6.draw();
                 chart7.draw();
             </script>
 {% endblock %}

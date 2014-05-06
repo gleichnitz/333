@@ -911,14 +911,9 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        masters = Assignment.query.filter_by(name=item.name).all()
-        master = None
-        for m in masters:
-            if m.master == True:
-                master = m
         grade = ""
         if item.graded is True:
-            grade = str(item.grade) + " / " + str(master.points_possible)
+            grade = str(item.grade) + " / " + str(item.points_possible)
             status = "Graded"
         elif item.in_progress is True:
             grade = "In Progress"

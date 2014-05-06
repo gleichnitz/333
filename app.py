@@ -1081,13 +1081,12 @@ def admin_graders():
         for assignment in assignments:
             if assignment.course != course:
                 continue
-            total_grade += assignment.grade
+            total_grade += assignment.grade/assignment.points_possible
             if assignment.graded == True:
                 num_graded += 1
             elif assignment.in_progress == True:
                 num_in_progress += 1
-        x = len(assignments)
-        if x != 0:
+        if len(assignments) != 0:
             avg_grade = total_grade/len(assignments)
 
         grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))

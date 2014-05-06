@@ -450,6 +450,12 @@ class AssignmentClass:
         self.status = status
         self.points = points
 
+class StudentClass:
+    def __init__(self, student, avg_grade, num_assignments):
+        self.student=student
+        self.avg_grade=avg_grade
+        self.num_assignments=num_assignments
+
 class GraderClass:
     def __init__(self, netid, avg_grade, num_in_progress, num_graded):
         self.netid = netid
@@ -484,11 +490,6 @@ class File:
         self.code = code
         self.grade = grade
         self.isReadOnly = isReadOnly
-
-class StudentClass:
-    def __init__(self, name, netid):
-        self.name = name
-        self.netid = netid
 
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
@@ -1075,21 +1076,37 @@ def admin_students():
     course = admin.courses[0]
     students_db = course.students.all()
 
-    course = admin.courses[0]
-
     students_form = []
 
     for student in students_db:
-        students_form.append(StudentClass("no name", student.netid))
+        avg_grade = 0
+        submitted = 0
+        graded = 0
+        total_grade = 0
+        assignments = Assignment.query.filter_by(student=student).all()
+        for a in assignments:
+            submitted += 1
+            if a.graded == True:
+                if a.points_possible != None and a.points_possible != 0:
+                    total_grade += a.grade/a.points_possible*100
+                graded += 1
+        if graded != 0:
+            avg_grade = str(int(total_grade/graded))
+        students_form.append(StudentClass(student, avg_grade, submitted))
 
     assignment_db = course.assignments.all()
 
     masters = []
 
-    # Load assignments for reference when uploading code.
-    for assignment in assignment_db:
-        if assignment.master is True:
+    assignments_master = Assignment.query.filter_by(master=True).all()
+    for assignment in assignments_master:
+        if assignment.course == course and assignment not in masters:
             masters.append(assignment)
+
+    # Load assignments for reference when uploading code.
+    # for assignment in assignment_db:
+    #     if assignment.master is True:
+    #         masters.append(assignment)
 
     return render_template('admin_students.html', course=course.name, students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
 
@@ -1136,8 +1153,7 @@ def admin_graders():
                     num_in_progress += 1
         if len(assignments) != 0:
             avg_grade = total_grade/len(assignments)
-            if assignment.points_possible != None:
-                avg_grade = str(int(avg_grade)) + "%"
+            avg_grade = str(int(avg_grade)) + "%"
 
         grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))
 

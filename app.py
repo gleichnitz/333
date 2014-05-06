@@ -1075,6 +1075,8 @@ def admin_graders():
         num_in_progress = 0
         assignments = Assignment.query.filter_by(grader=grader)
         for assignment in assignments:
+            if assignment.course != course:
+                continue
             if assignment.graded == True:
                 num_graded += 1
             elif assignment.in_progress == True:

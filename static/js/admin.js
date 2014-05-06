@@ -29,7 +29,8 @@ $(document).ready(function() {
 
 	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
-		var course = $(this).parent().children('#manual-course').val()
+		var course = $('#manual-course').val()
+		console.log(course);
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({
 	  			url: "/_add_student",

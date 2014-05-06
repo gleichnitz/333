@@ -272,7 +272,7 @@ def add_student():
 
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
-        newStudent = Student("asdf", "test", netid)
+        newStudent = Student("name", "test", netid)
         newStudent.courses.append(course)
         db.session.add(newStudent)
         db.session.commit()
@@ -284,17 +284,20 @@ def add_student():
 
 @app.route('/_add_grader')
 def add_grader():
-
+    courseName = request.args.get('courseid')
     netid = str(request.args.get('netid'))
     if isValidNetid(netid) is False:
         return "false"
 
+    course = Course.query.filter_by(name = courseName).first()
     grader = Grader.query.filter_by(netid=netid).first();
     if grader is None:
-        cos_333 = Course.query.filter_by(name= 'cos333').first()
         newGrader = Grader(netid)
-        newGrader.courses.append(cos_333)
+        newGrader.courses.append(course)
         db.session.add(newGrader)
+        db.session.commit()
+    else:
+        grader.courses.append(course)
         db.session.commit()
 
     return "true"
@@ -970,8 +973,6 @@ def admin_students():
     # Check to see if an error occured before refresh.
     alertMessage = ""
 
-    session['error'] = 'test'
-
     if 'error' in session:
         if session['error'] == 'unk':
             alertString = "An unknown error occurred while uploading student code. Please try again."
@@ -992,6 +993,8 @@ def admin_students():
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
     students_db = course.students.all()
+
+    course = admin.courses[0].name
 
     students_form = []
 

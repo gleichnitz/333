@@ -1041,7 +1041,20 @@ def admin_students():
     students_form = []
 
     for student in students_db:
-        students_form.append(StudentClass(student, 10, 3))
+        avg_grade = 0
+        submitted = 0
+        graded = 0
+        total_grade = 0
+        assignments = Assignment.query.filter_by(student=student).all()
+        for a in assignments:
+            submitted += 1
+            if a.graded == True:
+                if a.points_possible != None:
+                    total_grade += a.grade/a.points_possible*100
+                graded += 1
+        if len(assignments) != 0:
+            avg_grade = str(int(total_grade/graded))
+        students_form.append(StudentClass(student, avg_grade, submitted))
 
     assignment_db = course.assignments.all()
 

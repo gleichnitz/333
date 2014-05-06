@@ -51,11 +51,12 @@
 
             content.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
+            /// Need to somehow identify the individual panels
             if (i == 0) {
-              $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+              $('#{{ item.name }} {{ id }}').slimscroll({height: '100%'});
             }
             else {
-              $('#anotacions-uoc-panel').hide();
+              $('#{{ item.name }} {{ id }}').hide();
             }
 
             i++;
@@ -68,15 +69,13 @@
 
             var idName = href.substring(1, href.length);
 
-
-            viewer = false
             {% for item in assignment %}
               if (idName == {{item.name}}) {
                 console.log("000000000")
-                var current = $('#' + idName).annotator();
+               /* var current = $('#' + idName).annotator();
                 current.annotator('addPlugin', 'AnnotatorViewer');
                 //Annotation scroll
-                $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+                $('#anotacions-uoc-panel').slimscroll({height: '100%'});*/
               }
             {% endfor %}
 

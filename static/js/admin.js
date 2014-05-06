@@ -1,3 +1,10 @@
+/*
+ Project: codePost
+ Template for Administrator -> Administrator -> Assignments Page
+ Authors: Ayyala, Evans, Freling, Kubiak, Leichnitz
+ Date: May 2014
+*/
+
 $(document).ready(function() {
 
 	$('#add_buttons').click(function() {
@@ -7,8 +14,11 @@ $(document).ready(function() {
 	$('.upload-button').click(function() {
 		$('#modal-upload').modal('toggle');
 		netid = $(this).closest('tr').children('.netid-row').children('a').children('div').text();
-		console.log(netid);
 		$('#netid-default-field-student').attr('value', netid);
+	});
+
+	$('.button-close').click(function() {
+		window.location.reload()
 	});
 
 	$('#assignment-submit-select').change(function() {
@@ -29,11 +39,12 @@ $(document).ready(function() {
 
 	$('#manual-submit-modal-student').click(function() {
 		var output = $(this).parent().children('input').val();
+		var course = $('#manual-course').val()
 		var inputfieldParent = $(this).parent().parent();
 	      	$.ajax({
 	  			url: "/_add_student",
 	  			context: document.body,
-	  			data: { netid: output }
+	  			data: { netid: output, courseid: course }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			inputfieldParent.removeClass('has-error');
@@ -52,11 +63,12 @@ $(document).ready(function() {
 		console.log("bump");
 		var output = $(this).parent().children('input').val();
 		var inputfieldParent = $(this).parent().parent();
+		var courseName = $('#courseName').text()
 		console.log(output);
 	      	$.ajax({
 	  			url: "/_add_grader",
 	  			context: document.body,
-	  			data: { netid: output }
+	  			data: { netid: output, courseid: courseName }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			inputfieldParent.removeClass('has-error');
@@ -124,6 +136,20 @@ $(document).ready(function() {
 		var netid = $(this).attr('id');
 		console.log(netid);
 		var thisButton = $(this);
+		var toContinue = true;
+		$.ajax({
+			url: "/_check_graded_assignments",
+			context:document.body,
+			data: {netid: netid}
+		}).done(function(data) {
+			if (data == "not_empty") {
+				if(!confirm("This grader has graded assignments. Are you sure you want to continue?"))
+					toContinue = false;
+			}
+
+			if (toContinue == false)
+				return;
+			
 	      	$.ajax({
 	  			url: "/_delete_grader",
 	  			context: document.body,
@@ -135,6 +161,7 @@ $(document).ready(function() {
 		  		} else {
 		  			console.log("false");
 		  		}
+			});
 		});
 	});
 	$('.delete-buttons-assignment').click(function () {
@@ -153,6 +180,23 @@ $(document).ready(function() {
 		  			console.log("false");
 		  		}
 		});
+	});
+	$('.delete-buttons-1-assignment').click(function() {
+		var id = $(this).attr('id')
+		var thisButton = $(this);
+		console.log(id)
+		$.ajax({
+			url: "/_delete_1_assignment",
+			context: document.body,
+			data: {id: id}
+		}).done(function(data) {
+		  	if (data == "true") {
+		  		thisButton.closest('tr').css('display','none');
+	 			console.log("true");
+	  		} else {
+	  			console.log("false");
+	  		}		
+	  	});
 	});
 	$('.grader_assignments').click(function () {
 		var grader_netid = $(this).attr('id');

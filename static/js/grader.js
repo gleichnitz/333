@@ -1,3 +1,10 @@
+/*
+ Project: codePost
+ Template for Administrator -> Administrator -> Assignments Page
+ Authors: Ayyala, Evans, Freling, Kubiak, Leichnitz
+ Date: May 2014
+*/
+
 $(document).ready(function(e) {
 
 	$('td > div > .btn').each(function() {

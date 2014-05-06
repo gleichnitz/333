@@ -1,3 +1,10 @@
+<!--
+ Project: codePost
+ Template for Administrator -> Administrator -> Assignments Page
+ Authors: Ayyala, Evans, Freling, Kubiak, Leichnitz
+ Date: May 2014
+ //-->
+ 
 {% extends "base3.html" %}
 
 {% block head %}
@@ -49,18 +56,20 @@
 
             });
 
-            content.annotator('addPlugin', 'AnnotatorViewer');
+            /*content.annotator('addPlugin', 'AnnotatorViewer');
             //Annotation scroll
+            /// Need to somehow identify the individual panels
+            /// annotation.uri seems to make sense, but don't know how to alter annotator js to include
             if (i == 0) {
-              $('#anotacions-uoc-panel').slimscroll({height: '100%'});
+              $('#{{ item.name }} {{ id }}').slimscroll({height: '100%'});
             }
             else {
-              $('#anotacions-uoc-panel').hide();
+              $('#{{ item.name }} {{ id }}').hide();
             }
 
-            i++;
+            i++;*/
           {% endfor %}
-          $('table tr').click(function() {
+          /*$('table tr').click(function() {
             var href = $(this).attr("id");
 
             if (href == "" || href == "Total" || href == "total")
@@ -68,8 +77,6 @@
 
             var idName = href.substring(1, href.length);
 
-
-            viewer = false
             {% for item in assignment %}
               if (idName == {{item.name}}) {
                 console.log("000000000")
@@ -84,7 +91,7 @@
 
 
 
-        });
+        });*/
       });
   </script>
   <script>
@@ -199,10 +206,9 @@
       <form role="form" action="{{ status_redirection }}" method="post" enctype="multipart/form-data">
       <div class="form-group">
       {% for item in assignment %}
-        <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td><td>
-
+        <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}</td>
+        <td>
                 <nobr><input class="given_grade" type="text" size="1" maxlength="2" name="{{ item.name }}" {{ input_ro }} style="{{ input_style }}" value="{{ item.grade }}">/  10</nobr>
-
         </td></tr>
       {% endfor %}
       <tr font-size="13px" id="total">

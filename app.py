@@ -98,9 +98,9 @@ def upload_student_files():
     netid = request.form['netid']
 
     # Netid is automatically generated, so it should be valid.
-    #if isValidNetid(netid) is False:
-        #session['error'] = 'unk'
-        #return redirect('/admin/students')
+    if isValidNetid(netid) is False:
+        session['error'] = 'unk'
+        return redirect('/admin/students')
 
     files = request.files.getlist('file')
     string = ""

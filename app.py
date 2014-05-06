@@ -109,9 +109,9 @@ def upload_student_files():
 
     for file in files:
         # HACK: identify no files uploaded by empty filename
-        if file.filename == "":
-            session['error'] = 'nofiles'
-            return redirect('/admin/students')
+        #if file.filename == "":
+            #session['error'] = 'nofiles'
+            #return redirect('/admin/students')
 
         ass_file = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
         fileList.append(ass_file)

@@ -23,10 +23,9 @@
                     <!-- <div id='chart1' style='width: 500px; height: 325px; margin-left: 50px;'></div> -->
                     <h4> Progress: Percent Graded </h4>
                         <div style="width: 100%; height: 250px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid;">
-                            <div id='chart2' style='width: 200px; height: 250px; margin-right: 25px; display: inline-block'></div>
-                            <div id='chart3' style='width: 200px; height: 250px; margin-right: 25px; display: inline-block;'></div>
-                            <div id='chart4' style='width: 200px; height: 250px; margin-right: 25px; display: inline-block;'></div>
-                            <div id='chart5' style='width: 200px; height: 250px; margin-right: 25px; display: inline-block;'></div>
+                            {% for item in assignProgress %}
+                                <div id='{{ item.name }}' style='width: 200px; height: 250px; margin-right: 25px; display: inline-block'></div>
+                            {% endfor %}
                         </div>
                     <br>
                     <h4> Average Grade/Assignment </h4>
@@ -48,11 +47,10 @@
                     data: [[1, 10],[2, 12],[3, 5],[4, 13],[5, 2],[6, 1],[7, 18]]
                 }) */
 
-                var chart2 = new Charts.CircleProgress('chart2', 'Hello, World', 100);
-                var chart3 = new Charts.CircleProgress('chart3', 'Morph', 97);
-                var chart4 = new Charts.CircleProgress('chart4', 'AI', 85);
-                var chart5 = new Charts.CircleProgress('chart5', 'RegExp', 17);
-
+                {% for item in assignProgress %}
+                    var {{item.name}} = new Charts.CircleProgress('{{item.name}}', '{{item.name}}', {{item.percent}});
+                {% endfor %}
+                
                 var chart6 = new Charts.BarChart('chart6', {
                     x_label_color: "#333333",
                     bar_width: 80,

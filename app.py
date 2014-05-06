@@ -1016,7 +1016,7 @@ def admin():
 
     recent_assignments = []
     i = 0
-    while (i < 4 && i < len(assignments)):
+    while (i < 4 and i < len(assignments)):
         recent_assignments.append(assignments[0])
         i++
 

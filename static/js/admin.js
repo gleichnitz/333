@@ -174,6 +174,22 @@ $(document).ready(function() {
 		  		}
 		});
 	});
+	$('.delete-buttons-1-ass').click(function() {
+		var id = $(this).attr('id')
+		var thisButton = $(this);
+		$.ajax({
+			url: "/_delete_1_assignment",
+			context: document.body,
+			data: {id: id}
+		}).done(function(data) {
+		  	if (data == "true") {
+		  		thisButton.closest('tr').css('display','none');
+	 			console.log("true");
+	  		} else {
+	  			console.log("false");
+	  		}		
+	  	});
+	});
 	$('.grader_assignments').click(function () {
 		var grader_netid = $(this).attr('id');
 		var admin_netid = $(this).closest('table').parent().attr('id');

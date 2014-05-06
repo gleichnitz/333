@@ -124,7 +124,20 @@ $(document).ready(function() {
 		var netid = $(this).attr('id');
 		console.log(netid);
 		var thisButton = $(this);
+		var toContinue = true;
 		$.ajax({
+			url: "/_check_graded_assignments",
+			context:document.body,
+			data: {netid: netid}
+		}).done(function(data) {
+			if (data == "not_empty") {
+				if(!confirm("This grader has graded assignments. Are you sure you want to continue?"))
+					toContinue = false;
+			}
+
+			if (toContinue == false)
+				return;
+			
 	      	$.ajax({
 	  			url: "/_delete_grader",
 	  			context: document.body,

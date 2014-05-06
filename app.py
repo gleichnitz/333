@@ -840,7 +840,7 @@ def grader():
     for item in grader.courses:
         a = Assignment.query.filter_by(course=item).all()
         for assign_ in a:
-            assignments.append(a)
+            assignments.append(assign_)
 
     if grader is None:
         redirect('/')

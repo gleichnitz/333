@@ -957,13 +957,17 @@ def admin_students():
     # Check to see if an error occured before refresh.
     alertMessage = ""
 
+    session['error'] = 'test'
+
     if 'error' in session:
         if session['error'] == 'unk':
-            alertString = "An unkown error occurred while uploading student code. Please try again."
+            alertString = "An unknown error occurred while uploading student code. Please try again."
         elif session['error'] == 'nofiles':
             alertString = "No files were selected to upload."
         elif session['error'] == 'invalidid':
             alertString = "The file you uploaded contained an invalid netid. Please try again."
+        else:
+            alertString = "Test"
 
         session.pop('error', None)
 

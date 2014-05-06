@@ -1123,7 +1123,7 @@ def admin_admins():
     session.pop('error', None)
 
     admin = Admin.query.filter_by(netid = netid).first()
-    assignment_db = admin.courses[0].assignments
+    assignment_db = admin.courses[0].assignments.all()
 
     assignments = []
     courses = []

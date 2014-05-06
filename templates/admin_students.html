@@ -52,6 +52,7 @@
 
     {{ alert|safe }}
 
+    <div id="course-name" style="display: none;">{{ course }}</div>
     <table id="admin-student-table" class="table table-hover tablesorter" style="background-color: transparent; margin-top: 15px; margin-right: 10%;">
     <thead>
       <tr>
@@ -109,7 +110,6 @@
               </div>
               <div class="form-group">
                 <div id="code-upload-sample">
-                  <input type="text" value="" style="display: none;" name="netid" id="netid-default-field">
                   <label for="exampleInputFile">File input</label>
                   <input type=file name="file" multiple>
                   <br>
@@ -184,7 +184,7 @@
               </div>
               <div class="form-group">
                 <div id="code-upload-sample">
-                  <input type="text" value="" style="display: none;" name="netid" id="netid-default-field">
+                  <input type="text" value="" style="display: none;" name="netid" id="netid-default-field-student">
                   <label for="exampleInputFile">File input</label>
                   <input type=file name="file" multiple>
                   <br>

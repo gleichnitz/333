@@ -957,7 +957,7 @@ def admin_students():
 
     if 'error' in session:
         if session['error'] == 'unk':
-            alertString = "An unkown error occurred while uploading student code. Please try again."
+            alertString = "An unkown error occurred."
         elif session['error'] == 'nofiles':
             alertString = "No files were selected to upload."
         elif session['error'] == 'invalidid':
@@ -968,6 +968,9 @@ def admin_students():
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
+
+    admin = Admin.query.filter_by(netid = netid).first()
+    course = admin.courses[0]
 
     # Load all students in admin's class.
     students_db = Student.query.all()
@@ -986,7 +989,7 @@ def admin_students():
         if assignment.master is True:
             masters.append(assignment)
 
-    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
+    return render_template('admin_students.html', students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage, course=course)
 
 @app.route("/admin/graders")
 def admin_graders():

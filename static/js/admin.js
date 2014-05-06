@@ -8,7 +8,7 @@ $(document).ready(function() {
 		$('#modal-upload').modal('toggle');
 		netid = $(this).closest('tr').children('.netid-row').children('a').children('div').text();
 		console.log(netid);
-		$('#netid-default-field').attr('value', netid);
+		$('#netid-default-field-student').attr('value', netid);
 	});
 
 	$('#assignment-submit-select').change(function() {
@@ -89,6 +89,7 @@ $(document).ready(function() {
 
 	$('.delete-buttons-student').click(function () {
 		var netid = $(this).attr('id');
+		var admin = $('course-name').attr('id');
 		console.log(netid);
 		var thisButton = $(this);
 		var toContinue = true;
@@ -108,7 +109,7 @@ $(document).ready(function() {
       		$.ajax({
 	  			url: "/_delete_student",
   				context: document.body,
-  				data: { netid: netid }
+  				data: { netid: netid, courseid: admin}
 		  	}).done(function(data) {
 		  		if (data == "true") {
 	  				thisButton.closest('tr').css('display','none');

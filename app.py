@@ -1033,7 +1033,7 @@ def admin_graders():
         roles.remove("admin")
 
     admin = Admin.query.filter_by(netid = netid).first()
-    course = admin.courses[0]
+    course = admin.courses[0].name
     graders = course.graders
 
     gradernetid = []
@@ -1051,7 +1051,7 @@ def admin_student_assignment(netid, student):
         roles.remove("admin")
     student = Student.query.filter_by(netid=student_netid).first()
     admin = Admin.query.filter_by(netid=admin_netid).first()
-    course = admin.courses[0]
+    course = admin.courses[0].name
     assignments_student = Assignment.query.filter_by(student=student).all()
     assignments=[]
     for assignment in assignments_student:
@@ -1068,7 +1068,7 @@ def admin_grader_assignments(netid, grader):
         roles.remove("admin")
     grader = Grader.query.filter_by(netid=gradernetid).first()
     admin = Admin.query.filter_by(netid=admin_netid).first()
-    course = admin.courses[0]
+    course = admin.courses[0].name
     assignments_grader = Assignment.query.filter_by(grader=grader).all()
     assignments=[]
     for assignment in assignments_grader:
@@ -1084,7 +1084,7 @@ def admin_all_assignments(netid, assignment):
     if (roles.count("admin") != 0):
         roles.remove("admin")
     admin = Admin.query.filter_by(netid=admin_netid).first()
-    course = admin.courses[0]
+    course = admin.courses[0].name
     assignments_name = Assignment.query.filter_by(name=assignment_name).all()
     assignments=[]
     for assignment in assignments_name:
@@ -1132,8 +1132,10 @@ def admin_admins():
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
     session.pop('error', None)
+
     admin = Admin.query.filter_by(netid = netid).first()
     assignment_db = admin.courses[0].assignments
+    course = admin.courses[0].name
 
     assignments = []
     courses = []
@@ -1143,7 +1145,7 @@ def admin_admins():
         if assignment.courseid not in courses:
             courses.append(assignment.courseid)
 
-    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid= netid, roles = roles, alert = alertMessage)
+    return render_template('admin_admins.html', courses=courses, assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course)
 
 @app.route("/logout")
 def logout():

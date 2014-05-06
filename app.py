@@ -272,7 +272,7 @@ def add_student():
 
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
-        newStudent = Student("name", "test", netid)
+        newStudent = Student("asdf", "test", netid)
         newStudent.courses.append(course)
         db.session.add(newStudent)
         db.session.commit()

@@ -1083,7 +1083,10 @@ def admin_graders():
         for assignment in assignments:
             if assignment.course != course:
                 continue
-            total_grade += assignment.grade/assignment.points_possible
+            if assignment.points_possible != None:
+                total_grade += assignment.grade/assignment.points_possible
+            else:
+                total_grade += assignment.grade
             if assignment.graded == True:
                 num_graded += 1
             elif assignment.in_progress == True:

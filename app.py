@@ -1086,7 +1086,7 @@ def admin_graders():
                 num_in_progress += 1
         avg_grade = total_grade/len(assignments)
 
-        grader_db.append(GraderClass(grader.netid, avg_grade num_in_progress, num_graded))
+        grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))
 
     return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=netid, roles = roles)
 

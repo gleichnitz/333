@@ -53,7 +53,7 @@ $(document).ready(function(e) {
 	  			data: { id: assignmentid}
 			}).done(function(data) {
 		 		if (data == "success") {
-		  			clickButton.text("Edit Again")
+		  			clickButton.text("Unmark as Done")
 		  		} else {
 
 		  		}

@@ -417,7 +417,7 @@ class AssignmentClass:
         self.points = points
 
 class File:
-    def __init__(self, name, code, grade, isReadOnly = ""):
+    def __init__(self, name, code, grade, totalpoints, isReadOnly = ""):
         self.name = name.split('.')[0]
         if len(name.split('.')) > 1:
             self.ext = name.split('.')[1]
@@ -429,6 +429,7 @@ class File:
             self.ext = "plain"
         self.code = code
         self.grade = grade
+        self.totalpoints = totalpoints
         self.isReadOnly = isReadOnly
 
 class StudentClass:
@@ -745,12 +746,13 @@ def submitted():
         status_redirection = "/_done"
 
     files = []
-
+    i = 0
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], item['grade']))
+            files.append(File(item['name'], item['content'], item['grade'], assignment_active.rubric[i]))
         else:
-            files.append(File(item['name'], item['content'], item['grade'], "{readOnly: true}"))
+            files.append(File(item['name'], item['content'], item['grade'], assignment_active.rubric[i], "{readOnly: true}"))
+        i++
 
 
     ##################################

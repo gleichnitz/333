@@ -448,8 +448,9 @@ class AssignmentClass:
         self.points = points
 
 class GraderClass:
-    def __init__(self, netid, num_graded):
+    def __init__(self, netid, num_in_progress, num_graded):
         self.netid = netid
+        self.num_in_progress = num_in_progress
         self.num_graded = num_graded
 
 class File:
@@ -1068,11 +1069,14 @@ def admin_graders():
     grader_db = []
     for grader in graders:
         num_graded = 0
+        num_in_progress = 0
         assignments = Assignment.query.filter_by(grader=grader)
         for assignment in assignments:
             if assignment.graded == True:
                 num_graded += 1
-        grader_db.append(GraderClass(grader.netid, num_graded))
+            elif assignment.in_progress == True:
+                num_in_progress += 1
+        grader_db.append(GraderClass(grader.netid, num_in_progress, num_graded))
 
     return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=netid, roles = roles)
 

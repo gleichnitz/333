@@ -1,15 +1,24 @@
+<!--
+ Project: codePost
+ Template for Website Main Page
+ Authors: Ayyala, Evans, Freling, Kubiak, Leichnitz
+ Date: May 2014
+ //-->
+
 <!doctype html>
 <html>
 <head lang="en">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	
+    <!-- website description and information //-->
 	<title>codePost: Home</title>
-	<meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />	    
+	<meta name="description" content="codePost - Your One-Stop Code Grading Interface" />
 	<meta name="keywords" content="themes, bootstrap, free, templates, bootstrap 3, freebie,">
 	<meta property="og:title" content="">
-
-	<link rel="stylesheet" type="text/css" href="../static/stylesheets/bootstrap.min.css">
+    
+    <!-- import stylesheets //-->
+    <link rel="stylesheet" type="text/css" href="../static/stylesheets/bootstrap.min.css">
 	<link rel="stylesheet" href="../static/fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
     <link rel="stylesheet" href="../static/stylesheets/font-awesome.min.css" rel="stylesheet">
 	
@@ -18,7 +27,9 @@
 	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext ' rel='stylesheet' type='text/css'>
 </head>
 
+<!-- begin page content //-->
 <body>
+    <!-- fixed-top navigation bar //-->
 	<div class="navbar navbar-fixed-top" data-activeslide="1">
 		<div class="container">
 		
@@ -29,7 +40,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			
-			
+            <!-- links in the navigation bar //-->
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav row">
 					<li data-slide="1" class="col-7 col-sm-3"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-home"></span> <span class="text">HOME</span></a></li>
@@ -44,25 +55,23 @@
 		</div><!-- /.container -->
 	</div><!-- /.navbar -->
 	
-	
-	<!-- === Arrows ARE DISABLED FOR NOW === -->
-	<!--<div id="arrows">
-		<div id="arrow-up" class="disabled"></div>
-		<div id="arrow-down"></div>
-	</div><!-- /.arrows -->
-	
-	<!-- === MAIN Background === -->
+	<!-- === Slide 1: Title Slide === -->
 	<div class="slide story" id="slide-1" data-slide="1">
 		<div class="container">
+            
+            <!-- main logo //-->
 			<div id="home-row-1" class="row clearfix">
-				<div class="col-12">
-						{{ alert|safe }}
+				
+                <div class="col-12">
 					<h1 class="font-semibold">code<font color="red">P</font><span class="font-thin">ost</span></h1>
-					<h4 class="font-thin">Because grading should be easy.</h4>
+					<h4 class="font-thin">Because grading should be 2 easy.</h4>
 					<br>
 				</div><!-- /col-12 -->
+                
+            <!-- main interactive buttons //-->
 			</div><!-- /row -->
             <button type="button" id="tryitout" class="btn btn-danger btn-lg" style="color: white !important;"> Try It Out ><a href="https://saltytyga.herokuapp.com/demo"></button>
+            
 			<div id="home-row-2" class="row clearfix">
 				<div id="studentlogin" class="col-12 col-sm-4">
                     <div class="home-hover navigation-slide"> <a href="https://fed.princeton.edu/cas/login?service={{url_for('student')}}"><img src="../static/img/s.png" width=70 height=70></a>
@@ -77,18 +86,24 @@
                     </div>
                     <span><font color="red">A</font>DMINISTRATORS</span></div>
 			</div><!-- /row -->
+            
 		</div><!-- /container -->
 	</div><!-- /slide1 -->
 	
 	<!-- === Slide 2 - About Us === -->
 	<div class="slide story" id="slide-2" data-slide="2">
 		<div class="container">
+            <!-- header //-->
 			<div class="row title-row">
 				<div class="col-12 font-semibold">About <font color="red">U</font>s</div>
 			</div><!-- /row -->
+            
+            <!-- spacing/formatting //-->
 			<div class="row line-row">
 				<div class="hr">&nbsp;</div>
 			</div><!-- /row -->
+            
+            <!-- inner text //-->
             <div class="row subtitle-row">
 				code<font color="red">P</font>ost makes grading more convenient, more interactive, and more meaningful, savings thousands of pieces of paper along the way. It's a place for teachers to grade, and comment on student code, and for students to review those comments, ask questions, and get the most out of their assignments. 
 				</div>
@@ -99,39 +114,58 @@
     <!-- === Slide 4 - Features === -->
 	<div class="slide story" id="slide-4" data-slide="4">
 		<div class="container">
+            
+            <!-- header //-->
 			<div class="row title-row">
 				<div class="col-12 font-semibold">Our <font color="red">F</font>eatures</span></div>
 			</div><!-- /row -->
+            
+            <!-- spacing //-->
 			<div class="row line-row2">
 				<div class="hr">&nbsp;</div>
 			</div><!-- /row -->
+            
+            <!-- inner text //-->
             <div class="row content-row">
+                
+                <!-- spacing //-->
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+                
+                <!-- first of 5 columns //-->
 				<div class="col-12 col-sm-2">
 					<p><i class="icon icon-pencil"></i></p>
 					<h2 class="font-thin">Annotation <font color="red">S</font>upport</h2>
 					<h4 class="font-thin">code<font color="red">P</font>ost contains easy-to-use annotation features, including commenting, highlighting, and grading.</h4>
 				</div><!-- /col12 -->
+                
+                <!-- second of 5 columns //-->
 				<div class="col-12 col-sm-2">
 					<p><i class="icon icon-download"></i></p>
 					<h2 class="font-thin">Assign <font color="red">G</font>rading</h2>
 					<h4 class="font-thin">Multiple graders can use the website at once in order to grade all student work, and graders can be added and removed by administrators.</h4>
 				</div><!-- /col12 -->
+                
+                <!-- third of 5 columns //-->
 				<div class="col-12 col-sm-2">
 					<p><i class="icon icon-refresh"></i></p>
 					<h2 class="font-thin">Claim and <font color="red">R</font>elease</h2>
 					<h4 class="font-thin">Graders can claim and release assignments in real time in order to make sure all of the student assignments are reviewed by the graders.</h4>
 				</div><!-- /col12 -->
+                
+                <!-- fourth of 5 columns //-->
 				<div class="col-12 col-sm-2">
 					<p><i class="icon icon-leaf"></i></p>
 					<h2 class="font-thin">Save <font color="red">R</font>esources</h2>
 					<h4 class="font-thin">Princeton  alone will save thousands of sheets of paper per week by substituting code<font color="red">P</font>ost online grading for the current system. </h4>
 				</div><!-- /col12 -->
+                
+                <!-- fifth of 5 columns //-->
 				<div class="col-12 col-sm-2">
 					<p><i class="icon icon-check"></i></p>
 					<h2 class="font-thin">Clean <font color="red">D</font>esign</h2>
 					<h4 class="font-thin">code<font color="red">P</font>ost's clean layout is straightforward and easy to use for students, graders, and administrators alike. Try out the demo now.</h4>
 				</div><!-- /col12 -->
+                
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
 			</div><!-- /row -->
 		</div><!-- /container -->
@@ -140,16 +174,21 @@
     <!-- === Slide 5 - Sign Up === -->
 	<div class="slide story" id="slide-5" data-slide="5">
 		<div class="container">
+            
 			<div class="row title-row">
 				<div class="col-12 font-semibold">Sign <font color="red">U</font>p</div>
 			</div><!-- /row -->
+            
 			<div class="row line-row">
 				<div class="hr">&nbsp;</div>
 			</div><!-- /row -->
+            
             <div class="row subtitle-row">
 				Want to help your computer science department save much-needed resources and time? Join us and sign up your school now:
             </div>
+            
             <button type="button" id="tryitout" class="btn btn-danger btn-lg" style="color: white !important;"> Sign Up ><a href="https://saltytyga.herokuapp.com/demo"></button>
+            
         </div>
         <div class="copyright">
             <h5> ©  code<font color="red">P</font>ost, 2014</h5>

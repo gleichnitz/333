@@ -471,10 +471,11 @@ class MasterAssignmentClass:
         self.submitted = submitted
 
 class AssignmentProgressClass:
-    def __init__(self, a, name, percent_graded, number, due_date):
+    def __init__(self, a, name, percent_graded, avg_grade, number, due_date):
         self.a = a
         self.name = name
         self.percent_graded = percent_graded
+        self.avg_grade = avg_grade
         self.number = number
         self.due_date = due_date
 
@@ -1000,36 +1001,46 @@ def admin():
     for assignment in assignment_db:
         if assignment.master is True:
             graded = 0.0
+            grade = 0.0
             submitted = 0.0
             assignment_db.remove(assignment)
             for a in assignment_db:
                 if a.name == assignment.name:
                     if a.graded == True:
                         graded += 1
+                        grade += a.grade
                     else:
                         submitted += 1
             submitted += graded
             percent_graded = 0.0
-            if submitted == 0.0:
+            avg_grade = 0.0
+            if submitted == 0:
                 percent_graded = 0.0
-            elif graded != 0.0:
+            elif graded != 0:
                 percent_graded = str(int(graded/submitted * 100))
-            assignments.append(AssignmentProgressClass(assignment, assignment.name, percent_graded, 0, assignment.due_date))
+                avg_grade = str(int(grade / (graded * 100) * 100))
+            assignments.append(AssignmentProgressClass(assignment, assignment.name, percent_graded, avg_grade, 0, assignment.due_date))
 
     assignments.sort(key=operator.attrgetter('due_date'))
 
-    recent_assignments = []
+    graph1_assignments = []
+    graph2_assignments = []
     i = 0
     while (i < 4 and i < len(assignments)):
         assignments[i].number = i
-        recent_assignments.append(assignments[i])
+        graph1_assignments.append(assignments[i])
+        i += 1
+
+    i = 0
+    while (i < 10 and i < len(assignments)):
+        graph2_assignments.append(assignments[i])
         i += 1
 
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    return render_template('admin2.html', course=course.name, netid=netid, roles = roles, recent_assignments=recent_assignments)
+    return render_template('admin2.html', course=course.name, netid=netid, roles = roles, graph1_assignments=graph1_assignments)
 
 @app.route("/admin/students")
 def admin_students():

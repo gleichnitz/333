@@ -56,10 +56,14 @@ def AddtoListAssignmentMaster(files, file_name):
 def mass_upload_student_files():
     files = request.files.getlist('file')
     assignmentName = request.form['assignmentTitle']
+    course_ = request.form['course']
     content = ""
 
     studentFiles = {}
     netids = []
+
+    master = Assignment.query.filter_by(master = True, name = assignmentName)
+    points_possible = master.points_possible
 
     for file in files:
         text = file.read()
@@ -70,8 +74,9 @@ def mass_upload_student_files():
         studentFiles[netid].append({'name': file.filename, 'content': text, 'grade': "", 'annotations': []})
 
     for item in netids:
-        addAssignment("cos333", item, assignmentName, studentFiles[item])
-
+        id_ = addAssignment(course_, item, assignmentName, studentFiles[item])
+        Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
+        db.session.commit()
     return "true"
 
 # Create a bunch of students from a list of netids.
@@ -106,12 +111,17 @@ def mass_upload_students():
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
     assignmentName = request.form['assignmentTitle']
+    course_ = request.form['course']
     netid = request.form['netid']
 
     # Netid is automatically generated, so it should be valid.
     if isValidNetid(netid) is False:
         session['error'] = 'unk'
         return redirect('/admin/students')
+
+
+    master = Assignment.query.filter_by(master = True, name = assignmentName)
+    points_possible = master.points_possible
 
     files = request.files.getlist('file')
     string = ""
@@ -127,7 +137,10 @@ def upload_student_files():
         ass_file = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
         fileList.append(ass_file)
 
-    addAssignment("cos333", netid, assignmentName, fileList)
+    id_ = addAssignment(course_, netid, assignmentName, fileList)
+    Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
+    db.session.commit()
+
 
     return redirect('/admin/students')
 

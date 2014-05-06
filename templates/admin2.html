@@ -48,7 +48,8 @@
                 }) */
 
                 {% for item in recent_assignments %}
-                    var {{item.name}} = new Charts.CircleProgress('{{item.name}}', '{{item.name}}', {{item.percent_graded}});
+                    var chart{{item.num}} = new Charts.CircleProgress('{{item.name}}', '{{item.name}}', {{item.percent_graded}});
+                    chart{{item.num}}.draw()
                 {% endfor %}
 
                 var chart6 = new Charts.BarChart('chart6', {
@@ -96,10 +97,6 @@
             });
 
                 //chart.draw();
-                chart2.draw();
-                chart3.draw();
-                chart4.draw();
-                chart5.draw();
                 chart6.draw();
                 chart7.draw();
             </script>

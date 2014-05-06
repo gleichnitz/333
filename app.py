@@ -729,7 +729,7 @@ def submitted():
         else:
             return redirect('/grader')
 
-    if accountType == "s" and assigntment_active.graded != True:
+    if accountType == "s" and assignment_active.graded != True:
         return redirect('/student')
 
     roles = makeRoles(netid)

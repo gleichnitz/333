@@ -462,8 +462,8 @@ class GraderClass:
         self.num_graded = num_graded
 
 class MasterAssignmentClass:
-    def __init__(self, name, avg_grade, graded, submitted):
-        self.name = name
+    def __init__(self, assignment, avg_grade, graded, submitted):
+        self.assignment = assignment
         self.avg_grade = avg_grade
         self.graded = graded
         self.submitted = submitted
@@ -1105,7 +1105,7 @@ def admin_graders():
         if len(assignments) != 0:
             avg_grade = total_grade/len(assignments)
             if assignment.points_possible != None:
-                avg_grade += "%"
+                avg_grade = str(avg_grade) + "%"
 
         grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))
 

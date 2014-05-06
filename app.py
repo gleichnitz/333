@@ -449,6 +449,12 @@ class AssignmentClass:
         self.status = status
         self.points = points
 
+class StudentClass:
+    def __init__(self, student, avg_grade, num_assignments):
+        self.student=student
+        self.avg_grade=avg_grade
+        self.num_assignments=num_assignments
+
 class GraderClass:
     def __init__(self, netid, avg_grade, num_in_progress, num_graded):
         self.netid = netid
@@ -477,11 +483,6 @@ class File:
         self.code = code
         self.grade = grade
         self.isReadOnly = isReadOnly
-
-class StudentClass:
-    def __init__(self, name, netid):
-        self.name = name
-        self.netid = netid
 
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
@@ -1037,21 +1038,25 @@ def admin_students():
     course = admin.courses[0]
     students_db = course.students.all()
 
-    course = admin.courses[0]
-
     students_form = []
 
     for student in students_db:
-        students_form.append(StudentClass("no name", student.netid))
+        students_form.append(StudentClass(student, 10, 3))
 
     assignment_db = course.assignments.all()
 
     masters = []
 
-    # Load assignments for reference when uploading code.
-    for assignment in assignment_db:
-        if assignment.master is True:
+    assignments_master = Assignment.query.filter_by(master=True).all()
+    for assignment in assignments_master:
+        if assignment.course = course:
             masters.append(assignment)
+
+
+    # Load assignments for reference when uploading code.
+    # for assignment in assignment_db:
+    #     if assignment.master is True:
+    #         masters.append(assignment)
 
     return render_template('admin_students.html', course=course.name, students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
 

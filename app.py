@@ -1030,7 +1030,7 @@ def admin_graders():
     # for name in graders:
     #     names.append(graders.firstname + " " + graders.lastname)
 
-    return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+    return render_template('admin_graders.html', assignments=assignments, allassignments=allassignments, totalgraded=totalgraded, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route('/admin_<netid>/<student>_assignment')
 def admin_student_assignment(netid, student):

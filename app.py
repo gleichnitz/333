@@ -1033,14 +1033,14 @@ def admin_graders():
         roles.remove("admin")
 
     admin = Admin.query.filter_by(netid = netid).first()
-    course = admin.courses[0].name
+    course = admin.courses[0]
     graders = course.graders
 
     gradernetid = []
     for grader in graders:
         gradernetid.append(grader.netid)
 
-    return render_template('admin_graders.html', course=course, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
+    return render_template('admin_graders.html', course=course.name, gradernetid=gradernetid, graders=graders, netid=session['username'], roles = roles)
 
 @app.route('/admin_<netid>/<student>_assignment')
 def admin_student_assignment(netid, student):

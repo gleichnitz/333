@@ -891,10 +891,10 @@ def student():
 
     assignments_form = []
     for item in assignments:
-        masters = Assignment.query.filter_by(master=True).all()
+        masters = Assignment.query.filter_by(name=item.name).all()
         master = 0
         for m in masters:
-            if m.name == item.name:
+            if m.master == True:
                 master = m
         if master == 0:
             return "this shouldn't happen"

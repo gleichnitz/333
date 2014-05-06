@@ -30,6 +30,8 @@
                     <br>
                     <p> Average Grade/Assignment </p>
                         <div id='chart6' style='width: 800px; height: 300px;'></div>
+                    <br>
+                        <div id='chart7' style='width: 800px; height: 300px;'></div>
                 </div>
             </div>
         </div>
@@ -47,7 +49,10 @@
 
                 var chart6 = new Charts.BarChart('chart6', {
                     x_label_color: "#333333",
-                    bar_width: 80
+                    bar_width: 80,
+                      show_grid: true,
+                      label_max: true,
+                      label_min: true
                     });
 
                 chart6.add({
@@ -69,6 +74,28 @@
                   label: "Assignment 4",
                   value: 78
                 });
+
+                var chart7 = new Charts.LineChart('chart1', {
+                    show_grid: true,
+                    label_max: true,
+                    label_min: true
+                });
+ 
+
+            var day1 = new Date(d.getFullYear(), d.getMonth(), 1);
+            var day2 = new Date(d.getFullYear(), d.getMonth(), 2);
+            var day3 = new Date(d.getFullYear(), d.getMonth(), 3);
+            var day4 = new Date(d.getFullYear(), d.getMonth(), 4);
+            var day5 = new Date(d.getFullYear(), d.getMonth(), 5);
+
+            chart.add_line({
+              data: [[day1, 7],[day2, 12], [day3, 12], [day4, 17], [day5, 22]],
+
+              // line level options passed here
+              options: {
+                line_color: "#00aadd"
+              }
+            });
 
 
                 //chart.draw();

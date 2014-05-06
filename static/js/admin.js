@@ -101,21 +101,21 @@ $(document).ready(function() {
 	  			if (!confirm("You've uploaded code for this student. Are you sure you want to delete?"))
 	  				toContinue = false;
 	  		}
-		});
 
-	  	if (toContinue == false)
-	  		return;
+		  	if (toContinue == false)
+		  		return;
 
-      	$.ajax({
-  			url: "/_delete_student",
-  			context: document.body,
-  			data: { netid: netid }
-	  	}).done(function(data) {
-	  		if (data == "true") {
-	  			thisButton.closest('tr').css('display','none');
-	  		} else {
-	  			console.log("false");
-	  		}
+      		$.ajax({
+	  			url: "/_delete_student",
+  				context: document.body,
+  				data: { netid: netid }
+		  	}).done(function(data) {
+		  		if (data == "true") {
+	  				thisButton.closest('tr').css('display','none');
+	  			} else {
+	  				console.log("false");
+		  		}
+			});
 		});
 	});
 

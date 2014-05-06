@@ -236,7 +236,7 @@ def release_assignment():
 def check_annotations():
     assignID = request.args.get('id')
     a = Assignment.query.filter_by(id  = assignID).first()
-    for submission in assignment.files:
+    for submission in a.files:
         annotations = submission["annotations"]
         if len(annotations) != 0:
             return "not_empty"

@@ -1064,7 +1064,7 @@ def admin_graders():
         for assignment in assignments:
             if assignment.graded == True:
                 num_graded += 1
-        grader_db.append(GraderClass(grader.netid, num_graded)
+        grader_db.append(GraderClass(grader.netid, num_graded))
 
     return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=netid, roles = roles)
 

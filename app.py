@@ -412,6 +412,7 @@ def add_assignment():
 
     db.session.add(assignment)
     db.session.commit()
+    return assignment.id
 
     return redirect('/admin/assignments')
 

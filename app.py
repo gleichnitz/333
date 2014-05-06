@@ -57,11 +57,12 @@ def mass_upload_student_files():
     netids = []
 
     for file in files:
-        netid = re.search("netid:\s*[a-z]+", file.read()).group(0).split()[1]
+        text = file.read()
+        netid = re.search("netid:\s*[a-z]+", text).group(0).split()[1]
         if netid not in studentFiles:
             studentFiles[netid] = []
             netids.append(netid)
-        studentFiles[netid].append({'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []})
+        studentFiles[netid].append({'name': file.filename, 'content': text, 'grade': "", 'annotations': []})
 
     for item in netids:
         addAssignment("cos333", item, assignmentName, studentFiles[item])

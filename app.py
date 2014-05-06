@@ -894,7 +894,7 @@ def student():
         masters = Assignment.query.filter_by(master=True).all()
         master = 0
         for m in masters:
-            if m.name = item.name:
+            if m.name == item.name:
                 master = m
         if master = 0:
             return "this shouldn't happen"
@@ -908,7 +908,7 @@ def student():
         else:
             grade = "In Progress"
             status = "--------"
-        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, grade, "", item.student.netid, status, item.points_possible))
+        assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, item.date, item.files, grade, "", item.student.netid, status, master.points_possible))
 
     classes = []
 

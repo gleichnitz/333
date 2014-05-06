@@ -748,7 +748,7 @@ def submitted():
     if accountType == "s":
         student = Student.query.filter_by(netid = netid).first()
         assignments = student.assignments.all()
-        grader_button_display = "none"
+        grader_button_display = "student_done"
         input_ro = "readonly"
         input_style = "border:none"
     elif accountType == "g":
@@ -759,6 +759,7 @@ def submitted():
         assignment = Assignment.query.filter_by(id = assignmentID).first()
         if admin is None or assignment is None:
             return redirect('/admin')
+        grader_button_display = "admin_done"
         ### THIS IS GOING TO CHANGE!!!!
         a_courses = admin.courses
         check = False

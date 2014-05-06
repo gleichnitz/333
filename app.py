@@ -1118,7 +1118,7 @@ def admin_admins():
 @app.route("/logout")
 def logout():
     session.pop('username', None)
-    return redirect('/')
+    return redirect('https://fed.princeton.edu/cas/logout')
 
 # @app.route("/demo")
 # def demo():

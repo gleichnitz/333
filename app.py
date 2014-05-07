@@ -355,9 +355,7 @@ def remove_student():
     db.session.add(student)
     db.session.commit()
 
-    if len(student.courses) > 0:
-        student.update({'courses': courses})
-    else:
+    if len(student.courses) == 0:
         db.session.delete(student)
     
     db.session.commit()

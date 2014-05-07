@@ -550,7 +550,7 @@ def jsonify(obj, *args, **kwargs):
     return Response(res, mimetype='application/json', *args, **kwargs)
 
 # def jsonify(obj, *args, **kwargs):
-#     res = json.dumps(obj, indent=None if request.is_xhr else 2)
+#     res =json.dumps(obj, indent=None if request.is_xhr else 2)
 #     return Response(res, mimetype='application/json', *args, **kwargs)
 
 def find_Annotation(id, name):

@@ -162,14 +162,16 @@ def upload_student_files():
     for file in files:
         # HACK: identify no files uploaded by empty filename
         if file.filename == "":
-            session['error'] = 'You didn\'t select any file to upload!.'
+            session['error'] = 'You didn\'t select any file to upload!'
             return redirect('/admin/students')
 
         lines = file.read().split('\n')
 
         if file.filename not in master_file_names:
-            session['error'] = ""
+            session['error'] = file.filename + " is not in the list of files for the master assignment."
             return redirect('admin/students')
+
+        master_file_names.remove(file.filename)
 
         if len(lines) > 1000:
             session['error'] = file.filename + ' has too many lines (' + str(len(lines)) + ').'
@@ -182,6 +184,11 @@ def upload_student_files():
     Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
     db.session.commit()
 
+    if len(master_file_names) != 0:
+        files_left = ""
+        for item in master_file_names:
+            files_left += item + " "
+        session['warning'] = files_left + "were not uploaded for this assignment."
     session['success'] = 'You successfully uploaded code for ' + netid + '.'
 
     return redirect('/admin/students')

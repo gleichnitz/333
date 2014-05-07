@@ -110,7 +110,7 @@ def mass_upload_students():
         if student is None:
             student = Student("name", "test", item)
             student.courses.append(course)
-            db.session.add(newStudent)
+            db.session.add(student)
             db.session.commit()
         else:
             student.courses.append(course)

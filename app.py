@@ -1274,12 +1274,12 @@ def admin_admins():
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
     assignment_db = course.assignments.all()
+    return str(len(assignment_db))
 
-    test = []
     assignments = []
     for assignment in assignment_db:
         if assignment.master is True:
-            test.append(assignment)
+
             avg_grade = 0
             total_grade = 0
             graded = 0

@@ -84,12 +84,11 @@ def mass_upload_student_files():
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
 
-    return "test"
-
-    f = request.files['netids']
+    f = request.files.getlist('netids')
     courseName = request.form['courseid']
 
-    netids = f.read().split('\n')
+    for file in f:
+        netids = file.read().split('\n')
 
     for item in netids:
         if isValidNetid(item) is not True:

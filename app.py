@@ -87,7 +87,11 @@ def mass_upload_student_files():
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
 
-    f = request.files('file')
+    try:
+        f = request.files('file')
+    except:
+        return traceback.format_exc()
+
     courseName = request.form['courseid']
 
     for file in f:

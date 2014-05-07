@@ -106,7 +106,6 @@ $(document).ready(function() {
 		var netid = $(this).attr('id');
 		var admin = $('course-name').attr('id');
 		var course = $(this).closest('tr').attr('id');
-		console.log(netid);
 		var thisButton = $(this);
 		var toContinue = true;
 		$.ajax({

@@ -1274,30 +1274,26 @@ def admin_admins():
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
     assignment_db = Assignment.query.filter_by(course = course, master = True).all()
-    return str(len(assignment_db))
 
     assignments = []
     for assignment in assignment_db:
-        if assignment.master is True:
-
-            avg_grade = 0
-            total_grade = 0
-            graded = 0
-            submitted = 0
-            assignment_db.remove(assignment)
-            for a in assignment_db:
-                if a.name == assignment.name:
-                    if a.graded == True:
-                        graded += 1
-                        if a.points_possible != None:
-                            total_grade += a.grade/a.points_possible*100
-                    else:
-                        submitted += 1
-            submitted += graded
-            if graded != 0:
-                avg_grade = str(int(total_grade/graded)) + "%"
-            assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))
-    return str(len(test))
+        avg_grade = 0
+        total_grade = 0
+        graded = 0
+        submitted = 0
+        non_master = Assignment.query.filter_by(course = course, master = False, name = assignment.name).all()
+        for a in non_master:
+            if a.graded == True:
+                graded += 1
+                if a.points_possible != None:
+                    total_grade += a.grade/a.points_possible*100
+            else:
+                submitted += 1
+        submitted += graded
+        if graded != 0:
+            avg_grade = str(int(total_grade/graded)) + "%"
+        assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))
+    return str(len(assignments))
 
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
 

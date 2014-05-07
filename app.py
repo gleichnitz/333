@@ -168,7 +168,7 @@ def upload_student_files():
         lines = file.read().split('\n')
 
         if file.filename not in master_file_names:
-            session['error'] = file.filename + " is not in the list of files for the master assignment."
+            session['error'] = file.filename + " is not in the list of files for the master assignment, so " + netid + "\'s " + assignmentName + " assignment was not uploaded."
             return redirect('admin/students')
 
         master_file_names.remove(file.filename)

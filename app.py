@@ -139,7 +139,6 @@ def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     course_ = request.form['course']
     netid = request.form['netid']
-    course = Course.query.filter_by(name=course_).first()
 
     # Netid is automatically generated, so it should be valid.
     if isValidNetid(netid) is False:
@@ -147,11 +146,10 @@ def upload_student_files():
         return redirect('/admin/students')
 
 
-    master = Assignment.query.filter_by(master = True, name = assignmentName, course=course).first()
+    master = Assignment.query.filter_by(master = True, name = assignmentName).first()
     points_possible = master.points_possible
     master_files = master.files
     master_file_names = []
-
     for item in master.files:
         if item["name"] not in master_file_names:
             master_file_names.append(item["name"])
@@ -192,7 +190,7 @@ def upload_student_files():
         files_left = ""
         for item in master_file_names:
             files_left += item + " "
-        session['warning'] = files_left + "was not uploaded for " + netid + "\'s " + assignmentName + " assignment."
+        session['warning'] = files_left + "was not uploaded for this assignment."
 
     return redirect('/admin/students')
 
@@ -602,11 +600,8 @@ def isAdmin(net_id):
         return True
 
 def isLoggedIn(ticket, page):
-    try:
-        response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
-        data = response.read()
-    except urllib2.HTTPError, error:
-        data = error.read()
+    response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
+    data = response.read()
     if "yes" in data:
         return data.split()[1]
     else:
@@ -1339,24 +1334,6 @@ def admin_grader_assignments(netid, grader):
 
 @app.route('/admin/<assignment>_all_assignments')
 def admin_all_assignments(assignment):
-    try:
-        ticket = request.args.get('ticket')
-    except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin/' + assignment + "_all_assignments")
-
-    if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin/' + assignment + "_all_assignments")
-    if 'ticket_admin' in session and ticket == session['ticket_admin']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin/' + assignment + "_all_assignments")
-
-    session['ticket_admin'] = ticket
-    netid = isLoggedIn(ticket, "admin/" + str(assignment) + "_all_assignments")
-    if netid is "0":
-        return redirect('/')
-    roles = makeRoles(netid)
-    if (roles.count("admin") != 0):
-        roles.remove("admin")
-
     admin_netid = netid
     assignment_name=assignment
 

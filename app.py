@@ -1119,6 +1119,8 @@ def admin_students():
                 graded += 1
         if graded != 0:
             avg_grade = str(int(total_grade/graded)) + "%"
+        else:
+            avg_grade = "---"
         students_form.append(StudentClass(student, avg_grade, submitted))
 
     assignment_db = course.assignments.all()
@@ -1178,6 +1180,8 @@ def admin_graders():
         if len(assignments) != 0:
             avg_grade = total_grade/len(assignments)
             avg_grade = str(int(avg_grade)) + "%"
+        else:
+            avg_grade = '---'
 
         grader_db.append(GraderClass(grader.netid, avg_grade, num_in_progress, num_graded))
 
@@ -1295,6 +1299,8 @@ def admin_admins():
         submitted += graded
         if graded != 0:
             avg_grade = str(int(total_grade/graded)) + "%"
+        else:
+            avg_grade = "---"
         assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))
 
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)

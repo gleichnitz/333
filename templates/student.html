@@ -4,7 +4,7 @@
  Authors: Ayyala, Evans, Freling, Kubiak, Leichnitz
  Date: May 2014
  //-->
- 
+
 {% extends "base3.html" %}
 
 {% block head %}
@@ -54,7 +54,7 @@
                             if (selected == "All") {
                                 $(student_table.rows[i]).show();
                             }
-                            else if (student_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected) {
+                            else if (student_table.rows[i].cells[j].innerText.replace(/\s+/g, '') == selected.replace(/\s+/g, '')) {
                                 $(student_table.rows[i]).show();
                                 marked = 1;
                             }

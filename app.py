@@ -1275,9 +1275,11 @@ def admin_admins():
     course = admin.courses[0]
     assignment_db = course.assignments.all()
 
+    test = []
     assignments = []
     for assignment in assignment_db:
         if assignment.master is True:
+            test.append(assignment)
             avg_grade = 0
             total_grade = 0
             graded = 0
@@ -1295,7 +1297,7 @@ def admin_admins():
             if graded != 0:
                 avg_grade = str(int(total_grade/graded)) + "%"
             assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))
-    return str(len(assignments))
+    return str(len(test))
 
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
 

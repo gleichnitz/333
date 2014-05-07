@@ -152,7 +152,7 @@ def upload_student_files():
     master_file_names = []
     for item in master.files:
         if item["name"] not in master_file_names:
-            master_file_names.append(item.name)
+            master_file_names.append(item["name"])
 
     files = request.files.getlist('file')
     string = ""

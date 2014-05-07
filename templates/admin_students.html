@@ -170,7 +170,7 @@
             <form role="form" action="/_mass_upload_students" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="exampleInputFile">File input</label>
-                <input type="file" name="netids" id="exampleInputFile">
+                <input type="file" multiple name="netids" id="exampleInputFile">
                 <input type="text" style="display: none;" value="{{course}}" name="course" id="mass-course">
                 <br>
                 <button type="submit" id="file-submit-modal" class="btn">Upload</button>

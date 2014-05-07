@@ -109,11 +109,11 @@ def mass_upload_students():
         student = Student.query.filter_by(netid = item).first();
         if student is None:
             student = Student("name", "test", item)
-            student.courses.add(course)
+            student.courses.append(course)
             db.session.add(newStudent)
             db.session.commit()
         else:
-            student.courses.add(course)
+            student.courses.append(course)
             db.session.commit()
 
     session['success'] = 'You successfully added ' + len(netids) + ' students to your course.'

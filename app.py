@@ -1104,7 +1104,7 @@ def admin_students():
         submitted = 0
         graded = 0
         total_grade = 0
-        assignments = Assignment.query.filter_by(student=student).all()
+        assignments = Assignment.query.filter_by(student=student, course = course).all()
         for a in assignments:
             submitted += 1
             if a.graded == True:

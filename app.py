@@ -67,7 +67,6 @@ def mass_upload_student_files():
     points_possible = master.points_possible
 
     for file in files:
-
         text = file.read()
         netid = re.search("netid:\s*[a-z]+", text).group(0).split()[1]
         if netid not in studentFiles:
@@ -165,7 +164,8 @@ def upload_student_files():
             session['error'] = 'You didn\'t select any file to upload!'
             return redirect('/admin/students')
 
-        lines = file.read().split('\n')
+        content = file.read()
+        lines = content.split('\n')
 
         if file.filename not in master_file_names:
             session['error'] = file.filename + " is not in the list of files for the master assignment, so " + netid + "\'s " + assignmentName + " assignment was not uploaded."
@@ -177,7 +177,7 @@ def upload_student_files():
             session['error'] = file.filename + ' has too many lines (' + str(len(lines)) + ').'
             return redirect('/admin/students')
 
-        ass_file = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
+        ass_file = {'name': file.filename, 'content': content, 'grade': "", 'annotations': []}
         fileList.append(ass_file)
 
     id_ = addAssignment(course_, netid, assignmentName, fileList)

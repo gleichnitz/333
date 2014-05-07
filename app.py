@@ -1273,7 +1273,7 @@ def admin_admins():
 
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
-    assignment_db = course.assignments.all()
+    assignment_db = Assignment.query.filter_by(course = course, master = True).all()
     return str(len(assignment_db))
 
     assignments = []

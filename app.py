@@ -761,6 +761,7 @@ def submitted():
     elif accountType == "a":
         admin = Admin.query.filter_by(netid = netid).first()
         assignment = Assignment.query.filter_by(id = assignmentID).first()
+        grader_button_display = "initial"
         if admin is None or assignment is None:
             return redirect('/admin')
         ### THIS IS GOING TO CHANGE!!!!

@@ -1293,8 +1293,7 @@ def admin_admins():
         if graded != 0:
             avg_grade = str(int(total_grade/graded)) + "%"
         assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))
-    return str(len(assignments))
-
+        
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
 
 @app.route("/logout")

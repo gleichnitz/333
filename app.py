@@ -1000,10 +1000,12 @@ def admin():
     admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
 
+    if netid is "0":
+        return redirect('/')
+
     if isAdmin(netid) is False:
         session['error'] = 'admin'
         return redirect('/')
-
 
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]

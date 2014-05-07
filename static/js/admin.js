@@ -93,10 +93,11 @@ $(document).ready(function() {
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			console.log(data);
-		  			window.location.reload()
+		  			window.location.reload();
 		  		}
 		  		else {
 		  			console.log(data);
+		  			window.location.reload();
 		  		}
 		  	});
 	});

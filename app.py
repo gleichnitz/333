@@ -1187,7 +1187,7 @@ def admin_students():
         alertString = session['warning']
         session.pop('warning', None)
         alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Caution! </strong>" + alertString + "</div>"
 
 
     # Load all students in admin's class.
@@ -1272,7 +1272,7 @@ def admin_graders():
         alertString = session['warning']
         session.pop('warning', None)
         alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Caution! </strong>" + alertString + "</div>"
 
     grader_db = []
     for grader in graders:

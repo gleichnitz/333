@@ -104,7 +104,7 @@ def mass_upload_students():
             return redirect('/admin/students')
 
     course = Course.query.filter_by(name= courseName).first()
-    length = len(course.students)
+    length = len(course.students.all())
     if length > 499:
         session['error'] = 'You have reached the limit of 500 students in your course. Please delete some students to add more.'
         return redirect('/admin/students')
@@ -293,7 +293,7 @@ def add_student():
         return "false"
 
     course = Course.query.filter_by(name = courseName).first()
-    if len(course.students) > 499:
+    if len(course.students.all()) > 499:
         return "false"
 
     student = Student.query.filter_by(netid=netid).first();

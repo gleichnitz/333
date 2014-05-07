@@ -23,7 +23,7 @@
             </div>
             </div>
             <!-- Keep all page content within the page-content inset div! -->
-            <div class="page-content" style="margin-left: -20px; padding: 0 20px; margin-right: 40px;">
+            <div class="page-content" style="margin-left: -20px; padding: 0 20px; margin-right: 40px; display: {{ areAssignments }}">
                 <div class="row" style="margin-left: 0;">
                     <div class="col-md-12">
                     </div>
@@ -45,6 +45,9 @@
                             <div id='chart7' style='width: 800px; height: 300px;'></div>
                         </div>
                 </div>
+            </div>
+            <div class="page-content" style="display: {{notAreAssignments}};">
+                <h3>Looks like you haven't added any assignments!</h3>
             </div>
         </div>
 

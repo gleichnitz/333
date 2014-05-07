@@ -808,7 +808,7 @@ def submitted():
     else:
         grading_status = "Mark Grading as Done"
         status_redirection = "/_done"
-        input_style = "border:none"
+        grader_button_display = "none"
 
     files = []
     for item in assignment_active.files:

@@ -209,7 +209,6 @@ def assign_assignment():
                         entry.grader = Grader.query.filter_by(netid = netid).first()
                         entry.in_progress = True
                         entry.graded = False
-                        entry.grade = None
                         db.session.add(entry)
                         db.session.commit()
                         return "success"
@@ -749,7 +748,7 @@ def submitted():
     if accountType == "s":
         student = Student.query.filter_by(netid = netid).first()
         assignments = student.assignments.all()
-        grader_button_display = "student_done"
+        grader_button_display = "none"
         input_ro = "readonly"
         input_style = "border:none"
     elif accountType == "g":
@@ -760,7 +759,6 @@ def submitted():
         assignment = Assignment.query.filter_by(id = assignmentID).first()
         if admin is None or assignment is None:
             return redirect('/admin')
-        grader_button_display = "admin_done"
         ### THIS IS GOING TO CHANGE!!!!
         a_courses = admin.courses
         check = False
@@ -1165,7 +1163,7 @@ def admin_graders():
         assignments = Assignment.query.filter_by(grader=grader).all()
         for assignment in assignments:
             if assignment.course == course:
-                if assignment.points_possible != None and assignment.grade != "" and assignment.grade != None:
+                if assignment.points_possible != None and assignment.grade != None:
                     total_grade += float(assignment.grade)/assignment.points_possible*100
                 if assignment.graded == True:
                     num_graded += 1

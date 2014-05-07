@@ -79,6 +79,8 @@ def mass_upload_student_files():
         Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
         db.session.commit()
 
+    session['success'] = "Your code uploaded successfully!"
+
     return redirect('/admin/student')
 
 # Create a bunch of students from a list of netids.
@@ -109,6 +111,7 @@ def mass_upload_students():
             student.courses.add(course)
             db.session.commit()
 
+    session['success'] = 'You successfully added ' + len(netids) + ' students to your course.'
 
     return redirect('/admin/students')
 
@@ -146,6 +149,7 @@ def upload_student_files():
     Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
     db.session.commit()
 
+    session['success'] = 'You successfully uploaded code for ' + netid + '.'
 
     return redirect('/admin/students')
 
@@ -1096,6 +1100,11 @@ def admin_students():
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
+    else if 'success' in session:
+        alertString = session['success']
+        session.pop('success', None)
+        alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice!</strong>" + alertString + "</div>"
 
 
     # Load all students in admin's class.

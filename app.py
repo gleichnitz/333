@@ -141,7 +141,7 @@ def upload_student_files():
 
     # Netid is automatically generated, so it should be valid.
     if isValidNetid(netid) is False:
-        session['error'] = 'unk'
+        session['error'] = 'An unknown error ocurred.'
         return redirect('/admin/students')
 
 
@@ -156,8 +156,12 @@ def upload_student_files():
     for file in files:
         # HACK: identify no files uploaded by empty filename
         if file.filename == "":
-            session['error'] = 'nofiles'
+            session['error'] = 'You didn\'t select any file to upload!.'
             return redirect('/admin/students')
+
+        content = file.read()
+        if len(content) > 1000:
+            session['error'] = file.filename + ' has too many lines (' + len(content) + ').'
 
         ass_file = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
         fileList.append(ass_file)

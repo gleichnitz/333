@@ -687,6 +687,8 @@ def index():
             alertString = "Looks like you aren't signed up as a grader for any courses. If this is in error, please contact your lead preceptor."
         elif session['error'] == 'student':
             alertString = "Looks like you aren't signed up as a student for any courses. If this is in error, please contact your preceptor."
+        elif session['error'] == 'admin':
+            alertString = "Looks like you aren't signed up as an admin. If you'd like to use CodePost for your course, sign up below!"            
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"margin-bottom: -52px; z-index: 1\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
@@ -998,7 +1000,8 @@ def admin():
     admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
 
-    if netid is "0":
+    if isAdmin(netid) is False:
+        session['error'] = 'admin'
         return redirect('/')
 
 

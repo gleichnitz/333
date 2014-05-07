@@ -764,7 +764,6 @@ def submitted():
         grader_button_display = "initial"
         if admin is None or assignment is None:
             return redirect('/admin')
-        ### THIS IS GOING TO CHANGE!!!!
         a_courses = admin.courses
         check = False
         for item in a_courses:
@@ -806,9 +805,10 @@ def submitted():
         status_redirection = "/_undone"
         input_ro = "readonly"
         input_style = "border:none"
-    elif (assignment_active.in_progress):
+    else:
         grading_status = "Mark Grading as Done"
         status_redirection = "/_done"
+        input_style = "border:none"
 
     files = []
     for item in assignment_active.files:

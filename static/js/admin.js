@@ -143,6 +143,7 @@ $(document).ready(function() {
 		console.log(netid);
 		var thisButton = $(this);
 		var toContinue = true;
+		var course = $("#courseName").text();
 		$.ajax({
 			url: "/_check_graded_assignments",
 			context:document.body,
@@ -159,7 +160,7 @@ $(document).ready(function() {
 	      	$.ajax({
 	  			url: "/_delete_grader",
 	  			context: document.body,
-	  			data: { netid: netid }
+	  			data: { netid: netid, course: course }
 		  	}).done(function(data) {
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');

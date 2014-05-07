@@ -369,6 +369,8 @@ def remove_student():
 @app.route('/_delete_grader')
 def remove_grader():
     netid = str(request.args.get('netid'))
+    course = str(request.args.get('course'))
+    course_object = Course.query.filter_by(name=course).first()
     if netid.isalnum() is False:
         return "false"
 
@@ -376,10 +378,15 @@ def remove_grader():
     if grader is None:
         return "true"
 
-    db.session.delete(grader)
+    grader.courses.remove(course_object)
+    db.session.add(grader)
     db.session.commit()
 
-    assignments = Assignment.query.filter_by(grader=grader).all();
+    if grader.courses == 0:
+        db.session.delete(grader)
+        db.session.commit()
+
+    assignments = Assignment.query.filter_by(grader=grader, course=course_object).all();
     for assignment in assignments:
         assignment.grader = None
         if assignment.graded != True:

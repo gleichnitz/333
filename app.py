@@ -351,7 +351,7 @@ def remove_student():
     for assignment in assignments:
         db.session.delete(assignment)
 
-    student.courses.remove(course)
+    student.courses.remove(course_object)
     db.session.add(student)
     db.session.commit()
 

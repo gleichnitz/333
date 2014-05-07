@@ -1001,32 +1001,30 @@ def admin():
 
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
-    assignment_db = course.assignments.all()
+    assignment_db = Assignment.query.filter_by(course = course, master = True).all()
 
     assignments = []
     for assignment in assignment_db:
-        if assignment.master is True:
-            graded = 0.0
-            avg_grade = 0.0
-            total_grade = 0.0
-            submitted = 0.0
-            assignment_db.remove(assignment)
-            for a in assignment_db:
-                if a.name == assignment.name:
-                    if a.graded == True:
-                        graded += 1
-                        if a.points_possible != None:
-                            total_grade += a.grade/a.points_possible*100
-                    else:
-                        submitted += 1
-            submitted += graded
+        graded = 0.0
+        avg_grade = 0.0
+        total_grade = 0.0
+        submitted = 0.0
+        non_master = Assignment.query.filter_by(course = course, master = False, name = assignment.name).all()
+        for a in non_master:
+            if a.graded == True:
+                graded += 1
+                if a.points_possible != None:
+                    total_grade += a.grade/a.points_possible*100
+            else:
+                submitted += 1
+        submitted += graded
+        percent_graded = 0.0
+        if submitted == 0:
             percent_graded = 0.0
-            if submitted == 0:
-                percent_graded = 0.0
-            elif graded != 0:
-                percent_graded = str(int(graded/submitted * 100))
-                avg_grade = str(int(total_grade/graded))
-            assignments.append(AssignmentProgressClass(assignment, assignment.name, percent_graded, avg_grade, 0, assignment.due_date))
+        elif graded != 0:
+            percent_graded = str(int(graded/submitted * 100))
+            avg_grade = str(int(total_grade/graded))
+        assignments.append(AssignmentProgressClass(assignment, assignment.name, percent_graded, avg_grade, 0, assignment.due_date))
 
     assignments.sort(key=operator.attrgetter('due_date'))
 
@@ -1293,7 +1291,7 @@ def admin_admins():
         if graded != 0:
             avg_grade = str(int(total_grade/graded)) + "%"
         assignments.append(MasterAssignmentClass(assignment, avg_grade, graded, submitted))
-        
+
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
 
 @app.route("/logout")

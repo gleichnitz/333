@@ -161,7 +161,7 @@ def upload_student_files():
 
         content = file.read()
         if len(content) > 1000:
-            session['error'] = file.filename + ' has too many lines (' + len(content) + ').'
+            session['error'] = file.filename + ' has too many lines (' + str(len(content)) + ').'
 
         ass_file = {'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []}
         fileList.append(ass_file)

@@ -91,10 +91,12 @@ def mass_upload_students():
     except:
         return traceback.format_exc()
 
-    courseName = request.form['courseid']
+    try:
+        courseName = request.form['course']
+    except:
+        return traceback.format_exc()
 
-    for file in f:
-        netids = file.read().split('\n')
+    netids = f.read().split('\n')
 
     for item in netids:
         if isValidNetid(item) is not True:

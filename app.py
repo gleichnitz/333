@@ -1370,19 +1370,7 @@ def admin_admins():
     alertMessage = ""
 
     if 'error' in session:
-        if session['error'] == 'invalidfilename':
-            alertString = "You entered an invalid file name. Please try again."
-        elif session['error'] == 'rubricmismatch':
-            alertString = "There was a mismatch between the number of files you entered and your rubric."
-        elif session['error'] == 'invalidrubric':
-            alertString = "You entered an invalid rubric value. Please try again."
-        elif session['error'] == 'invalidpoints':
-            alertString = "You entered an invalid point value. Please try again."
-        elif session['error'] == 'noname':
-            alertString = "Please enter an assignment name."
-        else:
-            alertString = "An unknown error occurred."
-
+        alertString = session['error']
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 

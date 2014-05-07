@@ -1104,7 +1104,7 @@ def admin_students():
         alertString = session['success']
         session.pop('success', None)
         alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice!</strong>" + alertString + "</div>"
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
 
 
     # Load all students in admin's class.

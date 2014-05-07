@@ -351,8 +351,8 @@ def remove_student():
     for assignment in assignments:
         db.session.delete(assignment)
 
-    courses = student.courses.all()
-    courses.remove(course)
+    courses = student.courses
+    courses.remove(course_object)
 
     if len(courses) > 0:
         student.update({'courses': courses})

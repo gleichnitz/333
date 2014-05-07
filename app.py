@@ -1318,7 +1318,7 @@ def admin_student_assignment(netid, student):
     return render_template('admin_student_assignment.html', course=course.name, roles=roles, netid=admin_netid, student_netid=student_netid, assignments=assignments)
 
 @app.route('/admin_<netid>/<grader>_assignments')
-def admin_grader_assignments(netid, grader):
+def admin_grader_assignments(netid, grader):  
     admin_netid = netid
     gradernetid=grader
     roles=makeRoles(admin_netid)
@@ -1334,20 +1334,33 @@ def admin_grader_assignments(netid, grader):
             assignments.append(assignment)
     return render_template('admin_grader_assignments.html', course=course.name, roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
 
-@app.route('/admin_<netid>/<assignment>_all_assignments')
-def admin_all_assignments(netid, assignment):
-    admin_netid = netid
-    assignment_name=assignment
-    roles=makeRoles(admin_netid)
+@app.route('/admin/<assignment>_all_assignments')
+def admin_all_assignments(assignment):
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin/' + assignment + "_all_assignments")
+
+    if ticket is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin/' + assignment + "_all_assignments")
+    if 'ticket_admin' in session and ticket == session['ticket_admin']:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin/' + assignment + "_all_assignments")
+
+    session['ticket_admin'] = ticket
+    netid = isLoggedIn(ticket, "admin/" + assignment + "_all_assignments")
+    if netid is "0":
+        return redirect('/')
+    roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
+
+    admin_netid = netid
+    assignment_name=assignment
+
     admin = Admin.query.filter_by(netid=admin_netid).first()
     course = admin.courses[0]
-    assignments_name = Assignment.query.filter_by(name=assignment_name).all()
-    assignments=[]
-    for assignment in assignments_name:
-        if assignment.course is course and assignment.master is False:
-            assignments.append(assignment)
+    assignments = Assignment.query.filter_by(name=assignment_name, course=course, master = False).all()
+
     return render_template('admin_assignment_assignments.html', course=course.name, roles=roles, assignment_name=assignment_name, netid=admin_netid, assignments=assignments)
 
 @app.route("/admin/assignments")

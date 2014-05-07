@@ -319,6 +319,8 @@ def remove_student():
     netid = str(request.args.get('netid'))
     course = str(request.args.get('course'))
     course_object = Course.query.filter_by(name=course).first()
+    if course_object is None:
+        return "failure"
     if netid.isalnum() is False:
         return "false"
 
@@ -330,7 +332,7 @@ def remove_student():
     for assignment in assignments:
         db.session.delete(assignment)
 
-    courses = student.courses
+    courses = student.courses.all()
     courses.remove(course)
 
     if len(courses) > 0:

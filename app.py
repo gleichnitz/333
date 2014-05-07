@@ -1100,7 +1100,7 @@ def admin_students():
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
-    else if 'success' in session:
+    elif 'success' in session:
         alertString = session['success']
         session.pop('success', None)
         alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \

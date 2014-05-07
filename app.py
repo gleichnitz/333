@@ -1167,15 +1167,14 @@ def admin_graders():
         num_in_progress = 0
         total_grade = 0
         avg_grade = 0
-        assignments = Assignment.query.filter_by(grader=grader).all()
+        assignments = Assignment.query.filter_by(grader=grader, course=course).all()
         for assignment in assignments:
-            if assignment.course == course:
-                if assignment.points_possible != None and assignment.grade != None:
-                    total_grade += float(assignment.grade)/assignment.points_possible*100
-                if assignment.graded == True:
-                    num_graded += 1
-                elif assignment.in_progress == True:
-                    num_in_progress += 1
+            if assignment.points_possible != None and assignment.grade != None:
+                total_grade += float(assignment.grade)/assignment.points_possible*100
+            if assignment.graded == True:
+                num_graded += 1
+            elif assignment.in_progress == True:
+                num_in_progress += 1
         if len(assignments) != 0:
             avg_grade = total_grade/len(assignments)
             avg_grade = str(int(avg_grade)) + "%"

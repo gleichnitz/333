@@ -326,7 +326,7 @@ def remove_student():
     if student is None:
         return "true"
 
-    assignments = Assignment.query.filter_by(student=student, course=course).all();
+    assignments = Assignment.query.filter_by(student=student, course=course_object).all();
     for assignment in assignments:
         db.session.delete(assignment)
 

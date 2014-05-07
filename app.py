@@ -421,20 +421,23 @@ def add_assignment():
 
     for item in fileNames:
         if item.isalpha() is False and re.match("^([a-z])+.(c|(java))$", item) is None:
-            session['error'] = 'invalidfilename'
+            session['error'] = item + ' is an invalid file name.'
             #return "false"
 
+    if len(fileNames) > 10:
+        session['error'] = 'An assignment can have no more than 10 files.'
+
     if len(fileNames) != len(rubric):
-        session['error'] = 'rubricmismatch'
+        session['error'] = 'The rubric you entered does not match the number of files.'
         return "false"
 
     for item in rubric:
         if re.match("^(\d)+$", item) is None:
-            session['error'] = 'invalidrubric'
+            session['error'] = 'You entered an invalid point value.'
             return "false"
 
     if re.match("^(\d)+$", totalPoints) is None:
-        session['error'] = 'invalidpoints'
+        session['error'] = 'You entered an invalid point value.'
         return "false"
 
     admin = Admin.query.filter_by(netid=netid).first()

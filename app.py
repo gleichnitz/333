@@ -209,6 +209,7 @@ def assign_assignment():
                         entry.grader = Grader.query.filter_by(netid = netid).first()
                         entry.in_progress = True
                         entry.graded = False
+                        entry.grade = None
                         db.session.add(entry)
                         db.session.commit()
                         return "success"
@@ -821,8 +822,8 @@ def submitted():
     #               - code (in a big string)
     ##################################
 
-    if assignment_active.grade is None:
-        assignment_active.grade = ""
+    # if assignment_active.grade is None:
+    #     assignment_active.grade = ""
 
     # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )

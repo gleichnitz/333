@@ -117,7 +117,7 @@ function menu_focus( element, i ) {
 	}
 	
 	enable_arrows( i );		
-	if ( i == 1 || i == 4 )
+	if ( i == 1 )
 		$('.navbar').removeClass('inv');
 	else
 		$('.navbar').addClass('inv');
@@ -320,10 +320,13 @@ $(window).scroll(function(e) {
 	borders[0] = $("#slide-1").offset().top;
 	borders[1] = $("#slide-2").offset().top;
 	borders[2] = $("#slide-4").offset().top;
+	borders[3] = $("#slide-5").offset().top;
 
 	var lis = $('.nav > li');
 
-	if (top > borders[2]-100)
+	if (top > borders[3]-100)
+		menu_focus(lis[3],5)
+	else if (top > borders[2]-100)
 		menu_focus(lis[2],4);
 	else if (top > borders[1]-100)
 		menu_focus(lis[1],2);

@@ -1117,7 +1117,7 @@ def admin():
             avg_grade = str(int(total_grade/graded))
         assignments.append(AssignmentProgressClass(assignment, assignment.name, percent_graded, avg_grade, 0, assignment.due_date))
 
-    assignments.sort(key=operator.attrgetter('due_date'))
+    assignments.sort(key=operator.attrgetter('due_date'), reverse=True)
 
     graph1_assignments = []
     graph2_assignments = []

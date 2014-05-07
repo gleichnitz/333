@@ -78,7 +78,8 @@ def mass_upload_student_files():
         id_ = addAssignment(course_, item, assignmentName, studentFiles[item])
         Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
         db.session.commit()
-    return "true"
+
+    return redirect('/admin/student')
 
 # Create a bunch of students from a list of netids.
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])

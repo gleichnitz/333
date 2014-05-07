@@ -67,6 +67,7 @@ def mass_upload_student_files():
     points_possible = master.points_possible
 
     for file in files:
+
         text = file.read()
         netid = re.search("netid:\s*[a-z]+", text).group(0).split()[1]
         if netid not in studentFiles:
@@ -147,6 +148,11 @@ def upload_student_files():
 
     master = Assignment.query.filter_by(master = True, name = assignmentName).first()
     points_possible = master.points_possible
+    master_files = master.files
+    master_file_names = []
+    for item in master.files:
+        if item.name not in master_file_names:
+            master_file_names.append(item.name)
 
     files = request.files.getlist('file')
     string = ""
@@ -160,6 +166,11 @@ def upload_student_files():
             return redirect('/admin/students')
 
         lines = file.read().split('\n')
+
+        if file.filename not in master_file_names:
+            session['error'] = ""
+            return redirect('admin/students')
+
         if len(lines) > 1000:
             session['error'] = file.filename + ' has too many lines (' + str(len(lines)) + ').'
             return redirect('/admin/students')

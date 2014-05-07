@@ -316,6 +316,11 @@ def add_grader():
         return "false"
 
     course = Course.query.filter_by(name = courseName).first()
+
+    if len(course.graders.all()) > 49:
+        session['error'] = 'You have reached the limit of 50 graders.'
+        return "error"
+
     grader = Grader.query.filter_by(netid=netid).first();
     if grader is None:
         newGrader = Grader(netid)
@@ -1211,6 +1216,25 @@ def admin_graders():
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]
     graders = course.graders
+
+    alertMessage = ""
+
+    if 'error' in session:
+        alertString = session['error']
+        session.pop('error', None)
+
+        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
+    elif 'success' in session:
+        alertString = session['success']
+        session.pop('success', None)
+        alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
+    elif 'warning' in session:
+        alertString = session['warning']
+        session.pop('warning', None)
+        alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
 
     grader_db = []
     for grader in graders:

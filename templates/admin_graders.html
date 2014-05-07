@@ -24,6 +24,8 @@
 {% block content %}
     {{super()}}
 
+    {{ alert|safe }}
+
   <div style="margin-right: 10%;">
   <div id="courseName" style="display: none;">{{course}}</div>
   <a href="#" id="add_buttons" class="btn btn-large"><i class="icon-white icon-plus"></i> Add a Grader</a>

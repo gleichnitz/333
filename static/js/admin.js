@@ -75,6 +75,8 @@ $(document).ready(function() {
 		  			inputfieldParent.removeClass('has-error');
 		  			inputfieldParent.addClass('has-success');
 		  			console.log(data);
+		  		} else if (data == "error") {
+		  			window.location.reload();
 		  		}
 		  		else {
 		  			inputfieldParent.addClass('has-error');

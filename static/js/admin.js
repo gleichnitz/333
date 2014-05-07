@@ -111,7 +111,7 @@ $(document).ready(function() {
 		$.ajax({
   			url: "/_check_student",
   			context: document.body,
-  			data: { netid: netid, course:course }
+  			data: { netid: netid}
 	  	}).done(function(data) {
 	  		if (data == "check") {
 	  			if (!confirm("You've uploaded code for this student. Are you sure you want to delete?"))
@@ -124,7 +124,7 @@ $(document).ready(function() {
       		$.ajax({
 	  			url: "/_delete_student",
   				context: document.body,
-  				data: { netid: netid, courseid: admin}
+  				data: { netid: netid, courseid: admin, course: course}
 		  	}).done(function(data) {
 		  		if (data == "true") {
 	  				thisButton.closest('tr').css('display','none');

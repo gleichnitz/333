@@ -184,12 +184,13 @@ def upload_student_files():
     Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
     db.session.commit()
 
-    if len(master_file_names) != 0:
+    if len(master_file_names) == 0:
+        session['success'] = 'You successfully uploaded code for ' + netid + '.'
+    else:
         files_left = ""
         for item in master_file_names:
             files_left += item + " "
-        session['warning'] = files_left + "were not uploaded for this assignment."
-    session['success'] = 'You successfully uploaded code for ' + netid + '.'
+        session['warning'] = files_left + "was not uploaded for this assignment."
 
     return redirect('/admin/students')
 

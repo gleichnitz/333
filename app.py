@@ -989,7 +989,7 @@ def admin():
 
     session['ticket_admin'] = ticket
     netid = isLoggedIn(ticket, "admin")
-    admin = Admin.query.filter_by(netid=netid).first()
+    admin = Admin.query.filter_by(netid="vayyala").first()
     course = admin.courses[0]
 
     if netid is "0":

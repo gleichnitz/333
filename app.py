@@ -85,6 +85,9 @@ def mass_upload_student_files():
 def mass_upload_students():
     f = request.files['netids']
     courseName = request.form['courseid']
+
+    return courseName
+
     netids = f.read().split('\n')
 
     for item in netids:

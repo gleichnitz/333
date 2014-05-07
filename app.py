@@ -83,10 +83,11 @@ def mass_upload_student_files():
 # Create a bunch of students from a list of netids.
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
+
+    return "test"
+
     f = request.files['netids']
     courseName = request.form['courseid']
-
-    return courseName
 
     netids = f.read().split('\n')
 

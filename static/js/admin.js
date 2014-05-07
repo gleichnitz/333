@@ -126,6 +126,7 @@ $(document).ready(function() {
   				context: document.body,
   				data: { netid: netid, courseid: admin, course: course}
 		  	}).done(function(data) {
+		  		console.log(data)
 		  		if (data == "true") {
 	  				thisButton.closest('tr').css('display','none');
 	  			} else {

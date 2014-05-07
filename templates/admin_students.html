@@ -91,7 +91,7 @@
     </thead>
     <tbody>
         {% for item in students %}
-              <tr>
+              <tr id = "{{course}}">
                 <td class="netid-row"><a href="{{url_for('admin_student_assignment', netid=netid, student= item.student.netid )}}"><div style="height:100%;width:100%">{{ item.student.netid }}</div></a></td>
                 <td class=""><a href="{{url_for('admin_student_assignment', netid=netid, student= item.student.netid )}}"><div style="height:100%;width:100%">{{ item.avg_grade }}</div></a></td>
                 <td class=""><a href="{{url_for('admin_student_assignment', netid=netid, student= item.student.netid )}}"><div style="height:100%;width:100%">{{ item.num_assignments }}</div></a></td>

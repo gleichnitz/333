@@ -105,13 +105,14 @@ $(document).ready(function() {
 	$('.delete-buttons-student').click(function () {
 		var netid = $(this).attr('id');
 		var admin = $('course-name').attr('id');
+		var course = $(this).closest('tr').attr('id');
 		console.log(netid);
 		var thisButton = $(this);
 		var toContinue = true;
 		$.ajax({
   			url: "/_check_student",
   			context: document.body,
-  			data: { netid: netid }
+  			data: { netid: netid, course:course }
 	  	}).done(function(data) {
 	  		if (data == "check") {
 	  			if (!confirm("You've uploaded code for this student. Are you sure you want to delete?"))

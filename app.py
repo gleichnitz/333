@@ -86,9 +86,8 @@ def mass_upload_student_files():
 # Create a bunch of students from a list of netids.
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
-
     try:
-        f = request.files('file')
+        f = request.files['file']
     except:
         return traceback.format_exc()
 

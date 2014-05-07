@@ -116,7 +116,7 @@ def mass_upload_students():
             student.courses.append(course)
             db.session.commit()
 
-    session['success'] = 'You successfully added ' + len(netids) + ' students to your course.'
+    session['success'] = 'You successfully added ' + str(len(netids)) + ' students to your course.'
 
     return redirect('/admin/students')
 

@@ -139,6 +139,7 @@ def upload_student_files():
     assignmentName = request.form['assignmentTitle']
     course_ = request.form['course']
     netid = request.form['netid']
+    course = Course.query.filter_by(name=course_).first()
 
     # Netid is automatically generated, so it should be valid.
     if isValidNetid(netid) is False:
@@ -146,7 +147,7 @@ def upload_student_files():
         return redirect('/admin/students')
 
 
-    master = Assignment.query.filter_by(master = True, name = assignmentName).first()
+    master = Assignment.query.filter_by(master = True, name = assignmentName, course=course).first()
     points_possible = master.points_possible
     master_files = master.files
     master_file_names = []

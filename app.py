@@ -887,7 +887,9 @@ def grader():
         elif item.master is False and item.grader is not None and item.grader.netid == netid and item.student is not None:
             assignments_form.append(AssignmentClass(item.id, item.course.name, item.name, "", item.files, "40/40", item.grader.netid, item.student.netid, status, item.points_possible))
 
-    classes = grader.courses
+    classes = []
+    for item in grader.courses:
+        classes.append(item.name)
     # for item in assignments_form:
     #     if item.course not in classes:
     #         classes.append(item.course)

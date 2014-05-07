@@ -686,7 +686,7 @@ def index():
         elif session['error'] == 'grader':
             alertString = "Looks like you aren't signed up as a grader for any courses. If this is in error, please contact your lead preceptor."
         elif session['error'] == 'student':
-            alertString = "Looks like you aren't signed up as a student for any courses. If this is in error, please contact your preceptor."           
+            alertString = "Looks like you aren't signed up as a student for any courses. If this is in error, please contact your preceptor."
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"margin-bottom: -52px; z-index: 1\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
@@ -808,7 +808,7 @@ def submitted():
     else:
         grading_status = "Mark Grading as Done"
         status_redirection = "/_done"
-        grader_button_display = "none"
+        grader_button_display = ""
         input_ro = "readonly"
 
     files = []

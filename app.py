@@ -446,7 +446,7 @@ def add_assignment():
     netid = request.args.get('netid_admin')
 
     if len(name) == 0 or name == "":
-        session['error'] = 'noname'
+        session['error'] = 'Please enter an assignment name.'
         return "false"
 
     for item in fileNames:

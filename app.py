@@ -420,6 +420,8 @@ def add_assignment():
     db.session.add(assignment)
     db.session.commit()
 
+    session['success'] = 'You successfully created \'' + name + '\'.'
+
     return "true"
 
 @app.route("/_add/test/<id>")
@@ -1285,7 +1287,12 @@ def admin_admins():
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
 
-    session.pop('error', None)
+        session.pop('error', None)
+    elif 'success' in session:
+        alertString = session['success']
+        session.pop('success', None)
+        alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
 
     admin = Admin.query.filter_by(netid = netid).first()
     course = admin.courses[0]

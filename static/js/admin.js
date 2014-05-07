@@ -130,7 +130,7 @@ $(document).ready(function() {
 		  		if (data == "true") {
 	  				thisButton.closest('tr').css('display','none');
 	  			} else {
-	  				console.log("false");
+	  				console.log(data);
 		  		}
 			});
 		});

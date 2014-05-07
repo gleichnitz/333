@@ -332,10 +332,9 @@ def add_grader():
 def remove_student():
     netid = str(request.args.get('netid'))
     course = str(request.args.get('course'))
-    return course
     course_object = Course.query.filter_by(name=course).first()
     if course_object is None:
-        return "failure"
+        return "no course"
     if netid.isalnum() is False:
         return "false"
 

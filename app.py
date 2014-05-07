@@ -330,7 +330,7 @@ def remove_student():
     for assignment in assignments:
         db.session.delete(assignment)
 
-    courses = student.courses.all()
+    courses = student.courses
     courses.remove(course)
 
     if len(courses) > 0:

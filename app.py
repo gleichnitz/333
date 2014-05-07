@@ -1347,7 +1347,7 @@ def admin_all_assignments(assignment):
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/admin/' + assignment + "_all_assignments")
 
     session['ticket_admin'] = ticket
-    netid = isLoggedIn(ticket, "admin/" + assignment + "_all_assignments")
+    netid = isLoggedIn(ticket, "admin/" + str(assignment) + "_all_assignments")
     if netid is "0":
         return redirect('/')
     roles = makeRoles(netid)

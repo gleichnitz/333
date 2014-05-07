@@ -416,7 +416,7 @@ def add_assignment():
     db.session.add(assignment)
     db.session.commit()
 
-    return "success"
+    return "true"
 
 @app.route("/_add/test/<id>")
 def addtest(id):

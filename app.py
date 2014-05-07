@@ -100,10 +100,16 @@ def mass_upload_students():
 
     for item in netids:
         if isValidNetid(item) is not True:
-            session['error'] = 'invalidid'
+            session['error'] = item  + ' is an invalid netid.'
             return redirect('/admin/students')
 
     course = Course.query.filter_by(name= courseName).first()
+    length = len(course.students)
+    if length > 499:
+        session['error'] = 'You have reached the limit of 500 students in your course. Please delete some students to add more.'
+        return redirect('/admin/students')
+
+    counter = 0
 
     for item in netids:
         student = Student.query.filter_by(netid = item).first();
@@ -115,6 +121,12 @@ def mass_upload_students():
         else:
             student.courses.append(course)
             db.session.commit()
+        length = length + 1
+        counter = counter + 1
+        if length > 499:
+            session['warning'] = 'You have reached the limit of 500 students in your course. Only ' + str(counter) + ' students were added'
+            return redirect('/admin/students')
+
 
     session['success'] = 'You successfully added ' + str(len(netids)) + ' students to your course.'
 
@@ -281,6 +293,8 @@ def add_student():
         return "false"
 
     course = Course.query.filter_by(name = courseName).first()
+    if len(course.students) > 499:
+        return "false"
 
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
@@ -1116,15 +1130,7 @@ def admin_students():
     alertMessage = ""
 
     if 'error' in session:
-        if session['error'] == 'unk':
-            alertString = "An unknown error occurred while uploading student code. Please try again."
-        elif session['error'] == 'nofiles':
-            alertString = "No files were selected to upload."
-        elif session['error'] == 'invalidid':
-            alertString = "The file you uploaded contained an invalid netid. Please try again."
-        else:
-            alertString = "Test"
-
+        alertString = session['error']
         session.pop('error', None)
 
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
@@ -1133,6 +1139,11 @@ def admin_students():
         alertString = session['success']
         session.pop('success', None)
         alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
+    elif 'warning' in session:
+        alertString = session['warning']
+        session.pop('warning', None)
+        alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
 
 

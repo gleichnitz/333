@@ -441,6 +441,11 @@ def add_assignment():
     admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
 
+    numMasters = len(Assignment.query.filter_by(course=course, master=True).all())
+    if numMasters > 14:
+        session['error'] = 'You\'ve reached the assignment limit of 15.'
+        return "false"
+
     assignment = Assignment(course.name, "", name)
     assignment.master = True
     assignment.points_possible = totalPoints

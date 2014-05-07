@@ -156,6 +156,9 @@ def upload_student_files():
             master_file_names.append(item["name"])
         all_names += item["name"] + " "
 
+    session['error'] = all_names
+    return redirect('/admin/students')
+
 
     files = request.files.getlist('file')
     string = ""

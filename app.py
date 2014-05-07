@@ -1141,17 +1141,23 @@ def admin():
     else:
         notAreAssignments = "none"
 
+    #forHist = {}
+    #assignments_student = Assignment.query.filter_by(course = course, master = False, graded=True).first()
+    #for item in assignments_student:
+        #if item.name not in forHist:
+            #forHist[item.name] = {}
+        #if item.grade not in forHist[item.name]:
+            #forHist[item.name][item.grade] = 1
+        #else:
+            #forHist[item.name][item.grade] = forHist[item.name][item.grade] + 1
+
     forHist = {}
-    assignments_student = Assignment.query.filter_by(course = course, master = False, graded=True).first()
-    for item in assignments_student:
-        if item.name not in forHist:
-            forHist[item.name] = {}
-        if item.grade not in forHist[item.name]:
-            forHist[item.name][item.grade] = 1
+    testAssignment = Assignment.query.filter_by(course = course, master = False, graded=True).all()
+    for item in testAssignment:
+        if item.grade not in forHist:
+            forHist[item.grade] = 1
         else:
-            forHist[item.name][item.grade] = forHist[item.name][item.grade] + 1
-
-
+            forHist[item.grade] = forHist[item.grade] + 1
 
     return render_template('admin2.html', forHist = forHist, areAssignments = areAssignments, notAreAssignments = notAreAssignments, course=course.name, netid=netid, roles = roles, graph1_assignments=graph1_assignments, graph2_assignments=graph2_assignments)
 

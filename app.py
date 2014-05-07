@@ -159,7 +159,7 @@ def upload_student_files():
             session['error'] = 'You didn\'t select any file to upload!.'
             return redirect('/admin/students')
 
-        lines = content.split('\n')
+        lines = file.read().split('\n')
         if len(lines) > 1000:
             session['error'] = file.filename + ' has too many lines (' + str(len(lines)) + ').'
 

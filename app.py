@@ -456,9 +456,9 @@ def add_assignment():
         return "false"
 
     for item in fileNames:
-        if item.isalpha() is False and re.match("^([a-z])+.(c|(java))$", item) is None:
+        if item.isalpha() is False and re.match("([a-z])+.(c|(java))", item) is None:
             session['error'] = item + ' is an invalid file name.'
-            #return "false"
+            return "false"
 
     if len(fileNames) > 10:
         session['error'] = 'An assignment can have no more than 10 files.'

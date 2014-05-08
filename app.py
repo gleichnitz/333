@@ -1335,7 +1335,7 @@ def admin_student_assignment():
     if admin_netid is "0":
         return redirect('/')
 
-    student_netid=request.args.get('assignment')
+    student_netid=request.args.get('student')
 
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):

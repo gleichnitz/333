@@ -1430,7 +1430,7 @@ def admin_all_assignments():
     if (roles.count("admin") != 0):
         roles.remove("admin")
 
-    master = Assignment.query.filter_by(id = request.args.get('id'))
+    master = Assignment.query.filter_by(id = request.args.get('id')).first()
     assignment_name = master.name
 
     admin = Admin.query.filter_by(netid=admin_netid).first()

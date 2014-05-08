@@ -74,9 +74,7 @@ def mass_upload_student_files():
             session['error'] = filename + ' does not have the correct format. All filenames should be of the form filename_netid.'
 
         name = filename.split('_')[0]
-        netid = filename.split('_')[1]
-
-        return netid
+        netid = filename.split('_')[1].split('.')[0]
 
         if netid not in studentFiles:
             studentFiles[netid] = []

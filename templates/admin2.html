@@ -113,7 +113,7 @@
                     },
 
                     xAxis: {
-                        categories: [{% for value in forHist %}'{{value}}',{% endfor %}]
+                        categories: [{% for key in forHist %}'{{key}}',{% endfor %}]
                     },
                     
                     plotOptions: {

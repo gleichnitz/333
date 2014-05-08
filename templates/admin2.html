@@ -79,7 +79,8 @@
 
                 {% for item in graph1_assignments %}
                     var chart{{item.num}} = new Charts.CircleProgress('{{item.name}}', '{{item.name}}', {{item.percent_graded}}, {
-                        fill_color: "#222" 
+                        fill_color: "#222",
+                        stroke_color: "#FF0000" 
                     });
                     chart{{item.num}}.draw()
                 {% endfor %}

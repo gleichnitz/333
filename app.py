@@ -1352,7 +1352,7 @@ def admin_student_assignment():
             assignments.append(assignment)
     return render_template('admin_student_assignment.html', course=course.name, roles=roles, netid=admin_netid, student_netid=student_netid, assignments=assignments)
 
-@app.route('/admin/grader_assignments')
+@app.route('/admin/grader_assignment')
 def admin_grader_assignments(): 
     try:
         ticket = request.args.get('ticket')

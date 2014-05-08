@@ -113,12 +113,12 @@
     </thead>
       <tbody id="admin-admin-table-body">
         {% for assignment in assignments %}
-          <tr><td><a href="admin/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
-          <td><a href="admin/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{% for item in assignment.a.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
-          <td><a href="admin/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.avg_grade}}</div></a></td>
-          <td><a href="admin/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.graded}}</div></a></td>
-          <td><a href="admin/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.submitted}}</div></a></td>
-          <td><a href="admin/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.a.due_date}}</div></a></td>
+          <tr><td><a href="/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
+          <td><a href="/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{% for item in assignment.a.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
+          <td><a href="/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.avg_grade}}</div></a></td>
+          <td><a href="/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.graded}}</div></a></td>
+          <td><a href="/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.submitted}}</div></a></td>
+          <td><a href="/master_all_assignments?assignment={{assignment.a.name}}"><div style="height:100%;width:100%" align="center">{{assignment.a.due_date}}</div></a></td>
           <td><div class="btn-group" align="center">
                   <button id="{{assignment.a.name}}" class="btn btn-default delete-buttons delete-buttons-assignment" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

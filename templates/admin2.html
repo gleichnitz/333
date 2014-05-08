@@ -56,12 +56,10 @@
                     </select>
                     <br>
 
-                    <div id="histoContainer" style="height: 450px; background-color: white; border-color: rgba(0, 0, 0, 0); border: 1px solid; padding-top: 15px; margin-bottom: 20px; display: none">
                     {% for key, value in forHist.iteritems() %}
                         <div id="highChart{{key}}" class="histo" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                     {% endfor %}
-                    </div>
-
+                    
                 </div>
             </div>
             <div class="page-content" style="display: {{notAreAssignments}};">

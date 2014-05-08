@@ -1332,10 +1332,12 @@ def admin_student_assignment():
 
     session['ticket_admin'] = ticket
     admin_netid = isLoggedIn(ticket, "admin/student_assignment")
+
     if admin_netid is "0":
         return redirect('/')
 
     student_netid=request.args.get('student')
+    session['error'] = student_netid
 
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):

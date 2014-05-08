@@ -196,6 +196,18 @@ def upload_student_files():
 
 @app.route('/_done', methods = ['POST'])
 def done():
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "_done")
+
+    if ticket is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "_done")
+    if 'ticket_account' in session and ticket == session['ticket_account']:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "_done")
+
+    session['ticket_grader'] = ticket
+    
     assignmentID = request.form['id']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
 

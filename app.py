@@ -619,11 +619,10 @@ def isAdmin(net_id):
         return True
 
 def isLoggedIn(ticket, page):
-    try:
-        response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
-        data = response.read()
-    except urllib2.HTTPError, error:
-        data = error.read()
+    request = urllib2.Request('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
+    response = urllib2.urlopen(request)
+    data = response.read()
+
     if "yes" in data:
         return data.split()[1]
     else:

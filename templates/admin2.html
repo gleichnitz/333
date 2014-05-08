@@ -56,7 +56,7 @@
                     </select>
                     <br>
 
-                    <div id="histoContainer" style="width: 100%; height: 430px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid; padding-top: 15px; margin-bottom: 20px;">
+                    <div id="histoContainer" style="width: 100%; height: 430px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid; padding: 20px; margin-bottom: 20px; display: none">
                     {% for key, value in forHist.iteritems() %}
                         <div id="highChart{{key}}" class="histo" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                     {% endfor %}

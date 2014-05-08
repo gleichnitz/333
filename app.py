@@ -108,7 +108,10 @@ def mass_upload_student_files():
 
         db.session.commit()
 
-    session['success'] = "Your code uploaded successfully for " + str(len(netids)) + " students!"
+    if len(netids) == 1:
+        session['success'] = "Your code uploaded successfully for 1 student!"
+    else:
+        session['success'] = "Your code uploaded successfully for " + str(len(netids)) + " students!"
 
     return redirect('/admin/students')
 

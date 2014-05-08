@@ -1371,7 +1371,7 @@ def admin_grader_assignments():
     if admin_netid is "0":
         return redirect('/') 
 
-    gradernetid= request.args.get('ticket')
+    gradernetid= request.args.get('grader')
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

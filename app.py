@@ -21,6 +21,7 @@ from werkzeug import secure_filename
 import tarfile
 import re
 import operator
+from sets import Set
 
 # initialization
 app = Flask(__name__)
@@ -65,6 +66,10 @@ def mass_upload_student_files():
 
     master = Assignment.query.filter_by(master = True, name = assignmentName).first()
     points_possible = master.points_possible
+    master_file_names = []
+    for item in master.files:
+        if item["name"] not in master_file_names:
+            master_file_names.append(item["name"])    
 
     for file in files:
         filename = file.filename
@@ -73,6 +78,10 @@ def mass_upload_student_files():
 
         name = filename.split('_')[0]
         netid = filename.split('_')[1].split('.')[0]
+
+        if name not in master_file_names:
+            session['error'] = name + ' is not a valid file for ' + assignmentName + '.'
+            return redirect('/admin/students')
 
         if netid not in studentFiles:
             studentFiles[netid] = []
@@ -83,6 +92,18 @@ def mass_upload_student_files():
     for item in netids:
         id_ = addAssignment(course_, item, assignmentName, studentFiles[item])
         Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
+
+        assignFiles = Set()
+        
+        for item in studentFiles[netid]:
+            assignFiles.add(item.name)
+
+        if set(assignFiles) != set(master_file_names):
+            x = set(master_file_names).difference(studentFiles[])
+
+        for file_name in x:
+            session['warning'] = session['warning'] + '<br>' + file_name + ' not uploaded for ' + item + '.'
+            
         db.session.commit()
 
     session['success'] = "Your code uploaded successfully!"

@@ -65,10 +65,10 @@
       <tbody>
        {% for grader in graders %}
           <tr>
-              <td class="netid-row"><a href="/admin/grader_assignments?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments">{{ grader.netid }}</div></a></td>
-              <td class="netid-row" align="left"><a href="/admin/grader_assignments?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments" align="center">{{ grader.avg_grade }}</div></a></td>
-              <td class="netid-row" align="left"><a href="/admin/grader_assignments?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments" align="center">{{ grader.num_in_progress }}</div></a></td>
-              <td class="netid-row" align="left"><a href="/admin/grader_assignments?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments" align="center">{{ grader.num_graded }}</div></a></td>
+              <td class="netid-row"><a href="/admin/grader_assignment?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments">{{ grader.netid }}</div></a></td>
+              <td class="netid-row" align="left"><a href="/admin/grader_assignment?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments" align="center">{{ grader.avg_grade }}</div></a></td>
+              <td class="netid-row" align="left"><a href="/admin/grader_assignment?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments" align="center">{{ grader.num_in_progress }}</div></a></td>
+              <td class="netid-row" align="left"><a href="/admin/grader_assignment?grader={{grader.netid}}"><div style="height:100%;width:100%" class="grader_assignments" align="center">{{ grader.num_graded }}</div></a></td>
               <td><div class="btn-group" align="center">
                   <button id="{{ grader.netid }}" class="btn btn-default delete-buttons delete-buttons-grader" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

@@ -99,11 +99,11 @@ def mass_upload_student_files():
             assignFiles.add(item.name)
 
         if set(assignFiles) != set(master_file_names):
-            x = set(master_file_names).difference(studentFiles[])
+            x = set(master_file_names).difference(set(assignFiles))
 
         for file_name in x:
             session['warning'] = session['warning'] + '<br>' + file_name + ' not uploaded for ' + item + '.'
-            
+
         db.session.commit()
 
     session['success'] = "Your code uploaded successfully!"

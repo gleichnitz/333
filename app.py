@@ -60,7 +60,7 @@ def mass_upload_student_files():
     course_ = request.form['course']
     content = ""
 
-    return assignmentName
+    return course_
 
     studentFiles = {}
     netids = []

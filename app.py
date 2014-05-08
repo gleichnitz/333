@@ -1421,7 +1421,7 @@ def admin_all_assignments():
 
     session['ticket_admin'] = ticket
 
-    admin_netid = isLoggedIn(ticket, "admin/all_assignments?assignment=" + request.args.get('assignment'))
+    admin_netid = isLoggedIn(ticket, "admin/all_assignments")
 
     if admin_netid is "0":
         return redirect('/') 

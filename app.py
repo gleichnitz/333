@@ -96,7 +96,7 @@ def mass_upload_student_files():
         assignFiles = Set()
         
         for fileobject in studentFiles[netid]:
-            assignFiles.add(fileobject.name)
+            assignFiles.add(fileobject['name'])
 
         if set(assignFiles) != set(master_file_names):
             x = set(master_file_names).difference(set(assignFiles))

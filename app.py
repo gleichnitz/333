@@ -1427,7 +1427,7 @@ def admin_all_assignments():
     roles = makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    assignment_name= request.args.get('assignment').split(*)[0]
+    assignment_name= request.args.get('assignment').split('*')[0]
 
     admin = Admin.query.filter_by(netid=admin_netid).first()
     course = admin.courses[0]

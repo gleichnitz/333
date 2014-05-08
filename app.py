@@ -1385,10 +1385,26 @@ def admin_grader_assignments():
             assignments.append(assignment)
     return render_template('admin_grader_assignments.html', course=course.name, roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
 
-@app.route('/admin/<assignment>_all_assignments')
-def admin_all_assignments(assignment):
-    admin_netid = netid
-    assignment_name=assignment
+@app.route('/admin/master_all_assignments')
+def admin_all_assignments():
+    try:
+        ticket = request.args.get('ticket')
+    except:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/master_all_assignments?assignment=" + request.args.get('assignment'))
+
+    if ticket is None:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/master_all_assignments?assignment=" + request.args.get('assignment'))
+    if 'ticket_admin' in session and ticket == session['ticket_admin']:
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/master_all_assignments?assignment=" + request.args.get('assignment'))
+
+    session['ticket_admin'] = ticket
+
+    admin_netid = isLoggedIn(ticket, "admin/master_all_assignments?assignment=" + request.args.get('assignment'))
+
+    if admin_netid is "0":
+        return redirect('/') 
+
+    assignment_name= request.args.get('assignment')
 
     admin = Admin.query.filter_by(netid=admin_netid).first()
     course = admin.courses[0]

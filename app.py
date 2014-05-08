@@ -1155,7 +1155,7 @@ def admin():
     testAssignment = Assignment.query.filter_by(course = course, master = False, graded=True).all()
     for item in testAssignment:
         if item.name.replace(" ", "") not in forHist:
-            forHist[item.name.strip()] = {}       
+            forHist[item.name.replace(" ", "")] = {}       
         if item.grade not in forHist[item.name.replace(" ", "")]:
             forHist[item.name.replace(" ", "")][item.grade] = 1
         else:

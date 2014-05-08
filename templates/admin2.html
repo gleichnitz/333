@@ -49,16 +49,18 @@
                         </div>
 
                     <br>
-                    <select id="histoSelect">
+                    <h4> Score distribution for: <select id="histoSelect">
                     {% for key, value in forHist.iteritems() %}
                         <option>{{ key }}</option>
                     {% endfor %}
                     </select>
                     <br>
 
+                    <div style="width: 100%; height: 330px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid; padding-top: 15px; margin-bottom: 20px;">
                     {% for key, value in forHist.iteritems() %}
                         <div id="highChart{{key}}" class="histo" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                     {% endfor %}
+                    </div>
 
                 </div>
             </div>

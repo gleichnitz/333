@@ -1338,7 +1338,6 @@ def admin_student_assignment():
         return redirect('/')
 
     student_netid=request.args.get('student')
-    session['error'] = student_netid
 
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):

@@ -494,7 +494,7 @@ def add_assignment():
         return "false"
 
     for item in masters:
-        if masters.name.replace(" ", "").lower() == name.replace(" ", "").lower():
+        if item.name.replace(" ", "").lower() == name.replace(" ", "").lower():
             session['error'] = "Assignment name is too similar to an existing assignment."
             return "false"
 

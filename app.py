@@ -885,12 +885,12 @@ def submitted():
 
     if assignment_active == 0:
         if accountType == "s":
-            session['warning'] = 'You\'ll be able to view your assignment after it\'s been graded.'
             return redirect('/student')
         else:
             return redirect('/grader')
 
     if accountType == "s" and assignment_active.graded != True:
+        session['warning'] = 'You\'ll be able to view your assignment after it\'s been graded.'
         return redirect('/student')
 
     roles = makeRoles(netid)

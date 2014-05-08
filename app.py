@@ -76,6 +76,8 @@ def mass_upload_student_files():
         name = filename.split('_')[0]
         netid = filename.split('_')[1]
 
+        return netid
+
         if netid not in studentFiles:
             studentFiles[netid] = []
             netids.append(netid)

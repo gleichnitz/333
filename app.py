@@ -1407,7 +1407,7 @@ def admin_grader_assignments():
             assignments.append(assignment)
     return render_template('admin_grader_assignments.html', course=course.name, roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
 
-@app.route('/admin/master_all_assignments')
+@app.route('/admin/all_assignments')
 def admin_all_assignments():
     try:
         ticket = request.args.get('ticket')
@@ -1421,7 +1421,7 @@ def admin_all_assignments():
 
     session['ticket_admin'] = ticket
 
-    admin_netid = isLoggedIn(ticket, "admin/master_all_assignments?assignment=" + request.args.get('assignment')))
+    admin_netid = isLoggedIn(ticket, "admin/all_assignments?assignment=" + request.args.get('assignment')))
 
     if admin_netid is "0":
         return redirect('/') 

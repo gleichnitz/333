@@ -1403,7 +1403,9 @@ def admin_all_assignments():
 
     if admin_netid is "0":
         return redirect('/') 
-
+    roles = makeRoles(netid)
+    if (roles.count("admin") != 0):
+        roles.remove("admin")
     assignment_name= request.args.get('assignment')
 
     admin = Admin.query.filter_by(netid=admin_netid).first()

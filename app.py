@@ -885,6 +885,7 @@ def submitted():
 
     if assignment_active == 0:
         if accountType == "s":
+            session['warning'] = 'You\'ll be able to view your assignment after it\'s been graded.'
             return redirect('/student')
         else:
             return redirect('/grader')
@@ -1043,18 +1044,23 @@ def student():
         session['error'] = 'student'
         return redirect('/')
 
-    ##################################
-    # need to pass: item containing all classes student is in
-    # need to pass: item containing all assignments
-    #               fields:
-    #               - id
-    #               - class (e.g. COS 126)
-    #               - name ("Percolation")
-    #               - date
-    #               - grade
-    ##################################
+    alertMessage=""
 
-    # return render_template('student.html', netid=session['username'], classes=, assignments=)
+    if 'error' in session:
+        alertString = session['error']
+        session.pop('error', None)
+        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
+    elif 'success' in session:
+        alertString = session['success']
+        session.pop('success', None)
+        alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
+    elif 'warning' in session:
+        alertString = session['warning']
+        session.pop('warning', None)
+        alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Caution! </strong>" + alertString + "</div>"
 
     student = Student.query.filter_by(netid = netid).first()
     assignments = student.assignments.all()
@@ -1082,7 +1088,7 @@ def student():
     if (roles.count("student") != 0):
         roles.remove("student")
 
-    return render_template('student.html', netid=netid, classes = classes, roles = roles, assignments = assignments_form)
+    return render_template('student.html', netid=netid, classes = classes, roles = roles, assignments = assignments_form, alertMessage = alertMessage)
 
 @app.route("/admin")
 def admin():
@@ -1216,7 +1222,6 @@ def admin_students():
     if 'error' in session:
         alertString = session['error']
         session.pop('error', None)
-
         alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
     elif 'success' in session:

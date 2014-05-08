@@ -108,7 +108,7 @@ def mass_upload_student_files():
 
         db.session.commit()
 
-    session['success'] = "Your code uploaded successfully!"
+    session['success'] = "Your code uploaded successfully for " + str(len(netids)) + " students!"
 
     return redirect('/admin/students')
 

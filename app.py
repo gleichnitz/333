@@ -1156,7 +1156,7 @@ def admin():
     for item in testAssignment:
         if item.name not in forHist:
             forHist[item.name] = {}       
-        if item.grade not in forHist:
+        if item.grade not in forHist[item.name]:
             forHist[item.name][item.grade] = 1
         else:
             forHist[item.name][item.grade] = forHist[item.grade] + 1

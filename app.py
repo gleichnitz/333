@@ -1319,7 +1319,7 @@ def admin_graders():
     return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=netid, roles = roles)
 
 @app.route('/admin/student_assignment')
-def admin_student_assignment(netid, student):
+def admin_student_assignment():
     try:
         ticket = request.args.get('ticket')
     except:
@@ -1336,7 +1336,7 @@ def admin_student_assignment(netid, student):
         return redirect('/')
 
     student_netid=request.args.get('assignment')
-    
+
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

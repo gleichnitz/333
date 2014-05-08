@@ -486,10 +486,17 @@ def add_assignment():
     admin = Admin.query.filter_by(netid=netid).first()
     course = admin.courses[0]
 
-    numMasters = len(Assignment.query.filter_by(course=course, master=True).all())
+    masters = Assignment.query.filter_by(course=course, master=True).all()
+
+    numMasters = len(masters)
     if numMasters > 14:
         session['error'] = 'You\'ve reached the assignment limit of 15.'
         return "false"
+
+    for item in masters:
+        if masters.name.replace(" ", "").lower() == name:
+            session['error'] = "Assignment name is too similar to an existing assignment."
+            return "false"
 
     assignment = Assignment(course.name, "", name)
     assignment.master = True

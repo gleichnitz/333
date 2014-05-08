@@ -120,7 +120,7 @@
 
 
                     xAxis: {
-                        categories: [{% for key2, value2 in value1.iteritems() %}'{{key}}',{% endfor %}]
+                        categories: [{% for key2, value2 in value1.iteritems() %}'{{key2}}',{% endfor %}]
                     },
                     
                     plotOptions: {
@@ -133,7 +133,7 @@
 
                     series: [{
                         name: '',
-                        data: [{% for key2, value2 in value1.iteritems() %}{{value}},{% endfor %}]
+                        data: [{% for key2, value2 in value1.iteritems() %}{{value2}},{% endfor %}]
                     }]
 
                 });

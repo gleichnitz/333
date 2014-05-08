@@ -1331,7 +1331,8 @@ def admin_student_assignment():
         return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/student_assignment")
 
     session['ticket_admin'] = ticket
-    admin_netid = isLoggedIn(ticket, "admin/student_assignment")
+
+    admin_netid = isLoggedIn(ticket, "admin/student_assignment?student=" + request.args.get('student'))
 
     if admin_netid is "0":
         return redirect('/')

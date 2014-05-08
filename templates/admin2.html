@@ -13,6 +13,7 @@
     <script src="../static/js/charts.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="../static/js/adminstat.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -46,6 +47,14 @@
                         <div style="width: 100%; height: 330px; background-color: white; border-color: rgba(0, 0, 0, 0.1); border: 1px solid; padding-top: 15px; margin-bottom: 20px;">
                             <div id='chart7' style='width: 800px; height: 300px;'></div>
                         </div>
+
+                    <br>
+                    <select id="histoSelect">
+                    {% for key, value in forHist.iteritems() %}
+                        <option>{{ key }}</option>
+                    {% endfor %}
+                    </select>
+                    <br>
 
                     {% for key, value in forHist.iteritems() %}
                         <div id="highChart{{key}}" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

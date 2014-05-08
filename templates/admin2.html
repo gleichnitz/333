@@ -47,7 +47,10 @@
                             <div id='chart7' style='width: 800px; height: 300px;'></div>
                         </div>
 
-                    <div id="highChart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    {% for key, value in forHist.iteritems() %}
+                        <div id="highChart{{key}}" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="page-content" style="display: {{notAreAssignments}};">
@@ -109,7 +112,7 @@
                 var chart = new Highcharts.Chart({
 
                     chart: {
-                        renderTo: 'highChart',
+                        renderTo: 'highChart{{key1}}',
                         type: 'column'
                     },
 

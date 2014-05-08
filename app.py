@@ -1323,15 +1323,15 @@ def admin_student_assignment():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/student_assignments")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/student_assignment")
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/student_assignments")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/student_assignment")
     if 'ticket_admin' in session and ticket == session['ticket_admin']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/student_assignments")
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/student_assignment")
 
     session['ticket_admin'] = ticket
-    admin_netid = isLoggedIn(ticket, "admin/student_assignments")
+    admin_netid = isLoggedIn(ticket, "admin/student_assignment")
     if admin_netid is "0":
         return redirect('/')
 

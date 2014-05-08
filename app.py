@@ -77,8 +77,8 @@ def mass_upload_student_files():
         if netid not in studentFiles:
             studentFiles[netid] = []
             netids.append(netid)
-            
-        studentFiles[netid].append({'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []})
+
+        studentFiles[netid].append({'name': name, 'content': file.read(), 'grade': "", 'annotations': []})
 
     for item in netids:
         id_ = addAssignment(course_, item, assignmentName, studentFiles[item])
@@ -87,7 +87,7 @@ def mass_upload_student_files():
 
     session['success'] = "Your code uploaded successfully!"
 
-    return redirect('/admin/student')
+    return redirect('/admin/students')
 
 # Create a bunch of students from a list of netids.
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])

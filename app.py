@@ -1412,16 +1412,16 @@ def admin_all_assignments():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/all_assignments?assignment=" + request.args.get('assignment') + "&" + str(request.args.get('course')))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/all_assignments?id=" + request.args.get('id'))
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/all_assignments?assignment=" + request.args.get('assignment') + "&" + str(request.args.get('course')))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/all_assignments?id=" + request.args.get('id'))
     if 'ticket_admin' in session and ticket == session['ticket_admin']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/all_assignments?assignment=" + request.args.get('assignment') + "&" + str(request.args.get('course')))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "admin/all_assignments?id=" + request.args.get('id'))
 
     session['ticket_admin'] = ticket
 
-    admin_netid = isLoggedIn(ticket, "admin/all_assignments" + "?assignment=" + request.args.get('assignment').replace(" ", ""))
+    admin_netid = isLoggedIn(ticket, "admin/all_assignments" + "?id=" + request.args.get('id'))
 
     if admin_netid is "0":
         return redirect('/') 
@@ -1429,7 +1429,9 @@ def admin_all_assignments():
     roles = makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
-    assignment_name= request.args.get('assignment').split('*')[0]
+
+    master = Assignment.query.filter_by(id = request.args.get('id'))
+    assignment_name = master.name
 
     admin = Admin.query.filter_by(netid=admin_netid).first()
     course = admin.courses[0]

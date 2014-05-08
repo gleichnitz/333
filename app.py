@@ -85,8 +85,6 @@ def mass_upload_student_files():
         else:
             session['error'] = filename + ' is an invalid filename. All filenames should be of the form filename_netid.'
 
-        
-        
 
         if name not in master_file_names:
             session['error'] = name + ' is not a valid file for ' + assignmentName + '.'
@@ -191,8 +189,8 @@ def upload_student_files():
     master_files = master.files
     master_file_names = []
     for item in master.files:
-        if item["name"] not in master_file_names:
-            master_file_names.append(item["name"])
+        if item["name"].lower() not in master_file_names:
+            master_file_names.append(item["name"].lower())
 
     files = request.files.getlist('file')
     string = ""
@@ -208,7 +206,7 @@ def upload_student_files():
         content = file.read()
         lines = content.split('\n')
 
-        if file.filename not in master_file_names:
+        if file.filename.lower() not in master_file_names:
             session['error'] = file.filename + " is not in the list of files for the master assignment, so " + netid + "\'s " + assignmentName + " assignment was not uploaded."
             return redirect('admin/students')
 

@@ -1396,6 +1396,7 @@ def admin_grader_assignments():
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
+
     grader = Grader.query.filter_by(netid=gradernetid).first()
     admin = Admin.query.filter_by(netid=admin_netid).first()
     course = admin.courses[0]
@@ -1420,10 +1421,11 @@ def admin_all_assignments():
 
     session['ticket_admin'] = ticket
 
-    admin_netid = isLoggedIn(ticket, "admin/master_all_assignments?assignment=" + request.args.get('assignment') + "&" + str(request.args.get('course')))
+    admin_netid = isLoggedIn(ticket, "admin/master_all_assignments?assignment=" + request.args.get('assignment')))
 
     if admin_netid is "0":
         return redirect('/') 
+
     roles = makeRoles(admin_netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")

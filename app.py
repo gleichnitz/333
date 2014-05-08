@@ -67,12 +67,18 @@ def mass_upload_student_files():
     points_possible = master.points_possible
 
     for file in files:
-        text = file.read()
-        netid = re.search("netid:\s*[a-z]+", text).group(0).split()[1]
+        filename = file.filename
+        if len(filename.split('_')) != 2:
+            session['error'] = filename + ' does not have the correct format. All filenames should be of the form filename_netid.'
+
+        name = filename.split('_')[0]
+        netid = filename.split('_')[1]
+
         if netid not in studentFiles:
             studentFiles[netid] = []
             netids.append(netid)
-        studentFiles[netid].append({'name': file.filename, 'content': text, 'grade': "", 'annotations': []})
+            
+        studentFiles[netid].append({'name': file.filename, 'content': file.read(), 'grade': "", 'annotations': []})
 
     for item in netids:
         id_ = addAssignment(course_, item, assignmentName, studentFiles[item])

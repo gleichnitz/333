@@ -55,8 +55,8 @@
       <tbody>
        {% for assignment in assignments %}
           <tr>
-              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}&amp;accountType=a"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
-              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}&amp;accountType=a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
               <td><div class="btn-group" align="center">
                   <button id="{{assignment.id}}" class="btn btn-default delete-buttons delete-buttons-1-assignment" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

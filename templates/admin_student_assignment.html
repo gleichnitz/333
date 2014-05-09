@@ -111,7 +111,7 @@
             <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
             <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">
               {% for item in assignment.files %}
-              {{assignment.name}} <br>
+              {{item.name}} <br>
               {% endfor %}
             </div></a></td>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%"> 

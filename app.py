@@ -494,7 +494,10 @@ def add_assignment():
     rubric = request.args.get('rubric').split()
     totalPoints = request.args.get('totalPoints')
     dueDate = request.args.get('dueDate')
-    netid = request.args.get('netid_admin')
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return "false"
 
     if len(name) == 0 or name == "":
         session['error'] = 'Please enter an assignment name.'
@@ -1515,6 +1518,9 @@ def admin_admins():
     netid = isLoggedIn(ticket, "admin/assignments")
     if netid is "0":
         return redirect('/')
+
+    session['netid'] = netid
+
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
@@ -1562,7 +1568,7 @@ def admin_admins():
 
 @app.route("/logout")
 def logout():
-    session.pop('username', None)
+    session.pop('netid', None)
     return redirect('https://fed.princeton.edu/cas/logout')
 
 # @app.route("/demo")

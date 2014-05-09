@@ -563,7 +563,8 @@ def addtest(id):
 @app.route("/_delete_assignment")
 def remove_assignment():
     name = str(request.args.get('name'))
-    course = str(request.args.get('course'))
+    course_name = str(request.args.get('course'))
+    course = Course.query.filter_by(name=course_name).first()
     assignments = Assignment.query.filter_by(name=name, course=course).all();
     for assignment in assignments:
         db.session.delete(assignment)

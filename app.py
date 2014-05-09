@@ -887,7 +887,7 @@ def submitted():
     if netid is "0":
         return redirect('/')
 
-    if request.args.get('assignment').count('*') != 1:
+    if request.args.get('assignment').count('*') == 1:
         assignmentID = request.args.get('assignment').split('*')[0]
         accountType = request.args.get('assignment').split('*')[1]
     else:

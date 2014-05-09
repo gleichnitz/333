@@ -110,16 +110,16 @@
           <tr>
             <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
             <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">
-              {{% for item in assignment.files %}}
+              {% for item in assignment.files %}
               {{assignment.name}} <br>
-              {{% endfor %}}
+              {% endfor %}
             </div></a></td>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%"> 
-                {{% if assignment.grader %}}
+                {% if assignment.grader %}
                 {{ assignment.grader.netid }}
-                {{% else %}}
+                {% else %}
                 ---
-                {{% endif %}}
+                {% endif %}
               </div></a></td>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
               <td><div class="btn-group" align="center">

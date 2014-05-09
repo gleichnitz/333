@@ -921,6 +921,7 @@ def submitted():
             return redirect('/admin')
         assignments = []
         assignments.append(assignment)
+    else return redirect('/' + accountType)
 
     assignment_active = 0
     for item in assignments:

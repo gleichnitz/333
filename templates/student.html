@@ -112,10 +112,10 @@
       <tbody id="student-table-body">
           {% for item in assignments %}
               <tr style="display: table-row">
-              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
-              <td><a href="/viewer?assignment={{ item.id }}*s"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td></tr>
+              <td><a href="/viewer?assignment={{ item.id }}&accountType=s"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}&accountType=s"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}&accountType=s"><div style="height:100%;width:100%">{{ item.date }}</div></a></td>
+              <td><a href="/viewer?assignment={{ item.id }}&accountType=s"><div style="height:100%;width:100%">{{ item.grade }}</div></a></td></tr>
           {% endfor %}
       </tbody>
     </table>

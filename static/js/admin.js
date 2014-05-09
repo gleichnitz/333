@@ -181,6 +181,7 @@ $(document).ready(function() {
 	  			context: document.body,
 	  			data: { name: name, course:course }
 		  	}).done(function(data) {
+		  		console.log(data)
 		  		if (data == "true") {
 		  			thisButton.closest('tr').css('display','none');
 		  			console.log("true");

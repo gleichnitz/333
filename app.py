@@ -566,9 +566,12 @@ def remove_assignment():
     course_name = str(request.args.get('course'))
     course = Course.query.filter_by(name=course_name).first()
     assignments = Assignment.query.filter_by(name=name, course=course).all();
+    assignment_count = 0
     for assignment in assignments:
+        assignment_count += 1
         db.session.delete(assignment)
         db.session.commit()
+    return assignment_count
     return "true"
 
 @app.route("/_delete_1_assignment")

@@ -113,7 +113,8 @@
     </thead>
       <tbody id="admin-admin-table-body">
         {% for assignment in assignments %}
-          <tr><td><a href="/admin/all_assignments?id={{assignment.a.id}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
+          <tr id = "{{course}}}">
+          <td><a href="/admin/all_assignments?id={{assignment.a.id}}"><div style="height:100%;width:100%">{{assignment.a.name}}</div></a></td>
           <td><a href="/admin/all_assignments?id={{assignment.a.id}}"><div style="height:100%;width:100%" align="center">{% for item in assignment.a.files %} {{ item.name }} <br> {% endfor %}</div></a></td>
           <td><a href="/admin/all_assignments?id={{assignment.a.id}}"><div style="height:100%;width:100%" align="center">{{assignment.avg_grade}}</div></a></td>
           <td><a href="/admin/all_assignments?id={{assignment.a.id}}"><div style="height:100%;width:100%" align="center">{{assignment.graded}}</div></a></td>

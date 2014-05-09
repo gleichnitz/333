@@ -922,7 +922,7 @@ def submitted():
         assignments = []
         assignments.append(assignment)
     else:
-        return redirect('/' + accountType)
+        return redirect('/')
 
     assignment_active = 0
     for item in assignments:

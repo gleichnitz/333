@@ -866,7 +866,7 @@ def account():
 
 @app.route("/viewer")
 def submitted():
-    return request.args
+    # return request.args
     if 'assignment' not in request.args:
         return redirect('/')
     # if 'accountType' not in request.args: #is there ever a time this will be the case??

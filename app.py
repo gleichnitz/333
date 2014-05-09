@@ -869,28 +869,30 @@ def submitted():
     # return request.args
     if 'assignment' not in request.args:
         return redirect('/')
+
     # if 'accountType' not in request.args: #is there ever a time this will be the case??
     #     return redirect('/')
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
     if 'ticket_viewer' in session and ticket == session['ticket_viewer']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment'))
 
     session['ticket_viewer'] = ticket
-    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
+    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment'))
     if netid is "0":
         return redirect('/')
 
-    if 'assignment' in request.args:
-        assignmentID = request.args.get('assignment')
-        accountType = request.args.get('accountType')
+    if request.args.get('argument').count('*') != 1:
+        assignmentID = request.args.get('assignment').split('*')[0]
+        accountType = request.args.get('assignment').split('*')[1]
     else:
         return redirect('/')
+
 
     grader_button_display = ""
     input_ro = ""

@@ -108,20 +108,20 @@
       <tbody id="student-assignments-table-body">
        {% for assignment in assignments %}
           <tr>
-            <td><a href="/viewer?assignment={{ assignment.id }}&amp;accountType=a"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
-            <td><a href="/viewer?assignment={{ assignment.id }}&amp;accountType=a"><div style="height:100%;width:100%">
+            <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{assignment.name}}</div></a></td>
+            <td><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">
               {% for item in assignment.files %}
               {{item.name}} <br>
               {% endfor %}
             </div></a></td>
-              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}&amp;accountType=a"><div style="height:100%;width:100%"> 
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%"> 
                 {% if assignment.grader %}
                 {{ assignment.grader.netid }}
                 {% else %}
                 ---
                 {% endif %}
               </div></a></td>
-              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}&amp;accountType=a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
               <td><div class="btn-group" align="center">
                   <button id="{{assignment.id}}" class="btn btn-default delete-buttons delete-buttons-1-assignment" type="button" style="height:100%;width:100%;background-color: white; color: black; clear: both"> x </span>
                   </button>

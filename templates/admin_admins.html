@@ -25,7 +25,7 @@
                     }
                   }
                 });
-                $('.dropdown-menu li').click(function(e){
+                $('.dropdown-menu li .assignment-dropdown').click(function(e){
                     e.preventDefault();
                     var selected = $(this).text();
                     var marked = 0;
@@ -68,7 +68,7 @@
               <div class="btn-group" id="add-buttons">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Assignment <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" role="menu">
+                  <ul class="dropdown-menu assignment-dropdown" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">All</a></li>
                         {% for assignment in assignments %}
                             <li role="presentation"><a role="menuitem" tabindex="-1">{{assignment.a.name}}</a></li>

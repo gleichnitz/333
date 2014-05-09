@@ -946,8 +946,12 @@ def submitted():
         return redirect('/student')
 
     roles = makeRoles(netid)
-    if (roles.count("grader") != 0):
+    if (accountType = "g" and roles.count("grader") != 0):
         roles.remove("grader")
+    elif (accountType = "a" and roles.count("admin") != 0):
+        roles.remove("admin")
+    elif (accountType = "s" and roles.count("student") != 0):
+        roles.remove("student")
 
     title = assignment_active.name
 

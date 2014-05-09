@@ -83,7 +83,8 @@ def mass_upload_student_files():
             name = filename.split('_')[0]
             netid = filename.split('_')[1]
         else:
-            session['error'] = filename + ' is an invalid filename. All filenames should be of the form filename_netid.'
+            #session['error'] = filename + ' is an invalid filename. All filenames should be of the form filename_netid.'
+            session['error'] = re.search("([a-z])+_\W(\W)+.(c|(java))|(.txt)", filename).group(0)
             return redirect('/admin/students')
 
         if name not in master_file_names:

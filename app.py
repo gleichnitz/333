@@ -874,15 +874,15 @@ def submitted():
     try:
         ticket = request.args.get('ticket')
     except:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + request.args.get('accountType'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
 
     if ticket is None:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + request.args.get('accountType'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
     if 'ticket_viewer' in session and ticket == session['ticket_viewer']:
-        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + request.args.get('accountType'))
+        return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/viewer?assignment=' + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
 
     session['ticket_viewer'] = ticket
-    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment') + '&accountType=' + request.args.get('accountType'))
+    netid = isLoggedIn(ticket, "viewer?assignment=" + request.args.get('assignment') + '&accountType=' + str(request.args.get('accountType')))
     if netid is "0":
         return redirect('/')
 

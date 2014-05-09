@@ -868,7 +868,8 @@ def account():
 def submitted():
     if 'assignment' not in request.args:
         return redirect('/')
-
+    if 'accountType' not in request.args: #is there ever a time this will be the case??
+        return redirect('/')
     try:
         ticket = request.args.get('ticket')
     except:

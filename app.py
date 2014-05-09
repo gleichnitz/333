@@ -571,7 +571,7 @@ def remove_assignment():
         assignment_count += 1
         db.session.delete(assignment)
         db.session.commit()
-    # return assignment_count
+    return str(assignment_count)
     return "true"
 
 @app.route("/_delete_1_assignment")

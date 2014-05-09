@@ -893,6 +893,8 @@ def submitted():
     else:
         return redirect('/')
 
+    if !assignmentID.isdigit():
+        return redirect('/')
 
     grader_button_display = ""
     input_ro = ""

@@ -156,9 +156,9 @@
         <tbody id="grader-table-body">
        {% for item in assignments %}
             <tr style="display: table-row">
-                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
-                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
-                <td><a href="/viewer?assignment={{ item.id }}*g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}&accountType=g"><div style="height:100%;width:100%">{{ item.course }}</div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}&accountType=g"><div style="height:100%;width:100%">{{ item.name }}</div></a></td>
+                <td><a href="/viewer?assignment={{ item.id }}&accountType=g"><div style="height:100%;width:100%">{{ item.student }}<div></a></td>
                 <td><div class="row_grader" style="height:100%;width:100%">{{ item.grader|safe}}</div></td>
                 <td><div class="graded_status" style="height:100%;width:100%">
                     {{item.status}}

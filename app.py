@@ -76,10 +76,10 @@ def mass_upload_student_files():
         if len(filename.split('_')) != 2:
             session['error'] = filename + ' does not have the correct format. All filenames should be of the form filename_netid.'
 
-        if re.match("[a-z]+_(\W)(\W)+.(c|(java))", filename) is not None:
+        if re.search("[a-z]+_(\W)(\W)+.(c|(java))", filename) is not None:
             name = filename.split('_')[0] + '.' + filename.split('_')[1].split('.')[1]
             netid = filename.split('_')[1].split('.')[0]
-        elif re.match("[a-z]+_(\W)(\W)+", filename) is not None:
+        elif re.search("[a-z]+_(\W)(\W)+", filename) is not None:
             name = filename.split('_')[0]
             netid = filename.split('_')[1]
         else:

@@ -52,13 +52,14 @@ def inSession():
     else:
         return redirect('/404')
 
+# Adds an assignment from the admin form to the assignment list as a master.
 def AddtoListAssignmentMaster(files, file_name):
-  #file_ = open(file_name, 'r')
-  #file_content = file_.read()
   ass_file = {'name': file_name, 'content': None, 'grade': "", 'annotations': []}
   files.append(ass_file)
   return files
 
+# Allows mass upload of student files from the admin/students page, filtering by
+# filename_netid
 @app.route('/_mass_upload_student_files', methods=['GET', 'POST'])
 def mass_upload_student_files():
 
@@ -267,6 +268,8 @@ def upload_student_files():
 
     return redirect('/admin/students')
 
+# Called when a grader or admin marks an assignment as graded and saves the overall grade
+# and the grade for each file
 @app.route('/_done', methods = ['GET', 'POST'])
 def done():
 

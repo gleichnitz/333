@@ -360,12 +360,11 @@ def release_assignment():
         a.mark_ungraded()
         a.grader = None
         a.grade = None
-        for item in a.files:
-            item["grade"] = ""
         db.session.commit()
         new_files = a.files
         for item in new_files:
             item["annotations"] = []
+            item["grade"] = ""
         Assignment.query.filter_by(id = assignID).update({'files': new_files})
         return "success"
 

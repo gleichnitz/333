@@ -370,7 +370,7 @@ def release_assignment():
     except:
         return render_template('404.html')
 
-    if assignID = "":
+    if assignID == "":
         return render_template('404.html')
 
     a = Assignment.query.filter_by(id  = assignID).first()

@@ -397,7 +397,7 @@ def release_assignment():
         return "success"
 
     else:
-        return "failure"
+        return render_template('404.html')
 
 @app.route('/_check_annotations')
 def check_annotations():

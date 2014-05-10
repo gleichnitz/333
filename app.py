@@ -428,7 +428,7 @@ def add_grader():
     if isAdmin(netid) is False:
         return redirect('/404')
 
-    course = Admin.query.filter_by(netid = netid).first().course[0]
+    course = Admin.query.filter_by(netid = netid).first().courses[0]
     courseName = course.name
 
     graderNetid = str(request.args.get('netid'))

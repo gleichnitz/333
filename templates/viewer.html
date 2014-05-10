@@ -155,7 +155,7 @@
     var state = clickButton.text()
     if (state == "Mark Grading as Done") {
       $.ajax({
-        url: "/_done",
+          url: "/_done",
           context: document.body,
           data: { id: assignmentid}
       }).done(function(data) {

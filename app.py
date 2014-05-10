@@ -290,20 +290,23 @@ def done():
 
     new_files = assignment.files
     file_name = ""
+    ungraded = False
     for item in new_files:
-        ##file_name = item.get('name')
-        ##file_name = item
         file_name = str(item['name'])
         file_name = os.path.splitext(file_name)[0]
         file_grade = request.form[file_name]
-        ## will be easier if rubric is a dictionary with key being filename
-        ## list is fine for now
+        if file_grade == "":
+            ungraded = True
         item["grade"] = file_grade
 
+    if request.form['total'] == None:
+        return "failure"
+        
     assignment.grade = float(request.form['total'])
     assignment.graded = True
     assignment.in_progress = False
-
+    if ungraded == True:
+        session['Warning'] = "You did not submit grades for each file"
     try:
         Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
         db.session.commit()

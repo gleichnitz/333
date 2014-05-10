@@ -360,7 +360,8 @@ def release_assignment():
         a.mark_ungraded()
         a.grader = None
         a.grade = None
-        a.rubric = None
+        for item in a.files:
+            item["grade"] = None
         db.session.commit()
         new_files = a.files
         for item in new_files:

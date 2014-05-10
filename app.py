@@ -974,6 +974,7 @@ def submitted():
 
     files = []
     rubric = assignment_active.rubric
+    return redirect(rubric)
     i = 0
     for item in assignment_active.files:
         if accountType == "g":

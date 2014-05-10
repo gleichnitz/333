@@ -458,7 +458,11 @@ def add_student():
 
 @app.route('/_add_grader')
 def add_grader():
-    netid = inSession()
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
+        
     if isAdmin(netid) is False:
         return redirect('/404')
 

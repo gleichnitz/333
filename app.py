@@ -487,8 +487,11 @@ def add_grader():
 
 @app.route('/_delete_student')
 def remove_student():
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
 
-    netid = inSession()
     if isAdmin(netid) is False:
         return redirect('/404')
 

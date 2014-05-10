@@ -308,7 +308,7 @@ def done():
     except:
         return traceback.format_exc()
 
-@app.route('/_undone', methods = ['POST'])
+@app.route('/_undone', methods = ['GET', 'POST'])
 def undone():
     try:
         assignmentID = request.form['id']
@@ -333,7 +333,6 @@ def change_grade():
 
 @app.route('/_assign')
 def assign_assignment():
-
     if 'netid' in session:
         netid = session['netid']
     else:
@@ -368,7 +367,6 @@ def assign_assignment():
 
 @app.route('/_release')
 def release_assignment():
-
     if 'netid' in session:
         netid = session['netid']
     else:
@@ -427,6 +425,10 @@ def check_student():
 
 @app.route('/_add_student')
 def add_student():
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
 
     netid = inSession()
     if isAdmin(netid) is False:
@@ -569,6 +571,11 @@ def check_graded_assignments():
 
 @app.route('/_add_assignment')
 def add_assignment():
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return "false"
+
     name = request.args.get('name')
     fileNames = request.args.get('files').split()
     rubric = request.args.get('rubric').split()

@@ -436,7 +436,7 @@ def add_student():
     studentNetid = str(request.args.get('netid'))
     if isValidNetid(netid) is False:
         return "false"
-    elif studentNetid == ""
+    elif studentNetid == "":
         return render_template('404.html')
 
     course = Admin.query.filter_by(netid = netid).first().courses[0]

@@ -269,7 +269,7 @@ def upload_student_files():
     return redirect('/admin/students')
 
 # Called when a grader or admin marks an assignment as graded and saves the overall grade
-# and the grade for each file
+# and the grade for each file.
 @app.route('/_done', methods = ['GET', 'POST'])
 def done():
 
@@ -311,6 +311,7 @@ def done():
     except:
         return traceback.format_exc()
 
+# Called when a grader or admin unmarks an assignment as done.
 @app.route('/_undone', methods = ['GET', 'POST'])
 def undone():
     try:
@@ -328,6 +329,7 @@ def undone():
     except:
         return traceback.format_exc()
 
+#
 @app.route('/_change_grade')
 def change_grade():
     value = request.args.get('grade')

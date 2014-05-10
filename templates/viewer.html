@@ -159,7 +159,9 @@
           context: document.body,
           data: { id: assignmentid}
       }).done(function(data) {
-
+        if (data == "failure") {
+          
+        }
       });
     }
     else {

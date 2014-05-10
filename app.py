@@ -302,8 +302,7 @@ def done():
     if not request.form['total'].isdigit():
         return "failure"
     assignment_grade = request.form['total']
-    grade_type = assignment_grade.type()
-    if type is not IntType and type is not LongType and type is not FloatType:
+    if not assignment_grade.isdigit() and assignment_grade.count('.') != 1:
         return 'failure'
     assignment.grade = float(assignment_grade)
     assignment.graded = True

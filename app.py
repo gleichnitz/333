@@ -299,7 +299,7 @@ def done():
             ungraded = True
         item["grade"] = file_grade
 
-    if request.form['total'] == None:
+    if not request.form['total'].isdigit():
         return "failure"
 
     assignment.grade = float(request.form['total'])

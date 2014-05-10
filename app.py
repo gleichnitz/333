@@ -300,12 +300,10 @@ def done():
             ungraded = True
         item["grade"] = file_grade
 
-    if not request.form['total'].isdigit():
-        return "failure"
     assignment_grade = request.form['total']
     if not assignment_grade.isdigit():
         if str(assignment_grade).count('.') == 0:
-            return 'failure'
+            return redirect('/grader')
     assignment.grade = float(assignment_grade)
     assignment.graded = True
     assignment.in_progress = False

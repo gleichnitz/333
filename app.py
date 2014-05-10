@@ -361,7 +361,7 @@ def release_assignment():
         a.grader = None
         a.grade = None
         for item in a.files:
-            item["grade"] = None
+            item["grade"] = ""
         db.session.commit()
         new_files = a.files
         for item in new_files:

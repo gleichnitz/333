@@ -56,7 +56,7 @@
        {% for assignment in assignments %}
           <tr>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
-              {% if assignment.graded }
+              {% if assignment.graded %}
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
               {% else %}
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%"> --- </div></a></td>

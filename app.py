@@ -973,8 +973,10 @@ def submitted():
         input_ro = ""
 
     files = []
-    rubric = assignment_active.rubric
-    return redirect(rubric)
+    assignment_name = assignment_active.name
+    master_assignment = Assignment.query.filter_by(name=assignment_name, master=True).first()
+    rubric = master_assignment.rubric
+
     i = 0
     for item in assignment_active.files:
         if accountType == "g":

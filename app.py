@@ -263,7 +263,7 @@ def done():
     else:
         return render_template('404.html')
 
-    if isGrader(netid) is False and isAdmin(netid is False:
+    if isGrader(netid) is False and isAdmin(netid) is False:
         return render_template('404.html')
     
     try: 

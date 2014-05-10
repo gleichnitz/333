@@ -255,7 +255,7 @@ def upload_student_files():
 
     return redirect('/admin/students')
 
-@app.route('/_done', methods = ['POST'])
+@app.route('/_done', methods = ['GET', 'POST'])
 def done():
 
     if 'netid' in session:

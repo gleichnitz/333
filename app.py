@@ -1435,7 +1435,7 @@ def admin_student_assignment():
     if admin_netid is "0":
         return redirect('/')
 
-    session['netid'] = netid
+    session['netid'] = admin_netid
 
     student_netid=request.args.get('student')
 
@@ -1471,7 +1471,7 @@ def admin_grader_assignments():
     if admin_netid is "0":
         return redirect('/') 
 
-    session['netid'] = netid
+    session['netid'] = admin_netid
 
     gradernetid= request.args.get('grader')
     roles=makeRoles(admin_netid)
@@ -1504,7 +1504,7 @@ def admin_all_assignments():
 
     admin_netid = isLoggedIn(ticket, "admin/all_assignments" + "?id=" + request.args.get('id'))
 
-    session['netid'] = netid
+    session['netid'] = admin_netid
 
     if admin_netid is "0":
         return redirect('/') 

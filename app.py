@@ -602,14 +602,22 @@ def add_assignment():
     else:
         return "false"
 
+    PERMITTED_LANGUAGES = ['c', 'cpp', 'py', 'js', 'txt']
+
     if len(name) == 0 or name == "":
         session['error'] = 'Please enter an assignment name.'
         return "false"
 
     for item in fileNames:
-        if item.isalpha() is False and re.match("([a-z])+.(c|(java))|(.txt)", item) is None:
+        if item.isalpha() is False and re.match("([a-z])+.([a-z])+", item) is None:
             session['error'] = item + ' is an invalid file name.'
             return "false"
+
+        if item.isalpha() is False:
+            ext = item.split('.')[1]
+            if ext not in PERMITTED_LANGUAGES:
+                session['error'] = ext + ' is not a valid file extension.'
+                return "false"
 
     if len(fileNames) > 10:
         session['error'] = 'An assignment can have no more than 10 files.'

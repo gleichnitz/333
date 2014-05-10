@@ -258,9 +258,13 @@ def upload_student_files():
 @app.route('/_done', methods = ['POST'])
 def done():
 
-    netid = inSession()
-    if isAdmin(netid) is False and isGrader(netid) is False:
-        return redirect('/404')
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
+
+    if isGrader(netid) is False and isAdmin(netid is False:
+        return render_template('404.html')
     
     try: 
         assignmentID = request.form['id']
@@ -318,9 +322,13 @@ def change_grade():
 @app.route('/_assign')
 def assign_assignment():
 
-    netid = inSession()
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
+
     if isGrader(netid) is False:
-        return redirect('/404')
+        return render_template('404.html')
 
     try: 
         assignID = request.args.get('id')

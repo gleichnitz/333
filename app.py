@@ -629,7 +629,7 @@ class AssignmentProgressClass:
         self.due_date = due_date
 
 class File:
-    def __init__(self, name, code, grade, isReadOnly = ""):
+    def __init__(self, name, code, grade, points, isReadOnly = ""):
         self.name = name.split('.')[0]
         if len(name.split('.')) > 1:
             self.ext = name.split('.')[1]
@@ -641,6 +641,7 @@ class File:
             self.ext = "plain"
         self.code = code
         self.grade = grade
+        self.points = points # this is points possible from rubric
         self.isReadOnly = isReadOnly
 
 def isStudent(net_id):
@@ -972,11 +973,14 @@ def submitted():
         input_ro = ""
 
     files = []
+    rubric = assignment_active.rubric
+    i = 0
     for item in assignment_active.files:
         if accountType == "g":
-            files.append(File(item['name'], item['content'], item['grade']))
+            files.append(File(item['name'], item['content'], item['grade'], rubric[i]))
         else:
-            files.append(File(item['name'], item['content'], item['grade'], "{readOnly: true}"))
+            files.append(File(item['name'], item['content'], item['grade'], rubric[i], "{readOnly: true}"))
+        i += 1
 
     ##################################
     # need to pass: item containing assignment files to be loaded

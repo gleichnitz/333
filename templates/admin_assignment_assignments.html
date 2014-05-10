@@ -43,6 +43,12 @@
           </th>
           <th class="header">
             <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grader <span class="caret"></span>
+                  </button>
+              </div>
+          </th>
+          <th class="header">
+            <div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: black; clear: both"> Grade <span class="caret"></span>
                   </button>
               </div>
@@ -56,6 +62,11 @@
        {% for assignment in assignments %}
           <tr>
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.student.netid }}</div></a></td>
+              {% if assignment.grader %}
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grader.netid }}</div></a></td>
+              {% else %}
+              <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%"> --- s</div></a></td>
+              {% endif %}
               {% if assignment.graded %}
               <td class="netid-row"><a href="/viewer?assignment={{ assignment.id }}*a"><div style="height:100%;width:100%">{{ assignment.grade }}</div></a></td>
               {% else %}

@@ -1540,6 +1540,7 @@ def admin_grader_assignments():
             assignments.append(assignment)
     return render_template('admin_grader_assignments.html', course=course.name, roles=roles, netid=admin_netid, gradernetid=gradernetid, assignments=assignments)
 
+# Page for all of the submitted assignments within a specified master assignment 
 @app.route('/admin/all_assignments')
 def admin_all_assignments():
     try:
@@ -1574,6 +1575,7 @@ def admin_all_assignments():
 
     return render_template('admin_assignment_assignments.html', course=course.name, roles=roles, assignment_name=assignment_name, netid=admin_netid, assignments=assignments)
 
+# Page for all master assignments for the admin's course
 @app.route("/admin/assignments")
 def admin_admins():
     try:

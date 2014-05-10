@@ -46,6 +46,11 @@ def isValidNetid(netid):
     else:
         return False
 
+def inSession():
+    if 'netid' in session:
+        return session['netid']
+    else:
+        return redirect('/404')
 
 def AddtoListAssignmentMaster(files, file_name):
   #file_ = open(file_name, 'r')
@@ -56,9 +61,18 @@ def AddtoListAssignmentMaster(files, file_name):
 
 @app.route('/_mass_upload_student_files', methods=['GET', 'POST'])
 def mass_upload_student_files():
-    files = request.files.getlist('file')
-    assignmentName = request.form['assignmentTitle']
-    course_ = request.form['course']
+
+    netid = inSession()
+    if isAdmin(netid) is False:
+        return redirect('/404')
+
+    try: 
+        files = request.files.getlist('file')
+        assignmentName = request.form['assignmentTitle']
+    except:
+        return redirect('/404')
+
+    courseName = Admin.query.filter_by(netid = netid).first().courses[0].name
     content = ""
 
     studentFiles = {}
@@ -97,7 +111,7 @@ def mass_upload_student_files():
         studentFiles[netid].append({'name': name, 'content': file.read(), 'grade': "", 'annotations': []})
 
     for item in netids:
-        id_ = addAssignment(course_, item, assignmentName, studentFiles[item])
+        id_ = addAssignment(courseName, item, assignmentName, studentFiles[item])
         Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
 
         assignFiles = Set()
@@ -125,15 +139,15 @@ def mass_upload_student_files():
 # Create a bunch of students from a list of netids.
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
+
+    netid = inSession()
+    if isAdmin(netid) is False:
+        return redirect('/404')
+
     try:
         f = request.files['file']
     except:
-        return traceback.format_exc()
-
-    try:
-        courseName = request.form['course']
-    except:
-        return traceback.format_exc()
+        return redirect('/404')
 
     netids = f.read().split('\n')
 
@@ -142,7 +156,7 @@ def mass_upload_students():
             session['error'] = item  + ' is an invalid netid.'
             return redirect('/admin/students')
 
-    course = Course.query.filter_by(name= courseName).first()
+    course = Admin.query.filter_by(netid = netid).first().courses[0]
     length = len(course.students.all())
     if length > 499:
         session['error'] = 'You have reached the limit of 500 students in your course. Please delete some students to add more.'
@@ -174,9 +188,17 @@ def mass_upload_students():
 # Upload code and create a new assignment bound to a particular student.
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
-    assignmentName = request.form['assignmentTitle']
-    course_ = request.form['course']
-    netid = request.form['netid']
+
+    netid = inSession()
+    if isAdmin(netid) is False:
+        return redirect('/404')
+
+    try:
+        assignmentName = request.form['assignmentTitle']
+        courseName = Admin.query.filter_by(netid = netid).first().courses[0].name
+        netid = request.form['netid']
+    except:
+        return redirect('/404')
 
     # Netid is automatically generated, so it should be valid.
     if isValidNetid(netid) is False:
@@ -219,7 +241,7 @@ def upload_student_files():
         ass_file = {'name': file.filename, 'content': content, 'grade': "", 'annotations': []}
         fileList.append(ass_file)
 
-    id_ = addAssignment(course_, netid, assignmentName, fileList)
+    id_ = addAssignment(courseName, netid, assignmentName, fileList)
     Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
     db.session.commit()
 
@@ -235,19 +257,16 @@ def upload_student_files():
 
 @app.route('/_done', methods = ['POST'])
 def done():
-    # try:
-    #     ticket = request.args.get('ticket')
-    # except:
-    #     return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "_done")
 
-    # if ticket is None:
-    #     return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "_done")
-    # if 'ticket_account' in session and ticket == session['ticket_account']:
-    #     return redirect('https://fed.princeton.edu/cas/login?service=http://saltytyga.herokuapp.com/' + "_done")
-
-    # session['ticket_grader'] = ticket
+    netid = inSession()
+    if isAdmin(netid) is False and isGrader(netid) is False:
+        return redirect('/404')
     
-    assignmentID = request.form['id']
+    try: 
+        assignmentID = request.form['id']
+    except:
+        return redirect('/404')
+
     assignment = Assignment.query.filter_by(id = assignmentID).first()
 
     new_files = assignment.files
@@ -275,8 +294,11 @@ def done():
 
 @app.route('/_undone', methods = ['POST'])
 def undone():
-    assignmentID = request.form['id']
-    assignment = Assignment.query.filter_by(id = assignmentID).first()
+    try:
+        assignmentID = request.form['id']
+        assignment = Assignment.query.filter_by(id = assignmentID).first()
+    except:
+        return redirect('/404')
 
     assignment.in_progress = True
     assignment.graded = False
@@ -296,8 +318,15 @@ def change_grade():
 @app.route('/_assign')
 def assign_assignment():
 
-    assignID = request.args.get('id')
-    netid = str(request.args.get('netid')).strip()
+    netid = inSession()
+    if isGrader(netid) is False:
+        return redirect('/404')
+
+    try: 
+        assignID = request.args.get('id')
+    except:
+        return redirect('/404')
+
     students = Student.query.all()
 
     for item in students:
@@ -320,8 +349,11 @@ def assign_assignment():
 @app.route('/_release')
 def release_assignment():
 
+    netid = inSession()
+    if isGrader(netid) is False:
+        return redirect('/404')
+
     assignID = request.args.get('id')
-    netid = str(request.args.get('netid')).strip()
 
     a = Assignment.query.filter_by(id  = assignID).first()
     if a is not None:
@@ -349,6 +381,7 @@ def check_annotations():
 
 @app.route('/_check_student')
 def check_student():
+
     netid = str(request.args.get('netid'))
     student = Student.query.filter_by(netid=netid).first();
     if student is None:
@@ -362,18 +395,24 @@ def check_student():
 
 @app.route('/_add_student')
 def add_student():
-    courseName = request.args.get('courseid')
-    netid = str(request.args.get('netid'))
-    if netid.isalnum() is False:
+
+    netid = inSession()
+    if isAdmin(netid) is False:
+        return redirect('/404')
+
+    studentNetid = str(request.args.get('netid'))
+    if isValidNetid(netid) is False:
         return "false"
 
-    course = Course.query.filter_by(name = courseName).first()
+    course = Admin.query.filter_by(netid = netid).first().courses[0]
+    courseName = course.name
+
     if len(course.students.all()) > 499:
         return "false"
 
-    student = Student.query.filter_by(netid=netid).first();
+    student = Student.query.filter_by(netid=studentNetid).first();
     if student is None:
-        newStudent = Student("name", "test", netid)
+        newStudent = Student("name", "test", studentNetid)
         newStudent.courses.append(course)
         db.session.add(newStudent)
         db.session.commit()
@@ -385,20 +424,24 @@ def add_student():
 
 @app.route('/_add_grader')
 def add_grader():
-    courseName = request.args.get('courseid')
-    netid = str(request.args.get('netid'))
+    netid = inSession()
+    if isAdmin(netid) is False:
+        return redirect('/404')
+
+    course = Admin.query.filter_by(netid = netid).first().course[0]
+    courseName = course.name
+
+    graderNetid = str(request.args.get('netid'))
     if isValidNetid(netid) is False:
         return "false"
-
-    course = Course.query.filter_by(name = courseName).first()
 
     if len(course.graders.all()) > 49:
         session['error'] = 'You have reached the limit of 50 graders.'
         return "error"
 
-    grader = Grader.query.filter_by(netid=netid).first();
+    grader = Grader.query.filter_by(netid=graderNetid).first();
     if grader is None:
-        newGrader = Grader(netid)
+        newGrader = Grader(graderNetid)
         newGrader.courses.append(course)
         db.session.add(newGrader)
         db.session.commit()
@@ -410,15 +453,20 @@ def add_grader():
 
 @app.route('/_delete_student')
 def remove_student():
-    netid = str(request.args.get('netid'))
-    course = str(request.args.get('course'))
-    course_object = Course.query.filter_by(name=course).first()
+
+    netid = inSession()
+    if isAdmin(netid) is False:
+        return redirect('/404')
+
+    studentNetid = str(request.args.get('netid'))
+
+    course_object = Admin.query.filter_by(netid=netid).first().courses[0]
     if course_object is None:
         return "no course"
     if netid.isalnum() is False:
         return "false"
 
-    student = Student.query.filter_by(netid=netid).first()
+    student = Student.query.filter_by(netid=studentNetid).first()
     if student is None:
         return "true"
 

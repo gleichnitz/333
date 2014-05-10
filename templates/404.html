@@ -11,6 +11,7 @@
 	<title>CodePost: 404 Error</title>
 {% endblock %}
 {% block body %}
+  {{super()}}
   <h1>Page Not Found, sorry!! :(</h1>
   <p><a href="{{ url_for('index3') }}">home</a></p>
 {% endblock %}

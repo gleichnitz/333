@@ -62,7 +62,11 @@ def AddtoListAssignmentMaster(files, file_name):
 @app.route('/_mass_upload_student_files', methods=['GET', 'POST'])
 def mass_upload_student_files():
 
-    netid = inSession()
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
+
     if isAdmin(netid) is False:
         return redirect('/404')
 
@@ -140,7 +144,11 @@ def mass_upload_student_files():
 @app.route('/_mass_upload_students', methods=['GET', 'POST'])
 def mass_upload_students():
 
-    netid = inSession()
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
+
     if isAdmin(netid) is False:
         return redirect('/404')
 
@@ -189,7 +197,11 @@ def mass_upload_students():
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():
 
-    netid = inSession()
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
+
     if isAdmin(netid) is False:
         return redirect('/404')
 

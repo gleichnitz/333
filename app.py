@@ -430,13 +430,14 @@ def add_student():
     else:
         return render_template('404.html')
 
-    netid = inSession()
     if isAdmin(netid) is False:
-        return redirect('/404')
+        return render_template('404.html')
 
     studentNetid = str(request.args.get('netid'))
     if isValidNetid(netid) is False:
         return "false"
+    elif studentNetid == ""
+        return render_template('404.html')
 
     course = Admin.query.filter_by(netid = netid).first().courses[0]
     courseName = course.name
@@ -462,7 +463,7 @@ def add_grader():
         netid = session['netid']
     else:
         return render_template('404.html')
-        
+
     if isAdmin(netid) is False:
         return redirect('/404')
 

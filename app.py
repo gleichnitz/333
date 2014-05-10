@@ -349,9 +349,13 @@ def assign_assignment():
 @app.route('/_release')
 def release_assignment():
 
-    netid = inSession()
+    if 'netid' in session:
+        netid = session['netid']
+    else:
+        return render_template('404.html')
+
     if isGrader(netid) is False:
-        return redirect('/404')
+        return render_template('404.html')
 
     try: 
         assignID = request.args.get('id')

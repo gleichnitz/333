@@ -302,7 +302,7 @@ def done():
 
     assignment_grade = request.form['total']
     if not assignment_grade.isdigit():
-        if str(assignment_grade).count('.') == 0:
+        if str(assignment_grade).count('.') != 1:
             return redirect('/grader')
     assignment.grade = float(assignment_grade)
     assignment.graded = True

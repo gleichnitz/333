@@ -609,7 +609,7 @@ def add_assignment():
     else:
         return "false"
 
-    PERMITTED_LANGUAGES = ['c', 'cpp', 'py', 'js', 'txt']
+    PERMITTED_LANGUAGES = ['c', 'cpp', 'py', 'js', 'txt', 'java']
 
     if len(name) == 0 or name == "":
         session['error'] = 'Please enter an assignment name.'

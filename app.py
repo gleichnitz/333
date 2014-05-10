@@ -353,7 +353,10 @@ def release_assignment():
     if isGrader(netid) is False:
         return redirect('/404')
 
-    assignID = request.args.get('id')
+    try: 
+        assignID = request.args.get('id')
+    except:
+        return render_template('404.html')
 
     a = Assignment.query.filter_by(id  = assignID).first()
     if a is not None:

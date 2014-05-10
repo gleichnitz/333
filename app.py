@@ -870,6 +870,8 @@ def submitted():
     if netid is "0":
         return redirect('/')
 
+    session['netid'] = netid
+
     if request.args.get('assignment').count('*') == 1:
         assignmentID = request.args.get('assignment').split('*')[0]
         accountType = request.args.get('assignment').split('*')[1]
@@ -965,18 +967,6 @@ def submitted():
             files.append(File(item['name'], item['content'], item['grade'], rubric[i], "{readOnly: true}"))
         i += 1
 
-    ##################################
-    # need to pass: item containing assignment files to be loaded
-    #               fields:
-    #               - name (e.g. "percolaton.java")
-    #               - grade ("10/10")
-    #               - code (in a big string)
-    ##################################
-
-    # if assignment_active.grade is None:
-    #     assignment_active.grade = ""
-
-    # render_template('viewer.html', netid = session['username'], assignment=)
     return render_template('viewer.html', roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
 
 @app.route("/grader")
@@ -996,20 +986,11 @@ def grader():
     if netid is "0":
         return redirect('/')
 
+    session['netid'] = netid
+
     if isGrader(netid) is False:
         session['error'] = 'grader'
         return redirect('/')
-
-    ##################################
-    # need to pass: class grader is assigned to
-    # need to pass: item containing all assignments under that class
-    #               fields:
-    #               - id
-    #               - class (e.g. COS 126)
-    #               - name ("Percolation")
-    #               - graded by (netid)
-    #               - grade
-    ##################################
 
     grader = Grader.query.filter_by(netid = netid).first()
     assignments = []
@@ -1085,6 +1066,8 @@ def student():
     if netid is "0":
         return redirect('/')
 
+    session['netid'] = netid
+
     if isStudent(netid) is False:
         session['error'] = 'student'
         return redirect('/')
@@ -1153,6 +1136,8 @@ def admin():
     if netid is "0":
         return redirect('/')
 
+    session['netid'] = netid
+
     if isAdmin(netid) is False:
         session['error'] = 'admin'
         return redirect('/')
@@ -1213,16 +1198,6 @@ def admin():
     else:
         notAreAssignments = "none"
 
-    #forHist = {}
-    #assignments_student = Assignment.query.filter_by(course = course, master = False, graded=True).first()
-    #for item in assignments_student:
-        #if item.name not in forHist:
-            #forHist[item.name] = {}
-        #if item.grade not in forHist[item.name]:
-            #forHist[item.name][item.grade] = 1
-        #else:
-            #forHist[item.name][item.grade] = forHist[item.name][item.grade] + 1
-
     forHist = {}
     testAssignment = Assignment.query.filter_by(course = course, master = False, graded=True).all()
     for item in testAssignment:
@@ -1254,6 +1229,8 @@ def admin_students():
     netid = isLoggedIn(ticket, "admin/students")
     if netid is "0":
         return redirect('/')
+
+    session['netid'] = netid
 
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
@@ -1338,6 +1315,9 @@ def admin_graders():
     netid = isLoggedIn(ticket, "admin/graders")
     if netid is "0":
         return redirect('/')
+
+    session['netid'] = netid
+
     roles = makeRoles(netid)
     if (roles.count("admin") != 0):
         roles.remove("admin")
@@ -1408,6 +1388,8 @@ def admin_student_assignment():
     if admin_netid is "0":
         return redirect('/')
 
+    session['netid'] = netid
+
     student_netid=request.args.get('student')
 
     roles=makeRoles(admin_netid)
@@ -1442,6 +1424,8 @@ def admin_grader_assignments():
     if admin_netid is "0":
         return redirect('/') 
 
+    session['netid'] = netid
+
     gradernetid= request.args.get('grader')
     roles=makeRoles(admin_netid)
     if (roles.count("admin") != 0):
@@ -1472,6 +1456,8 @@ def admin_all_assignments():
     session['ticket_admin'] = ticket
 
     admin_netid = isLoggedIn(ticket, "admin/all_assignments" + "?id=" + request.args.get('id'))
+
+    session['netid'] = netid
 
     if admin_netid is "0":
         return redirect('/') 
@@ -1558,25 +1544,6 @@ def logout():
     session.pop('netid', None)
     return redirect('https://fed.princeton.edu/cas/logout')
 
-# @app.route("/demo")
-# def demo():
-#     html_escape_table = {
-#     "&" : "&amp;",
-#     '"': "&quot;",
-#     "'": "&apos;",
-#     ">": "&gt;",
-#     "<": "&lt;",
-#     }
-
-#     f = open('Grayscale.java', 'r')
-#     code = f.read()
-#     code = "".join(html_escape_table.get(c,c) for c in code)
-#     code = code.replace("\n","<br>")
-#     code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-#     return render_template('demo.html', studentwork = code)
-# }
-
-# launch
 if __name__ == "__main__":
     app.secret_key = 'qeqg;abuerjabyekeusxjblelauwbajbhvyhenssj'
     port = int(os.environ.get("PORT", 5000))

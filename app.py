@@ -329,7 +329,6 @@ def undone():
     except:
         return traceback.format_exc()
 
-#
 @app.route('/_change_grade')
 def change_grade():
     value = request.args.get('grade')

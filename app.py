@@ -510,6 +510,7 @@ def remove_student():
     studentNetid = str(request.args.get('netid'))
 
     course_object = Admin.query.filter_by(netid=netid).first().courses[0]
+    
     if course_object is None:
         return "no course"
     if netid.isalnum() is False:

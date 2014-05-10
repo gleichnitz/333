@@ -899,12 +899,9 @@ def index3():
 
 @app.route("/viewer")
 def submitted():
-    # return request.args
     if 'assignment' not in request.args:
         return redirect('/')
 
-    # if 'accountType' not in request.args: #is there ever a time this will be the case??
-    #     return redirect('/')
     try:
         ticket = request.args.get('ticket')
     except:

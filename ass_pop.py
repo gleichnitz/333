@@ -10,6 +10,7 @@ def AddtoListAssignment(files, file_name):
   file_content = file_.read()
   ass_file = {'name': file_name, 'content': file_content, 'annotations': [], 'grade': ""}
   files.append(ass_file)
+  
   return files
 
 def DeleteAssignment(assignment):

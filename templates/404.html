@@ -6,8 +6,10 @@
  //-->
 
 {% extends "base3.html" %}
-{% block title %} Page Not Found {% endblock %}
-{% block content %}
+{% block head %}
+  <title>CodePost: 404 Error</title>
+{% endblock %}
+{% block body %}
   <h1>Page Not Found, sorry!! :(</h1>
   <p><a href="{{ url_for('index3') }}">home</a></p>
 {% endblock %}

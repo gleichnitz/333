@@ -295,6 +295,7 @@ def done():
         file_name = str(item['name'])
         file_name = os.path.splitext(file_name)[0]
         file_grade = request.form[file_name]
+        return file_grade
         if file_grade is None:
             ungraded = True
         item["grade"] = file_grade

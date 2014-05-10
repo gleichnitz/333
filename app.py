@@ -443,8 +443,10 @@ def add_student():
         return render_template('404.html')
 
     studentNetid = str(request.args.get('netid'))
-    if isValidNetid(netid) is False:
+
+    if isValidNetid(studentNetid) is False:
         return "false"
+
     elif studentNetid == "":
         return render_template('404.html')
 

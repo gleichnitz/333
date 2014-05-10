@@ -160,7 +160,9 @@
           data: { id: assignmentid}
       }).done(function(data) {
         if (data == "failure") {
-          
+          clickButton.text("Mark Grading as Done")
+        } else {
+          clickButton.text("Unmark as Done")
         }
       });
     }

@@ -195,16 +195,7 @@
       <tr font-size="13px" id="total">
         <td class="file_name"><b>Total Points</b></td> <td><nobr><input class="given_grade" type="text" size="1" maxlength="4" name="total" {{ input_ro }} style="{{ input_style }}" value="{{ a.grade }}"> /  <b>{{ a.points_possible }}</b>  </nobr> </td>
       </tr>
-
-      <tr class="mark_as_done_row" valign="middle"><td><div class="btn-group" align="center">
-
-            <input style="display: none" name="id" value="{{ id }}">
-            <input style="display: none" name="type" value="{{ type }}">
-            <button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="submit" style="height:100%;width:100%;background-color: white; color: black; clear: both; display: {{ button_display }};" text-align="center"> {{ grading_status }} </button>
-       </div></td>
-       
-        <td></td>
-      </tr>
+      {{mark_row}}
         </div>
         </form>
     </tbody>

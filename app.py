@@ -1005,14 +1005,13 @@ def submitted():
     if not assignmentID.isdigit():
         return redirect('/')
 
-    grader_button_display = ""
+    mark_row = ""
     input_ro = ""
     input_style = ""
 
     if accountType == "s":
         student = Student.query.filter_by(netid = netid).first()
         assignments = student.assignments.all()
-        grader_button_display = "none"
         input_ro = "readonly"
         input_style = "border:none"
     elif accountType == "g":
@@ -1021,7 +1020,6 @@ def submitted():
     elif accountType == "a":
         admin = Admin.query.filter_by(netid = netid).first()
         assignment = Assignment.query.filter_by(id = assignmentID).first()
-        grader_button_display = "initial"
         if admin is None or assignment is None:
             return redirect('/admin')
         a_courses = admin.courses
@@ -1095,6 +1093,11 @@ def submitted():
         grader_button_display = ""
         input_ro = ""
 
+    if accountType != "s":
+        mark_row =  '<tr class="mark_as_done_row" valign="middle"><td><div class="btn-group" align="center"><input style="display: none" name="id" value="' + assignmentID + '"><input style="display: none" name="type" value="'+ accountType +'"><button id="mark_as_done" class="btn btn-default delete-buttons delete-buttons-student" type="submit" style="height:100%;width:100%;background-color: white; color: black; clear: both;" text-align="center">'+ grading_status +'</button></div></td><td></td></tr>'
+
+
+
     files = []
     assignment_name = assignment_active.name
     master_assignment = Assignment.query.filter_by(name=assignment_name, master=True).first()
@@ -1108,7 +1111,7 @@ def submitted():
             files.append(File(item['name'], item['content'], item['grade'], rubric[i], "{readOnly: true}"))
         i += 1
 
-    return render_template('viewer.html', alertMessage = alertMessage, type = accountType, roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
+    return render_template('viewer.html', mark_row = mark_row, alertMessage = alertMessage, type = accountType, roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
 
 @app.route("/grader")
 def grader():

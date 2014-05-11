@@ -306,7 +306,7 @@ def done():
     assignment.grade = float(assignment_grade)
     assignment.graded = True
     assignment.in_progress = False
-    if ungraded == True:
+    if ungraded == False:
         session['Warning'] = "You did not submit grades for each file"
     try:
         Assignment.query.filter_by(id = assignmentID).update({'files': new_files})

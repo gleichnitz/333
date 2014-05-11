@@ -343,12 +343,7 @@ def undone():
     except:
         return traceback.format_exc()
 
-@app.route('/_change_grade')
-def change_grade():
-    value = request.args.get('grade')
-    file_name = request.args.get('file')
-        # add code to change rubric for this file
-
+# Called when a grader "claims" an assignment from the grader page.
 @app.route('/_assign')
 def assign_assignment():
     if 'netid' in session:
@@ -383,6 +378,7 @@ def assign_assignment():
                 else:
                     return "failure"
 
+# Called when a grader "releases" an assignment from the grader page
 @app.route('/_release')
 def release_assignment():
     if 'netid' in session:
@@ -417,6 +413,7 @@ def release_assignment():
     else:
         return render_template('404.html')
 
+# Checks if there are any existing annotations when a grader releases an assignment
 @app.route('/_check_annotations')
 def check_annotations():
     assignID = request.args.get('id')
@@ -427,6 +424,7 @@ def check_annotations():
             return "not_empty"
     return "empty"
 
+# Checks if a student is in the database
 @app.route('/_check_student')
 def check_student():
 
@@ -441,6 +439,7 @@ def check_student():
     else:
         return ""
 
+# Adds a single student to the database from the admin page
 @app.route('/_add_student')
 def add_student():
     if 'netid' in session:
@@ -467,7 +466,7 @@ def add_student():
 
     student = Student.query.filter_by(netid=studentNetid).first();
     if student is None:
-        newStudent = Student("name", "test", studentNetid)
+        newStudent = Student("----", "----", studentNetid)
         newStudent.courses.append(course)
         db.session.add(newStudent)
         db.session.commit()
@@ -477,6 +476,7 @@ def add_student():
 
     return "true"
 
+# Adds a single grader to the database from the admin page
 @app.route('/_add_grader')
 def add_grader():
     if 'netid' in session:
@@ -622,10 +622,6 @@ def add_assignment():
 
     if len(name) == 0 or name == "":
         session['error'] = 'Please enter an assignment name.'
-        return "false"
-
-    if len(name) > 15:
-        session['error'] = 'Please enter an assignment name with fewer than 15 characters.'
         return "false"
 
     for item in fileNames:

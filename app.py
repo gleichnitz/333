@@ -329,7 +329,7 @@ def undone():
     try:
         db.session.add(assignment)
         db.session.commit()
-        return redirect('/grader')
+        return redirect('/viewer?assignment='+assignmentID+'*g')
     except:
         return traceback.format_exc()
 

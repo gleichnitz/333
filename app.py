@@ -303,13 +303,14 @@ def done():
     assignment_grade = request.form['total']
     if not assignment_grade.isdigit():
         if str(assignment_grade).count('.') != 1:
-            session['Warning'] = "You did not submit a proper grade."
+            session['warning'] = "You did not submit a proper grade."
             return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
     assignment.grade = float(assignment_grade)
     assignment.graded = True
     assignment.in_progress = False
-    if ungraded == False:
-        session['Warning'] = "You did not submit grades for each file"
+    if ungraded == True:
+        session['warning'] = "You did not submit grades for each file"
+
     if 'error' in session:
         alertString = session['error']
         session.pop('error', None)

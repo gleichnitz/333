@@ -1076,7 +1076,7 @@ def submitted():
 
     i = 0
     for item in assignment_active.files:
-        if accountType == "g" or assignment_active.graded is False:
+        if accountType == "g" and assignment_active.graded is False:
             files.append(File(item['name'], item['content'], item['grade'], rubric[i]))
         else:
             files.append(File(item['name'], item['content'], item['grade'], rubric[i], "{readOnly: true}"))

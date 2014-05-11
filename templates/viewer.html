@@ -195,7 +195,7 @@
       <tr font-size="13px" id="total">
         <td class="file_name"><b>Total Points</b></td> <td><nobr><input class="given_grade" type="text" size="1" maxlength="4" name="total" {{ input_ro }} style="{{ input_style }}" value="{{ a.grade }}"> /  <b>{{ a.points_possible }}</b>  </nobr> </td>
       </tr>
-      {{mark_row}}
+      {{mark_row|safe}}
         </div>
         </form>
     </tbody>

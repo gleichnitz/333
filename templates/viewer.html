@@ -188,12 +188,12 @@
         <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}<div style="width: 134px;"></div></td>
         <td>
                 <nobr><input class="given_grade" type="text" size="1" maxlength="4" name="{{ item.name }}" {{ input_ro }} style="text-align: right; {{ input_style }}" 
-                  value="{{ item.grade }}">/ {{item.points}} </nobr>
+                  value="{{ item.grade }}">/{{item.points}} </nobr>
         </td></tr>
       {% endfor %}
 
       <tr font-size="13px" id="total">
-        <td class="file_name"><b>Total Points</b></td> <td><nobr><input class="given_grade" type="text" size="1" maxlength="4" name="total" {{ input_ro }} style="text-align: right;{{ input_style }}" value="{{ a.grade }}">/  <b>{{ a.points_possible }}</b>  </nobr> </td>
+        <td class="file_name"><b>Total Points</b></td> <td><nobr><input class="given_grade" type="text" size="1" maxlength="4" name="total" {{ input_ro }} style="text-align: right;{{ input_style }}" value="{{ a.grade }}">/<b>{{ a.points_possible }}</b>  </nobr> </td>
       </tr>
       {{mark_row|safe}}
         </div>

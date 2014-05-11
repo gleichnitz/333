@@ -298,6 +298,9 @@ def done():
         file_grade = request.form[file_name]
         if file_grade is None or file_grade == "":
             ungraded = True
+        if file_grade.isdigit() is False and re.search("(\d)+.(\d)+", file_grade) is None:
+            session['error'] = "You did not submit a proper grade."
+            return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
         item["grade"] = file_grade
 
     assignment_grade = request.form['total']

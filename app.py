@@ -286,6 +286,7 @@ def done():
     except:
         return redirect('/404')
 
+    accountType = request.form['type']
     assignment = Assignment.query.filter_by(id = assignmentID).first()
 
     new_files = assignment.files
@@ -303,7 +304,7 @@ def done():
     if not assignment_grade.isdigit():
         if str(assignment_grade).count('.') != 1:
             session['Warning'] = "You did not submit a proper grade."
-            return redirect('/viewer?assignment='+assignmentID+'*g')
+            return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
     assignment.grade = float(assignment_grade)
     assignment.graded = True
     assignment.in_progress = False
@@ -312,7 +313,7 @@ def done():
     try:
         Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
         db.session.commit()
-        return redirect('/grader')
+        return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
     except:
         return traceback.format_exc()
 
@@ -325,12 +326,13 @@ def undone():
     except:
         return redirect('/404')
 
+    accountType = request.form['type']
     assignment.in_progress = True
     assignment.graded = False
     try:
         db.session.add(assignment)
         db.session.commit()
-        return redirect('/viewer?assignment='+assignmentID+'*g')
+        return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
     except:
         return traceback.format_exc()
 

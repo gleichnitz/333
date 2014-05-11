@@ -1055,6 +1055,24 @@ def submitted():
 
     title = assignment_active.name
 
+    alertMessage = ""
+
+    if 'error' in session:
+        alertString = session['error']
+        session.pop('error', None)
+        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
+    elif 'success' in session:
+        alertString = session['success']
+        session.pop('success', None)
+        alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
+    elif 'warning' in session:
+        alertString = session['warning']
+        session.pop('warning', None)
+        alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
+        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Caution! </strong>" + alertString + "</div>"
+
 
     grading_status = ""
     status_redirection = ""
@@ -1082,7 +1100,7 @@ def submitted():
             files.append(File(item['name'], item['content'], item['grade'], rubric[i], "{readOnly: true}"))
         i += 1
 
-    return render_template('viewer.html', type = accountType, roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
+    return render_template('viewer.html', alertMessage = alertMessage, type = accountType, roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
 
 @app.route("/grader")
 def grader():

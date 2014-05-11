@@ -309,8 +309,6 @@ def done():
     assignment.graded = True
     assignment.in_progress = False
 
-    session['warning'] = "You did not submit grades for each file"
-
     try:
         Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
         db.session.commit()

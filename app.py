@@ -308,7 +308,7 @@ def done():
     assignment.grade = float(assignment_grade)
     assignment.graded = True
     assignment.in_progress = False
-    if ungraded == True:
+    if ungraded == False:
         session['warning'] = "You did not submit grades for each file"
 
     if 'error' in session:

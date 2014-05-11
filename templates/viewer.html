@@ -187,7 +187,7 @@
       {% for item in assignment %}
         <tr font-size="13px" id="-{{ item.name }}" ><td class="file_name">{{ item.name }}<div style="width: 134px;"></div></td>
         <td>
-                <nobr><input class="given_grade" type="text" size="1" maxlength="4" name="{{ item.name }}" {{ input_ro }} style="{{ input_style }}" 
+                <nobr><input class="given_grade" type="text" size="1" maxlength="4" name="{{ item.name }}" {{ input_ro }} style="text-align: right;{{ input_style }}" 
                   value="{{ item.grade }}">/ {{item.points}} </nobr>
         </td></tr>
       {% endfor %}

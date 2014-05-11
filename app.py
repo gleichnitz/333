@@ -303,8 +303,13 @@ def done():
     assignment_grade = request.form['total']
     if not assignment_grade.isdigit():
         if re.match("(/d)+.(/d)+", str(assignment_grade)) is None:
-            session['warning'] = "You did not submit a proper grade."
+            session['error'] = "You did not submit a proper grade."
             return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
+
+    if int(assignment_grade) < 0:
+        session['error'] = "Please submit a non-negative grade."
+        return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
+
     assignment.grade = float(assignment_grade)
     assignment.graded = True
     assignment.in_progress = False

@@ -175,9 +175,9 @@
 {% endblock %}
 
 {% block body %}
-  {{alertMessage|safe}}
 
   <div style="float: left; margin-top: 3.2em; margin-left: 6%;">
+    {{alertMessage|safe}}
     <table id="{{id}}" class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 9%; font-size: 16px; margin-bottom: 30px; margin-right: 5%;">
     <thead><tr><th  font-size="15px" style="background-color: white;">File</th><th style="background-color: white;">Grade</th></tr> </thead>
     <tbody>

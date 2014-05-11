@@ -308,23 +308,8 @@ def done():
     assignment.grade = float(assignment_grade)
     assignment.graded = True
     assignment.in_progress = False
-    session['warning'] = "You did not submit grades for each file"
 
-    if 'error' in session:
-        alertString = session['error']
-        session.pop('error', None)
-        alertMessage =  "<div class=\"alert alert-danger alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Warning! </strong>" + alertString + "</div>"
-    elif 'success' in session:
-        alertString = session['success']
-        session.pop('success', None)
-        alertMessage =  "<div class=\"alert alert-success alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Nice! </strong>" + alertString + "</div>"
-    elif 'warning' in session:
-        alertString = session['warning']
-        session.pop('warning', None)
-        alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
-        class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Caution! </strong>" + alertString + "</div>"
+    session['warning'] = "You did not submit grades for each file"
 
     try:
         Assignment.query.filter_by(id = assignmentID).update({'files': new_files})
@@ -1090,7 +1075,6 @@ def submitted():
         session.pop('warning', None)
         alertMessage =  "<div class=\"alert alert-warning alert-dismissable fade in\" style=\"z-index: 1; margin-top: 20px;\"><button type=\"button\" \
         class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Caution! </strong>" + alertString + "</div>"
-
 
     grading_status = ""
     status_redirection = ""

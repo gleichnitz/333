@@ -176,7 +176,7 @@
 
 {% block body %}
 
-  <div style="width: 90%; margin-top: 5.5em; margin-right: 5%">
+  <div style="width: 90%; margin-top: 5.5em; margin-right: 5%; margin-left: 5%">
     {{alertMessage|safe}}
   <div style="float: left;">
     <table id="{{id}}" class="table table-hover" style="background-color: white; margin-top: 40px; position: fixed; width: 9%; font-size: 16px; margin-bottom: 30px; margin-right: 5%;">
@@ -214,7 +214,7 @@
 
   <div id="clicker"></div>
 
-  <div style="width: 60%; text-align: center; border-color: gray; margin-top: 5em; border: 1px solid; float: right; margin-bottom: 30px" class="myClickDisabledElm" id="codearea">
+  <div style="width: 60%; text-align: center; border-color: gray; margin-top: 5em; border: 1px solid; float: right; margin-bottom: 0; margin-right: 2%" class="myClickDisabledElm" id="codearea">
     <h4 id="codeTitle"></h4>
     {% for item in assignment %}
       <div id="{{ item.name }}" class="span9" style="display: none; margin-bottom: 50px;">

@@ -624,6 +624,10 @@ def add_assignment():
         session['error'] = 'Please enter an assignment name.'
         return "false"
 
+    if len(name) > 15:
+        session['error'] = 'Please enter an assignment name with fewer than 15 characters.'
+        return "false"
+
     for item in fileNames:
         if item.isalpha() is False and re.match("([a-z])+.([a-z])+", item) is None:
             session['error'] = item + ' is an invalid file name.'

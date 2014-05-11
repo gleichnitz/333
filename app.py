@@ -1111,7 +1111,7 @@ def submitted():
             files.append(File(item['name'], item['content'], item['grade'], rubric[i], "{readOnly: true}"))
         i += 1
 
-    return render_template('viewer.html', mark_row = mark_row, alertMessage = alertMessage, type = accountType, roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, button_display=grader_button_display, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
+    return render_template('viewer.html', mark_row = mark_row, alertMessage = alertMessage, type = accountType, roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
 
 @app.route("/grader")
 def grader():

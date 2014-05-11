@@ -306,7 +306,7 @@ def done():
             session['error'] = "You did not submit a proper grade."
             return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
 
-    if int(assignment_grade) < 0:
+    if float(assignment_grade) < 0:
         session['error'] = "Please submit a non-negative grade."
         return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
 

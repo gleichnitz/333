@@ -299,7 +299,7 @@ def done():
         if file_grade is None or file_grade == "":
             ungraded = True
         if file_grade.isdigit() is False and re.search("(\d)+.(\d)+", file_grade) is None:
-            session['error'] = str(file_grade) + " is not a valid grade."
+            session['error'] = "At least one of these files does not a valid grade."
             return redirect('/viewer?assignment='+assignmentID+'*'+accountType)
         item["grade"] = file_grade
 

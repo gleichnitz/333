@@ -149,40 +149,6 @@
     // });
   });
 
-  $('#mark_as_done').click(function() {
-    var assignmentid = $(this).closest(".table").attr('id')
-    var clickButton = $(this)
-    var account_type = $('.mark_as_done_row').attr("id");
-    var state = clickButton.text()
-    if (state == "Mark Grading as Done") {
-      $.ajax({
-          url: "/_done",
-          context: document.body,
-          data: { id: assignmentid, type: account_type}
-      }).done(function(data) {
-        if (data == "failure") {
-          clickButton.text("Mark Grading as Done")
-        } else {
-          clickButton.text("Unmark as Done")
-        }
-      });
-    }
-    else {
-      $.ajax({
-        url: "/_undone",
-            context: document.body,
-            data: { id: assignmentid, type: account_type}
-          }).done(function(data) {
-            if (data == "success") {
-              clickButton.text("Mark Grading as Done")
-              // Update grader field
-            } else {
-
-            }
-      });
-    }
-  });
-
   /* $('table tr').click(function() {
      var href = $(this).find("a").attr("href");
      output = href.substring(1, href.length);

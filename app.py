@@ -286,7 +286,7 @@ def done():
     except:
         return redirect('/404')
 
-    accountType = request.form['type']
+    accountType = str(request.form['type'])
     assignment = Assignment.query.filter_by(id = assignmentID).first()
 
     new_files = assignment.files

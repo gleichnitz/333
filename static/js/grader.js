@@ -48,6 +48,7 @@ $(document).ready(function(e) {
 			  				context: document.body,
 	  						data: { netid: $('#netid').text(), id: id}
 		  				}).done(function(data) {
+		  					console.log(data)
 		  					if (data == "success") {
 					  			clickButton.text("Claim");
 					  			clickButton.closest('tr').children().children('.row_grader').text("None");
@@ -63,6 +64,7 @@ $(document).ready(function(e) {
 			  			context: document.body,
 	  					data: { netid: $('#netid').text(), id: id}
 				  	}).done(function(data) {
+				  		console.log(data)
 				  		if (data == "success") {
 		  					clickButton.text("Claim");
 				  			clickButton.closest('tr').children().children('.row_grader').text("None");

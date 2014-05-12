@@ -1390,6 +1390,7 @@ def admin():
 
     return render_template('admin2.html', forHist = forHist, areAssignments = areAssignments, notAreAssignments = notAreAssignments, course=course.name, netid=netid, roles = roles, graph1_assignments=graph1_assignments, graph2_assignments=graph2_assignments)
 
+# Shows the admin all of the students in that course
 @app.route("/admin/students")
 def admin_students():
     #######################################
@@ -1479,6 +1480,7 @@ def admin_students():
 
     return render_template('admin_students.html', course=course.name, students=students_form, netid=netid, roles = roles, masters = masters, alert = alertMessage)
 
+# Shows the admin all of the graders for that course 
 @app.route("/admin/graders")
 def admin_graders():
     try:
@@ -1549,6 +1551,7 @@ def admin_graders():
 
     return render_template('admin_graders.html', course=course.name, graders=grader_db, netid=netid, roles = roles)
 
+# Shows the assignments a particular student has submitted for the admin's course
 @app.route('/admin/student_assignment')
 def admin_student_assignment():
     try:
@@ -1585,6 +1588,7 @@ def admin_student_assignment():
             assignments.append(assignment)
     return render_template('admin_student_assignment.html', course=course.name, roles=roles, netid=admin_netid, student_netid=student_netid, assignments=assignments)
 
+# Shows the assignments a grader has graded for the admin's course
 @app.route('/admin/grader_assignment')
 def admin_grader_assignments(): 
     try:
@@ -1721,6 +1725,7 @@ def admin_admins():
 
     return render_template('admin_admins.html', assignments=assignments, netid= netid, roles = roles, alert = alertMessage, course=course.name)
 
+# implements CAS logout
 @app.route("/logout")
 def logout():
     session.pop('netid', None)

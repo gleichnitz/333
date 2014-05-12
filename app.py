@@ -251,9 +251,8 @@ def upload_student_files():
             session['error'] = file.filename + ' has too many lines (' + str(len(lines)) + ').'
             return redirect('/admin/students')
 
-        if assignment is None:
-            ass_file = {'name': file.filename, 'content': content, 'grade': "", 'annotations': []}
-            fileList.append(ass_file)
+        ass_file = {'name': file.filename, 'content': content, 'grade': "", 'annotations': []}
+        fileList.append(ass_file)
 
 
     # Checks if the student already has work for this assignment

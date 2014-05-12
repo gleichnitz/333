@@ -194,6 +194,17 @@ def mass_upload_students():
 
     return redirect('/admin/students')
 
+@app.route('/_check_student_files')
+def check_student_files():
+    netid = request.form['netid']
+    assignmentName = request.form['assignmentTitle']
+    student = Student.query.filter_by(student=student).first()
+    if Assignment.query.filter_by(student=student, name=assignmentName).first() is None:
+        return "none"
+    else:
+        return "exists"
+
+
 # Upload code and create a new assignment bound to a particular student.
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])
 def upload_student_files():

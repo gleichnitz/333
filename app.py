@@ -972,7 +972,7 @@ def index():
 
         session.pop('error', None)
 
-    return render_template('index3.html', alert = alertMessage)
+    return render_template('index3.html', alert = alertMessage, studentCode = studentCode)
 
 @app.route("/index3")
 def index3():

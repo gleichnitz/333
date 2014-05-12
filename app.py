@@ -272,7 +272,7 @@ def upload_student_files():
                 master_file_names.remove(item['name'])
         Assignment.query.filter_by(id = id_).update({"files": new_files})
         db.session.commit()
-        session['warning'] = netid + "'s " + assignmentName + " assignment was updated."
+        session['success'] = netid + "'s " + assignmentName + " assignment was updated."
 
     else:
         id_ = addAssignment(courseName, netid, assignmentName, fileList)

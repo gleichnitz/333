@@ -28,7 +28,14 @@
   	<script type="text/javascript">
     	SyntaxHighlighter.defaults.toolbar = false;
     	SyntaxHighlighter.all();
+
+    	jQuery(function ($) {
+    		$('#sample-code').annotator();
+		});
   	</script>
+
+  	<script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
+  	<link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
@@ -172,7 +179,7 @@
 					<h4 style="font-weight: 500">Multiple graders can use the website at once in order to grade all student work, and graders can be added and removed by administrators.</h4>
 				</div><!-- /col12 -->
 
-				<div style="float: right; background-color: white; width: 40%; height: 350px; margin-right: 10%; margin-top: 50px;">
+				<div id="sample-code" style="float: right; background-color: white; width: 40%; height: 350px; margin-right: 10%; margin-top: 50px;">
 					<pre class="brush: java; quick-code: false;">{{ studentCode }}</pre>
 					<div class="hero-unit"></div>
 				</div>	

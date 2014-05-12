@@ -227,12 +227,6 @@ def upload_student_files():
         if item["name"].lower() not in master_file_names:
             master_file_names.append(item["name"].lower())
 
-    # Checks if the student already has work for this assignment
-    student = Student.query.filter_by(netid=netid).first()
-    assignment = Assignment.query.filter_by(student=student, name=assignmentName).first()
-    if assignment is not None:
-        session['warning'] = netid + "'s " + assignmentName + " assignment was updated."
-
     files = request.files.getlist('file')
     string = ""
 
@@ -260,20 +254,38 @@ def upload_student_files():
         if assignment is None:
             ass_file = {'name': file.filename, 'content': content, 'grade': "", 'annotations': []}
             fileList.append(ass_file)
-        else:
-            
 
-    id_ = addAssignment(courseName, netid, assignmentName, fileList)
-    Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
-    db.session.commit()
 
-    if len(master_file_names) == 0:
-        session['success'] = 'You successfully uploaded code for ' + netid + '.'
+    # Checks if the student already has work for this assignment
+    student = Student.query.filter_by(netid=netid).first()
+    assignment = Assignment.query.filter_by(student=student, name=assignmentName).first()
+    if assignment is not None:
+        id_ = assignment.id
+        old_files = assignment.files
+        new_files = fileList
+        new_file_names = []
+        for item in new_files:
+            if item.name not in new_file_names:
+                new_file_names.append(item.name)
+        for item in old_files:
+            if item.name not in new_file_names:
+                new_files.append(item)
+                master_file_names.remove(item.name)
+        Assignment.query.filter_by(id = id_).update({"files": new_files})
+        db.session.commit()
+        session['warning'] = netid + "'s " + assignmentName + " assignment was updated."
+
     else:
-        files_left = ""
-        for item in master_file_names:
-            files_left += item + " "
-        session['warning'] = files_left + "was not uploaded for this assignment."
+        id_ = addAssignment(courseName, netid, assignmentName, fileList)
+        Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
+        db.session.commit()
+        if len(master_file_names) == 0:
+            session['success'] = 'You successfully uploaded code for ' + netid + '.'
+        else:
+            files_left = ""
+            for item in master_file_names:
+                files_left += item + " "
+            session['warning'] = files_left + "was not uploaded for this assignment."
 
     return redirect('/admin/students')
 

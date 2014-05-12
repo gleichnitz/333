@@ -28,7 +28,14 @@
   	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   	<script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
   	<link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
+  	<script>
+		jQuery(function ($) {
+    		$('#sample').annotator();
+		});
+  	</script>
+
+
+	<link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
 	<script src="../static/js/typed.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
@@ -260,10 +267,6 @@
 <!-- fancybox init -->
 <script>
 	$(document).ready(function(e) {
-		jQuery(function ($) {
-    		$('#sample').annotator();
-		});
-
         var lis = $('.nav > li');
         menu_focus( lis[0], 1 );
     

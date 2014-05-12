@@ -218,7 +218,7 @@ def upload_student_files():
         session['error'] = 'An unknown error ocurred.'
         return redirect('/admin/students')
 
-
+    # Creates a list of the file names specified by the admin when the assignment was created
     master = Assignment.query.filter_by(master = True, name = assignmentName).first()
     points_possible = master.points_possible
     master_files = master.files
@@ -226,6 +226,12 @@ def upload_student_files():
     for item in master.files:
         if item["name"].lower() not in master_file_names:
             master_file_names.append(item["name"].lower())
+
+    # Checks if the student already has work for this assignment
+    student = Student.query.filter_by(netid=netid).first()
+    assignment = Assignment.query.filter_by(student=student, name=assignmentName).first()
+    if assignment is not None:
+        session['warning'] = netid + "'s " + assignmentName + " assignment was updated."
 
     files = request.files.getlist('file')
     string = ""
@@ -241,18 +247,21 @@ def upload_student_files():
         content = file.read()
         lines = content.split('\n')
 
+        # fix this later
         if file.filename.lower() not in master_file_names:
-            session['error'] = file.filename + " is not in the list of files for the master assignment, so " + netid + "\'s " + assignmentName + " assignment was not uploaded."
+            session['error'] = file.filename + " is not in the list of files for the " + assignmentName + " assignment. " + netid + "\'s assignment was not uploaded."
             return redirect('admin/students')
-
         master_file_names.remove(file.filename)
 
         if len(lines) > 1000:
             session['error'] = file.filename + ' has too many lines (' + str(len(lines)) + ').'
             return redirect('/admin/students')
 
-        ass_file = {'name': file.filename, 'content': content, 'grade': "", 'annotations': []}
-        fileList.append(ass_file)
+        if assignment is None:
+            ass_file = {'name': file.filename, 'content': content, 'grade': "", 'annotations': []}
+            fileList.append(ass_file)
+        else:
+            
 
     id_ = addAssignment(courseName, netid, assignmentName, fileList)
     Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})

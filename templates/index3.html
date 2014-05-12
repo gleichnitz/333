@@ -28,12 +28,6 @@
   	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   	<script type="text/javascript" src="../static/js/annotator-full.min.js"></script>
   	<link type="text/css" rel="stylesheet" href="../static/stylesheets/annotator.min.css"/>
-  	<script>
-  	jQuery(function ($) {
-		var content = $('#sample').annotator();
-	});
-  	</script>
-
 
 	<link rel="stylesheet" type="text/css" href="../static/stylesheets/style.css">
 	<script src="../static/js/typed.js" type="text/javascript"></script>
@@ -148,11 +142,6 @@
 		</div><!-- /container -->
 	</div><!-- /slide2 -->
 
-				<div id="sample" class="span9" style="float: right; background-color: white; width: 44%; height: 275px; margin-right: 8%; margin-top: 50px;">
-          			<pre class="brush: java; quick-code: false;">{{ studentCode }}</pre>
-          			<div class="hero-unit"></div>
-      			</div>
-
     <!-- === Slide 4 - Features === -->
 	<div class="slide story" id="slide-4" data-slide="4">
 		<div class="container">
@@ -166,7 +155,7 @@
 			<div class="row line-row2">
 				<div class="hr">&nbsp;</div>
 			</div><!-- /row -->
-
+            
             <!-- inner text //-->
             <div class="row content-row">
                 
@@ -186,6 +175,17 @@
 					<h2 class="font-light">Supports <br> <span id="typed"></span></h2>
 					<h4 style="font-weight: 500">Multiple graders can use the website at once in order to grade all student work, and graders can be added and removed by administrators.</h4>
 				</div><!-- /col12 -->
+
+				<div id="sample" class="span9" style="float: right; background-color: white; width: 44%; height: 275px; margin-right: 8%; margin-top: 50px;">
+          			<pre class="brush: java; quick-code: false;">{{ studentCode }}</pre>
+          			<div class="hero-unit"></div>
+      			</div>
+
+      			  	<script>
+	  					jQuery(function ($) {
+							var content = $('#sample').annotator();
+						});
+  					</script>
 
 			</div>
 			<div class="row content-row">

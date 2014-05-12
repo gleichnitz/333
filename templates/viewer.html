@@ -15,7 +15,7 @@
   <script type="text/javascript" src="../static/js/shBrushPlain.js"></script>
   <script type="text/javascript" src="../static/js/shBrushCpp.js"></script>
   <script type="text/javascript" src="../static/js/shBrushPython.js"></script>
-  <script type="text/javascript" src="../static/js/shBrushJscript.js"></script>
+  <script type="text/javascript" src="../static/js/shBrushJScript.js"></script>
 
   <link type="text/css" rel="stylesheet" href="../static/stylesheets/shCoreDefault.css"/>
   <script type="text/javascript">
@@ -31,7 +31,7 @@
   <script>
       jQuery(function ($) {
           i = 0;
-          
+
           {% for item in assignment %}
             var content = $('#{{ item.name }}').annotator({{ item.isReadOnly|safe}});
             content.annotator('addPlugin', 'Store', {

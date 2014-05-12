@@ -972,7 +972,7 @@ def index():
 
         session.pop('error', None)
 
-    studentCode = ""
+    studentCode = open('Hello.java', 'r').read()
 
     return render_template('index3.html', alert = alertMessage, studentCode = studentCode)
 

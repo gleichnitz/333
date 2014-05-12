@@ -264,12 +264,12 @@ def upload_student_files():
         new_files = fileList
         new_file_names = []
         for item in new_files:
-            if item.name not in new_file_names:
-                new_file_names.append(item.name)
+            if item['name'] not in new_file_names:
+                new_file_names.append(item['name'])
         for item in old_files:
-            if item.name not in new_file_names:
+            if item['name'] not in new_file_names:
                 new_files.append(item)
-                master_file_names.remove(item.name)
+                master_file_names.remove(item['name'])
         Assignment.query.filter_by(id = id_).update({"files": new_files})
         db.session.commit()
         session['warning'] = netid + "'s " + assignmentName + " assignment was updated."

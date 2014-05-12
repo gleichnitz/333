@@ -513,6 +513,7 @@ def add_grader():
 
     return "true"
 
+# Deletes a student from the database from the admin page
 @app.route('/_delete_student')
 def remove_student():
     if 'netid' in session:
@@ -551,6 +552,7 @@ def remove_student():
 
     return "true"
 
+# Deletes a grader from the database from the admin page
 @app.route('/_delete_grader')
 def remove_grader():
     netid = str(request.args.get('netid'))
@@ -585,6 +587,7 @@ def remove_grader():
 
     return "true"
 
+# Checks if a grader has any assignments graded
 @app.route('/_check_graded_assignments')
 def check_graded_assignments():
     netid = str(request.args.get('netid'))
@@ -601,6 +604,7 @@ def check_graded_assignments():
     else:
         return "empty"
 
+# Adds an assignment from the admin page
 @app.route('/_add_assignment')
 def add_assignment():
     if 'netid' in session:
@@ -685,10 +689,7 @@ def add_assignment():
 
     return "true"
 
-@app.route("/_add/test/<id>")
-def addtest(id):
-    return str(id)
-
+# Deletes a master assignment and all submitted assignments from the database from the admin page
 @app.route("/_delete_assignment")
 def remove_assignment():
     name = str(request.args.get('name'))
@@ -703,6 +704,7 @@ def remove_assignment():
         db.session.commit()
     return "true"
 
+# Delete a single assignment from the database from the admin page
 @app.route("/_delete_1_assignment")
 def remove_1_assignment():
     id = str(request.args.get('id'))
@@ -713,6 +715,7 @@ def remove_1_assignment():
     db.session.commit()
     return "true"
 
+# Creates a class for an assignment to pass in additional variables
 class AssignmentClass:
     def __init__(self, id, course, name, date, files, grade, grader, student, status, points):
         self.id = id
@@ -726,12 +729,14 @@ class AssignmentClass:
         self.status = status
         self.points = points
 
+# Creates a class for a student to pass in additional variables
 class StudentClass:
     def __init__(self, student, avg_grade, num_assignments):
         self.student=student
         self.avg_grade=avg_grade
         self.num_assignments=num_assignments
 
+# Creates a class for a grader to pass in additional variables
 class GraderClass:
     def __init__(self, netid, avg_grade, num_in_progress, num_graded):
         self.netid = netid
@@ -739,6 +744,7 @@ class GraderClass:
         self.num_in_progress = num_in_progress
         self.num_graded = num_graded
 
+# Creates a class for a master assignment to pass in additional variables
 class MasterAssignmentClass:
     def __init__(self, a, avg_grade, graded, submitted):
         self.a = a
@@ -746,6 +752,7 @@ class MasterAssignmentClass:
         self.graded = graded
         self.submitted = submitted
 
+# Creates a class for an assignment to pass in additional variables for the graphs
 class AssignmentProgressClass:
     def __init__(self, a, name, percent_graded, avg_grade, number, due_date):
         self.a = a
@@ -755,6 +762,7 @@ class AssignmentProgressClass:
         self.number = number
         self.due_date = due_date
 
+# Creates a class for a file to pass in additional variables
 class File:
     def __init__(self, name, code, grade, points, isReadOnly = ""):
         self.name = name.split('.')[0]
@@ -771,6 +779,7 @@ class File:
         self.points = points # this is points possible from rubric
         self.isReadOnly = isReadOnly
 
+# Checks if a student is in the database
 def isStudent(net_id):
     netid = Student.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -778,6 +787,7 @@ def isStudent(net_id):
     else:
         return True
 
+# Checks if a grader is in the database
 def isGrader(net_id):
     netid = Grader.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -785,6 +795,7 @@ def isGrader(net_id):
     else:
         return True
 
+# Checks if an admin is in the database
 def isAdmin(net_id):
     netid = Admin.query.filter_by(netid=net_id).first()
     if netid is None:
@@ -792,6 +803,7 @@ def isAdmin(net_id):
     else:
         return True
 
+# Checks if a user is logged in and returns the netid
 def isLoggedIn(ticket, page):
     request = urllib2.Request('https://fed.princeton.edu/cas/validate?ticket=' + ticket + '&service=http://saltytyga.herokuapp.com/' + page)
     response = urllib2.urlopen(request)
@@ -802,6 +814,7 @@ def isLoggedIn(ticket, page):
     else:
         return "0"
 
+# Checks if "yes" is in the data
 def validate(data):
     if "yes" in data:
         name = data.split()[1]
@@ -809,6 +822,7 @@ def validate(data):
     else:
         return "NO"
 
+# Makes the roles for the dropdown menu on the top right
 def makeRoles(netid):
     roles = []
     if isStudent(netid):
@@ -819,6 +833,7 @@ def makeRoles(netid):
         roles.append("admin")
     return roles
 
+# Vinay
 @app.route('/store/annotations', methods = ['POST'])
 def jsonify(obj, *args, **kwargs):
     res = json.dumps(obj, indent=None if request.is_xhr else 2)
@@ -828,6 +843,7 @@ def jsonify(obj, *args, **kwargs):
 #     res =json.dumps(obj, indent=None if request.is_xhr else 2)
 #     return Response(res, mimetype='application/json', *args, **kwargs)
 
+# Vinay
 def find_Annotation(id, name):
     assignment1 = Assignment.query.filter_by(id = id).first()
     for item in assignment1.files:
@@ -835,6 +851,7 @@ def find_Annotation(id, name):
             return json.dumps(item["annotations"])
     return None
 
+# Creates an annotation and adds it to the database
 @app.route('/store/annotations/create', methods = ['POST'])
 def create():
     data = dict(request.json)
@@ -863,7 +880,7 @@ def create():
 
     return json.dumps('No JSON payload sent. Annotation not created.')
 
-
+# vinay
 @app.route('/store/annotations/read/<id>/<name>', methods = ['GET'])
 def read(id, name):
     annotation = find_Annotation(id, name)
@@ -873,7 +890,7 @@ def read(id, name):
 
     return Response(annotation, mimetype = 'application/json')
 
-
+# Updates an existing annotation
 @app.route('/store/annotations/update/<id>/<name>/<ann_id>', methods = ['PUT'])
 def update(id, name, ann_id):
     a = Assignment.query.filter_by(id = id).first()
@@ -891,6 +908,8 @@ def update(id, name, ann_id):
                     db.session.commit()
                     return Response(json.dumps("1"), mimetype = 'application/json')
     return Response(json.dumps("0"), mimetype = 'application/json')
+
+# Deletes an existing annotation
 @app.route('/store/annotations/destroy/<id>/<name>/<ann_id>', methods = ['DELETE'])
 def destroy(id, name, ann_id):
     a = Assignment.query.filter_by(id = id).first()
@@ -906,11 +925,7 @@ def destroy(id, name, ann_id):
                     return Response(json.dumps("1"), mimetype = 'application/json')
     return Response(json.dumps("0"), mimetype = 'application/json')
 
-
-# @app.route('/store/annotations/search', methods = ['GET'])
-# def search:
-
-
+# james
 @app.route('/login')
 def login():
     response = urllib2.urlopen('https://fed.princeton.edu/cas/validate?ticket=' + request.args.get('ticket') + '&service=http://saltytyga.herokuapp.com/login?dest=' + request.args.get('dest'))
@@ -922,7 +937,7 @@ def login():
         session['username'] = netid
         return redirect('/' + request.args.get('dest'))
 
-# controllers
+# vinay
 @app.route('/datatest')
 def datatest():
     # if isAdmin(session['username']) is False:
@@ -939,14 +954,17 @@ def datatest():
     string = "Students: {} \n Graders: {} \n Admins: {}".format(str(_students), str(_graders), str(_admins))
     return string
 
+# james
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'ico/favicon.ico')
 
+# Sends user to 404 page
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
+# Home page
 @app.route("/")
 def index():
     # if users can switch between modes (student, grader, admin), then we could redirect to logged-in page
@@ -972,10 +990,7 @@ def index():
 
     return render_template('index3.html', alert = alertMessage, studentCode = studentCode)
 
-@app.route("/index3")
-def index3():
-    return render_template('index3.html')
-
+# Shows the assignment with the grade and annotations for students, graders, and assignments
 @app.route("/viewer")
 def submitted():
     if 'assignment' not in request.args:
@@ -1115,6 +1130,7 @@ def submitted():
 
     return render_template('viewer.html', mark_row = mark_row, alertMessage = alertMessage, type = accountType, roles = roles, netid = netid, a = assignment_active, assignment = files, title=title, id=assignmentID, input_ro=input_ro, input_style=input_style, grading_status=grading_status, status_redirection=status_redirection )
 
+# Shows the grader assignments that have not been claimed and assignments he or she has claimed
 @app.route("/grader")
 def grader():
     try:
@@ -1211,8 +1227,7 @@ def grader():
 
     return render_template('grader.html', alertMessage = alertMessage, netid=netid, roles = roles, classes = classes, assignments=assignments_form, assignment_names=assignment_names, graders=graders)
 
-
-
+# Shows the student all of their submitted assignments
 @app.route("/student")
 def student():
     try:
@@ -1282,6 +1297,7 @@ def student():
 
     return render_template('student.html', netid=netid, classes = classes, roles = roles, assignments = assignments_form, alertMessage = alertMessage)
 
+# Shows graphs and data about submitted and graded assignments.
 @app.route("/admin")
 def admin():
     try:

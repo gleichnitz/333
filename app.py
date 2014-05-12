@@ -116,8 +116,13 @@ def mass_upload_student_files():
         studentFiles[netid].append({'name': name, 'content': file.read(), 'grade': "", 'annotations': []})
 
     for item in netids:
-        id_ = addAssignment(courseName, item, assignmentName, studentFiles[item])
-        Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
+        student = Student.query.filter_by(netid=netid).first()
+        assignment = Assignment.query.filter_by(student=student, name=assignmentName).first()
+        if assignment is not None:
+            id_ = assignment.id
+        else:
+            id_ = addAssignment(courseName, item, assignmentName, studentFiles[item])
+            Assignment.query.filter_by(id = id_).update({"points_possible": points_possible})
 
         assignFiles = Set()
         
@@ -193,17 +198,6 @@ def mass_upload_students():
     session['success'] = 'You successfully added ' + str(len(netids)) + ' students to your course.'
 
     return redirect('/admin/students')
-
-@app.route('/_check_student_files')
-def check_student_files():
-    netid = request.form['netid']
-    assignmentName = request.form['assignmentTitle']
-    student = Student.query.filter_by(student=student).first()
-    if Assignment.query.filter_by(student=student, name=assignmentName).first() is None:
-        return "none"
-    else:
-        return "exists"
-
 
 # Upload code and create a new assignment bound to a particular student.
 @app.route('/_upload_student_files', methods = ['GET', 'POST'])

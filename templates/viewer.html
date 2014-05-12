@@ -31,8 +31,7 @@
   <script>
       jQuery(function ($) {
           i = 0;
-          $.i18n.load(i18n_dict);
-
+          
           {% for item in assignment %}
             var content = $('#{{ item.name }}').annotator({{ item.isReadOnly|safe}});
             content.annotator('addPlugin', 'Store', {

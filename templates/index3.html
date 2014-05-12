@@ -37,8 +37,6 @@
 	<script type="text/javascript">
     	SyntaxHighlighter.defaults.toolbar = false;
     	SyntaxHighlighter.all();
-
-    	$('#sample-code').annotator();
   	</script>
 
 	<script>
@@ -265,6 +263,8 @@
 <!-- fancybox init -->
 <script>
 	$(document).ready(function(e) {
+		$('#sample-code').annotator();
+
         var lis = $('.nav > li');
         menu_focus( lis[0], 1 );
     
